@@ -14,13 +14,13 @@ body {
   background-color: var(--primary-bg-color);
   font-family: "Cirkular Std", sans-serif;
   color: var(--primary-text-color);
-  font-size: 16px;
+  font-size: 14px;
   line-height: 20px;
 }
 
 /**********TOP-SECTION************/
 
-.top-section {
+.top-container {
   border: solid red;
   display: flex;
   flex-direction: row;
@@ -42,14 +42,24 @@ body {
   width: 80px;
 }
 
+.menu-top {
+  display: none;
+}
+
 .fa-bars {
   height: 16px;
   width: 16px;
   margin: 12px;
 }
 
-/**********HERO-SECTION************/
+/**********MID-SECTION************/
 
+.mid-container {
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 24px;
+  border: solid white;
+}
 .hero-section {
   border: solid red;
   display: flex;
@@ -74,7 +84,7 @@ body {
 .menu {
 }
 
-/**********CARD-GRID-SECTION************/
+/**********CARD-GRID************/
 
 .card-grid-section {
   border: solid blue;
@@ -98,7 +108,8 @@ body {
   width: 272px;
 }
 
-/**********APPLY-SECTION************/
+/**********APPLY************/
+
 .apply-wrapper {
   border: solid red;
   display: flex;
@@ -113,7 +124,9 @@ body {
     background-color: var(--accent-bg-color);
   }
 }
+
 /**********BOTTOM-SECTION************/
+
 .bottom-section {
 }
 
@@ -145,5 +158,18 @@ body {
   }
 }
 
-@media screen {
+@media only screen and (min-width: 1022px) {
+  .mid-container {
+    padding: 0 108px;
+    border: solid white;
+  }
+
+  .menu-top {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .fa-bars {
+    display: none;
+  }
 }
