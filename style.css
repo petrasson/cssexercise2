@@ -35,6 +35,7 @@ body {
   flex-direction: row;
   align-items: center;
   gap: 16px;
+  margin: 0px;
 }
 
 .image-logotype-dydx {
@@ -79,11 +80,77 @@ body {
   display: flex;
   flex-direction: row;
   margin: 24px;
-  overflow-x: hidden;
+  /*overflow-x: hidden;*/
 }
-.menu {
+.menu-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
 }
 
+.menu-link {
+  min-width: 182px;
+}
+
+.toggle-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.toggle {
+  /*https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_switch*/
+  position: relative;
+  display: inline-block;
+  width: 34px;
+  height: 14px;
+}
+
+.toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 13;
+  left: 0;
+  right: 0;
+  bottom: -18;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: -7px;
+  bottom: -4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--accent-color);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.slider-text {
+  padding-left: 50px;
+}
+/*slider round*/
 /**********CARD-GRID************/
 
 .card-grid-section {
