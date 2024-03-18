@@ -80,16 +80,28 @@ body {
   display: flex;
   flex-direction: row;
   margin: 24px;
-  /*overflow-x: hidden;*/
+  position: relative;
 }
-.menu-wrapper {
+
+.link-wrapper {
   display: flex;
   flex-direction: row;
   gap: 24px;
+  margin: 0px;
+  width: 235px;
+  overflow: hidden;
+  border: solid green;
 }
 
 .menu-link {
   min-width: 182px;
+}
+
+.right-arrow{
+  position: absolute;
+  top:17;
+  right:0;
+  border: solid red;
 }
 
 .toggle-wrapper {
@@ -178,19 +190,35 @@ input:checked + .slider:before {
 /**********APPLY************/
 
 .apply-wrapper {
-  border: solid red;
+  border: solid green;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   margin: 0 auto;
   border-radius: 16px;
-  background: var(--accent-color);
   width: 272px;
-  .card {
-    justify-content: center;
-    border: none;
-    background-color: var(--accent-bg-color);
-  }
+  background-color: var(--accent-color);
+  padding:40px 16px;
 }
+
+.apply-text{
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  margin-bottom: 8px;
+}
+
+.apply-header{
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  margin-bottom: 40px;
+}
+.arrowb-rigth{
+  padding-left:10px;
+
+}
+
 
 /**********BOTTOM-SECTION************/
 
@@ -216,6 +244,9 @@ input:checked + .slider:before {
   &._secondary {
     color: var(--accent-color);
     font-weight: 400;
+    padding:10px 14px;
+    width:240px;
+
   }
 
   &._accent {
