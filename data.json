@@ -2,7 +2,6 @@
   "cards": [
     {
       "id": "card1",
-      "categoryTitle": "Category",
       "category": "Technical",
       "fundTitle": "Hedgie banner",
       "fondText": "Funding amount: $5.000-$6.000",
@@ -11,7 +10,6 @@
     },
     {
       "id": "card2",
-      "categoryTitle": "Category",
       "category": "Governance",
       "fundTitle": "Hedgie banner",
       "fondText": "Funding amount: $5.000-$6.000",
@@ -20,7 +18,6 @@
     },
     {
       "id": "card3",
-      "categoryTitle": "Category",
       "category": "Growth",
       "fundTitle": "Hedgie banner",
       "fondText": "Funding amount: $5.000-$6.000",
@@ -29,7 +26,6 @@
     },
     {
       "id": "card4",
-      "categoryTitle": "Category",
       "category": "Analytics",
       "fundTitle": "Hedgie banner",
       "fondText": "Funding amount: $5.000-$6.000",
@@ -39,7 +35,6 @@
     ,
     {
       "id": "card5",
-      "categoryTitle": "Category",
       "category": "ThirdParty",
       "fundTitle": "Hedgie banner",
       "fondText": "Funding amount: $5.000-$6.000",
@@ -48,7 +43,6 @@
     },
     {
       "id": "card6",
-      "categoryTitle": "Category",
       "category": "Technical",
       "fundTitle": "Hedgie banner",
       "fondText": "Funding amount: $5.000-$6.000",

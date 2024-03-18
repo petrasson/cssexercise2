@@ -93,7 +93,7 @@ flex-direction: column;
   position: relative;
 }
 
-.link-wrapper {
+.filter-wrapper {
   display: flex;
   flex-direction: row;
   gap: 24px;
@@ -104,7 +104,7 @@ flex-direction: column;
   color: var(--secondary-text-color);
 }
 
-.menu-link {
+.menu-filter {
   min-width: 182px;
 }
 
@@ -142,11 +142,15 @@ flex-direction: column;
   left: -26;
   right: 20;
   bottom: -18;
-  background-color: var--(--secondary-text-color);
+
+  background-color: var(--primary-text-color);
   -webkit-transition: 0.4s;
   transition: 0.4s;
   border-radius: 34px;
 }
+
+
+
 
 .slider:before {
   position: absolute;
@@ -155,7 +159,8 @@ flex-direction: column;
   width: 26px;
   left: -7px;
   bottom: -4px;
-  background-color: var(--primary-text-color);
+/*  background-color: var(--primary-text-color);*/
+  background-color: #ccc;
   -webkit-transition: 0.4s;
   transition: 0.4s;
   border-radius: 50%;
@@ -186,11 +191,21 @@ input:checked + .slider:before {
   grid-gap: 24px;
   justify-content: center;
   .card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: flex-start;
     border: solid var(--border-color);
     background-color: var(--secondary-bg-color);
     height: 480px;
   }
+}
+
+.card-wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-start;
 }
 
 .card {
@@ -199,6 +214,21 @@ input:checked + .slider:before {
   border-radius: 16px;
   padding: 24px;
   width: 272px;
+}
+
+.sub-header{
+  font-family: "Space Mono", sans-serif;
+  color:var(--secondary-text-color);
+}
+
+.card-header{
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 32px;
+}
+
+.card-text{
+  font-weight: 450;
 }
 
 /**********APPLY************/
@@ -379,7 +409,7 @@ input:checked + .slider:before {
   position: relative;
 }
 
-.link-wrapper {
+.filter-wrapper {
   width: auto;
   font-size: 16px;
   line-height: 24px;
@@ -397,7 +427,11 @@ input:checked + .slider:before {
 .toggle{
   width: 56px;
   }
+
+
 /**********CARD-GRID************/
+
+
 .card-grid-section {
   padding: 80px 0px;
   grid-template-columns: auto auto auto;
@@ -405,7 +439,13 @@ input:checked + .slider:before {
     .card{
       width: 392px;
     }
+
+    .card-header{
+      font-size: 24px;
+    }
 }
+
+
 
 /**********APPLY************/
 .apply-wrapper{
