@@ -29,7 +29,7 @@ body {
   margin: 16px 24px;
 }
 
-.menu-wrapper {
+.menu-top-wrapper {
   border: solid blue;
   display: flex;
   flex-direction: row;
@@ -45,6 +45,8 @@ body {
 
 .menu-top {
   display: none;
+  font-family: "Space Mono", sans-serif;
+  color: var(--secondary-text-color);
 }
 
 .fa-bars {
@@ -88,8 +90,10 @@ body {
   flex-direction: row;
   gap: 24px;
   margin: 0px;
-  width: 235px;
+  width: 219px;
   overflow: hidden;
+  padding-left: 20px;
+  color: var(--secondary-text-color);
   border: solid green;
 }
 
@@ -107,6 +111,8 @@ body {
 .toggle-wrapper {
   display: flex;
   flex-direction: row;
+  color: var(--secondary-text-color);
+  border: solid red;
 }
 
 .toggle {
@@ -160,7 +166,7 @@ input:checked + .slider:before {
 }
 
 .slider-text {
-  padding-left: 50px;
+  padding-left: 0px;
 }
 /*slider round*/
 /**********CARD-GRID************/
@@ -216,14 +222,67 @@ input:checked + .slider:before {
 }
 .arrowb-rigth{
   padding-left:10px;
-
 }
-
 
 /**********BOTTOM-SECTION************/
 
 .bottom-section {
+  padding:40px 24px;
+  border: solid yellow;
 }
+
+.menu-bottom-wrapper {
+  border: solid blue;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 0px;
+  margin: 0px auto;
+  width: 272px;
+}
+
+.image-logotype-dydx-small{
+  width: 60px;
+  height: 60px;
+  margin-bottom: 32px;
+}
+
+.menu-bottom{
+  border: solid red;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 24px;
+  margin: 0px;
+  color: var(--secondary-text-color);
+  font-family: "Space Mono", sans-serif;
+}
+
+.social-media-wrapper{
+  border: solid red;
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+}
+
+.discord-symbol{
+  width: 16px;
+  height: 16px;
+ 
+}
+.twitter-symbol{
+  width: 16px;
+  height: 16px;
+  
+}
+.external-link-symbol{
+  width: 12px;
+  height: 12;
+  margin-left: 8px;
+}
+
+
+/**********BUTTONS************/
 
 .button {
   font-weight: 500;
