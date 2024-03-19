@@ -1,5 +1,9 @@
-import jsonData from './data.json' assert { type: "json" };
-console.log("jsonData",jsonData);
+document.addEventListener('DOMContentLoaded', function() {
+  renderCards(cardsData);
+});
+
+/*import jsonData from './data.json' assert { type: "json" };
+console.log("jsonData",jsonData);*/
 
 const html = (strings, ...values) => String.raw({ raw: strings }, ...values);
 
@@ -11,7 +15,8 @@ const cardsData = [
   "fundTitle": "Hedgie banner",
   "fundingAmount": "$5.000-$6.000",
   "completed": "true",
-  "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy."
+  "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
+  "avatar":'<img src="images/avatar.svg" aria-hidden="true" class="image-avatar"/>'
 },
 {
   "id": "card2",
@@ -20,7 +25,8 @@ const cardsData = [
   "fundTitle": "Hedgie banner2",
   "fundingAmount": "$5.000-$6.000",
   "completed": "true",
-  "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy."
+  "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
+  "avatar":'<img src="images/avatar.svg" aria-hidden="true" class="image-avatar"/>'
 },
 {
   "id": "card3",
@@ -29,7 +35,8 @@ const cardsData = [
   "fundTitle": "Hedgie banner3",
   "fundingAmount": "$5.000-$6.000",
   "completed": "false",
-  "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy."
+  "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
+  "avatar":'<img src="images/avatar.svg" aria-hidden="true" class="image-avatar"/>'
 },
 {
   "id": "card4",
@@ -38,9 +45,9 @@ const cardsData = [
   "fundTitle": "Hedgie banner4",
   "fundingAmount": "$5.000-$6.000",
   "completed": "true",
-  "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy."
-}
-,
+  "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
+  "avatar":'<img src="images/avatar.svg" aria-hidden="true" class="image-avatar"/>'
+},
 {
   "id": "card5",
   "categoryTitle": "Category",
@@ -48,7 +55,8 @@ const cardsData = [
   "fundTitle": "Hedgie banner5",
   "fundingAmount": "$5.000-$6.000",
   "completed": "false",
-  "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy."
+  "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
+  "avatar":'<img src="images/avatar.svg" aria-hidden="true" class="image-avatar"/>'
 },
 {
   "id": "card6",
@@ -57,7 +65,8 @@ const cardsData = [
   "fundTitle": "Hedgie banner6",
   "fundingAmount": "$5.000-$6.000",
   "completed": "true",
-  "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy."
+  "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
+  "avatar":'<img src="images/avatar.svg" aria-hidden="true" class="image-avatar"/>'
 }
 
 ]
@@ -74,7 +83,7 @@ const rightArrow = document.querySelector(".right-arrow");
 
 
 function renderCards(cards) {
-/*  cardsGrid.innerHTML = "";*/
+cardsGrid.innerHTML = "";
 cards.forEach((card) => {
     cardsGrid.insertAdjacentHTML(
       "beforeend",
@@ -84,6 +93,7 @@ cards.forEach((card) => {
       <p class="card-header">${card.fundTitle}</p>
       <p class="sub-header">Funding amount: ${card.fundingAmount}</p>
       <p class="card-text">${card.descriptionText}</p>
+      <div class="avatar-wrapper"><p class="image-avatar">${card.avatar}</p></div>
       </div>
       `
     );
