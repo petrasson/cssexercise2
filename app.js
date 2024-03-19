@@ -1,6 +1,6 @@
-/*import jsonData from './data.json' assert { type: "json" };
+import jsonData from './data.json' assert { type: "json" };
 console.log("jsonData",jsonData);
-*/
+
 const html = (strings, ...values) => String.raw({ raw: strings }, ...values);
 
 const cardsData = [
@@ -92,7 +92,6 @@ cards.forEach((card) => {
 
 renderCards(cardsData);
 
-
 buttonAll.addEventListener("click", () => {
   cardsGrid.innerHTML = "";
   renderCards(cardsData);
@@ -104,13 +103,11 @@ toggle.addEventListener("click", () => {
   renderCards(completed);
  });
 
-
 tech.addEventListener("click", () => {
   cardsGrid.innerHTML = "";
   const Tech = cardsData.filter((card) => card.category === "Technical");
   renderCards(Tech);
 });
-
 
 governance.addEventListener("click", () => {
   cardsGrid.innerHTML = "";
