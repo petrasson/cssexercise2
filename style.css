@@ -49,6 +49,16 @@ body {
   padding: 12px 1px;
 }
 
+.menu-text {
+  padding: 12px 16px;
+  margin: 0px;
+  font-size: 16px;
+  font-weight: 400;
+  &.active {
+    color: var(--primary-text-color);
+    }
+}
+
 .fa-solid {
   &.fa-bars {
     height: 16px;
@@ -389,13 +399,6 @@ input:checked + .slider:before {
 .image-logotype-dydx {
   height: 72px;
   width: 120px;
-}
-
-.menu-text {
-  padding: 12px 16px;
-  margin: 0px;
-  font-size: 16px;
-  font-weight: 400;
 }
 
 .slider-text {

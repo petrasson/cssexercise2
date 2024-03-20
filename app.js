@@ -89,6 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const loadingCards = cardsData.filter((card) => card.completed === true);
   renderCards(loadingCards);
   console.log("loadingCards", loadingCards);
+  updateButtonText();
 });
 
 function renderCards(cards) {
@@ -208,3 +209,14 @@ toggle.addEventListener("click", () => {
 
 /**apply**/
 
+function updateButtonText() {
+  if (window.innerWidth > 1022) {
+    applyButton.textContent = "Apply for grant";
+  } else {
+    applyButton.textContent = "Apply";
+  }
+}
+window.addEventListener("resize", updateButtonText);
+
+
+/******/
