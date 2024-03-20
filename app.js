@@ -1,7 +1,3 @@
-document.addEventListener('DOMContentLoaded', function() {
-  renderCards(cardsData);
-});
-
 /*import jsonData from './data.json' assert { type: "json" };
 console.log("jsonData",jsonData);*/
 
@@ -14,7 +10,7 @@ const cardsData = [
   "category": "Technical",
   "fundTitle": "Hedgie banner",
   "fundingAmount": "$5.000-$6.000",
-  "completed": "true",
+  "completed": true,
   "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
   "avatar":'<img src="images/avatar.svg" aria-hidden="true" class="image-avatar"/>'
 },
@@ -24,7 +20,7 @@ const cardsData = [
   "category": "Governance",
   "fundTitle": "Hedgie banner2",
   "fundingAmount": "$5.000-$6.000",
-  "completed": "true",
+  "completed": true,
   "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
   "avatar":'<img src="images/avatar.svg" aria-hidden="true" class="image-avatar"/>'
 },
@@ -34,7 +30,7 @@ const cardsData = [
   "category": "Growth",
   "fundTitle": "Hedgie banner3",
   "fundingAmount": "$5.000-$6.000",
-  "completed": "false",
+  "completed": false,
   "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
   "avatar":'<img src="images/avatar.svg" aria-hidden="true" class="image-avatar"/>'
 },
@@ -44,7 +40,7 @@ const cardsData = [
   "category": "Analytics",
   "fundTitle": "Hedgie banner4",
   "fundingAmount": "$5.000-$6.000",
-  "completed": "true",
+  "completed": true,
   "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
   "avatar":'<img src="images/avatar.svg" aria-hidden="true" class="image-avatar"/>'
 },
@@ -54,7 +50,7 @@ const cardsData = [
   "category": "ThirdParty",
   "fundTitle": "Hedgie banner5",
   "fundingAmount": "$5.000-$6.000",
-  "completed": "false",
+  "completed": false,
   "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
   "avatar":'<img src="images/avatar.svg" aria-hidden="true" class="image-avatar"/>'
 },
@@ -64,11 +60,10 @@ const cardsData = [
   "category": "Technical",
   "fundTitle": "Hedgie banner6",
   "fundingAmount": "$5.000-$6.000",
-  "completed": "true",
+  "completed": true,
   "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
   "avatar":'<img src="images/avatar.svg" aria-hidden="true" class="image-avatar"/>'
 }
-
 ]
 
 const cardsGrid = document.querySelector(".card-grid-section");
@@ -81,6 +76,17 @@ const thirdParty = document.getElementById("third-party-filter");
 const toggle = document.querySelector(".toggle");
 const rightArrow = document.querySelector(".right-arrow");
 
+let toggleCompleted = true;
+let updatedCards; /*keeps track of the cards currently rendered on the page*/
+
+
+/*Rendering all cards that are completed when page loads*/
+
+document.addEventListener('DOMContentLoaded', function() {
+  const loadingCards =cardsData.filter((card) => card.completed === true);
+  renderCards(loadingCards);
+  console.log("loadingCards", loadingCards);
+});
 
 function renderCards(cards) {
 cardsGrid.innerHTML = "";
@@ -100,18 +106,33 @@ cards.forEach((card) => {
   });
 }
 
-renderCards(cardsData);
+toggle.addEventListener("click", () => {
+  cardsGrid.innerHTML = "";
+  if (toggleCompleted) {
+    console.log("Showing all cards since the value was true.");
+    renderCards(cardsData);
+  } else {
+    console.log("Showing only true cards.");
+    renderCards(cardsData.filter((card) => card.completed === true));
+  }
+  toggleCompleted = !toggleCompleted;
+});
+
+
+/******filters*******/
+/*
 
 buttonAll.addEventListener("click", () => {
   cardsGrid.innerHTML = "";
+  if ( toggleCompleted = true ){
+    const allCardsCompleted = cardsData.filter((card) => card.completed === "true");
+    renderCards(allCardsCompleted);
+    rederedCards = allCardsCompleted;
+  } else{
   renderCards(cardsData);
+}
 });
 
-toggle.addEventListener("click", () => {
-  cardsGrid.innerHTML = "";
-  const completed = cardsData.filter((card) => card.completed === "true");
-  renderCards(completed);
- });
 
 tech.addEventListener("click", () => {
   cardsGrid.innerHTML = "";
@@ -142,3 +163,5 @@ thirdParty.addEventListener("click", () => {
   const ThirdParty = cardsData.filter((card) => card.category === "ThirdParty");
   renderCards(ThirdParty);
 });
+
+*/
