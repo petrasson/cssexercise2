@@ -1,9 +1,33 @@
-/*import jsonData from './data.json' assert { type: "json" };
-console.log("jsonData",jsonData);*/
-
 const html = (strings, ...values) => String.raw({
   raw: strings
 }, ...values);
+
+
+/*********fetch API-data*********/
+
+const url = "https://nextjs-dashboard-6sedkcpnq-rayproud.vercel.app/api";
+
+const fetchAPI = (url, callback) => {
+  fetch(url)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      callback(data);
+      console.log("data", data);
+    })
+    .catch((error) => {
+      callback(null, error)
+      console.log("error", error);
+    });
+};
+
+fetchAPI(url, (data, error) => {
+console.log("data2", data);
+});
 
 const cardsData = [{
       "id": "card1",
@@ -67,6 +91,7 @@ const cardsData = [{
   }
 ]
 
+
 const cardsGrid = document.querySelector(".card-grid-section");
 const buttonAll = document.getElementById("all-cards");
 const tech = document.getElementById("tech-filter");
@@ -99,11 +124,11 @@ function renderCards(cards) {
           "beforeend",
           html`
     <div class="card">
-    <p class="sub-header">Category</p>
-    <p class="card-header">${card.fundTitle}</p>
-    <p class="sub-header">Funding amount: ${card.fundingAmount}</p>
-    <p class="card-text">${card.descriptionText}</p>
-    <div class="avatar-wrapper"><p class="image-avatar">${card.avatar}</p></div>
+    <p class="sub-header">${card.category}</p>
+    <p class="card-header">${card.title}</p>
+    <p class="sub-header">Funding amount: ${card.funding_amount_from}-${card.funding_amount_to}</p>
+    <p class="card-text">${card.description}</p>
+    <div class="avatar-wrapper"><p class="image-avatar">${card.attendees.map(name => `<img src="${name}.jpg" />`)}</p></div>
     </div>
     `
       );
@@ -217,6 +242,3 @@ function updateButtonText() {
   }
 }
 window.addEventListener("resize", updateButtonText);
-
-
-/******/

@@ -59,13 +59,11 @@ body {
     }
 }
 
-.fa-solid {
-  &.fa-bars {
+.hamburger-button {
     height: 16px;
     width: 16px;
     margin: 12px;
-    display:flex;
-    }
+    display: flex;
 }
 
 /**********MID-SECTION************/
@@ -101,7 +99,7 @@ flex-direction: column;
   gap: 24px;
   margin: 0px;
   min-width: 219px;
-  overflow: hidden;
+  overflow: scroll;
   padding-left: 20px;
   color: var(--secondary-text-color);
   position: relative;
@@ -388,13 +386,11 @@ input:checked + .slider:before {
 .menu-top {
   display: flex;
   flex-direction: row;
-  .fa-solid {
-    &.fa-bars {
-      display:none;
-      }
-  }
-} 
-/*Denna funkar ej*/
+}
+
+.hamburger-button {
+  display: none;
+}
 
 .image-logotype-dydx {
   height: 72px;
