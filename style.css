@@ -60,10 +60,21 @@ body {
 }
 
 .hamburger-button {
-    height: 16px;
-    width: 16px;
-    margin: 12px;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    padding:0;
+    background: var(--primary-bg-color);
+    border: none;
+    color: white;
+    font-size: 16px;
+}
+
+.fa-solid fa-bars{
+  height: 40px;
+    width: 40px;
 }
 
 /**********MID-SECTION************/

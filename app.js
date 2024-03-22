@@ -6,7 +6,7 @@ const html = (strings, ...values) => String.raw({
 /*********fetch API-data*********/
 
 const url = "https://nextjs-dashboard-6sedkcpnq-rayproud.vercel.app/api";
-
+let funds;
 const fetchAPI = (url, callback) => {
   fetch(url)
     .then((response) => {
@@ -25,71 +25,6 @@ const fetchAPI = (url, callback) => {
     });
 };
 
-fetchAPI(url, (data, error) => {
-console.log("data2", data);
-});
-
-const cardsData = [{
-      "id": "card1",
-      "categoryTitle": "Category",
-      "category": "Technical",
-      "fundTitle": "Hedgie banner",
-      "fundingAmount": "$5.000-$6.000",
-      "completed": true,
-      "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
-      "avatar": '<img src="images/avatar.svg" aria-hidden="true" class="image-avatar"/>'
-  },
-  {
-      "id": "card2",
-      "categoryTitle": "Category",
-      "category": "Governance",
-      "fundTitle": "Hedgie banner2",
-      "fundingAmount": "$5.000-$6.000",
-      "completed": true,
-      "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
-      "avatar": '<img src="images/avatar.svg" aria-hidden="true" class="image-avatar"/>'
-  },
-  {
-      "id": "card3",
-      "categoryTitle": "Category",
-      "category": "Growth",
-      "fundTitle": "Hedgie banner3",
-      "fundingAmount": "$5.000-$6.000",
-      "completed": false,
-      "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
-      "avatar": '<img src="images/avatar.svg" aria-hidden="true" class="image-avatar"/>'
-  },
-  {
-      "id": "card4",
-      "categoryTitle": "Category",
-      "category": "Analytics",
-      "fundTitle": "Hedgie banner4",
-      "fundingAmount": "$5.000-$6.000",
-      "completed": true,
-      "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
-      "avatar": '<img src="images/avatar.svg" aria-hidden="true" class="image-avatar"/>'
-  },
-  {
-      "id": "card5",
-      "categoryTitle": "Category",
-      "category": "ThirdParty",
-      "fundTitle": "Hedgie banner5",
-      "fundingAmount": "$5.000-$6.000",
-      "completed": false,
-      "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
-      "avatar": '<img src="images/avatar.svg" aria-hidden="true" class="image-avatar"/>'
-  },
-  {
-      "id": "card6",
-      "categoryTitle": "Category",
-      "category": "Technical",
-      "fundTitle": "Hedgie banner6",
-      "fundingAmount": "$5.000-$6.000",
-      "completed": true,
-      "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
-      "avatar": '<img src="images/avatar.svg" aria-hidden="true" class="image-avatar"/>'
-  }
-]
 
 
 const cardsGrid = document.querySelector(".card-grid-section");
@@ -106,15 +41,23 @@ const applyButton = document.getElementById("apply");
 let toggleCompleted = true;
 let category = "all";
 
-/*let updatedCards = cardsData; */
+/*let updatedCards = funds; */
 /*keeps track of the cards currently rendered on the page */
 /* Rendering all cards that are completed when page loads */
 
 document.addEventListener('DOMContentLoaded', function() {
-  const loadingCards = cardsData.filter((card) => card.completed === true);
-  renderCards(loadingCards);
-  console.log("loadingCards", loadingCards);
-  updateButtonText();
+  fetchAPI(url, (data, error) => {
+    if (error) {
+      console.error("Error fetching data:", error);
+      return;
+    }
+    let funds = data.funds; // Define funds inside the callback function
+    console.log("funds", funds);
+    
+    const loadingCards = funds.filter((card) => card.completed === true);
+    renderCards(loadingCards);
+    updateButtonText();
+  });
 });
 
 function renderCards(cards) {
@@ -139,13 +82,13 @@ function renderCards(cards) {
 
 
 buttonAll.addEventListener("click", () => {
-  cardsGrid.innerHTML = "";
+  funds.innerHTML = "";
   if (toggleCompleted) {
-      const allCards = cardsData.filter((card) => card.completed === true);
+      const allCards = funds.filter((card) => card.completed === true);
       console.log("allCards",allCards)
       renderCards(allCards);
   } else {
-      renderCards(cardsData);
+      renderCards(funds);
   }
   category = "All";
 });
@@ -153,11 +96,11 @@ buttonAll.addEventListener("click", () => {
 tech.addEventListener("click", () => {
   cardsGrid.innerHTML = "";
   if (toggleCompleted) {
-      const allCompletedTechCards = cardsData.filter((card) => card.completed === true && card.category === "Technical");
+      const allCompletedTechCards = funds.filter((card) => card.completed === true && card.category === "Technical");
       renderCards(allCompletedTechCards);
       console.log("allCompletedTechCards",allCompletedTechCards)
   } else {
-      const allTechCards = cardsData.filter((card) => card.category === "Technical");
+      const allTechCards = funds.filter((card) => card.category === "Technical");
       renderCards(allTechCards);
   }
   category = "Technical";
@@ -167,10 +110,10 @@ tech.addEventListener("click", () => {
 governance.addEventListener("click", () => {
   cardsGrid.innerHTML = "";
   if (toggleCompleted) {
-      const allCompletedGovernanceCards = cardsData.filter((card) => card.completed === true && card.category === "Governance");
+      const allCompletedGovernanceCards = funds.filter((card) => card.completed === true && card.category === "Governance");
       renderCards(allCompletedGovernanceCards);
   } else {
-      const allGovernanceCards = cardsData.filter((card) => card.category === "Governance");
+      const allGovernanceCards = funds.filter((card) => card.category === "Governance");
       renderCards(allGovernanceCards);
   }
   category = "Governance";
@@ -179,10 +122,10 @@ governance.addEventListener("click", () => {
 growth.addEventListener("click", () => {
   cardsGrid.innerHTML = "";
   if (toggleCompleted) {
-      const allCompletedGrowthCards = cardsData.filter((card) => card.completed === true && card.category === "Growth");
+      const allCompletedGrowthCards = funds.filter((card) => card.completed === true && card.category === "Growth");
       renderCards(allCompletedGrowthCards);
   } else {
-      const allGrowthCards = cardsData.filter((card) => card.category === "Growth");
+      const allGrowthCards = funds.filter((card) => card.category === "Growth");
       renderCards(allGrowthCards);
   }
   category = "Growth";
@@ -191,10 +134,10 @@ growth.addEventListener("click", () => {
 analytics.addEventListener("click", () => {
   cardsGrid.innerHTML = "";
   if (toggleCompleted) {
-      const allCompletedAnalyticsCards = cardsData.filter((card) => card.completed === true && card.category === "Analytics");
+      const allCompletedAnalyticsCards = funds.filter((card) => card.completed === true && card.category === "Analytics");
       renderCards(allCompletedAnalyticsCards);
   } else {
-      const allAnalyticsCards = cardsData.filter((card) => card.category === "Analytics");
+      const allAnalyticsCards = funds.filter((card) => card.category === "Analytics");
       renderCards(allAnalyticsCards);
   }
   category = "Analytics";
@@ -203,10 +146,10 @@ analytics.addEventListener("click", () => {
 thirdParty.addEventListener("click", () => {
   cardsGrid.innerHTML = "";
   if (toggleCompleted) {
-      const allCompletedthirdPartyCards = cardsData.filter((card) => card.completed === true && card.category === "ThirdParty");
+      const allCompletedthirdPartyCards = funds.filter((card) => card.completed === true && card.category === "ThirdParty");
       renderCards(allCompletedthirdPartyCards);
   } else {
-      const allthirdPartyCards = cardsData.filter((card) => card.category === "ThirdParty");
+      const allthirdPartyCards = funds.filter((card) => card.category === "ThirdParty");
       renderCards(allthirdPartyCards);
   }
   category = "ThirdParty";
@@ -224,7 +167,7 @@ toggle.addEventListener("click", () => {
       renderCards(updatedCards); // Render all cards
   } else {
       console.log("Showing only true cards.");
-      const trueCards = cardsData.filter((card) => card.completed === true);
+      const trueCards = funds.filter((card) => card.completed === true);
       renderCards(trueCards);
   }
   toggleCompleted = !toggleCompleted;
