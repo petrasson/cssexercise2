@@ -44,8 +44,6 @@ body {
 
 .menu-top {
   display: none;
-  font-family: "Space Mono", sans-serif;
-  color: var(--secondary-text-color);
   padding: 12px 1px;
 }
 
@@ -54,6 +52,10 @@ body {
   margin: 0px;
   font-size: 16px;
   font-weight: 400;
+  font-family: "Space Mono", sans-serif;
+  color: var(--secondary-text-color);
+  background-color: var(--primary-bg-color);
+  border: none;
   &.active {
     color: var(--primary-text-color);
     }
@@ -99,9 +101,38 @@ flex-direction: column;
 }
 
 .hero-row {
+  
   display: flex;
   flex-direction: row;
   margin-bottom: 24px;
+}
+
+.filter-container{
+  position: relative;
+  z-index: 1;
+  width: 100%; 
+}
+
+.filter-container::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(270deg, rgba(35, 35, 52, 1) -26%, rgba(35, 35, 52, 0));
+  z-index: 0;
+}
+
+.filter-container::after{
+  content: "";
+  position: absolute;
+  top: 17px;
+  right: 0;
+  background-image: url('images/rightarrow.svg');
+  width: 20px;
+  height: 20px;
+  z-index: 2;
 }
 
 .filter-wrapper {
@@ -110,33 +141,17 @@ flex-direction: column;
   gap: 24px;
   margin: 0px;
   min-width: 219px;
-  overflow: scroll;
-  padding-left: 20px;
+  overflow-x: auto;
+  padding: 0;
   color: var(--secondary-text-color);
   position: relative;
-}
-
-.gradient-overlay {
-  position: absolute;
-  top: 0; 
-  left: 0;
-  width: 100%; 
-  height: 100%;
-  background: linear-gradient(270deg,rgba(35, 35, 52, 1) -26%, rgba(35, 35, 52, 0));
-  z-index: 1;
+  z-index: 0;
 }
 
 .menu-filter {
   min-width: 182px;
   position: relative;
   z-index: 0;
-}
-
-.right-arrow{
-  position: absolute;
-  top:17;
-  right:0;
-  z-index: 2;
 }
 
 .toggle-wrapper {
@@ -241,14 +256,17 @@ input:checked + .slider:before {
 }
 
 .avatar-wrapper{
+  display: flex;
+  flex-direction: row;
   position: absolute;
-  bottom: 0;
-  left: 24px;
+  bottom: 8px;
+  left: 26px;
 }
 
 .image-avatar{
   width: 100%;
   height: auto;
+  margin: 0 -10px;
 }
 
 
@@ -328,7 +346,7 @@ input:checked + .slider:before {
   display: flex;
   flex-direction: row;
   gap: 32px;
-  padding-top:32px;
+  padding: 12px 16px;
 }
 
 .social-media-symbol{
@@ -433,7 +451,6 @@ input:checked + .slider:before {
   width: auto;
   font-size: 16px;
   line-height: 24px;
-  margin-left: 30px;
 }
 
 .gradient-overlay {
@@ -524,6 +541,7 @@ input:checked + .slider:before {
 
   .social-media-wrapper{
     align-items: center;
+    padding: 0;
   }
 
   .social-media-symbol{
@@ -543,7 +561,4 @@ input:checked + .slider:before {
 }
 @media only screen and (min-width: 1250px) {
 
-  .right-arrow{
-    display: none;
-  }
 }

@@ -63,6 +63,16 @@ document.addEventListener('DOMContentLoaded', function() {
 function renderCards(cards) {
   cardsGrid.innerHTML = "";
   cards.forEach((card) => {
+    let truncatedDescription = card.description.length > 100 ? card.description.slice(0, 100) + "..." : card.description;
+    let attendees = "";
+    if (card.attendees.length > 3) {
+      for (let i = 0; i < 3; i++) {
+        attendees += `<p class="image-avatar"><img src="images/${card.attendees[i]}.png" /></p>`;
+      }
+      attendees += `<p class="image-avatar"><img src="images/purple-image.png" /></p>`;
+    } else {
+      attendees = card.attendees.map(name => `<p class="image-avatar"><img src="images/${name}.png" /></p>`).join("");
+    }
       cardsGrid.insertAdjacentHTML(
           "beforeend",
           html`
@@ -70,13 +80,14 @@ function renderCards(cards) {
     <p class="sub-header">${card.category}</p>
     <p class="card-header">${card.title}</p>
     <p class="sub-header">Funding amount: ${card.funding_amount_from}-${card.funding_amount_to}</p>
-    <p class="card-text">${card.description}</p>
-    <div class="avatar-wrapper"><p class="image-avatar">${card.attendees.map(name => `<img src="${name}.jpg" />`)}</p></div>
+    <p class="card-text">${truncatedDescription}</p>
+    <div class="avatar-wrapper">${attendees}</div>
     </div>
     `
-      );
+    );
   });
 }
+/*<img src="images/purpe-image.png" /> */
 
 /******filters*******/
 
