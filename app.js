@@ -51,8 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
       console.error("Error fetching data:", error);
       return;
     }
-    let funds = data.funds; // Define funds inside the callback function
-    console.log("funds", funds);
+    let funds = data.funds;
     
     const loadingCards = funds.filter((card) => card.completed === true);
     renderCards(loadingCards);
@@ -69,7 +68,7 @@ function renderCards(cards) {
       for (let i = 0; i < 3; i++) {
         attendees += `<p class="image-avatar"><img src="images/${card.attendees[i]}.png" /></p>`;
       }
-      attendees += `<p class="image-avatar"><img src="images/purple-image.png" /></p>`;
+      attendees += `<p class="image-avatar">+${card.attendees.length-3}<img src="images/purple-image.png" /></p>`;
     } else {
       attendees = card.attendees.map(name => `<p class="image-avatar"><img src="images/${name}.png" /></p>`).join("");
     }

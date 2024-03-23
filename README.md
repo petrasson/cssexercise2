@@ -1,7 +1,7 @@
 # cssexercise2
 
 ## todo
-
+- bilderna ser ut att vara olika platser på kortet?
 - gradiant overlay ska vara kvar i top menu när man scrollar. Får den ej att funka. Antingen ligger den ovanpå o det går ej att scrolla eller så ligger den under och då går det att scrolla.
 
 - kolla google drive/ hur boxar funkar när fönster minskar
