@@ -66,11 +66,11 @@ function renderCards(cards) {
     let attendees = "";
     if (card.attendees.length > 3) {
       for (let i = 0; i < 3; i++) {
-        attendees += `<p class="image-avatar"><img src="images/${card.attendees[i]}.png" /></p>`;
+        attendees += `<p class="image-avatar-wrapper"><img src="images/${card.attendees[i]}.png" /></p>`;
       }
-      attendees += `<p class="image-avatar">+${card.attendees.length-3}<img src="images/purple-image.png" /></p>`;
+      attendees += `<p class="image-avatar-wrapper-purple"><img src="images/purple-image.png"/><p class ="attendee-number">+${card.attendees.length-3}</p></p>`;//
     } else {
-      attendees = card.attendees.map(name => `<p class="image-avatar"><img src="images/${name}.png" /></p>`).join("");
+      attendees = card.attendees.map(name => `<p class="image-avatar-wrapper"><img src="images/${name}.png" /></p>`).join("");
     }
       cardsGrid.insertAdjacentHTML(
           "beforeend",
@@ -80,13 +80,12 @@ function renderCards(cards) {
     <p class="card-header">${card.title}</p>
     <p class="sub-header">Funding amount: ${card.funding_amount_from}-${card.funding_amount_to}</p>
     <p class="card-text">${truncatedDescription}</p>
-    <div class="avatar-wrapper">${attendees}</div>
+    <div class="avatar-container">${attendees}</div>
     </div>
     `
     );
   });
 }
-/*<img src="images/purpe-image.png" /> */
 
 /******filters*******/
 

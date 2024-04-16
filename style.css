@@ -255,7 +255,7 @@ input:checked + .slider:before {
   font-weight: 450;
 }
 
-.avatar-wrapper{
+.avatar-container{
   display: flex;
   flex-direction: row;
   position: absolute;
@@ -263,11 +263,27 @@ input:checked + .slider:before {
   left: 26px;
 }
 
-.image-avatar{
+.image-avatar-wrapper{
   width: 100%;
   height: auto;
-  margin: 0 -10px;
+  margin: 0 -8px;
 }
+
+.image-avatar-wrapper-purple{
+  width: 100%;
+  height: auto;
+  margin: 0 -9px;
+  position: relative;
+}
+
+.attendee-number{
+  position: absolute;
+  border:green solid;
+  left: 76%;
+  bottom: 4px;
+}
+
+
 
 
 /**********APPLY************/
