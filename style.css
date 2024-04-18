@@ -92,8 +92,6 @@ body {
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 700;
   line-height: 40px;
-  margin: 24px;
-  /*testar*/
 }
 
 .wrapper {
@@ -226,7 +224,8 @@ input:checked + .slider:before {
   margin: 0 auto;
   padding: 40px 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(272px, 392px));
+  grid-template-columns: repeat(1, 1fr);
+  /*  grid-template-columns: repeat(auto-fit, minmax(272px, 392px)); */
   grid-gap: 24px;
   justify-content: center;
 }
@@ -242,6 +241,7 @@ input:checked + .slider:before {
   padding: 24px;
   text-align: left;
   position: relative;
+  width: 100%;
 }
 
 .sub-header {
@@ -295,7 +295,6 @@ input:checked + .slider:before {
   align-items: center;
   margin: 0 auto;
   border-radius: 16px;
-  min-width: 272px;
   background: linear-gradient(
     169deg,
     rgba(105, 102, 255, 0.26376488095238093) 0%,
@@ -333,7 +332,7 @@ input:checked + .slider:before {
   flex-direction: column;
   gap: 0px;
   margin: 0px auto;
-  width: 272px;
+  min-width: 272px;
 }
 
 .menu-bottom-wrapper {
@@ -400,7 +399,7 @@ input:checked + .slider:before {
     color: var(--accent-color);
     font-weight: 400;
     padding: 10px 14px;
-    width: 240px;
+    max-width: 240px;
   }
 
   &._accent {
@@ -410,9 +409,17 @@ input:checked + .slider:before {
   }
 }
 
+/***********************************TABLET VERSION*********************************/
+
+@media only screen and (min-width: 700px) {
+  .card-grid-section {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 /***********************************WEB VERSION*********************************/
 
-@media only screen and (min-width: 1022px) {
+@media only screen and (min-width: 1250px) {
   .mid-container {
     padding: 0 108px;
   }
@@ -481,12 +488,9 @@ input:checked + .slider:before {
 
   .card-grid-section {
     padding: 80px 0px;
-    grid-template-columns: repeat(auto-fit, minmax(392px, 3fr));
+    grid-template-columns: repeat(3, 1fr);
+    /*grid-template-columns: repeat(auto-fit, minmax(392px, 3fr));*/
     justify-content: start;
-
-    .card {
-      width: 392px;
-    }
 
     .card-header {
       font-size: 24px;
@@ -511,7 +515,7 @@ input:checked + .slider:before {
     margin-bottom: 40px;
   }
 
-  .arrowb-rigth {
+  .arrowb-right {
     padding-left: 10px;
   }
 
@@ -562,6 +566,4 @@ input:checked + .slider:before {
     font-size: 16px;
     line-height: 24px;
   }
-}
-@media only screen and (min-width: 1250px) {
 }
