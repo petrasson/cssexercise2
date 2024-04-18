@@ -9,7 +9,7 @@ const html = (strings, ...values) =>
 /*********fetch API-data*********/
 
 const url = "https://nextjs-dashboard-6sedkcpnq-rayproud.vercel.app/api";
-let cardsCurrentlyShowing;
+let allCompletedFunds;
 let allFunds;
 let toggleCompleted = true;
 
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
       (card) => card.completed === true
     ); //varför måste den vara const här?
     renderCards(allCompletedFundsLoading);
-    /* allCompletedFunds = allCompletedFundsLoading; */
+    allCompletedFunds = allCompletedFundsLoading;
     updateButtonText();
   });
 });
@@ -181,19 +181,15 @@ thirdParty.addEventListener("click", () => {
   }
 });
 
-/*
 toggle.addEventListener("click", () => {
-  cardsGrid.innerHTML = "";
   if (toggleCompleted) {
-    console.log("Showing all cards since the value toggleCompleted was true.");
-    renderCards(cardsCurrentlyShowing);
+    renderCards(allFunds);
   } else {
-    console.log("Showing only true cards.");
-    renderCards(cardsCurrentlyShowing);
+    renderCards(allCompletedFunds);
   }
   toggleCompleted = !toggleCompleted;
 });
-*/
+
 /**apply**/
 
 function updateButtonText() {
