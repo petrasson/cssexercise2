@@ -2,13 +2,13 @@
 
 ## todo
 
-- bilderna ser ut att vara olika platser på kortet?
 - gradiant overlay ska vara kvar i top menu när man scrollar. Får den ej att funka. Antingen ligger den ovanpå o det går ej att scrolla eller så ligger den under och då går det att scrolla.
-- fler än 3 bild med antal
 - filters
 
 ## done
 
+- bilderna ser ut att vara olika platser på kortet?
+- fler än 3 bild med antal
 - fixa bug i menu
 - lägg i hamburger i en knapp. läs om det på sidan
 - fixa så api funkar
