@@ -9,7 +9,7 @@ const html = (strings, ...values) =>
 /*********fetch API-data*********/
 
 const url = "https://nextjs-dashboard-6sedkcpnq-rayproud.vercel.app/api";
-let allCompletedFunds;
+let allFundsInCategory;
 let allFunds;
 let toggleCompleted = true;
 
@@ -49,14 +49,18 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
     allFunds = data.funds;
-    const allCompletedFundsLoading = allFunds.filter(
-      (card) => card.completed === true
-    ); //varför måste den vara const här?
-    renderCards(allCompletedFundsLoading);
-    allCompletedFunds = allCompletedFundsLoading;
+    allFundsInCategory = allFunds;
+    const cardsPageLoading = filterCompletedCards(allFunds);
+    console.log("cardsPageLoading", cardsPageLoading);
+    renderCards(cardsPageLoading);
     updateButtonText();
   });
 });
+
+function filterCompletedCards(cards) {
+  const allCompletedCards = cards.filter((card) => card.completed === true);
+  return allCompletedCards;
+}
 
 function renderCards(cards) {
   cardsGrid.innerHTML = "";
@@ -101,91 +105,103 @@ function renderCards(cards) {
   console.log("cardsCurrentlyShowing", cardsCurrentlyShowing);
 }
 
-function filterCardsCompleted(cards) {
-  const onlyCompleted = cards.filter((card) => card.completed === true);
-  return onlyCompleted;
-}
-
 /******filters*******/
 
 buttonAll.addEventListener("click", () => {
   cardsGrid.innerHTML = "";
   if (toggleCompleted) {
-    const completed = filterCardsCompleted(allFunds);
-    renderCards(completed);
+    const completedFunds = filterCompletedCards(allFunds);
+    renderCards(completedFunds);
+    console.log("render only completed cards", completedFunds);
+    console.log("toggleCompleted", toggleCompleted);
   } else {
     renderCards(allFunds);
+    allFundsInCategory = allFunds;
+    console.log("render all cards", allFunds);
+    console.log("toggleCompleted", toggleCompleted);
   }
 });
 
 tech.addEventListener("click", () => {
   cardsGrid.innerHTML = "";
-  const techCards = allFunds.filter(
+  const allTechCards = allFunds.filter(
     (card) => card.category === "Technical/Tool Development"
   );
+  allFundsInCategory = allTechCards;
+  console.log("allFundsInCategory", allFundsInCategory);
   if (toggleCompleted) {
-    const completed = filterCardsCompleted(techCards);
-    renderCards(completed);
+    const completedTechCards = filterCompletedCards(allTechCards);
+    renderCards(completedTechCards);
   } else {
-    renderCards(techCards);
+    renderCards(allTechCards);
   }
 });
 
 governance.addEventListener("click", () => {
   cardsGrid.innerHTML = "";
-  const govCards = allFunds.filter((card) => card.category === "Governance");
+  const allGovCards = allFunds.filter((card) => card.category === "Governance");
+  allFundsInCategory = allGovCards;
+  console.log("allFundsInCategory", allFundsInCategory);
   if (toggleCompleted) {
-    const completed = filterCardsCompleted(govCards);
-    renderCards(completed);
+    const completeGovCards = filterCompletedCards(allGovCards);
+    renderCards(completeGovCards);
   } else {
-    renderCards(govCards);
+    renderCards(allGovCards);
   }
 });
 
 growth.addEventListener("click", () => {
   cardsGrid.innerHTML = "";
-  const growthCards = allFunds.filter(
+  const allGrowthCards = allFunds.filter(
     (card) => card.category === "Growth / Marketing"
   );
+  allFundsInCategory = allGrowthCards;
+  console.log("allFundsInCategory", allFundsInCategory);
   if (toggleCompleted) {
-    const completed = filterCardsCompleted(growthCards);
-    renderCards(completed);
+    const completedGrowthCards = filterCompletedCards(allGrowthCards);
+    renderCards(completedGrowthCards);
   } else {
-    renderCards(growthCards);
+    renderCards(allGrowthCards);
   }
 });
 
 analytics.addEventListener("click", () => {
   cardsGrid.innerHTML = "";
-  const analyticsCards = allFunds.filter(
+  const allAnalyticsCards = allFunds.filter(
     (card) => card.category === "Analytics"
   );
+  allFundsInCategory = allAnalyticsCards;
+  console.log("allFundsInCategory", allFundsInCategory);
   if (toggleCompleted) {
-    const completed = filterCardsCompleted(analyticsCards);
-    renderCards(completed);
+    const completedAnalyticsCards = filterCompletedCards(allAnalyticsCards);
+    renderCards(completedAnalyticsCards);
   } else {
-    renderCards(analyticsCards);
+    renderCards(allAnalyticsCards);
   }
 });
 
 thirdParty.addEventListener("click", () => {
   cardsGrid.innerHTML = "";
-  const thirdPartyCards = allFunds.filter(
+  const allThirdPartyCards = allFunds.filter(
     (card) => card.category === "Third Party Provider"
   );
+  allFundsInCategory = allThirdPartyCards;
+  console.log("allFundsInCategory", allFundsInCategory);
+
   if (toggleCompleted) {
-    const completed = filterCardsCompleted(thirdPartyCards);
-    renderCards(completed);
+    const completedThirdPartyCards = filterCompletedCards(allThirdPartyCards);
+    renderCards(completedThirdPartyCards);
   } else {
-    renderCards(thirdPartyCards);
+    renderCards(allThirdPartyCards);
   }
 });
 
 toggle.addEventListener("click", () => {
   if (toggleCompleted) {
-    renderCards(allFunds);
+    renderCards(allFundsInCategory);
   } else {
-    renderCards(allCompletedFunds);
+    const completedFunds = filterCompletedCards(allFundsInCategory);
+    renderCards(completedFunds);
   }
   toggleCompleted = !toggleCompleted;
 });

@@ -3,7 +3,7 @@
 ## todo
 
 - gradiant overlay ska vara kvar i top menu när man scrollar. Får den ej att funka. Antingen ligger den ovanpå o det går ej att scrolla eller så ligger den under och då går det att scrolla.
-- filters
+- bild
 
 ## done
 
@@ -19,3 +19,4 @@
 - pilen ska ej vara img. Använd after element pseudo använd background image.
 - på varje kort: när text lång...
 - responsive - kolla google drive/ hur boxar funkar när fönster minskar
+- filters
