@@ -2,7 +2,8 @@
 
 ## todo
 
-- gradiant overlay ska vara kvar i top menu när man scrollar. Får den ej att funka. Antingen ligger den ovanpå o det går ej att scrolla eller så ligger den under och då går det att scrolla.
+- gradiant overlay ska vara kvar i top menu när man scrollar. Får den ej att funka. Antingen ligger den ovanpå o det går ej att plicka eller så ligger den under och då går det att klicka.
+- toggle display: hidden or none. Filter funkar ej om man döljer den.
 - bild
 
 ## done
