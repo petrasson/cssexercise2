@@ -2,12 +2,11 @@
 
 ## todo
 
-- gradiant overlay ska vara kvar i top menu när man scrollar. Får den ej att funka. Antingen ligger den ovanpå o det går ej att plicka eller så ligger den under och då går det att klicka.
 - toggle display: hidden or none. Filter funkar ej om man döljer den.
-- bild
 
 ## done
 
+- event delegation på filter
 - bilderna ser ut att vara olika platser på kortet?
 - fler än 3 bild med antal
 - fixa bug i menu
@@ -21,3 +20,5 @@
 - på varje kort: när text lång...
 - responsive - kolla google drive/ hur boxar funkar när fönster minskar
 - filters
+- bild
+- gradiant overlay ska vara kvar i top menu när man scrollar. Får den ej att funka. Antingen ligger den ovanpå o det går ej att plicka eller så ligger den under och då går det att klicka.
