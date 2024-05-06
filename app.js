@@ -41,6 +41,7 @@ const thirdParty = document.getElementById("third-party-filter");
 const toggle = document.getElementById("toggle");
 const rightArrow = document.querySelector(".right-arrow");
 const applyButton = document.getElementById("apply");
+const filterContainer = document.querySelector(".filter-container");
 
 document.addEventListener("DOMContentLoaded", function () {
   fetchAPI(url, (data, error) => {
@@ -103,6 +104,29 @@ function renderCards(cards) {
   });
   cardsCurrentlyShowing = cards;
   console.log("cardsCurrentlyShowing", cardsCurrentlyShowing);
+}
+
+/******event delegation filters******/
+
+let selectedFilter;
+filterContainer.addEventListener("click", function (event) {
+  let target = event.target;
+  if (
+    target.classList.contains("menu-filter") ||
+    (target.classList.contains("button") &&
+      target.classList.contains("_primary"))
+  ) {
+    highlight(target);
+    console.log("target", target);
+  }
+});
+
+function highlight(element) {
+  if (selectedFilter) {
+    selectedFilter.classList.remove("highlight");
+  }
+  selectedFilter = element;
+  selectedFilter.classList.add("highlight");
 }
 
 /******filters*******/

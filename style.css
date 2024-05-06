@@ -117,6 +117,10 @@ body {
   z-index: 1;
 }
 
+.highlight {
+  font-weight: 600;
+}
+
 .filter-wrapper::after {
   content: "";
   position: absolute;
@@ -400,6 +404,10 @@ input:checked + .slider:before {
     background-color: var(--secondary-bg-color);
     padding: 10px 16px;
     margin-right: 23px;
+  }
+
+  &._primary.highlight {
+    font-weight: 600;
   }
 
   &._secondary {
