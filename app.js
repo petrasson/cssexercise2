@@ -227,7 +227,7 @@ toggle.addEventListener("click", () => {
     const completedFunds = filterCompletedCards(allFundsInCategory);
     renderCards(completedFunds);
   }
-  toggleCompleted = !toggleCompleted;
+  toggleCompleted = toggleCompleted;
 });
 
 /**apply**/
