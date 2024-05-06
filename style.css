@@ -121,37 +121,39 @@ body {
   font-weight: 600;
 }
 
-.filter-wrapper::after {
+.filter-container::before {
   content: "";
   position: absolute;
   top: 0;
-  left: 185px;
-  width: 100%;
+  right: 0;
+  width: 20%;
   height: 100%;
-  background: linear-gradient(
-    270deg,
-    rgba(35, 35, 52, 1) -26%,
-    rgba(35, 35, 52, 0)
+  background-image: linear-gradient(
+    to right,
+    rgba(35, 35, 52, 0),
+    rgb(35, 35, 52, 1)
   );
-  z-index: 0;
+  z-index: 2;
 }
+
+/******Arrow******/
 
 .filter-container::after {
   content: "";
   position: absolute;
   top: 17px;
-  right: 2;
+  right: 2px;
   background-image: url("images/rightarrow.svg");
   width: 20px;
   height: 20px;
-  /*z-index: 2;*/
+  z-index: 3;
 }
 
 .filter-wrapper {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 24px;
+  gap: 0px;
   margin: 0px;
   min-width: 219px;
   overflow-x: auto;
@@ -161,9 +163,9 @@ body {
 }
 
 .menu-filter {
-  min-width: 182px;
+  min-width: 193px;
   position: relative;
-  z-index: 0;
+  z-index: 1;
 }
 
 .toggle-wrapper {
@@ -482,6 +484,7 @@ input:checked + .slider:before {
 
   .filter-wrapper {
     width: auto;
+    gap: 24px;
     font-size: 16px;
     line-height: 24px;
   }
@@ -490,7 +493,7 @@ input:checked + .slider:before {
     display: none;
   }
 
-  .filter-wrapper::after {
+  .filter-container::before {
     display: none;
   }
 
