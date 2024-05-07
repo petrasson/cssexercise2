@@ -23,7 +23,6 @@ const fetchAPI = (url, callback) => {
     })
     .then((data) => {
       callback(data);
-      console.log("data", data);
     })
     .catch((error) => {
       callback(null, error);
@@ -52,7 +51,6 @@ document.addEventListener("DOMContentLoaded", function () {
     allFunds = data.funds;
     allFundsInCategory = allFunds;
     const cardsPageLoading = filterCompletedCards(allFunds);
-    console.log("cardsPageLoading", cardsPageLoading);
     renderCards(cardsPageLoading);
     updateButtonText();
   });
@@ -103,7 +101,6 @@ function renderCards(cards) {
     );
   });
   cardsCurrentlyShowing = cards;
-  console.log("cardsCurrentlyShowing", cardsCurrentlyShowing);
 }
 
 /******event delegation filters******/
@@ -117,7 +114,6 @@ filterContainer.addEventListener("click", function (event) {
       target.classList.contains("_primary"))
   ) {
     highlight(target);
-    console.log("target", target);
   }
 });
 
@@ -136,13 +132,9 @@ buttonAll.addEventListener("click", () => {
   if (toggleCompleted) {
     const completedFunds = filterCompletedCards(allFunds);
     renderCards(completedFunds);
-    console.log("render only completed cards", completedFunds);
-    console.log("toggleCompleted", toggleCompleted);
   } else {
     renderCards(allFunds);
     allFundsInCategory = allFunds;
-    console.log("render all cards", allFunds);
-    console.log("toggleCompleted", toggleCompleted);
   }
 });
 
@@ -152,7 +144,6 @@ tech.addEventListener("click", () => {
     (card) => card.category === "Technical/Tool Development"
   );
   allFundsInCategory = allTechCards;
-  console.log("allFundsInCategory", allFundsInCategory);
   if (toggleCompleted) {
     const completedTechCards = filterCompletedCards(allTechCards);
     renderCards(completedTechCards);
@@ -165,7 +156,6 @@ governance.addEventListener("click", () => {
   cardsGrid.innerHTML = "";
   const allGovCards = allFunds.filter((card) => card.category === "Governance");
   allFundsInCategory = allGovCards;
-  console.log("allFundsInCategory", allFundsInCategory);
   if (toggleCompleted) {
     const completeGovCards = filterCompletedCards(allGovCards);
     renderCards(completeGovCards);
@@ -180,7 +170,6 @@ growth.addEventListener("click", () => {
     (card) => card.category === "Growth / Marketing"
   );
   allFundsInCategory = allGrowthCards;
-  console.log("allFundsInCategory", allFundsInCategory);
   if (toggleCompleted) {
     const completedGrowthCards = filterCompletedCards(allGrowthCards);
     renderCards(completedGrowthCards);
@@ -195,7 +184,6 @@ analytics.addEventListener("click", () => {
     (card) => card.category === "Analytics"
   );
   allFundsInCategory = allAnalyticsCards;
-  console.log("allFundsInCategory", allFundsInCategory);
   if (toggleCompleted) {
     const completedAnalyticsCards = filterCompletedCards(allAnalyticsCards);
     renderCards(completedAnalyticsCards);
@@ -210,8 +198,6 @@ thirdParty.addEventListener("click", () => {
     (card) => card.category === "Third Party Provider"
   );
   allFundsInCategory = allThirdPartyCards;
-  console.log("allFundsInCategory", allFundsInCategory);
-
   if (toggleCompleted) {
     const completedThirdPartyCards = filterCompletedCards(allThirdPartyCards);
     renderCards(completedThirdPartyCards);
@@ -227,7 +213,8 @@ toggle.addEventListener("click", () => {
     const completedFunds = filterCompletedCards(allFundsInCategory);
     renderCards(completedFunds);
   }
-  toggleCompleted = toggleCompleted;
+  toggleCompleted = !toggleCompleted;
+  console.log(toggleCompleted, "toggleCompleted");
 });
 
 /**apply**/
