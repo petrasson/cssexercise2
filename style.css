@@ -172,61 +172,33 @@ body {
   flex-direction: row;
   max-width: 1440px;
   color: var(--secondary-text-color);
+  align-items: center;
 }
 
-.completed {
-  /*https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_switch*/
-  position: relative;
-  display: inline-block;
+.toggle-box {
   width: 34px;
   height: 14px;
-}
-/*
-.completed input {
-  funkar ej om man skriver completed här istället.
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-*/
-.slider {
-  position: absolute;
+  position: relative;
+  display: block;
+  background-color: var(--accent-color);
+  border-radius: 1000px;
   cursor: pointer;
-  top: 13px;
-  left: -26px;
-  right: 20px;
-  bottom: -18px;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+.circle {
+  position: absolute;
+  left: 15px;
+  top: -3px;
+  width: 20px;
+  height: 20px;
   background-color: var(--primary-text-color);
   -webkit-transition: 0.4s;
   transition: 0.4s;
   border-radius: 34px;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: -7px;
-  bottom: -4px;
-  background-color: var(--primary-text-color);
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-  border-radius: 50%;
-}
-
-input:checked + .slider {
-  background-color: var(--accent-color);
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
-.slider-text {
-  padding-left: 0px;
 }
 
 /**********CARD-GRID************/
@@ -237,7 +209,6 @@ input:checked + .slider:before {
   padding: 40px 0;
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  /*  grid-template-columns: repeat(auto-fit, minmax(272px, 392px)); */
   grid-gap: 24px;
   justify-content: center;
 }
@@ -510,7 +481,6 @@ input:checked + .slider:before {
   .card-grid-section {
     padding: 80px 0px;
     grid-template-columns: repeat(3, 1fr);
-    /*grid-template-columns: repeat(auto-fit, minmax(392px, 3fr));*/
     justify-content: start;
 
     .card-header {

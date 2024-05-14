@@ -37,7 +37,9 @@ const governance = document.getElementById("governance-filter");
 const growth = document.getElementById("growth-filter");
 const analytics = document.getElementById("analytics-filter");
 const thirdParty = document.getElementById("third-party-filter");
-const toggle = document.getElementById("toggle");
+const toggleBox = document.querySelector(".toggle-box");
+const circle = document.querySelector(".circle");
+const checkBox = document.getElementById("checkbox");
 const rightArrow = document.querySelector(".right-arrow");
 const applyButton = document.getElementById("apply");
 const filterContainer = document.querySelector(".filter-container");
@@ -206,15 +208,26 @@ thirdParty.addEventListener("click", () => {
   }
 });
 
-toggle.addEventListener("click", () => {
+toggleBox.addEventListener("click", function (event) {
+  // Prevent the event from bubbling up further.
+  event.stopPropagation();
+
   if (toggleCompleted) {
     renderCards(allFundsInCategory);
+    circle.style.left = "-3px";
+    toggleBox.style.backgroundColor = "var(--primary-text-color)";
   } else {
+    circle.style.left = "15px";
+    toggleBox.style.backgroundColor = "var(--accent-color)";
     const completedFunds = filterCompletedCards(allFundsInCategory);
     renderCards(completedFunds);
   }
+
   toggleCompleted = !toggleCompleted;
-  console.log(toggleCompleted, "toggleCompleted");
+});
+
+checkBox.addEventListener("click", function (event) {
+  event.stopPropagation();
 });
 
 /**apply**/
