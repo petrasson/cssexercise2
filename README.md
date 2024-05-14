@@ -1,15 +1,8 @@
 # cssexercise2
 
-## todo
-
-- toggle display: hidden or none.
-  Min default toggle funkar, men inte den jag skapat.
-
-Om jag togglar den jag skapat, så verkar den aktiveras två gånger. Dvs toogle värde går från true till false och sen till true igen på rad 217.
-Har testat bla. event.stopPropagation(), men det funkar inte för mig.
-
 ## done
 
+- toggle display: bug
 - event delegation på filter
 - bilderna ser ut att vara olika platser på kortet?
 - fler än 3 bild med antal
