@@ -51,7 +51,7 @@ a {
   width: 80px;
 }
 
-.nav-top {
+.nav {
   display: flex;
   justify-content: start;
   align-items: center;
@@ -206,6 +206,10 @@ a {
   position: relative;
 }
 
+.filter-wrapper li {
+  list-style-type: none;
+}
+
 .filter-wrapper::-webkit-scrollbar {
   display: none;
 }
@@ -220,9 +224,12 @@ a {
   font-size: 15px;
   cursor: pointer;
 }
-.menu-filter :hover {
-  color: red;
+
+.menu-filter:hover {
+  font-weight: 900;
 }
+
+/******TOGGLE******/
 
 .toggle-wrapper {
   display: flex;
@@ -328,7 +335,7 @@ input[type="checkbox"] {
 
 .attendee-number {
   position: relative;
-  left: -22px;
+  left: 50%;
   bottom: 4px;
 }
 
@@ -401,6 +408,9 @@ input[type="checkbox"] {
   margin: 0px;
   color: var(--secondary-text-color);
   font-family: "Space Mono", sans-serif;
+}
+.nav-bottom li:hover {
+  font-weight: 900;
 }
 
 .social-media-wrapper {
@@ -485,7 +495,7 @@ input[type="checkbox"] {
     margin: 0 auto;
   }
 
-  .nav-top {
+  .nav {
     display: flex;
     flex-direction: row;
     align-items: center;
