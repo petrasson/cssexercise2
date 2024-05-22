@@ -70,8 +70,8 @@ function renderCards(cards) {
   cardsGrid.innerHTML = "";
   cards.forEach((card) => {
     let truncatedDescription =
-      card.description.length > 100
-        ? card.description.slice(0, 100) + "..."
+      card.description.length > 250
+        ? card.description.slice(0, 250) + "..."
         : card.description;
     let attendees = "";
     if (card.attendees.length > 3) {
