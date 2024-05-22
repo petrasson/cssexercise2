@@ -38,7 +38,7 @@ a {
   margin: 0 auto;
 }
 
-.menu-top-wrapper {
+.nav-top-wrapper {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -51,14 +51,14 @@ a {
   width: 80px;
 }
 
-.menu-top {
+.nav-top {
   display: flex;
   justify-content: start;
   align-items: center;
   z-index: 4;
 }
 
-.menu-text {
+.nav-text {
   display: none;
   flex-direction: column;
   list-style: none;
@@ -73,11 +73,11 @@ a {
   border: solid var(--secondary-text-color);
 }
 
-.menu-text.active {
+.nav-text.active {
   display: flex;
 }
 
-.menu-text li {
+.nav-text li {
   padding: 2px 0;
 }
 
@@ -463,13 +463,13 @@ input[type="checkbox"] {
     margin: 0 auto;
   }
 
-  .menu-top {
+  .nav-top {
     display: flex;
     flex-direction: row;
     align-items: center;
   }
 
-  .menu-text {
+  .nav-text {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -479,7 +479,7 @@ input[type="checkbox"] {
     border: none;
   }
 
-  .menu-text li {
+  .nav-text li {
     padding: 5px 23px;
   }
 
