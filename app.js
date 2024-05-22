@@ -32,6 +32,9 @@ const fetchAPI = (url, callback) => {
 
 const cardsGrid = document.querySelector(".card-grid-section");
 const buttonAll = document.getElementById("all-cards");
+const hamburger = document.querySelector(".hamburger");
+const closeX = document.querySelector(".close");
+const menuText = document.querySelector(".menu-text");
 const tech = document.getElementById("tech-filter");
 const governance = document.getElementById("governance-filter");
 const growth = document.getElementById("growth-filter");
@@ -126,6 +129,20 @@ function highlight(element) {
   selectedFilter = element;
   selectedFilter.classList.add("highlight");
 }
+
+/*********hamburger menu *********/
+hamburger.addEventListener("click", () => {
+  console.log("hej", hamburger);
+  hamburger.classList.add("active"); /* display none */
+  menuText.classList.add("active"); /* display flex, column */
+  closeX.classList.add("active"); /* display block, (colum)*/
+});
+
+closeX.addEventListener("click", () => {
+  menuText.classList.remove("active");
+  hamburger.classList.remove("active");
+  closeX.classList.remove("active");
+});
 
 /******filters*******/
 

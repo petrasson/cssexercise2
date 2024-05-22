@@ -11,17 +11,20 @@
       <img src="images/dydXLogotypeBig.svg" alt="Dydx logotype" class="image-logotype-dydx"/>
       <div class="menu-top-wrapper">
         <nav class="menu-top">
-          <button class="menu-text">
-            Discover initiatives</button>
-          <button class="menu-text active">Funded grants</button>
-          <button class="menu-text">Program expenses</button>
-          <button class="menu-text">Blog</button>
-          <button class="menu-text">FAQ</button>
+          <ul class="menu-text" id="menu-text">
+            <button class="close" id="close" aria-label="Close-menu">
+              <i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+            <li><a href="#">Discover initiatives</a></li>
+            <li><a href="#">Funded grants</a></li>
+            <li><a href="#">Program expenses</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+          <button class="button _accent" id ="apply">Apply</button>
+          <button class="hamburger" id="hamburger" aria-label="Open-Menu">
+            <i class="fa-solid fa-bars" aria-hidden="true"></i>
+          </button>
         </nav>
-      <button class="button _accent" id ="apply">Apply</button>
-      <button class="hamburger-button">
-        <i class="fa-solid fa-bars"></i>
-      </button>
       </div>
     </div>
   <div class="mid-container">
@@ -31,11 +34,11 @@
     <div class="filter-container">
       <button class="button _primary" id="all-cards">All</button>
     <menu class="filter-wrapper">
-      <p class="menu-filter" id="tech-filter">Technical/Tool Development</p>
-      <p class="menu-filter" id="governance-filter">Governance</p>
-      <p class="menu-filter" id="growth-filter">Growth/Marketing</p>
-      <p class="menu-filter" id="analytics-filter">Analytics</p>
-      <p class="menu-filter" id="third-party-filter">Third party provider</p>
+      <button class="menu-filter" id="tech-filter">Technical/Tool Development</button> 
+      <button class="menu-filter" id="governance-filter">Governance</button>
+      <button class="menu-filter" id="growth-filter">Growth/Marketing</button>
+      <button class="menu-filter" id="analytics-filter">Analytics</button>
+      <button class="menu-filter" id="third-party-filter">Third party provider</button>
     </menu>
      </div>
   </div>
@@ -45,7 +48,6 @@
       <div class="circle"></div>
       </label>
       <p class="slider-text">Show only completed</p>
-
   </div>
 <section class="card-grid-section"></section>
 <section class="apply-wrapper">
@@ -53,7 +55,7 @@
   <p class="apply-header">Let’s create something awesome.</p>
   <button class="button _secondary">Apply for grant<img src="images/arrowb-rigth.svg" aria-hidden="true" class="arrowb-rigth"></button>
 </section>
-<section class="bottom-section">
+<footer class="bottom-section">
   <div class="menu-bottom-container">
     <div class="menu-bottom-wrapper">
       <img src="images/dydxLogotypeSmall.svg" alt="Dydx logotype" class="image-logotype-dydx-small"/>
@@ -67,5 +69,5 @@
     </div>
     <p class="social-media-wrapper"><img src="images/twitter-symbol.svg" aria-hidden="true" class="social-media-symbol"><img src="images/discord-symbol.svg" aria-hidden="true" class="social-media-symbol"></p>
   </div>
-</section>
+</footer>
 <script src="app.js"></script></body></html>
