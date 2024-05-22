@@ -132,7 +132,6 @@ function highlight(element) {
 
 /*********hamburger menu *********/
 hamburger.addEventListener("click", () => {
-  console.log("hej", hamburger);
   hamburger.classList.add("active"); /* display none */
   menuText.classList.add("active"); /* display flex, column */
   closeX.classList.add("active"); /* display block, (colum)*/
@@ -143,8 +142,6 @@ closeX.addEventListener("click", () => {
   hamburger.classList.remove("active");
   closeX.classList.remove("active");
 });
-
-/******filters*******/
 
 buttonAll.addEventListener("click", () => {
   cardsGrid.innerHTML = "";
@@ -157,11 +154,24 @@ buttonAll.addEventListener("click", () => {
   }
 });
 
-tech.addEventListener("click", () => {
+/******filters*******/
+
+tech.addEventListener("click", () =>
+  filterAndRenderCards("Technical/Tool Development")
+);
+governance.addEventListener("click", () => filterAndRenderCards("Governance"));
+growth.addEventListener("click", () =>
+  filterAndRenderCards("Growth / Marketing")
+);
+analytics.addEventListener("click", () => filterAndRenderCards("Analytics"));
+thirdParty.addEventListener("click", () =>
+  filterAndRenderCards("Third Party Provider")
+);
+
+function filterAndRenderCards(category) {
   cardsGrid.innerHTML = "";
-  const allTechCards = allFunds.filter(
-    (card) => card.category === "Technical/Tool Development"
-  );
+  const allTechCards = allFunds.filter((card) => card.category === category);
+
   allFundsInCategory = allTechCards;
   if (toggleCompleted) {
     const completedTechCards = filterCompletedCards(allTechCards);
@@ -169,61 +179,7 @@ tech.addEventListener("click", () => {
   } else {
     renderCards(allTechCards);
   }
-});
-
-governance.addEventListener("click", () => {
-  cardsGrid.innerHTML = "";
-  const allGovCards = allFunds.filter((card) => card.category === "Governance");
-  allFundsInCategory = allGovCards;
-  if (toggleCompleted) {
-    const completeGovCards = filterCompletedCards(allGovCards);
-    renderCards(completeGovCards);
-  } else {
-    renderCards(allGovCards);
-  }
-});
-
-growth.addEventListener("click", () => {
-  cardsGrid.innerHTML = "";
-  const allGrowthCards = allFunds.filter(
-    (card) => card.category === "Growth / Marketing"
-  );
-  allFundsInCategory = allGrowthCards;
-  if (toggleCompleted) {
-    const completedGrowthCards = filterCompletedCards(allGrowthCards);
-    renderCards(completedGrowthCards);
-  } else {
-    renderCards(allGrowthCards);
-  }
-});
-
-analytics.addEventListener("click", () => {
-  cardsGrid.innerHTML = "";
-  const allAnalyticsCards = allFunds.filter(
-    (card) => card.category === "Analytics"
-  );
-  allFundsInCategory = allAnalyticsCards;
-  if (toggleCompleted) {
-    const completedAnalyticsCards = filterCompletedCards(allAnalyticsCards);
-    renderCards(completedAnalyticsCards);
-  } else {
-    renderCards(allAnalyticsCards);
-  }
-});
-
-thirdParty.addEventListener("click", () => {
-  cardsGrid.innerHTML = "";
-  const allThirdPartyCards = allFunds.filter(
-    (card) => card.category === "Third Party Provider"
-  );
-  allFundsInCategory = allThirdPartyCards;
-  if (toggleCompleted) {
-    const completedThirdPartyCards = filterCompletedCards(allThirdPartyCards);
-    renderCards(completedThirdPartyCards);
-  } else {
-    renderCards(allThirdPartyCards);
-  }
-});
+}
 
 toggleBox.addEventListener("click", function (event) {
   // Prevent the event from bubbling up further.

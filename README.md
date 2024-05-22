@@ -8,7 +8,8 @@ Nav bottom
 Menu
 
 - Buttons should not be presented by any other elements than
-- They also don’t have a hover state (when one hover over the element and its colour changes a bit indicating that the element is clickable) ... fixa nav-text (se ovan)
+- They also don’t have a hover state (when one hover over the element and its colour changes a bit indicating that the element is clickable)
+  ... fix nav-text (see above), but hover on menu-filter buttons not working yet.
 
 - toggleBox can be styled without JavaScript with the pseudo-class “:checked” on the input the label is connected to
 - Its circle should ideally be a div. One usually uses pseudo-elements for it (:after).
@@ -18,10 +19,6 @@ Menu
 Cards
 
 - “image-avatar-wrapper-purple” should not contain an image so that the network is not over flooded with unnecessary requests. Rendering images also takes some time thus there might be “blinking”. This styling can be done with CSS instead.
-
-JavaScript
-
-- Event listeners on growth, analytics, thirdParty and etc look all the same. There’s a way to write this code only once that would apply to all of those categories
 
 ## done
 
@@ -37,6 +34,10 @@ Card
 
 - “attendee-number” is not centred properly. It should be relative to the “image-avatar-wrapper-purple” element
 - “card-text” is truncated everywhere. This makes the content of the cards useless for users. Must be a bug.
+
+JavaScript
+
+- Event listeners on growth, analytics, thirdParty and etc look all the same. There’s a way to write this code only once that would apply to all of those categories
 
 ---
 
