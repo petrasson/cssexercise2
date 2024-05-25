@@ -46,6 +46,8 @@ const checkBox = document.getElementById("checkbox");
 const rightArrow = document.querySelector(".right-arrow");
 const applyButton = document.getElementById("apply");
 const filterContainer = document.querySelector(".filter-container");
+const body = document.body;
+const socialMedia = document.querySelector(".nav-social-media");
 
 document.addEventListener("DOMContentLoaded", function () {
   fetchAPI(url, (data, error) => {
@@ -130,17 +132,21 @@ function highlight(element) {
   selectedFilter.classList.add("highlight");
 }
 
-/*********hamburger menu *********/
+/*********hamburger menu*********/
 hamburger.addEventListener("click", () => {
   hamburger.classList.add("active"); /* display none */
   menuText.classList.add("active"); /* display flex, column */
-  closeX.classList.add("active"); /* display block, (colum)*/
+  closeX.classList.add("active"); /* display block, (colum) */
+  body.classList.add("active");
+  socialMedia.classList("active");
 });
 
 closeX.addEventListener("click", () => {
   menuText.classList.remove("active");
   hamburger.classList.remove("active");
   closeX.classList.remove("active");
+  body.classList.remove("active");
+  socialMedia.classList.remove("active");
 });
 
 buttonAll.addEventListener("click", () => {

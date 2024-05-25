@@ -1,5 +1,5 @@
 {
-  "name": "Funding",
+  "name": "funding",
   "version": "1.0.0",
   "description": "Pracising css and js",
   "main": "index.js",
@@ -10,7 +10,15 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "prettier": "^3.2.5"
-  }
+  "devDependencies": {
+    "prettier": "3.2.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/petrasson/cssexercise2.git"
+  },
+  "bugs": {
+    "url": "https://github.com/petrasson/cssexercise2/issues"
+  },
+  "homepage": "https://github.com/petrasson/cssexercise2#readme"
 }
