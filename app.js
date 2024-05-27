@@ -47,7 +47,7 @@ const rightArrow = document.querySelector(".right-arrow");
 const applyButton = document.getElementById("apply");
 const filterContainer = document.querySelector(".filter-container");
 const body = document.body;
-const socialMedia = document.querySelector(".nav-social-media");
+const socialMedia = document.getElementById("nav-social-media");
 
 document.addEventListener("DOMContentLoaded", function () {
   fetchAPI(url, (data, error) => {
@@ -138,7 +138,7 @@ hamburger.addEventListener("click", () => {
   menuText.classList.add("active"); /* display flex, column */
   closeX.classList.add("active"); /* display block, (colum) */
   body.classList.add("active");
-  socialMedia.classList("active");
+  socialMedia.classList.add("active");
 });
 
 closeX.addEventListener("click", () => {
