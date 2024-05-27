@@ -2,9 +2,6 @@
 
 ## todo
 
-Nav bottom
--Rename and align items center
-
 Menu
 
 - Buttons should not be presented by any other elements than
@@ -16,11 +13,15 @@ Menu
   If it’s needed to use a div, don’t forget to add an aria-hidden property on the element
 - Same with the .circle — you can use pseudo-class “:checked” and avoid using JavaScript
 
+## done
+
 Cards
 
 - “image-avatar-wrapper-purple” should not contain an image so that the network is not over flooded with unnecessary requests. Rendering images also takes some time thus there might be “blinking”. This styling can be done with CSS instead.
 
-## done
+Nav bottom
+
+- Rename and align items center
 
 Top right menu (list of pages)
 

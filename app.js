@@ -78,11 +78,11 @@ function renderCards(cards) {
     let attendees = "";
     if (card.attendees.length > 3) {
       for (let i = 0; i < 3; i++) {
-        attendees += `<p class="image-avatar-wrapper"><img src="images/${card.attendees[i]}.png" /></p>`;
+        attendees += `<div class="image-avatar-wrapper"><img src="images/${card.attendees[i]}.png" /></div>`;
       }
-      attendees += `<p class="image-avatar-wrapper-purple"><img src="images/purple-image.png"/><p class ="attendee-number">+${
+      attendees += `<div class="image-avatar-wrapper"><div class="image-avatar-wrapper-purple"><div classname ="purple-circle"><p class ="attendee-number">+${
         card.attendees.length - 3
-      }</p></p>`;
+      }</p></div></div></div>`;
     } else {
       attendees = card.attendees
         .map(
