@@ -40,7 +40,7 @@ const governance = document.getElementById("governance-filter");
 const growth = document.getElementById("growth-filter");
 const analytics = document.getElementById("analytics-filter");
 const thirdParty = document.getElementById("third-party-filter");
-const toggleBox = document.querySelector(".toggle-box");
+const toggleBox = document.getElementById("toggle");
 const circle = document.querySelector(".circle");
 const checkBox = document.getElementById("checkbox");
 const rightArrow = document.querySelector(".right-arrow");
@@ -78,7 +78,7 @@ function renderCards(cards) {
     let attendees = "";
     if (card.attendees.length > 3) {
       for (let i = 0; i < 3; i++) {
-        attendees += `<div class="image-avatar-wrapper"><img src="images/${card.attendees[i]}.png" /></div>`;
+        attendees += `<div class="image-avatar-wrapper"><img src="images/${card.attendees[i]}.png" alt="Avatar for participant" /></div>`;
       }
       attendees += `<div class="image-avatar-wrapper"><div class="image-avatar-wrapper-purple"><div classname ="purple-circle"><p class ="attendee-number">+${
         card.attendees.length - 3
@@ -87,7 +87,7 @@ function renderCards(cards) {
       attendees = card.attendees
         .map(
           (name) =>
-            `<p class="image-avatar-wrapper"><img src="images/${name}.png" /></p>`
+            `<p class="image-avatar-wrapper"><img src="images/${name}.png" alt="Avatar for participant" /></p>`
         )
         .join("");
     }
@@ -193,11 +193,7 @@ toggleBox.addEventListener("click", function (event) {
 
   if (toggleCompleted) {
     renderCards(allFundsInCategory);
-    circle.style.left = "-3px";
-    toggleBox.style.backgroundColor = "var(--primary-text-color)";
   } else {
-    circle.style.left = "15px";
-    toggleBox.style.backgroundColor = "var(--accent-color)";
     const completedFunds = filterCompletedCards(allFundsInCategory);
     renderCards(completedFunds);
   }

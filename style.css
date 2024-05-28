@@ -82,7 +82,7 @@ body.active {
   padding: 30px 0;
 }
 
-.nav-top li :hover {
+.nav-top li:hover {
   font-weight: 900;
 }
 
@@ -252,32 +252,40 @@ body.active {
   max-width: 1440px;
   color: var(--secondary-text-color);
   align-items: center;
-}
-
-.toggle-box {
-  width: 34px;
-  height: 14px;
-  position: relative;
-  display: block;
-  background-color: var(--accent-color);
-  border-radius: 1000px;
   cursor: pointer;
 }
 
-input[type="checkbox"] {
-  display: none;
+#toggle {
+  appearance: none;
+  position: relative;
+  width: 50px;
+  height: 20px;
+  border-radius: 25px;
+  background-color: var(--accent-color);
+  transition: background 0.5s;
+  cursor: pointer;
 }
 
-.circle {
+#toggle::after {
+  content: "";
   position: absolute;
-  left: 15px;
-  top: -3px;
-  width: 20px;
-  height: 20px;
+  top: 50%;
+  left: -3px;
+  transform: translate(0, -50%);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
   background-color: var(--primary-text-color);
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-  border-radius: 34px;
+  transition: left 0.3s;
+}
+
+#toggle:checked {
+  background-color: var(--primary-text-color);
+}
+
+#toggle:checked::after {
+  left: 20px;
+  background-color: var(--primary-text-color);
 }
 
 /**********CARD-GRID************/
@@ -382,14 +390,15 @@ input[type="checkbox"] {
 /**********FOOTER************/
 
 .footer {
-  padding: 40px 0;
+  margin: 0 auto;
+  max-width: 1440px;
+  padding: 24px 0 0 24px;
 }
 
 .footer-container {
   display: flex;
   flex-direction: column;
   gap: 0px;
-  margin: 0px auto;
   min-width: 272px;
 }
 
@@ -470,6 +479,11 @@ input[type="checkbox"] {
     font-weight: 600;
   }
 
+  &._primary:hover {
+    color: var(--secondary-bg-color);
+    background-color: var(--primary-text-color);
+  }
+
   &._secondary {
     color: var(--accent-color);
     font-weight: 400;
@@ -477,10 +491,20 @@ input[type="checkbox"] {
     max-width: 240px;
   }
 
+  &._secondary:hover {
+    color: var(--primary-text-color);
+    background-color: rgba(105, 102, 255, 0.26376488095238093);
+  }
+
   &._accent {
     color: var(--primary-text-color);
     background-color: var(--accent-color);
     padding: 10px 14px;
+  }
+
+  &._accent:hover {
+    color: var(--accent-color);
+    background-color: var(--primary-text-color);
   }
 }
 
@@ -520,10 +544,6 @@ input[type="checkbox"] {
     border: none;
     font-size: 14px;
     color: var(--primary-text-color);
-  }
-
-  .nav-top :hover {
-    font-weight: 900;
   }
 
   .nav-top li {
@@ -626,8 +646,7 @@ input[type="checkbox"] {
   /**********FOOTER************/
 
   .footer {
-    margin: 95px 0 30px;
-    padding: 0;
+    padding: 80px 108px 40px;
   }
 
   .footer-container {

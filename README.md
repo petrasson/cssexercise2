@@ -4,16 +4,17 @@
 
 Menu
 
-- Buttons should not be presented by any other elements than
-- They also don’t have a hover state (when one hover over the element and its colour changes a bit indicating that the element is clickable)
-  ... fix nav-text (see above), but hover on menu-filter buttons not working yet.
+## done
 
+Menu
+
+- Buttons should not be presented by any other elements than
+- Hover state (when one hover over the element and its colour changes a bit indicating that the element is clickable)
 - toggleBox can be styled without JavaScript with the pseudo-class “:checked” on the input the label is connected to
 - Its circle should ideally be a div. One usually uses pseudo-elements for it (:after).
   If it’s needed to use a div, don’t forget to add an aria-hidden property on the element
 - Same with the .circle — you can use pseudo-class “:checked” and avoid using JavaScript
-
-## done
+- Hover state on buttons
 
 Cards
 
