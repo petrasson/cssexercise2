@@ -361,7 +361,7 @@ body.active {
   margin: 0 -9px;
 }
 
-.image-avatar-wrapper-purple {
+.purple-circle-wra {
   background-color: var(--accent-color);
   border-radius: 50%;
   height: 40px;

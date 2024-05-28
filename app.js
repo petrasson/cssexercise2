@@ -30,21 +30,16 @@ const fetchAPI = (url, callback) => {
     });
 };
 
-const cardsGrid = document.querySelector(".card-grid-section");
-const buttonAll = document.getElementById("all-cards");
+const body = document.body;
 const hamburger = document.querySelector(".hamburger");
 const closeX = document.querySelector(".close");
 const menuText = document.getElementById("nav-top");
-const tech = document.getElementById("tech-filter");
-const governance = document.getElementById("governance-filter");
-const growth = document.getElementById("growth-filter");
-const analytics = document.getElementById("analytics-filter");
-const thirdParty = document.getElementById("third-party-filter");
 const toggle = document.getElementById("toggle");
-const rightArrow = document.querySelector(".right-arrow");
-const applyButton = document.getElementById("apply");
+const buttonAll = document.getElementById("all-cards");
 const filterContainer = document.querySelector(".filter-container");
-const body = document.body;
+const filterWrapper = document.querySelector(".filter-wrapper");
+const cardsGrid = document.querySelector(".card-grid-section");
+const applyButton = document.getElementById("apply");
 const socialMedia = document.getElementById("nav-social-media");
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -75,7 +70,7 @@ function renderCards(cards) {
       for (let i = 0; i < 3; i++) {
         attendees += `<div class="image-avatar-wrapper"><img src="images/${card.attendees[i]}.png" alt="Avatar for participant" /></div>`;
       }
-      attendees += `<div class="image-avatar-wrapper"><div class="image-avatar-wrapper-purple"><div classname ="purple-circle"><p class ="attendee-number">+${
+      attendees += `<div class="image-avatar-wrapper"><div class="purple-circle-wrapper"><div classname ="purple-circle"><p class ="attendee-number">+${
         card.attendees.length - 3
       }</p></div></div></div>`;
     } else {
@@ -105,7 +100,7 @@ function renderCards(cards) {
   cardsCurrentlyShowing = cards;
 }
 
-/******event delegation filters******/
+/******highligt active filters******/
 
 let selectedFilter;
 filterContainer.addEventListener("click", function (event) {
@@ -158,17 +153,12 @@ buttonAll.addEventListener("click", () => {
 
 /******filters*******/
 
-tech.addEventListener("click", () =>
-  filterAndRenderCards("Technical/Tool Development")
-);
-governance.addEventListener("click", () => filterAndRenderCards("Governance"));
-growth.addEventListener("click", () =>
-  filterAndRenderCards("Growth / Marketing")
-);
-analytics.addEventListener("click", () => filterAndRenderCards("Analytics"));
-thirdParty.addEventListener("click", () =>
-  filterAndRenderCards("Third Party Provider")
-);
+filterWrapper.addEventListener("click", function (event) {
+  if (event.target.matches(".menu-filter")) {
+    const filterType = event.target.getAttribute("data-filter");
+    filterAndRenderCards(filterType);
+  }
+});
 
 function filterAndRenderCards(category) {
   cardsGrid.innerHTML = "";

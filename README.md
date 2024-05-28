@@ -1,9 +1,5 @@
 # cssexercise2
 
-## todo
-
-Menu
-
 ## done
 
 Menu
