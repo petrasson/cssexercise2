@@ -308,10 +308,12 @@ body.active {
   border: solid var(--border-color);
   background-color: var(--secondary-bg-color);
   height: 480px;
+  width: 100%;
   padding: 24px;
   text-align: left;
   position: relative;
-  width: 100%;
+  overflow: hidden;
+  flex: 1;
 }
 
 .sub-header {
@@ -327,6 +329,22 @@ body.active {
 
 .card-text {
   font-weight: 450;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  white-space: normal;
+  position: relative;
+  line-height: 1.2em;
+  max-height: calc(1.2em * 2);
+}
+
+.card-text::after {
+  content: "...";
+  background: none;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding-left: 0px;
 }
 
 .avatar-container {

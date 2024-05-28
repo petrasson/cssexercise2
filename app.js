@@ -40,9 +40,7 @@ const governance = document.getElementById("governance-filter");
 const growth = document.getElementById("growth-filter");
 const analytics = document.getElementById("analytics-filter");
 const thirdParty = document.getElementById("third-party-filter");
-const toggleBox = document.getElementById("toggle");
-const circle = document.querySelector(".circle");
-const checkBox = document.getElementById("checkbox");
+const toggle = document.getElementById("toggle");
 const rightArrow = document.querySelector(".right-arrow");
 const applyButton = document.getElementById("apply");
 const filterContainer = document.querySelector(".filter-container");
@@ -71,11 +69,8 @@ function filterCompletedCards(cards) {
 function renderCards(cards) {
   cardsGrid.innerHTML = "";
   cards.forEach((card) => {
-    let truncatedDescription =
-      card.description.length > 250
-        ? card.description.slice(0, 250) + "..."
-        : card.description;
     let attendees = "";
+
     if (card.attendees.length > 3) {
       for (let i = 0; i < 3; i++) {
         attendees += `<div class="image-avatar-wrapper"><img src="images/${card.attendees[i]}.png" alt="Avatar for participant" /></div>`;
@@ -101,7 +96,7 @@ function renderCards(cards) {
             Funding amount:
             ${card.funding_amount_from}-${card.funding_amount_to}
           </p>
-          <p class="card-text">${truncatedDescription}</p>
+          <p class="card-text">${card.description}</p>
           <div class="avatar-container">${attendees}</div>
         </div>
       `
@@ -133,10 +128,11 @@ function highlight(element) {
 }
 
 /*********hamburger menu*********/
+
 hamburger.addEventListener("click", () => {
-  hamburger.classList.add("active"); /* display none */
-  menuText.classList.add("active"); /* display flex, column */
-  closeX.classList.add("active"); /* display block, (colum) */
+  hamburger.classList.add("active");
+  menuText.classList.add("active");
+  closeX.classList.add("active");
   body.classList.add("active");
   socialMedia.classList.add("active");
 });
@@ -187,7 +183,7 @@ function filterAndRenderCards(category) {
   }
 }
 
-toggleBox.addEventListener("click", function (event) {
+toggle.addEventListener("click", function (event) {
   // Prevent the event from bubbling up further.
   event.stopPropagation();
 
@@ -205,7 +201,7 @@ checkBox.addEventListener("click", function (event) {
   event.stopPropagation();
 });
 
-/**apply**/
+/********apply********/
 
 function updateButtonText() {
   if (window.innerWidth > 1022) {
