@@ -34,13 +34,13 @@ const body = document.body;
 const hamburger = document.querySelector(".hamburger");
 const closeX = document.querySelector(".close");
 const menuText = document.getElementById("nav-top");
+const socialMedia = document.getElementById("nav-social-media");
 const toggle = document.getElementById("toggle");
 const buttonAll = document.getElementById("all-cards");
 const filterContainer = document.querySelector(".filter-container");
 const filterWrapper = document.querySelector(".filter-wrapper");
 const cardsGrid = document.querySelector(".card-grid-section");
 const applyButton = document.getElementById("apply");
-const socialMedia = document.getElementById("nav-social-media");
 
 document.addEventListener("DOMContentLoaded", function () {
   fetchAPI(url, (data, error) => {
@@ -196,6 +196,7 @@ checkBox.addEventListener("click", function (event) {
 function updateButtonText() {
   if (window.innerWidth > 1022) {
     applyButton.textContent = "Apply for grant";
+    alert("yes");
   } else {
     applyButton.textContent = "Apply";
   }

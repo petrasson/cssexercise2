@@ -362,7 +362,7 @@ body.active {
   margin: 0 -9px;
 }
 
-.purple-circle-wra {
+.purple-circle-wrapper {
   background-color: var(--accent-color);
   border-radius: 50%;
   height: 40px;
@@ -542,7 +542,7 @@ li:hover {
 
 /***********************************WEB VERSION*********************************/
 
-@media only screen and (min-width: 1130px) {
+@media only screen and (min-width: 1230px) {
   .mid-container {
     padding: 0 108px;
   }
