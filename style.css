@@ -9,6 +9,7 @@
   --secondary-text-color: #c8c7d8;
   --accent-color: #6966ff;
   --border-color: rgba(107, 105, 105, 0.281);
+  --btn-hover-color: #434478;
 }
 
 body {
@@ -140,7 +141,7 @@ body.active {
   margin-top: 50px;
 }
 
-.toggle-wrapper .slider-text {
+.toggle-wrapper .toggle-text {
   padding-left: 27px;
   font-size: 16px;
 }
@@ -466,7 +467,7 @@ body.active {
 
 .external-link-symbol {
   width: 12px;
-  height: 12;
+  height: 12px;
   margin-left: 8px;
 }
 
@@ -511,7 +512,7 @@ body.active {
 
   &._secondary:hover {
     color: var(--primary-text-color);
-    background-color: rgba(105, 102, 255, 0.26376488095238093);
+    background-color: var(--btn-hover-color);
   }
 
   &._accent {
@@ -618,25 +619,16 @@ body.active {
     display: none;
   }
 
-  .slider {
-    top: 13;
-    left: 2;
-  }
-
-  .completed {
-    width: 56px;
-  }
-
   /**********CARD-GRID************/
 
   .card-grid-section {
     padding: 80px 0px;
     grid-template-columns: repeat(3, 1fr);
     justify-content: start;
+  }
 
-    .card-header {
-      font-size: 24px;
-    }
+  .card-header {
+    font-size: 24px;
   }
 
   /**********APPLY************/
