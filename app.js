@@ -6,7 +6,7 @@ const html = (strings, ...values) =>
     ...values
   );
 
-/*********fetch API-data*********/
+/********* fetch API-data *********/
 
 const url = "https://nextjs-dashboard-6sedkcpnq-rayproud.vercel.app/api";
 let allFundsInCategory;
@@ -34,13 +34,11 @@ const hamburgBtn = document.querySelector(".hamburger-btn");
 const closeBtn = document.querySelector(".close-btn");
 const navWrapper = document.querySelector(".top-nav-wrapper");
 const body = document.body;
-
 const toggle = document.getElementById("toggle");
 const buttonAll = document.getElementById("all-cards");
 const filterContainer = document.querySelector(".filter-container");
 const filterWrapper = document.querySelector(".filter-wrapper");
 const cardsGrid = document.querySelector(".card-grid-section");
-
 const applyButton = document.getElementById("apply");
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -71,9 +69,9 @@ function renderCards(cards) {
       for (let i = 0; i < 3; i++) {
         attendees += `<div class="image-avatar-wrapper"><img src="images/${card.attendees[i]}.png" alt="Avatar for participant" /></div>`;
       }
-      attendees += `<div class="image-avatar-wrapper"><div class="purple-circle-wrapper"><div classname ="purple-circle"><p class ="attendee-number">+${
+      attendees += `<div class="image-avatar-wrapper"><div class="purple-circle"><p class ="attendee-number">+${
         card.attendees.length - 3
-      }</p></div></div></div>`;
+      }</p></div></div>`;
     } else {
       attendees = card.attendees
         .map(
@@ -132,7 +130,6 @@ hamburgBtn.addEventListener("click", () => {
 });
 
 closeBtn.addEventListener("click", () => {
-  console.log("hello");
   [hamburgBtn, closeBtn, navWrapper, body].forEach((e) => {
     e.classList.remove("active");
   });
@@ -173,14 +170,13 @@ function filterAndRenderCards(category) {
 
 toggle.addEventListener("click", function (event) {
   event.stopPropagation();
-
+  let chosenCards = "";
   if (toggleCompleted) {
-    renderCards(allFundsInCategory);
+    chosenCards = allFundsInCategory;
   } else {
-    const completedFunds = filterCompletedCards(allFundsInCategory);
-    renderCards(completedFunds);
+    chosenCards = filterCompletedCards(allFundsInCategory);
   }
-
+  renderCards(chosenCards);
   toggleCompleted = !toggleCompleted;
 });
 

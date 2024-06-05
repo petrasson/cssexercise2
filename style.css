@@ -71,8 +71,7 @@ header {
   left: 0;
   font-size: 23px;
   height: 100%;
-  background-color: var(--secondary-bg-color);
-  z-index: 4;
+  z-index: 4; 
 }
 
 .top-nav-wrapper.active {
@@ -341,25 +340,34 @@ header {
 .sub-title {
   font-family: "Space Mono", sans-serif;
   color: var(--secondary-text-color);
+  font-size: 16px;
+  margin: 8px 0;
 }
 
 .card-title {
   font-size: 20px;
   font-weight: 700;
   line-height: 32px;
+  margin: 8px 0;
 }
 
 .card-text {
-  font-weight: 450;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 25px 0;
+
+.a
+
+  /* font-weight: 450;
   overflow: hidden;
   text-overflow: ellipsis;
   display: block;
   white-space: normal;
   position: relative;
   line-height: 1.2em;
-  max-height: calc(1.2em * 3);
+  max-height: calc(1.2em * 3); */
 }
-
+/*
 .card-text::after {
   content: "...";
   background: none;
@@ -368,7 +376,7 @@ header {
   right: 0;
   padding-left: 0px;
 }
-
+*/
 .avatar-container {
   display: flex;
   flex-direction: row;
@@ -383,7 +391,7 @@ header {
   margin: 0 -9px;
 }
 
-.purple-circle-wrapper {
+.purple-circle {
   background-color: var(--accent-color);
   border-radius: 50%;
   height: 40px;
@@ -394,6 +402,9 @@ header {
   border: solid 2px var(--secondary-bg-color);
 }
 
+.attendee-number {
+font-size: 12px;
+}
 /**********APPLY************/
 
 .apply-wrapper {
@@ -605,7 +616,6 @@ li:hover {
     position: static;
     padding: 10px;
     margin-right: 20px;
-    background-color: var(--primary-bg-color);
   }
 
   .top-nav {
@@ -628,7 +638,7 @@ li:hover {
   .top-nav a {
     display: inline-block;
     border: none;
-    color: var(--secondary-text-color); /*behövs ej? se ovan*/
+    color: var(--secondary-text-color);
   }
 
   .top-social-media-wrapper {
