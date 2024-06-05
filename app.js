@@ -1,4 +1,3 @@
-/*
 const html = (strings, ...values) =>
   String.raw(
     {
@@ -8,7 +7,7 @@ const html = (strings, ...values) =>
   );
 
 /*********fetch API-data*********/
-/*
+
 const url = "https://nextjs-dashboard-6sedkcpnq-rayproud.vercel.app/api";
 let allFundsInCategory;
 let allFunds;
@@ -30,22 +29,20 @@ const fetchAPI = (url, callback) => {
       console.log("error", error);
     });
 };
-*/
 
 const hamburgBtn = document.querySelector(".hamburger-btn");
 const closeBtn = document.querySelector(".close-btn");
 const navWrapper = document.querySelector(".top-nav-wrapper");
 const body = document.body;
 
-/*
 const toggle = document.getElementById("toggle");
 const buttonAll = document.getElementById("all-cards");
 const filterContainer = document.querySelector(".filter-container");
 const filterWrapper = document.querySelector(".filter-wrapper");
 const cardsGrid = document.querySelector(".card-grid-section");
-*/
+
 const applyButton = document.getElementById("apply");
-/*
+
 document.addEventListener("DOMContentLoaded", function () {
   fetchAPI(url, (data, error) => {
     if (error) {
@@ -89,9 +86,9 @@ function renderCards(cards) {
       "beforeend",
       html`
         <div class="card">
-          <p class="sub-header">${card.category}</p>
-          <p class="card-header">${card.title}</p>
-          <p class="sub-header">
+          <p class="sub-title">${card.category}</p>
+          <p class="card-title">${card.title}</p>
+          <p class="sub-title">
             Funding amount:
             ${card.funding_amount_from}-${card.funding_amount_to}
           </p>
@@ -103,10 +100,9 @@ function renderCards(cards) {
   });
   cardsCurrentlyShowing = cards;
 }
-*/
 
-/******highligt active filters******/
-/*
+/****** Highligt active filters ******/
+
 let selectedFilter;
 filterContainer.addEventListener("click", function (event) {
   let target = event.target;
@@ -126,8 +122,8 @@ function highlight(element) {
   selectedFilter = element;
   selectedFilter.classList.add("highlight");
 }
-*/
-/*********hamburger menu*********/
+
+/********* Hamburger menu *********/
 
 hamburgBtn.addEventListener("click", () => {
   [hamburgBtn, closeBtn, navWrapper, body].forEach((e) => {
@@ -141,7 +137,9 @@ closeBtn.addEventListener("click", () => {
     e.classList.remove("active");
   });
 });
-/*
+
+/****** Filters *******/
+
 buttonAll.addEventListener("click", () => {
   cardsGrid.innerHTML = "";
   if (toggleCompleted) {
@@ -153,8 +151,6 @@ buttonAll.addEventListener("click", () => {
   }
 });
 
-/******filters*******/
-/*
 filterWrapper.addEventListener("click", function (event) {
   if (event.target.matches(".menu-filter")) {
     const filterType = event.target.getAttribute("data-filter");
@@ -176,7 +172,6 @@ function filterAndRenderCards(category) {
 }
 
 toggle.addEventListener("click", function (event) {
-  // Prevent the event from bubbling up further.
   event.stopPropagation();
 
   if (toggleCompleted) {
@@ -189,18 +184,15 @@ toggle.addEventListener("click", function (event) {
   toggleCompleted = !toggleCompleted;
 });
 
-checkBox.addEventListener("click", function (event) {
-  event.stopPropagation();
-});
-*/
-
-/********apply********/
+/******** Text on Apply Button ********/
 
 function updateButtonText() {
+  let applyButtonText = "";
   if (window.innerWidth > 1022) {
-    applyButton.textContent = "Apply for grant";
+    applyButtonText = "Apply for grant";
   } else {
-    applyButton.textContent = "Apply";
+    applyButtonText = "Apply";
   }
+  applyButton.textContent = applyButtonText;
 }
 window.addEventListener("resize", updateButtonText);
