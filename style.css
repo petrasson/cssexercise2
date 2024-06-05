@@ -26,6 +26,7 @@ body {
 
 a {
   text-decoration: none;
+  cursor: pointer;
 }
 
 body.active {
@@ -47,7 +48,6 @@ header {
   padding: 16px 24px;
   color: inherit; /*ta bort*/
   margin: 0 auto;
-  cursor: pointer;
 }
 
 .image-logotype-dydx {
@@ -67,14 +67,17 @@ header {
   align-items: center;
   width: 100%;
   position: absolute;
-  top: 155px;
+  top: 117px;
   left: 0;
   font-size: 23px;
   height: 100%;
+  background-color: var(--secondary-bg-color);
+  z-index: 4;
 }
 
 .top-nav-wrapper.active {
   display: flex;
+  padding-top: 80px;
 }
 
 .top-nav {
@@ -114,13 +117,14 @@ header {
   min-width: 170px;
   align-items: center;
   margin: 5px 0;
+  padding-top: 50px;
 }
 
 .social-media-symbol {
   display: flex;
   width: 32px;
   height: 32px;
-  margin-top: 50px;
+
   cursor: pointer;
 }
 
@@ -132,7 +136,6 @@ header {
 .hamburger-btn,
 .close-btn {
   color: var(--primary-text-color);
-
   margin-left: 20px;
   padding: 10px;
   border: none;
@@ -160,7 +163,7 @@ header {
 }
 
 /**********MID-SECTION************/
-/*
+
 .mid-container {
   margin: 0 auto;
   max-width: 1440px;
@@ -174,7 +177,7 @@ header {
   line-height: 40px;
 }
 
-.wrapper {
+.mid-wrapper {
   display: flex;
   flex-direction: column;
 }
@@ -259,7 +262,7 @@ header {
 }
 
 /******TOGGLE******/
-/*
+
 .toggle-wrapper {
   display: flex;
   flex-direction: row;
@@ -333,10 +336,10 @@ header {
   overflow: hidden;
   flex: 1;
 }
-/*
+
 .sub-header {
- 
-  font-family: "Space Mono", sans-serif; //change header to title everywhere below, I use them in app
+
+  font-family: "Space Mono", sans-serif; /*change header to title everywhere below, I use them in app
   color: var(--secondary-text-color);
 }
 
@@ -392,7 +395,7 @@ header {
 }
 
 /**********APPLY************/
-/*
+
 .apply-wrapper {
   display: flex;
   flex-direction: column;
@@ -420,22 +423,29 @@ header {
   margin-bottom: 40px;
 }
 
-.arrowb-rigth {
-  padding-left: 10px;
+.arrowb-right {
+  padding-left: 5px;
 }
 
 /**********FOOTER************/
-/*
+
 .footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
   margin: 0 auto;
   max-width: 1440px;
-  padding: 24px 0 0 24px;
 }
 
 .footer-container {
   display: flex;
   flex-direction: column;
+  align-content: center;
   gap: 0px;
+  padding: 0;
+  margin: 40px 0;
   min-width: 272px;
 }
 
@@ -445,36 +455,42 @@ header {
   justify-content: start;
 }
 
+.footer-wrapper a {
+  color: var(--secondary-text-color);
+}
+
 .image-logotype-dydx-small {
   width: 60px;
   height: 60px;
   cursor: pointer;
 }
 
-.nav-bottom {
+.bottom-nav {
   display: flex;
   flex-direction: column;
   align-items: start;
   gap: 24px;
   margin: 40px 0;
+  padding: 0;
   list-style: none;
   color: var(--secondary-text-color);
   font-family: "Space Mono", sans-serif;
-  padding: 0;
 }
-.nav-bottom li:hover {
+
+.bottom-nav li {
+  cursor: pointer;
+  padding: 10px 0;
+}
+
+.bottom-nav li:hover {
   font-weight: 900;
 }
 
-.nav-bottom-link {
-  cursor: pointer;
-}
-
-.social-media-wrapper {
+.bottom-social-media-wrapper {
   display: flex;
   flex-direction: row;
+  align-content: center;
   gap: 32px;
-  padding: 12px 0px;
 }
 
 .external-link-symbol {
@@ -491,7 +507,7 @@ header {
   line-height: 20px;
   font-size: 14px;
   white-space: nowrap;
-  border: 0px;
+  border: 0;
   border-radius: 7px;
   display: flex;
   align-items: center;
@@ -504,6 +520,7 @@ header {
     background-color: var(--secondary-bg-color);
     padding: 10px 16px;
     margin-right: 36px;
+    height: 44px;
   }
 
   &._primary.highlight {
@@ -531,6 +548,7 @@ header {
     color: var(--primary-text-color);
     background-color: var(--accent-color);
     padding: 10px 14px;
+    height: 44px;
   }
 
   &._accent:hover {
@@ -545,9 +563,8 @@ li:hover {
 }
 
 /***********************************TABLET VERSION*********************************/
-/*
-@media only screen and (min-width: 700px) {
 
+@media only screen and (min-width: 700px) {
   .card-grid-section {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -555,17 +572,11 @@ li:hover {
 
 /***********************************WEB VERSION*********************************/
 
-@media only screen and (min-width: 1230px) {
-  /*
-  .mid-container {
-    padding: 0 108px;
-  }
-
-  a {
+@media only screen and (min-width: 1305px) {
+  /*a {
     color: var(--secondary-text-color);
   }
-
-  */
+*/
   /**********TOP-SECTION************/
 
   header {
@@ -594,6 +605,7 @@ li:hover {
     position: static;
     padding: 10px;
     margin-right: 20px;
+    background-color: var(--primary-bg-color);
   }
 
   .top-nav {
@@ -616,41 +628,13 @@ li:hover {
   .top-nav a {
     display: inline-block;
     border: none;
-    color: var(--secondary-text-color);
+    color: var(--secondary-text-color); /*behövs ej? se ovan*/
   }
 
-  /*
-
-  .nav-top {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    position: static;
-    height: auto;
-    padding: 0 26px;
-    border: none;
-    font-size: 14px;
-    color: var(--primary-text-color);
-  }
-
-  .nav-top li {
-    padding: 5px 23px;
-  }
-
-  .nav-top-link {
-    font-size: 17px;
-  }
-*/
   .top-social-media-wrapper {
     display: none;
   }
 
-  /*
-.nav-social-media {
-    display: none;
-  }
-
-  */
   .btn-wrapper {
     display: flex;
     flex-direction: row;
@@ -660,14 +644,12 @@ li:hover {
     display: none;
   }
 
-  /*gammal kod
-  .hamburger,
-  .close {
-    display: none;
-  }
-*/
   /**********MID-SECTION************/
-  /*
+
+  .mid-container {
+    padding: 0 108px;
+  }
+
   .title {
     line-height: 72px;
     margin: 80px 0 40px 0;
@@ -698,9 +680,9 @@ li:hover {
   }
 
   /**********CARD-GRID************/
-  /*
+
   .card-grid-section {
-    padding: 80px 0px;
+    padding: 80px 0;
     grid-template-columns: repeat(3, 1fr);
     justify-content: start;
   }
@@ -710,7 +692,7 @@ li:hover {
   }
 
   /**********APPLY************/
-  /*
+
   .apply-wrapper {
     width: auto;
   }
@@ -721,7 +703,7 @@ li:hover {
     margin-bottom: 8px;
   }
 
-  .apply-header {
+  .apply-title {
     font-size: 40px;
     line-height: 48px;
     margin-bottom: 40px;
@@ -732,7 +714,7 @@ li:hover {
   }
 
   /**********FOOTER************/
-  /*
+
   .footer {
     padding: 80px 108px 40px;
   }
@@ -740,53 +722,50 @@ li:hover {
   .footer-container {
     flex-direction: row;
     justify-content: space-between;
-    width: auto;
     align-items: center;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
   }
 
   .footer-wrapper {
     display: flex;
     flex-direction: row;
     justify-content: start;
+    align-items: center;
   }
 
   .image-logotype-dydx-small {
-    margin-bottom: 0px;
+    margin: 0;
   }
 
-  .nav-bottom {
+  .bottom-nav {
     display: flex;
     list-style: none;
     flex-direction: row;
     align-items: center;
     gap: 24px;
     margin: 0 0 0 30px;
-    color: var(--secondary-text-color);
+    color: var(--primary-bg-color);
     font-family: "Space Mono", sans-serif;
+    font-size: 17px;
   }
 
-  .nav-bottom-link {
+  .bottom-nav li {
     margin: 0 12px;
-    font-family: "Space Mono", sans-serif;
-    color: var(--secondary-text-color);
-    cursor: pointer;
   }
 
-  .social-media-wrapper {
+  .bottom-social-media-wrapper {
+    display: flex;
+    flex-direction: row;
     align-items: center;
     padding: 0;
   }
 
-  .social-media-symbol {
-    width: 24px;
-    height: 24px;
-  }
-
   /**********BUTTONS************/
-  /*
+
   .button {
     font-size: 16px;
     line-height: 24px;
   }
-  */
 }
