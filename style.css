@@ -13,141 +13,154 @@
 }
 
 body {
-  background-color: var(--primary-bg-color);
-  font-family: "Cirkular Std", sans-serif;
+  font:
+    400 14pt/20pt "Cirkular Std",
+    sans-serif;
   color: var(--primary-text-color);
-  font-size: 14px;
-  line-height: 20px;
+  background-color: var(--primary-bg-color);
   background-image: url("images/topGrid.png");
   background-repeat: repeat-x;
-  background-size: 60%;
+  background-size: 60%; /*shorthand background?*/
+  margin: 0;
 }
 
 a {
   text-decoration: none;
-  color: var(--primary-text-color);
 }
 
 body.active {
   background-color: var(--secondary-bg-color);
+  overflow: hidden;
+}
+
+.highlight {
+  font-weight: 900;
 }
 
 /**********TOP-SECTION************/
 
-.top-container {
+header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 16px 24px;
+  color: inherit; /*ta bort*/
   margin: 0 auto;
   cursor: pointer;
 }
 
-.nav-top-wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: start;
-  align-items: center;
-  gap: 16px;
-  margin: 0px;
-  z-index: 4;
-}
-
 .image-logotype-dydx {
-  height: 48px;
-  width: 80px;
+  height: 60px;
+  width: auto;
 }
 
-.nav-top {
+.top-nav-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.top-nav-wrapper {
   display: none;
   flex-direction: column;
   align-items: center;
-  list-style: none;
-  position: absolute;
-  top: 81px;
-  right: 0px;
   width: 100%;
-  padding: 60px 10px 20px;
-  margin: 0px;
-  font-family: "Space Mono", sans-serif;
-  font-size: 19px;
+  position: absolute;
+  top: 155px;
+  left: 0;
+  font-size: 23px;
+  height: 100%;
 }
 
-.nav-top.active {
+.top-nav-wrapper.active {
   display: flex;
-  background-color: var(--secondary-bg-color);
-  color: var(--primary-text-color);
+}
+
+.top-nav {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  height: 100vh;
-  padding: 30px 0;
+  justify-content: center;
+  padding: 0;
+  margin: 0 0 50px 0;
+  width: 100%;
+  font-family: "Space Mono", sans-serif;
 }
 
-.nav-top li:hover {
-  font-weight: 900;
-}
-
-.nav-top-link {
-  padding: 25px;
-  color: var(--primary-text-color);
+.top-nav li {
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  padding: 20px 0;
+  list-style-type: none;
   font-size: 20px;
 }
 
-.hamburger {
+.top-nav li:hover {
+  font-weight: 900;
+}
+
+.top-nav a {
   display: block;
-  cursor: pointer;
-  background-color: var(--primary-bg-color);
-  border: none;
+  text-decoration: none;
   color: var(--primary-text-color);
 }
 
-.fa-bars {
-  font-size: 18px;
-}
-
-.hamburger.active {
-  display: none;
-}
-
-.close {
-  display: none;
-  color: var(--primary-text-color);
-  background-color: var(--secondary-bg-color);
-  border: none;
-  font-size: 2em;
-  cursor: pointer;
-}
-
-.fa-xmark {
-  font-size: 22px;
-  padding: 0;
-}
-
-.close.active {
-  display: block;
-}
-
-.nav-social-media.active {
+.top-social-media-wrapper {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
-  min-width: 120px;
+  min-width: 170px;
+  align-items: center;
+  margin: 5px 0;
 }
 
-.nav-social-media.active .social-media-symbol {
+.social-media-symbol {
+  display: flex;
   width: 32px;
   height: 32px;
   margin-top: 50px;
+  cursor: pointer;
 }
 
-.toggle-wrapper .toggle-text {
-  padding-left: 27px;
-  font-size: 16px;
+.btn-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.hamburger-btn,
+.close-btn {
+  color: var(--primary-text-color);
+
+  margin-left: 20px;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.hamburger-btn {
+  display: flex;
+  background-color: var(--primary-bg-color);
+  font-size: 18px;
+}
+
+.close-btn {
+  display: none;
+  background-color: var(--second-bg-color);
+  font-size: 22px;
+}
+
+.hamburger-btn.active {
+  display: none;
+}
+
+.close-btn.active {
+  display: block;
 }
 
 /**********MID-SECTION************/
-
+/*
 .mid-container {
   margin: 0 auto;
   max-width: 1440px;
@@ -155,7 +168,7 @@ body.active {
   padding: 0 24px;
 }
 
-.header {
+.title {
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 700;
   line-height: 40px;
@@ -246,7 +259,7 @@ body.active {
 }
 
 /******TOGGLE******/
-
+/*
 .toggle-wrapper {
   display: flex;
   flex-direction: row;
@@ -271,7 +284,7 @@ body.active {
   content: "";
   position: absolute;
   top: 50%;
-  left: -3px;
+  left: 22px;
   transform: translate(0, -50%);
   border-radius: 50%;
   width: 30px;
@@ -285,12 +298,16 @@ body.active {
 }
 
 #toggle:checked::after {
-  left: 20px;
+  left: -3px;
   background-color: var(--primary-text-color);
 }
 
+.toggle-wrapper .toggle-text {
+  padding-left: 27px;
+  font-size: 16px;
+}
 /**********CARD-GRID************/
-
+/*
 .card-grid-section {
   max-width: 1440px;
   margin: 0 auto;
@@ -316,9 +333,10 @@ body.active {
   overflow: hidden;
   flex: 1;
 }
-
+/*
 .sub-header {
-  font-family: "Space Mono", sans-serif;
+ 
+  font-family: "Space Mono", sans-serif; //change header to title everywhere below, I use them in app
   color: var(--secondary-text-color);
 }
 
@@ -336,7 +354,7 @@ body.active {
   white-space: normal;
   position: relative;
   line-height: 1.2em;
-  max-height: calc(1.2em * 2);
+  max-height: calc(1.2em * 3);
 }
 
 .card-text::after {
@@ -374,7 +392,7 @@ body.active {
 }
 
 /**********APPLY************/
-
+/*
 .apply-wrapper {
   display: flex;
   flex-direction: column;
@@ -407,7 +425,7 @@ body.active {
 }
 
 /**********FOOTER************/
-
+/*
 .footer {
   margin: 0 auto;
   max-width: 1440px;
@@ -456,13 +474,7 @@ body.active {
   display: flex;
   flex-direction: row;
   gap: 32px;
-  padding: 12px 16px;
-}
-
-.social-media-symbol {
-  width: 16px;
-  height: 16px;
-  cursor: pointer;
+  padding: 12px 0px;
 }
 
 .external-link-symbol {
@@ -533,8 +545,9 @@ li:hover {
 }
 
 /***********************************TABLET VERSION*********************************/
-
+/*
 @media only screen and (min-width: 700px) {
+
   .card-grid-section {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -543,6 +556,7 @@ li:hover {
 /***********************************WEB VERSION*********************************/
 
 @media only screen and (min-width: 1230px) {
+  /*
   .mid-container {
     padding: 0 108px;
   }
@@ -550,13 +564,62 @@ li:hover {
   a {
     color: var(--secondary-text-color);
   }
+
+  */
   /**********TOP-SECTION************/
 
-  .top-container {
-    max-width: 1440px;
+  header {
+    display: flex;
+    width: 100%;
+    max-width: 1700px;
     padding: 24px 32px;
     margin: 0 auto;
   }
+
+  .image-logotype-dydx {
+    height: 72px;
+    width: auto;
+    cursor: pointer;
+  }
+
+  .top-nav-container {
+    flex-direction: row;
+  }
+
+  .top-nav-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: static;
+    padding: 10px;
+    margin-right: 20px;
+  }
+
+  .top-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: auto;
+    margin: 0;
+  }
+
+  .top-nav li {
+    width: auto;
+    font-size: 17px;
+    text-align: left;
+    padding: 5px 17px;
+    margin: 0 20px;
+  }
+
+  .top-nav a {
+    display: inline-block;
+    border: none;
+    color: var(--secondary-text-color);
+  }
+
+  /*
 
   .nav-top {
     display: flex;
@@ -577,25 +640,35 @@ li:hover {
   .nav-top-link {
     font-size: 17px;
   }
+*/
+  .top-social-media-wrapper {
+    display: none;
+  }
 
+  /*
+.nav-social-media {
+    display: none;
+  }
+
+  */
+  .btn-wrapper {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .hamburger-btn {
+    display: none;
+  }
+
+  /*gammal kod
   .hamburger,
   .close {
     display: none;
   }
-
-  .image-logotype-dydx {
-    height: 72px;
-    width: 120px;
-    cursor: pointer;
-  }
-
-  .nav-social-media {
-    display: none;
-  }
-
+*/
   /**********MID-SECTION************/
-
-  .header {
+  /*
+  .title {
     line-height: 72px;
     margin: 80px 0 40px 0;
   }
@@ -625,7 +698,7 @@ li:hover {
   }
 
   /**********CARD-GRID************/
-
+  /*
   .card-grid-section {
     padding: 80px 0px;
     grid-template-columns: repeat(3, 1fr);
@@ -637,7 +710,7 @@ li:hover {
   }
 
   /**********APPLY************/
-
+  /*
   .apply-wrapper {
     width: auto;
   }
@@ -659,7 +732,7 @@ li:hover {
   }
 
   /**********FOOTER************/
-
+  /*
   .footer {
     padding: 80px 108px 40px;
   }
@@ -710,9 +783,10 @@ li:hover {
   }
 
   /**********BUTTONS************/
-
+  /*
   .button {
     font-size: 16px;
     line-height: 24px;
   }
+  */
 }

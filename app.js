@@ -1,3 +1,4 @@
+/*
 const html = (strings, ...values) =>
   String.raw(
     {
@@ -7,7 +8,7 @@ const html = (strings, ...values) =>
   );
 
 /*********fetch API-data*********/
-
+/*
 const url = "https://nextjs-dashboard-6sedkcpnq-rayproud.vercel.app/api";
 let allFundsInCategory;
 let allFunds;
@@ -29,19 +30,22 @@ const fetchAPI = (url, callback) => {
       console.log("error", error);
     });
 };
+*/
 
+const hamburgBtn = document.querySelector(".hamburger-btn");
+const closeBtn = document.querySelector(".close-btn");
+const navWrapper = document.querySelector(".top-nav-wrapper");
 const body = document.body;
-const hamburger = document.querySelector(".hamburger");
-const closeX = document.querySelector(".close");
-const menuText = document.getElementById("nav-top");
-const socialMedia = document.getElementById("nav-social-media");
+
+/*
 const toggle = document.getElementById("toggle");
 const buttonAll = document.getElementById("all-cards");
 const filterContainer = document.querySelector(".filter-container");
 const filterWrapper = document.querySelector(".filter-wrapper");
 const cardsGrid = document.querySelector(".card-grid-section");
+*/
 const applyButton = document.getElementById("apply");
-
+/*
 document.addEventListener("DOMContentLoaded", function () {
   fetchAPI(url, (data, error) => {
     if (error) {
@@ -99,9 +103,10 @@ function renderCards(cards) {
   });
   cardsCurrentlyShowing = cards;
 }
+*/
 
 /******highligt active filters******/
-
+/*
 let selectedFilter;
 filterContainer.addEventListener("click", function (event) {
   let target = event.target;
@@ -121,25 +126,22 @@ function highlight(element) {
   selectedFilter = element;
   selectedFilter.classList.add("highlight");
 }
-
+*/
 /*********hamburger menu*********/
 
-hamburger.addEventListener("click", () => {
-  hamburger.classList.add("active");
-  menuText.classList.add("active");
-  closeX.classList.add("active");
-  body.classList.add("active");
-  socialMedia.classList.add("active");
+hamburgBtn.addEventListener("click", () => {
+  [hamburgBtn, closeBtn, navWrapper, body].forEach((e) => {
+    e.classList.add("active");
+  });
 });
 
-closeX.addEventListener("click", () => {
-  menuText.classList.remove("active");
-  hamburger.classList.remove("active");
-  closeX.classList.remove("active");
-  body.classList.remove("active");
-  socialMedia.classList.remove("active");
+closeBtn.addEventListener("click", () => {
+  console.log("hello");
+  [hamburgBtn, closeBtn, navWrapper, body].forEach((e) => {
+    e.classList.remove("active");
+  });
 });
-
+/*
 buttonAll.addEventListener("click", () => {
   cardsGrid.innerHTML = "";
   if (toggleCompleted) {
@@ -152,7 +154,7 @@ buttonAll.addEventListener("click", () => {
 });
 
 /******filters*******/
-
+/*
 filterWrapper.addEventListener("click", function (event) {
   if (event.target.matches(".menu-filter")) {
     const filterType = event.target.getAttribute("data-filter");
@@ -190,13 +192,13 @@ toggle.addEventListener("click", function (event) {
 checkBox.addEventListener("click", function (event) {
   event.stopPropagation();
 });
+*/
 
 /********apply********/
 
 function updateButtonText() {
   if (window.innerWidth > 1022) {
     applyButton.textContent = "Apply for grant";
-    alert("yes");
   } else {
     applyButton.textContent = "Apply";
   }
