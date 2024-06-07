@@ -9,9 +9,11 @@ const html = (strings, ...values) =>
 /********* fetch API-data *********/
 
 const url = "https://nextjs-dashboard-6sedkcpnq-rayproud.vercel.app/api";
-let allFundsInCategory;
-let allFunds;
+let allFunds; /*to have maximum funds avaliable for toggling "all button"*/
+let allCurrentFunds; /*to have maximum funds avaliable for toggling*/
+let chosenFunds; /*current funds to render*/
 let toggleCompleted = true;
+let selectedFilter;
 
 const fetchAPI = (url, callback) => {
   fetch(url)
@@ -41,39 +43,61 @@ const filterWrapper = document.querySelector(".filter-wrapper");
 const cardsGrid = document.querySelector(".card-grid-section");
 const applyButton = document.getElementById("apply");
 
-document.addEventListener("DOMContentLoaded", function () {
-  fetchAPI(url, (data, error) => {
-    if (error) {
-      console.error("Error fetching data:", error);
-      return;
-    }
-    allFunds = data.funds;
-    allFundsInCategory = allFunds;
-    const cardsPageLoading = filterCompletedCards(allFunds);
-    renderCards(cardsPageLoading);
-    updateButtonText();
-  });
-});
+/************************ FUNCTIONS ********************************/
 
-function filterCompletedCards(cards) {
-  const allCompletedCards = cards.filter((card) => card.completed === true);
-  return allCompletedCards;
+/******** Text on Apply Button ********/
+
+function updateButtonText() {
+  let applyButtonText = "";
+  if (window.innerWidth > 1022) {
+    applyButtonText = "Apply for grant";
+  } else {
+    applyButtonText = "Apply";
+  }
+  applyButton.textContent = applyButtonText;
 }
 
-function renderCards(cards) {
+/******** Highlight current filter ********/
+
+function highlight(filter) {
+  if (selectedFilter) {
+    selectedFilter.classList.remove("highlight");
+  }
+  selectedFilter = filter;
+  selectedFilter.classList.add("highlight");
+}
+
+/******** Filter funds ********/
+
+function filterCompleted(funds) {
+  const completedFunds = funds.filter((fund) => fund.completed === true);
+  return completedFunds;
+}
+
+function filterOnCategory(category) {
+  const allFundsInCategory = allFunds.filter(
+    (fund) => fund.category === category
+  );
+  allCurrentFunds = allFundsInCategory;
+  return allFundsInCategory;
+}
+
+/******** Render cards ********/
+
+function renderCards(funds) {
   cardsGrid.innerHTML = "";
-  cards.forEach((card) => {
+  funds.forEach((fund) => {
     let attendees = "";
 
-    if (card.attendees.length > 3) {
+    if (fund.attendees.length > 3) {
       for (let i = 0; i < 3; i++) {
-        attendees += `<div class="image-avatar-wrapper"><img src="images/${card.attendees[i]}.png" alt="Avatar for participant" /></div>`;
+        attendees += `<div class="image-avatar-wrapper"><img src="images/${fund.attendees[i]}.png" alt="Avatar for participant" /></div>`;
       }
       attendees += `<div class="image-avatar-wrapper"><div class="purple-circle"><p class ="attendee-number">+${
-        card.attendees.length - 3
+        fund.attendees.length - 3
       }</p></div></div>`;
     } else {
-      attendees = card.attendees
+      attendees = fund.attendees
         .map(
           (name) =>
             `<p class="image-avatar-wrapper"><img src="images/${name}.png" alt="Avatar for participant" /></p>`
@@ -84,24 +108,82 @@ function renderCards(cards) {
       "beforeend",
       html`
         <div class="card">
-          <p class="sub-title">${card.category}</p>
-          <p class="card-title">${card.title}</p>
+          <p class="sub-title">${fund.category}</p>
+          <p class="card-title">${fund.title}</p>
           <p class="sub-title">
             Funding amount:
-            ${card.funding_amount_from}-${card.funding_amount_to}
+            ${fund.funding_amount_from}-${fund.funding_amount_to}
           </p>
-          <p class="card-text">${card.description}</p>
+          <p class="card-text">${fund.description}</p>
           <div class="avatar-container">${attendees}</div>
         </div>
       `
     );
   });
-  cardsCurrentlyShowing = cards;
 }
 
-/****** Highligt active filters ******/
+/************************** EVENTLISTENERS ********************************/
 
-let selectedFilter;
+/****** Fetch data when page loads *******/
+
+document.addEventListener("DOMContentLoaded", function () {
+  fetchAPI(url, (data, error) => {
+    if (error) {
+      console.error("Error fetching data:", error);
+      return;
+    }
+    allFunds = data.funds;
+    allCurrentFunds = allFunds;
+    chosenFunds = filterCompleted(allFunds);
+    renderCards(chosenFunds);
+    updateButtonText();
+  });
+});
+
+/****** Update text on Apply button *******/
+
+window.addEventListener("resize", updateButtonText);
+
+/****** Filters *******/
+
+buttonAll.addEventListener("click", () => {
+  if (toggleCompleted) {
+    const completedFunds = filterCompleted(allFunds);
+    chosenFunds = completedFunds;
+  } else {
+    chosenFunds = allFunds;
+    allCurrentFunds = allFunds;
+  }
+  renderCards(chosenFunds);
+});
+
+filterWrapper.addEventListener("click", function (event) {
+  if (event.target.matches(".menu-filter")) {
+    const category = event.target.getAttribute("data-filter");
+    allCurrentFunds = filterOnCategory(category);
+    if (toggleCompleted) {
+      const completedFundsInCategory = filterCompleted(allCurrentFunds);
+      chosenFunds = completedFundsInCategory;
+    } else {
+      chosenFunds = allCurrentFunds;
+    }
+    renderCards(chosenFunds);
+  }
+});
+
+toggle.addEventListener("click", function (event) {
+  event.stopPropagation();
+  if (toggleCompleted) {
+    chosenFunds = allCurrentFunds;
+  } else {
+    chosenFunds = filterCompleted(allCurrentFunds);
+  }
+  renderCards(chosenFunds);
+  toggleCompleted = !toggleCompleted;
+});
+
+/****** Highlight active filters ******/
+
 filterContainer.addEventListener("click", function (event) {
   let target = event.target;
   if (
@@ -112,14 +194,6 @@ filterContainer.addEventListener("click", function (event) {
     highlight(target);
   }
 });
-
-function highlight(element) {
-  if (selectedFilter) {
-    selectedFilter.classList.remove("highlight");
-  }
-  selectedFilter = element;
-  selectedFilter.classList.add("highlight");
-}
 
 /********* Hamburger menu *********/
 
@@ -134,61 +208,3 @@ closeBtn.addEventListener("click", () => {
     e.classList.remove("active");
   });
 });
-
-/****** Filters *******/
-
-buttonAll.addEventListener("click", () => {
-  cardsGrid.innerHTML = "";
-  if (toggleCompleted) {
-    const completedFunds = filterCompletedCards(allFunds);
-    renderCards(completedFunds);
-  } else {
-    renderCards(allFunds);
-    allFundsInCategory = allFunds;
-  }
-});
-
-filterWrapper.addEventListener("click", function (event) {
-  if (event.target.matches(".menu-filter")) {
-    const filterType = event.target.getAttribute("data-filter");
-    filterAndRenderCards(filterType);
-  }
-});
-
-function filterAndRenderCards(category) {
-  cardsGrid.innerHTML = "";
-  const allTechCards = allFunds.filter((card) => card.category === category);
-
-  allFundsInCategory = allTechCards;
-  if (toggleCompleted) {
-    const completedTechCards = filterCompletedCards(allTechCards);
-    renderCards(completedTechCards);
-  } else {
-    renderCards(allTechCards);
-  }
-}
-
-toggle.addEventListener("click", function (event) {
-  event.stopPropagation();
-  let chosenCards = "";
-  if (toggleCompleted) {
-    chosenCards = allFundsInCategory;
-  } else {
-    chosenCards = filterCompletedCards(allFundsInCategory);
-  }
-  renderCards(chosenCards);
-  toggleCompleted = !toggleCompleted;
-});
-
-/******** Text on Apply Button ********/
-
-function updateButtonText() {
-  let applyButtonText = "";
-  if (window.innerWidth > 1022) {
-    applyButtonText = "Apply for grant";
-  } else {
-    applyButtonText = "Apply";
-  }
-  applyButton.textContent = applyButtonText;
-}
-window.addEventListener("resize", updateButtonText);
