@@ -13,7 +13,7 @@ let allFunds; /*to have maximum funds avaliable for toggling "all button"*/
 let allCurrentFunds; /*to have maximum funds avaliable for toggling*/
 let chosenFunds; /*current funds to render*/
 let toggleCompleted = true;
-let selectedFilter;
+let selectedFilter = null;
 
 const fetchAPI = (url, callback) => {
   fetch(url)
@@ -31,17 +31,16 @@ const fetchAPI = (url, callback) => {
       console.log("error", error);
     });
 };
-
+const body = document.body;
+const navWrapper = document.querySelector(".top-nav-wrapper");
 const hamburgBtn = document.querySelector(".hamburger-btn");
 const closeBtn = document.querySelector(".close-btn");
-const navWrapper = document.querySelector(".top-nav-wrapper");
-const body = document.body;
-const toggle = document.getElementById("toggle");
-const buttonAll = document.getElementById("all-cards");
+const applyButton = document.getElementById("apply");
 const filterContainer = document.querySelector(".filter-container");
 const filterWrapper = document.querySelector(".filter-wrapper");
+const toggle = document.getElementById("toggle");
+const buttonAll = document.getElementById("all-funds");
 const cardsGrid = document.querySelector(".card-grid-section");
-const applyButton = document.getElementById("apply");
 
 /************************ FUNCTIONS ********************************/
 
@@ -186,11 +185,7 @@ toggle.addEventListener("click", function (event) {
 
 filterContainer.addEventListener("click", function (event) {
   let target = event.target;
-  if (
-    target.classList.contains("menu-filter") ||
-    (target.classList.contains("button") &&
-      target.classList.contains("_primary"))
-  ) {
+  if (target.classList.contains("menu-filter") || target.id === "all-funds") {
     highlight(target);
   }
 });

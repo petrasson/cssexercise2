@@ -18,10 +18,35 @@ body {
     sans-serif;
   color: var(--primary-text-color);
   background-color: var(--primary-bg-color);
-  background-image: url("images/topGrid.png");
-  background-repeat: repeat-x;
-  background-size: 60%; /*shorthand background?*/
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.1) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 23px 23px;
   margin: 0;
+  position: relative;
+  z-index: 0;
+  height: 100%;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(35, 35, 52, 0.1) 0%,
+    rgba(35, 35, 52, 0.7) 20%,
+    rgba(35, 35, 52, 1) 50%,
+    rgba(35, 35, 52, 0.7) 80%,
+    rgba(35, 35, 52, 0.1) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
 }
 
 a {
@@ -32,10 +57,20 @@ a {
 body.active {
   background-color: var(--secondary-bg-color);
   overflow: hidden;
+  background-image: none;
+}
+
+body.active::before {
+  background: none;
 }
 
 .highlight {
   font-weight: 900;
+}
+
+.page-wrapper {
+  position: relative;
+  z-index: 2;
 }
 
 /**********TOP-SECTION************/
@@ -46,7 +81,6 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 16px 24px;
-  color: inherit; /*ta bort*/
   margin: 0 auto;
 }
 
@@ -71,7 +105,8 @@ header {
   left: 0;
   font-size: 23px;
   height: 100%;
-  z-index: 4; 
+  z-index: 6;
+  background-color: var(--secondary-bg-color);
 }
 
 .top-nav-wrapper.active {
@@ -123,7 +158,6 @@ header {
   display: flex;
   width: 32px;
   height: 32px;
-
   cursor: pointer;
 }
 
@@ -139,6 +173,7 @@ header {
   padding: 10px;
   border: none;
   cursor: pointer;
+  background: transparent;
 }
 
 .hamburger-btn {
@@ -193,7 +228,7 @@ header {
   align-items: center;
   position: relative;
   width: 100%;
-  z-index: 1;
+  z-index: 3;
 }
 
 .highlight {
@@ -212,7 +247,7 @@ header {
     rgba(35, 35, 52, 0),
     rgb(35, 35, 52, 1)
   );
-  z-index: 2;
+  z-index: 5;
 }
 
 .filter-container::after {
@@ -223,7 +258,7 @@ header {
   background-image: url("images/rightarrow.svg");
   width: 20px;
   height: 20px;
-  z-index: 3;
+  z-index: 6;
 }
 
 .filter-wrapper {
@@ -248,12 +283,13 @@ header {
 .menu-filter {
   min-width: 218px;
   position: relative;
-  z-index: 1;
+  z-index: 4;
   border: none;
   background-color: var(--primary-bg-color);
   color: var(--primary-text-color);
   font-size: 15px;
   cursor: pointer;
+  background: transparent;
 }
 
 .menu-filter:hover {
@@ -355,28 +391,8 @@ header {
   font-size: 16px;
   line-height: 24px;
   margin: 25px 0;
-
-.a
-
-  /* font-weight: 450;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: block;
-  white-space: normal;
-  position: relative;
-  line-height: 1.2em;
-  max-height: calc(1.2em * 3); */
 }
-/*
-.card-text::after {
-  content: "...";
-  background: none;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  padding-left: 0px;
-}
-*/
+
 .avatar-container {
   display: flex;
   flex-direction: row;
@@ -403,8 +419,9 @@ header {
 }
 
 .attendee-number {
-font-size: 12px;
+  font-size: 12px;
 }
+
 /**********APPLY************/
 
 .apply-wrapper {
@@ -412,12 +429,27 @@ font-size: 12px;
   flex-direction: column;
   align-items: center;
   border-radius: 16px;
+  padding: 2px;
   background: linear-gradient(
     169deg,
-    rgba(105, 102, 255, 0.26376488095238093) 0%,
-    rgba(105, 102, 255, 1) 68%
+    rgba(105, 102, 255, 1) 0%,
+    rgba(35, 34, 101, 0.6) 100%
+  );
+}
+/*To create a border with linear-gradient*/
+.apply-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 12px;
+  background: linear-gradient(
+    169deg,
+    rgba(35, 34, 101, 0.6) 0%,
+    rgba(105, 102, 255, 1) 100%
   );
   padding: 40px 16px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .apply-text {
@@ -454,7 +486,7 @@ font-size: 12px;
   display: flex;
   flex-direction: column;
   align-content: center;
-  gap: 0px;
+  gap: 0;
   padding: 0;
   margin: 40px 0;
   min-width: 272px;
@@ -584,10 +616,6 @@ li:hover {
 /***********************************WEB VERSION*********************************/
 
 @media only screen and (min-width: 1305px) {
-  /*a {
-    color: var(--secondary-text-color);
-  }
-*/
   /**********TOP-SECTION************/
 
   header {
@@ -616,6 +644,7 @@ li:hover {
     position: static;
     padding: 10px;
     margin-right: 20px;
+    background-color: transparent;
   }
 
   .top-nav {
