@@ -146,12 +146,12 @@ window.addEventListener("resize", updateButtonText);
 /****** Filters *******/
 
 buttonAll.addEventListener("click", () => {
+  allCurrentFunds = allFunds;
   if (toggleCompleted) {
     const completedFunds = filterCompleted(allFunds);
     chosenFunds = completedFunds;
   } else {
     chosenFunds = allFunds;
-    allCurrentFunds = allFunds;
   }
   renderCards(chosenFunds);
 });

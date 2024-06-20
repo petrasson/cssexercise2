@@ -8,7 +8,7 @@
   --primary-text-color: #fff;
   --secondary-text-color: #c8c7d8;
   --accent-color: #6966ff;
-  --border-color: rgba(107, 105, 105, 0.281);
+  --border-color: rgb(107 105 105 / 28.1%);
   --btn-hover-color: #434478;
 }
 
@@ -18,11 +18,8 @@ body {
     sans-serif;
   color: var(--primary-text-color);
   background-color: var(--primary-bg-color);
-  background-image: linear-gradient(
-      rgba(255, 255, 255, 0.1) 1px,
-      transparent 1px
-    ),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-image: linear-gradient(rgb(255 255 255 / 10%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 10%) 1px, transparent 1px);
   background-size: 23px 23px;
   margin: 0;
   position: relative;
@@ -39,11 +36,11 @@ body::before {
   height: 100%;
   background: linear-gradient(
     to bottom,
-    rgba(35, 35, 52, 0.1) 0%,
-    rgba(35, 35, 52, 0.7) 20%,
-    rgba(35, 35, 52, 1) 50%,
-    rgba(35, 35, 52, 0.7) 80%,
-    rgba(35, 35, 52, 0.1) 100%
+    rgb(35 35 52 / 10%) 0%,
+    rgb(35 35 52 / 70%) 20%,
+    rgb(35 35 52 / 100%) 50%,
+    rgb(35 35 52 / 70%) 80%,
+    rgb(35 35 52 / 10%) 100%
   );
   pointer-events: none;
   z-index: 1;
@@ -64,16 +61,14 @@ body.active::before {
   background: none;
 }
 
-.highlight {
-  font-weight: 900;
-}
+/* Wrapper to make sure the background shadow gradient doesn't cover anything on the page.  */
 
 .page-wrapper {
   position: relative;
   z-index: 2;
 }
 
-/**********TOP-SECTION************/
+/********** TOP-SECTION ************/
 
 header {
   display: flex;
@@ -120,7 +115,7 @@ header {
   align-items: center;
   justify-content: center;
   padding: 0;
-  margin: 0 0 50px 0;
+  margin: 0 0 50px;
   width: 100%;
   font-family: "Space Mono", sans-serif;
 }
@@ -132,10 +127,6 @@ header {
   padding: 20px 0;
   list-style-type: none;
   font-size: 20px;
-}
-
-.top-nav li:hover {
-  font-weight: 900;
 }
 
 .top-nav a {
@@ -178,7 +169,6 @@ header {
 
 .hamburger-btn {
   display: flex;
-  background-color: var(--primary-bg-color);
   font-size: 18px;
 }
 
@@ -196,7 +186,7 @@ header {
   display: block;
 }
 
-/**********MID-SECTION************/
+/********** MID-SECTION ************/
 
 .mid-container {
   margin: 0 auto;
@@ -244,8 +234,8 @@ header {
   height: 100%;
   background-image: linear-gradient(
     to right,
-    rgba(35, 35, 52, 0),
-    rgb(35, 35, 52, 1)
+    rgb(35 35 52 / 0%),
+    rgb(35 35 52 / 100%)
   );
   z-index: 5;
 }
@@ -253,31 +243,29 @@ header {
 .filter-container::after {
   content: "";
   position: absolute;
-  top: 13px;
+  top: 15px;
   right: 2px;
   background-image: url("images/rightarrow.svg");
   width: 20px;
   height: 20px;
   z-index: 6;
+  background-repeat: no-repeat;
 }
 
 .filter-wrapper {
   display: flex;
   flex-direction: row;
   align-items: start;
-  gap: 0px;
-  margin: 0px;
+  gap: 0;
+  margin: 0;
   overflow-x: auto;
   color: var(--secondary-text-color);
   position: relative;
+  scrollbar-width: none;
 }
 
 .filter-wrapper li {
   list-style-type: none;
-}
-
-.filter-wrapper {
-  scrollbar-width: none;
 }
 
 .menu-filter {
@@ -285,18 +273,13 @@ header {
   position: relative;
   z-index: 4;
   border: none;
-  background-color: var(--primary-bg-color);
   color: var(--primary-text-color);
   font-size: 15px;
   cursor: pointer;
-  background: transparent;
+  background-color: transparent;
 }
 
-.menu-filter:hover {
-  font-weight: 900;
-}
-
-/******TOGGLE******/
+/****** TOGGLE ******/
 
 .toggle-wrapper {
   display: flex;
@@ -345,7 +328,7 @@ header {
   font-size: 16px;
 }
 
-/**********CARD-GRID************/
+/********** CARD-GRID ************/
 
 .card-grid-section {
   max-width: 1440px;
@@ -422,7 +405,7 @@ header {
   font-size: 12px;
 }
 
-/**********APPLY************/
+/********** APPLY ************/
 
 .apply-wrapper {
   display: flex;
@@ -431,12 +414,13 @@ header {
   border-radius: 16px;
   padding: 2px;
   background: linear-gradient(
-    169deg,
-    rgba(105, 102, 255, 1) 0%,
-    rgba(35, 34, 101, 0.6) 100%
+    360deg,
+    rgb(105 102 255 / 100%) 0%,
+    rgb(35 34 101 / 60%) 100%
   );
 }
-/*To create a border with linear-gradient*/
+
+/* To create a border with linear-gradient */
 .apply-inner {
   display: flex;
   flex-direction: column;
@@ -444,8 +428,8 @@ header {
   border-radius: 12px;
   background: linear-gradient(
     169deg,
-    rgba(35, 34, 101, 0.6) 0%,
-    rgba(105, 102, 255, 1) 100%
+    rgb(105 102 255 / 100%) 0%,
+    rgb(35 34 101 / 60%) 100%
   );
   padding: 40px 16px;
   width: 100%;
@@ -470,7 +454,7 @@ header {
   padding-left: 5px;
 }
 
-/**********FOOTER************/
+/********** FOOTER ************/
 
 .footer {
   display: flex;
@@ -525,10 +509,6 @@ header {
   padding: 10px 0;
 }
 
-.bottom-nav li:hover {
-  font-weight: 900;
-}
-
 .bottom-social-media-wrapper {
   display: flex;
   flex-direction: row;
@@ -542,7 +522,7 @@ header {
   margin-left: 8px;
 }
 
-/**********BUTTONS************/
+/********** BUTTONS ************/
 
 .button {
   font-weight: 500;
@@ -600,23 +580,37 @@ header {
   }
 }
 
+/********* HOVER *******/
+
 .button:hover,
 li:hover {
   transition: background 0.5s;
 }
 
-/***********************************TABLET VERSION*********************************/
+.top-nav li:hover {
+  font-weight: 900;
+}
 
-@media only screen and (min-width: 700px) {
+.menu-filter:hover {
+  font-weight: 900;
+}
+
+.bottom-nav li:hover {
+  font-weight: 900;
+}
+
+/*********************************** TABLET VERSION *********************************/
+
+@media only screen and (width >= 700px) {
   .card-grid-section {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/***********************************WEB VERSION*********************************/
+/*********************************** WEB VERSION *********************************/
 
-@media only screen and (min-width: 1305px) {
-  /**********TOP-SECTION************/
+@media only screen and (width >= 1305px) {
+  /********** TOP-SECTION ************/
 
   header {
     display: flex;
@@ -683,7 +677,7 @@ li:hover {
     display: none;
   }
 
-  /**********MID-SECTION************/
+  /********** MID-SECTION ************/
 
   .mid-container {
     padding: 0 108px;
@@ -691,7 +685,7 @@ li:hover {
 
   .title {
     line-height: 72px;
-    margin: 80px 0 40px 0;
+    margin: 80px 0 40px;
   }
 
   .hero-row {
@@ -718,7 +712,7 @@ li:hover {
     display: none;
   }
 
-  /**********CARD-GRID************/
+  /********** CARD-GRID ************/
 
   .card-grid-section {
     padding: 80px 0;
@@ -730,7 +724,7 @@ li:hover {
     font-size: 24px;
   }
 
-  /**********APPLY************/
+  /********** APPLY ************/
 
   .apply-wrapper {
     width: auto;
@@ -752,7 +746,7 @@ li:hover {
     padding-left: 10px;
   }
 
-  /**********FOOTER************/
+  /********** FOOTER ************/
 
   .footer {
     padding: 80px 108px 40px;
@@ -801,7 +795,7 @@ li:hover {
     padding: 0;
   }
 
-  /**********BUTTONS************/
+  /********** BUTTONS ************/
 
   .button {
     font-size: 16px;
