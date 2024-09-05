@@ -3,19 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Css excercise2 - funded grants</title>
+    <title>Css excercise2 - Discover initiatives</title>
     <link rel="stylesheet" href="style.css" />
-    <script
+    <!-- <script
       async
       src="https://kit.fontawesome.com/14732e8c57.js"
       crossorigin="anonymous"
-    ></script>
+    ></script> -->
   </head>
 
   <body>
     <div class="page-wrapper">
       <header class="header">
-        <!--top-container-->
         <img
           src="images/dydXLogotypeBig.svg"
           alt="Dydx logotype"
@@ -25,7 +24,7 @@
           <nav class="top-nav-wrapper">
             <ul class="top-nav">
               <li><a href="/discover.html">Discover initiatives</a></li>
-              <li class="highlight"><a href="#">Funded grants</a></li>
+              <li class="highlight"><a href="index.html">Funded grants</a></li>
               <li><a href="#">Program expenses</a></li>
               <li><a href="#">Blog</a></li>
               <li><a href="#">FAQ</a></li>
@@ -54,58 +53,41 @@
           </div>
         </div>
       </header>
-
-      <div class="mid-container">
-        <h1 class="title">Funded grants</h1>
+      <div class="mid-container _discover">
+        <h1 class="title">Discover initiatives (RFPs)</h1>
         <div class="mid-wrapper">
-          <div class="hero-row">
+          <p class="discovery-text">
+            The list below includes initial ideas that we think could make
+            excellent Grants. This is a living list that will continue to update
+            as ideas popup.
+          </p>
+          <div class="hero-row _discover">
             <div class="filter-container">
               <button class="button _primary" id="all-funds">All</button>
               <menu class="filter-wrapper">
                 <li>
-                  <button
-                    class="menu-filter"
-                    data-filter="Technical/Tool Development"
-                  >
-                    Technical/Tool Development
+                  <button class="menu-filter &._discover" data-filter="Open">
+                    Open
                   </button>
                 </li>
                 <li>
-                  <button class="menu-filter" data-filter="Governance">
-                    Governance
-                  </button>
-                </li>
-                <li>
-                  <button class="menu-filter" data-filter="Growth / Marketing">
-                    Growth/Marketing
-                  </button>
-                </li>
-                <li>
-                  <button class="menu-filter" data-filter="Analytics">
-                    Analytics
+                  <button class="menu-filter &._discover" data-filter="Funded">
+                    Funded
                   </button>
                 </li>
                 <li>
                   <button
-                    class="menu-filter"
-                    data-filter="Third Party Provider"
+                    class="menu-filter &._discover"
+                    data-filter="Completed"
                   >
-                    Third party provider
+                    Completed
                   </button>
                 </li>
               </menu>
             </div>
           </div>
-          <div class="toggle-wrapper">
-            <input
-              type="checkbox"
-              id="toggle"
-              aria-label="Show only completed"
-            />
-            <label for="toggle" class="toggle-text">Show only completed</label>
-          </div>
         </div>
-        <section class="card-grid-section"></section>
+        <section class="initiatives-grid-section"></section>
         <section class="apply-wrapper">
           <div class="apply-inner">
             <p class="apply-text">Have a project in mind?</p>
