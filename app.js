@@ -3,7 +3,7 @@ const html = (strings, ...values) =>
     {
       raw: strings,
     },
-    ...values
+    ...values,
   );
 
 /********* fetch API-data *********/
@@ -31,10 +31,7 @@ const fetchAPI = (url, callback) => {
       console.log("error", error);
     });
 };
-const body = document.body;
-const navWrapper = document.querySelector(".top-nav-wrapper");
-const hamburgBtn = document.querySelector(".hamburger-btn");
-const closeBtn = document.querySelector(".close-btn");
+
 const applyButton = document.getElementById("apply");
 const filterContainer = document.querySelector(".filter-container");
 const filterWrapper = document.querySelector(".filter-wrapper");
@@ -75,7 +72,7 @@ function filterCompleted(funds) {
 
 function filterOnCategory(category) {
   const allFundsInCategory = allFunds.filter(
-    (fund) => fund.category === category
+    (fund) => fund.category === category,
   );
   allCurrentFunds = allFundsInCategory;
   return allFundsInCategory;
@@ -99,7 +96,7 @@ function renderCards(funds) {
       attendees = fund.attendees
         .map(
           (name) =>
-            `<p class="image-avatar-wrapper"><img src="images/${name}.png" alt="Avatar for participant" /></p>`
+            `<p class="image-avatar-wrapper"><img src="images/${name}.png" alt="Avatar for participant" /></p>`,
         )
         .join("");
     }
@@ -116,7 +113,7 @@ function renderCards(funds) {
           <p class="card-text">${fund.description}</p>
           <div class="avatar-container">${attendees}</div>
         </div>
-      `
+      `,
     );
   });
 }
@@ -188,18 +185,4 @@ filterContainer.addEventListener("click", function (event) {
   if (target.classList.contains("menu-filter") || target.id === "all-funds") {
     highlight(target);
   }
-});
-
-/********* Hamburger menu *********/
-
-hamburgBtn.addEventListener("click", () => {
-  [hamburgBtn, closeBtn, navWrapper, body].forEach((e) => {
-    e.classList.add("active");
-  });
-});
-
-closeBtn.addEventListener("click", () => {
-  [hamburgBtn, closeBtn, navWrapper, body].forEach((e) => {
-    e.classList.remove("active");
-  });
 });
