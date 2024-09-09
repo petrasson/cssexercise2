@@ -1,0 +1,69 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-bg-color: #232334;
+  --secondary-bg-color: #393953;
+  --primary-text-color: #fff;
+  --secondary-text-color: #c8c7d8;
+  --accent-color: #6966ff;
+  --border-color: rgb(107 105 105 / 28.1%);
+  --btn-hover-color: #434478;
+}
+
+body {
+  font:
+    400 14pt/20pt "Cirkular Std",
+    sans-serif;
+  color: var(--primary-text-color);
+  background-color: var(--primary-bg-color);
+  background-image: linear-gradient(rgb(255 255 255 / 10%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 10%) 1px, transparent 1px);
+  background-size: 23px 23px;
+  margin: 0;
+  position: relative;
+  z-index: 0;
+  height: 100%;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgb(35 35 52 / 10%) 0%,
+    rgb(35 35 52 / 70%) 20%,
+    rgb(35 35 52 / 100%) 50%,
+    rgb(35 35 52 / 70%) 80%,
+    rgb(35 35 52 / 10%) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+body.active {
+  background-color: var(--secondary-bg-color);
+  overflow: hidden;
+  background-image: none;
+}
+
+body.active::before {
+  background: none;
+}
+
+/* Wrapper to make sure the background shadow gradient doesn't cover anything on the page.  */
+
+.page-wrapper {
+  position: relative;
+  z-index: 2;
+}
