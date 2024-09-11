@@ -3,7 +3,7 @@ const html = (strings, ...values) =>
     {
       raw: strings,
     },
-    ...values,
+    ...values
   );
 
 /********* fetch API-data *********/
@@ -27,8 +27,24 @@ const fetchAPI = (url, callback) => {
       callback(data);
     })
     .catch((error) => {
-      callback(null, error);
-      console.log("error", error);
+      console.log("API request failed. Trying local JSON file.", error);
+
+      fetch("data.json")
+        .then((localResponse) => {
+          if (!localResponse.ok) {
+            throw new Error(
+              `Local file error! Status: ${localResponse.status}`
+            );
+          }
+          return localResponse.json();
+        })
+        .then((localData) => {
+          callback(localData);
+        })
+        .catch((localError) => {
+          callback(null, localError);
+          console.log("Local file fetch failed as well.", localError);
+        });
     });
 };
 
@@ -72,7 +88,7 @@ function filterCompleted(funds) {
 
 function filterOnCategory(category) {
   const allFundsInCategory = allFunds.filter(
-    (fund) => fund.category === category,
+    (fund) => fund.category === category
   );
   allCurrentFunds = allFundsInCategory;
   return allFundsInCategory;
@@ -96,7 +112,7 @@ function renderCards(funds) {
       attendees = fund.attendees
         .map(
           (name) =>
-            `<p class="image-avatar-wrapper"><img src="images/${name}.png" alt="Avatar for participant" /></p>`,
+            `<p class="image-avatar-wrapper"><img src="images/${name}.png" alt="Avatar for participant" /></p>`
         )
         .join("");
     }
@@ -113,7 +129,7 @@ function renderCards(funds) {
           <p class="card-text">${fund.description}</p>
           <div class="avatar-container">${attendees}</div>
         </div>
-      `,
+      `
     );
   });
 }
