@@ -1,4 +1,4 @@
-********* MID-SECTION ***********
+/********* MID-SECTION ***********/
 /*
 .mid-container {
   margin: 0 auto;
@@ -13,7 +13,6 @@
 
 See styled component Container*/
 
-
 .title {
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 700;
@@ -23,7 +22,7 @@ See styled component Container*/
 .mid-wrapper {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
 }
 
 .hero-row {
@@ -429,9 +428,9 @@ li:hover {
   font-weight: 450;
   margin: 40px 0;
 } */
-
+/*
 /*********************************** TABLET VERSION *********************************/
-/* 
+/*
 @media only screen and (width >= 700px) {
   .card-grid-section {
     grid-template-columns: repeat(2, 1fr);
@@ -440,34 +439,33 @@ li:hover {
 
 /*********************************** WEB VERSION *********************************/
 
-/* @media only screen and (width >= 1305px) { */
-
-/********** MID-SECTION ************/
-/* 
+@media only screen and (width >= 1305px) {
+  /********** MID-SECTION ************/
+  /* 
   .mid-container {
     padding: 0 108px;
   }
 */
-.title {
-  line-height: 72px;
-  margin: 80px 0 40px;
-}
+  .title {
+    line-height: 72px;
+    margin: 80px 0 40px;
+  }
 
-.hero-row {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 18px;
-  position: relative;
-}
+  .hero-row {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 18px;
+    position: relative;
+  }
 
-.filter-container::after {
-  display: none;
-}
+  .filter-container::after {
+    display: none;
+  }
 
-.filter-container::before {
-  display: none;
-}
-/*
+  .filter-container::before {
+    display: none;
+  }
+  /*
   .filter-wrapper {
     display: flex;
     padding: 0;
@@ -478,8 +476,8 @@ li:hover {
   }
 */
 
-/********** CARD-GRID ************/
-/* 
+  /********** CARD-GRID ************/
+  /* 
   .card-grid-section {
     padding: 80px 0;
     grid-template-columns: repeat(3, 1fr);
@@ -490,8 +488,8 @@ li:hover {
     font-size: 24px;
   } */
 
-/********** APPLY ************/
-/* 
+  /********** APPLY ************/
+  /* 
   .apply-wrapper {
     width: auto;
   }
@@ -512,8 +510,8 @@ li:hover {
     padding-left: 10px;
   } */
 
-/********** FOOTER ************/
-/* 
+  /********** FOOTER ************/
+  /* 
   .footer {
     padding: 80px 108px 40px;
   }
@@ -561,10 +559,11 @@ li:hover {
     padding: 0;
   } */
 
-/********** BUTTONS ************/
-/* 
+  /********** BUTTONS ************/
+  /* 
   .button {
     font-size: 16px;
     line-height: 24px;
   }
-}  */
+     */
+}

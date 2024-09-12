@@ -1,4 +1,6 @@
+import { StyledCard } from "./styles/Filter.styled";
+
 function Card() {
-  return <p>A card here</p>;
+  return <StyledCard></StyledCard>;
 }
 export default Card;

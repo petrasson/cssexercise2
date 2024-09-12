@@ -17,7 +17,7 @@ function App() {
     <>
       <Header />
       <Container>
-        <h1>Funded grants</h1>
+        <h1 className='title'>Funded grants</h1>
         <div className='mid-wrapper'>
           <div className='hero-row'>
             <div className='filter-container'>
@@ -27,7 +27,6 @@ function App() {
                 type='primary'
                 onClick={handleFilter}
               />
-
               <Filter />
             </div>
           </div>
