@@ -2,51 +2,66 @@
   "cards": [
     {
       "id": "card1",
+      "fundingAmountFrom": "5.000-",
+      "fundingAmountTo": "6.000",
       "category": "Technical",
       "fundTitle": "Hedgie banner",
-      "fondText": "Funding amount: $5.000-$6.000",
+      "fondText": "Funding amount: $6.000",
       "completed": "true",
-      "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy."
+      "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
+      "attendees": ["Don", "Lee"]
     },
     {
       "id": "card2",
+      "fundingAmountFrom": "5.000",
+      "fundingAmountTo": "6.000",
       "category": "Governance",
       "fundTitle": "Hedgie banner",
       "fondText": "Funding amount: $5.000-$6.000",
       "completed": "true",
-      "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy."
+      "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
+      "attendees": ["Sara", "Lily"]
     },
     {
       "id": "card3",
+      "fundingAmountFrom": "5.000",
+      "fundingAmountTo": "6.000",
       "category": "Growth",
       "fundTitle": "Hedgie banner",
-      "fondText": "Funding amount: $5.000-$6.000",
+      "fondText": "Funding amount: 5.000-6.000",
       "completed": "false",
-      "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy."
+      "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
+      "attendees": ["Jon", "Jill"]
     },
     {
       "id": "card4",
+      "fundingAmountFrom": "5.000",
+      "fundingAmountTo": "6.000",
       "category": "Analytics",
       "fundTitle": "Hedgie banner",
-      "fondText": "Funding amount: $5.000-$6.000",
       "completed": "true",
-      "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy."
+      "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
+      "attendees": ["Bo", "Jill"]
     },
     {
       "id": "card5",
+      "fundingAmountFrom": "5.000-",
+      "fundingAmountTo": "6.000",
       "category": "ThirdParty",
       "fundTitle": "Hedgie banner",
-      "fondText": "Funding amount: $5.000-$6.000",
       "completed": "false",
-      "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy."
+      "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
+      "attendees": ["Johan", "Ho"]
     },
     {
       "id": "card6",
+      "fundingAmountFrom": "5.000-",
+      "fundingAmountTo": "6.000",
       "category": "Technical",
       "fundTitle": "Hedgie banner",
-      "fondText": "Funding amount: $5.000-$6.000",
       "completed": "true",
-      "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy."
+      "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
+      "attendees": ["Johan", "Jill", "Jo"]
     }
   ]
 }
