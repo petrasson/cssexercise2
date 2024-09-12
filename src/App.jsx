@@ -9,6 +9,10 @@ import { Container } from "./components/styles/Container.styled";
 import "./App.css";
 
 function App() {
+  const handleFilter = () => {
+    alert("on button click: show all cards");
+  };
+
   return (
     <>
       <Header />
@@ -17,7 +21,13 @@ function App() {
         <div className='mid-wrapper'>
           <div className='hero-row'>
             <div className='filter-container'>
-              <Button />
+              <Button
+                className='button {$_primary}'
+                text='All'
+                type='primary'
+                onClick={handleFilter}
+              />
+
               <Filter />
             </div>
           </div>

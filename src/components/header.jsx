@@ -50,6 +50,7 @@ export default function Header() {
           <Button
             className='button {$_accent}'
             id='apply'
+            type='accent'
             text='Apply for grant'
             onClick={handleApply}
           />
