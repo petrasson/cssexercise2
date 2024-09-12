@@ -1,4 +1,4 @@
-/* * {
+* {
   box-sizing: border-box;
 }
 
@@ -24,7 +24,7 @@ body {
   z-index: 0;
   height: 100%;
 }
-
+/*
 body::before {
   content: "";
   position: absolute;
@@ -59,9 +59,10 @@ body.active::before {
   background: none;
 }
 
+*/
 /* Wrapper to make sure the background shadow gradient doesn't cover anything on the page.  */
-/* 
+
 .page-wrapper {
   position: relative;
   z-index: 2;
-}  */
+}

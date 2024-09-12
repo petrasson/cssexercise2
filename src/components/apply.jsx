@@ -1,7 +1,14 @@
-// import Button from "/components/Button";
+import Button from "./button";
+// import styled from "styled-components";
 
 function Apply() {
-  return <p>Apply now</p>;
+  const handleApply = () => {
+    alert("Button clicked: you will now apply for a grant application");
+  };
+
+  return (
+    <Button text='Apply for grant' type='secondary' onClick={handleApply} />
+  );
 }
 
 export default Apply;
