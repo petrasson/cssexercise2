@@ -56,6 +56,15 @@ const StyledButton = styled.button`
     background-color: var(--primary-text-color);
   }
 } 
+
+/*********************************** WEB VERSION *********************************/
+/* 
+  .button {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}  */
+
 `;
 
 function Button({ id = "default-button-id", text, type = "primary", onClick }) {
