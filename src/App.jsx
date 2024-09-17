@@ -5,7 +5,6 @@ import Button from "./components/button";
 import Footer from "./components/footer";
 import Projects from "./components/Projects";
 import { Container } from "./components/styles/Container.styled";
-
 import "./App.css";
 
 function App() {
@@ -19,17 +18,18 @@ function App() {
       <Container>
         <h1 className='title'>Funded grants</h1>
         <div className='mid-wrapper'>
-          <div className='hero-row'>
-            <div className='filter-container'>
-              <Button
-                className='button {$_primary}'
-                text='All'
-                type='primary'
-                onClick={handleFilter}
-              />
-              <Filter />
-            </div>
+          {/*  <div className='hero-row'>*/}
+          <div className='filter-container'>
+            <Button
+              className='button _primary'
+              text='All'
+              type='primary'
+              onClick={handleFilter}
+            />
+            <Filter />
           </div>
+          {/* 
+          </div> */}
           <div className='toggle-wrapper'>
             <input
               type='checkbox'

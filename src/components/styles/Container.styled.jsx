@@ -5,7 +5,7 @@ export const Container = styled.div`
   max-width: 1440px;
   text-align: center;
   padding: 0 24px;
-  border: solid red 1px;
+  width: 100%;
 
   &._discover {
     max-width: 1100px;

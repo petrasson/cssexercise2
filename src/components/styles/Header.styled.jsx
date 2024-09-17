@@ -7,7 +7,6 @@ export const StyledHeader = styled.header`
   align-items: center;
   padding: 16px 24px;
   margin: 0 auto;
-  border: solid blue;
   background-color: ${(props) =>
     props.isMenuActive ? "var(--secondary-bg-color)" : "transparent"};
 

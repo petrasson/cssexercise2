@@ -8,7 +8,6 @@ export const StyledProjects = styled.div`
   grid-template-columns: repeat(1, 1fr);
   grid-gap: 24px;
   justify-content: center;
-  border: solid red;
 
   /*********************************** TABLET VERSION *********************************/
 
