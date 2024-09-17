@@ -7,8 +7,9 @@ export const StyledSocialMedia = styled.div`
   ${(props) =>
     props.variant === "top" &&
     `
-      justify-content: space-between;
-      min-width: 170px;
+      justify-content: center;
+      gap: 32px;
+      // min-width: 10px;
       align-items: center;
       margin: 5px 0;
       padding-top: 50px;
@@ -19,6 +20,7 @@ export const StyledSocialMedia = styled.div`
     `
       align-content: center;
       gap: 32px;
+     
     `}
 
 

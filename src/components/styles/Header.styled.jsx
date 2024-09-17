@@ -9,7 +9,10 @@ export const StyledHeader = styled.header`
   margin: 0 auto;
   border: solid blue;
 
-  .image-logotype-dydx-big{
+   background-color: ${(props) =>
+     props.isMenuActive ? "var(--secondary-bg-color)" : "transparent"};
+
+  .image-logotype-dydx-{
     width: 60px;
     height: 60px;
     cursor: pointer;
@@ -33,22 +36,18 @@ export const StyledHeader = styled.header`
   }
   
   .top-nav-wrapper {
-    display: none;
+    display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
     position: absolute;
-    top: 117px;
+    top: 95px;
     left: 0;
     font-size: 23px;
     height: 100%;
     z-index: 6;
     background-color: var(--secondary-bg-color);
-  }
-  
-  .top-nav-wrapper.active {
-    display: flex;
-    padding-top: 80px;
+   
   }
   
   .top-nav {
@@ -56,7 +55,7 @@ export const StyledHeader = styled.header`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 0;
+    padding: 100px 0 30px;
     margin: 0 0 50px;
     width: 100%;
     font-family: "Space Mono", sans-serif;
@@ -98,23 +97,16 @@ export const StyledHeader = styled.header`
   }
   
   .close-btn {
-    display: none;
+    display: block;
     background-color: var(--second-bg-color);
     font-size: 22px;
   }
   
-  .hamburger-btn.active {
-    display: none;
-  }
-  
-  .close-btn.active {
-    display: block;
-  }
   
   @media only screen and (width >= 1305px) {
     /********** TOP-SECTION ************/
   
-    .header {
+    {
       display: flex;
       width: 100%;
       max-width: 1700px;
