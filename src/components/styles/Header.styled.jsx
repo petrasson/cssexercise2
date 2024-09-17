@@ -8,9 +8,8 @@ export const StyledHeader = styled.header`
   padding: 16px 24px;
   margin: 0 auto;
   border: solid blue;
-
-   background-color: ${(props) =>
-     props.isMenuActive ? "var(--secondary-bg-color)" : "transparent"};
+  background-color: ${(props) =>
+    props.isMenuActive ? "var(--secondary-bg-color)" : "transparent"};
 
   .image-logotype-dydx-{
     width: 60px;
@@ -36,7 +35,7 @@ export const StyledHeader = styled.header`
   }
   
   .top-nav-wrapper {
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     width: 100%;
@@ -48,7 +47,12 @@ export const StyledHeader = styled.header`
     z-index: 6;
     background-color: var(--secondary-bg-color);
    
+
+   
   }
+     .top-nav-wrapper.active{
+     display: flex;
+     }
   
   .top-nav {
     display: flex;
@@ -91,18 +95,16 @@ export const StyledHeader = styled.header`
     background: transparent;
   }
   
-  .hamburger-btn {
-    display: flex;
-    font-size: 18px;
-  }
-  
-  .close-btn {
-    display: block;
-    background-color: var(--second-bg-color);
-    font-size: 22px;
-  }
-  
-  
+
+  .hamburger-btn,
+    .close-btn {
+      display: block;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 24px;
+    }
+
   @media only screen and (width >= 1305px) {
     /********** TOP-SECTION ************/
   
@@ -142,6 +144,7 @@ export const StyledHeader = styled.header`
       justify-content: flex-start;
       width: auto;
       margin: 0;
+      padding:0;
     }
   
     .top-nav li {
@@ -163,9 +166,9 @@ export const StyledHeader = styled.header`
       flex-direction: row;
     }
   
-    .hamburger-btn {
+   .hamburger-btn,
+    .close-btn {
       display: none;
-    }
   
 
 
