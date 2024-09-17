@@ -9,7 +9,7 @@ export const StyledHeader = styled.header`
   margin: 0 auto;
   border: solid blue;
 
-  .image-logotype-dydx-small {
+  .image-logotype-dydx-big{
     width: 60px;
     height: 60px;
     cursor: pointer;
@@ -75,23 +75,6 @@ export const StyledHeader = styled.header`
     display: block;
     text-decoration: none;
     color: var(--primary-text-color);
-  }
-  
-  .top-social-media-wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    min-width: 170px;
-    align-items: center;
-    margin: 5px 0;
-    padding-top: 50px;
-  }
-  
-  .social-media-symbol {
-    display: flex;
-    width: 32px;
-    height: 32px;
-    cursor: pointer;
   }
   
   .btn-wrapper {
@@ -181,10 +164,6 @@ export const StyledHeader = styled.header`
       display: inline-block;
       border: none;
       color: var(--secondary-text-color);
-    }
-  
-    .top-social-media-wrapper {
-      display: none;
     }
   
     .btn-wrapper {

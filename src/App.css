@@ -336,13 +336,6 @@ See styled component Container*/
   padding: 10px 0;
 }
 
-.bottom-social-media-wrapper {
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-  gap: 32px;
-}
-
 .external-link-symbol {
   width: 12px;
   height: 12px;
@@ -552,12 +545,7 @@ li:hover {
     margin: 0 12px;
   }
 
-  .bottom-social-media-wrapper {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 0;
-  } */
+
 
   /********** BUTTONS ************/
   /* 

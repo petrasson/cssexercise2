@@ -4,9 +4,6 @@ import Card from "./card";
 import rData from "../../data.json";
 
 const { cards } = rData;
-console.log("cards", cards);
-
-console.log("card", cards[0].descriptionText);
 
 function Projects() {
   return (

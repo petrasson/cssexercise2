@@ -1,5 +1,6 @@
 import Button from "./button";
-import { StyledHeader } from "./styles/Header.styled";
+import SocialMedia from "./SocialMedia";
+import { StyledHeader } from "./styles/header.styled";
 
 export default function Header() {
   const handleApply = () => {
@@ -32,19 +33,7 @@ export default function Header() {
               <a href='#'>FAQ</a>
             </li>
           </ul>
-
-          <div className='top-social-media-wrapper'>
-            <img
-              src='images/twitter-symbol.svg'
-              alt='twitter-symbol'
-              className='social-media-symbol'
-            />
-            <img
-              src='images/discord-symbol.svg'
-              alt='twitter-symbol'
-              className='social-media-symbol'
-            />
-          </div>
+          <SocialMedia variant='top' />
         </nav>
         <div className='btn-wrapper'>
           <Button

@@ -59,6 +59,12 @@ export const StyledFooter = styled.div`
     margin-left: 8px;
   }
 
+  .image-logotype-dydx-small {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+  }
+
   @media only screen and (width >= 1305px) {
     padding: 80px 108px 40px;
 
