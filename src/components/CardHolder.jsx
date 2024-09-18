@@ -1,9 +1,5 @@
-// import Card from "Card";
 import { StyledCardHolder } from "./styles/CardHolder.styled";
 import Card from "./Card";
-// import rData from "../../data.json";
-
-// const { cards } = rData;
 
 function CardHolder({ cards }) {
   console.log("cards in cardholder", cards);

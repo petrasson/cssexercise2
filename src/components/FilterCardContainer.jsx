@@ -1,16 +1,27 @@
 import { StyledFilterCardContainer } from "./styles/FilterCardContainer.styled";
 import CardHolder from "./CardHolder";
 import Filter from "./Filter";
-// import React, { useState } from "react";
+import React, { useState } from "react";
 import rData from "../../data.json";
-const { data } = rData;
+const { cards } = rData;
 
 function FilterCardContainer() {
   const [filterType, setFilterType] = useState("All");
+  const [filteredData, setFilteredData] = useState(cards);
 
-  const handleFilter = (selectedFilter) => {
-    setFilterType(selectedFilter);
-    console.log("Filtering by:", selectedFilter);
+  const handleFilter = (filterType) => {
+    setFilterType(filterType);
+
+    let newFilteredData;
+
+    if (filterType === "All") {
+      newFilteredData = cards;
+    } else {
+      newFilteredData = cards.filter((item) => item.category === filterType);
+    }
+
+    setFilteredData(newFilteredData);
+    console.log("filteredData", newFilteredData);
   };
 
   return (
@@ -24,15 +35,12 @@ function FilterCardContainer() {
           Show only completed
         </label>
       </div>
-      <CardHolder cards={data} filterType={filterType} />
+      <CardHolder cards={filteredData} filterType={filteredData} />
     </StyledFilterCardContainer>
   );
 }
 
 export default FilterCardContainer;
-
-// const [filterType, setFilterType] = useState("All");
-// const [filteredData, setFilteredData] = useState(data);
 
 // const handleFilter = (filterType) => {
 //   console.log(filterType, "filterType");

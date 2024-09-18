@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import { StyledSocialMedia } from "./styles/SocialMedia.styled";
 
-function SocialMedia({ type }) {
+function SocialMedia({ position }) {
   return (
-    <StyledSocialMedia type={type}>
+    <StyledSocialMedia position={position}>
       <img
         src='images/twitter-symbol.svg'
         alt='twitter-symbol'
@@ -19,7 +19,7 @@ function SocialMedia({ type }) {
 }
 
 SocialMedia.propTypes = {
-  type: PropTypes.oneOf(["top", "bottom"]),
+  position: PropTypes.oneOf(["top", "bottom"]),
 };
 
 export default SocialMedia;

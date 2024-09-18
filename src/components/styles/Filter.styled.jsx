@@ -3,8 +3,9 @@ import styled from "styled-components";
 export const StyledFilter = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: start;
-  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
   margin: 0;
   padding: 0;
   overflow-x: auto;
@@ -16,7 +17,7 @@ export const StyledFilter = styled.div`
   scrollbar-width: none;
 
   :first-child {
-    min-width: 200px;
+    min-width: 50px;
   }
 
   li {

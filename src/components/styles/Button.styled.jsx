@@ -6,6 +6,7 @@ const buttonStyles = {
     padding: 10px 16px;
     margin-right: 36px;
     height: 44px;
+    max-width: 50px;
 
     &:hover {
       color: var(--secondary-bg-color);

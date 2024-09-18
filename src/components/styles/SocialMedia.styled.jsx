@@ -1,51 +1,38 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
+const positionStyles = (position) => {
+  switch (position) {
+    case "top":
+      return css`
+        justify-content: center;
+        gap: 32px;
+        align-items: center;
+        margin: 5px 0;
+        padding-top: 50px;
+
+        @media only screen and (min-width: 1305px) {
+          display: none;
+        }
+      `;
+    case "bottom":
+      return css`
+        align-content: center;
+        gap: 32px;
+
+        @media only screen and (min-width: 1305px) {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          padding: 0;
+        }
+      `;
+    default:
+      return null;
+  }
+};
 
 export const StyledSocialMedia = styled.div`
   display: flex;
   flex-direction: row;
-
-  ${(props) =>
-    props.type === "top" &&
-    `
-      justify-content: center;
-      gap: 32px;
-      // min-width: 10px;
-      align-items: center;
-      margin: 5px 0;
-      padding-top: 50px;
-    `}
-
-  ${(props) =>
-    props.type === "bottom" &&
-    `
-      align-content: center;
-      gap: 32px;
-     
-    `}
-
-
-.social-media-symbol {
-  display: flex;
-  width: 32px;
-  height: 32px;
-  cursor: pointer;
-    
-
-}
-  @media only screen and (width >= 1305px) {
-
- ${(props) =>
-   props.type === "top" &&
-   `
-      display: none;
-    `}
-
-  ${(props) =>
-    props.type === "bottom" &&
-    `
-      display: flex;
-      flex-direction: row;  
-      align-items: center;
-      padding: 0;
-    `}
-  `;
+  ${(props) => positionStyles(props.position)}
+`;

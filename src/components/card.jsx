@@ -29,7 +29,6 @@ Card.propTypes = {
   fundingAmountTo: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   attendees: PropTypes.oneOfType([
-    // attendees can be a string, number, or array
     PropTypes.string,
     PropTypes.number,
     PropTypes.array,

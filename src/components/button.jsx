@@ -9,8 +9,6 @@ function Button({ type, text, onClick }) {
   );
 }
 
-/**to provide warnings if the wrong type is passed. **/
-
 Button.propTypes = {
   id: PropTypes.string,
   text: PropTypes.string.isRequired,
