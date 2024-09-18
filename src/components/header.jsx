@@ -4,7 +4,7 @@ import { useMediaQuery } from "react-responsive";
 import { StyledHeader } from "./styles/Header.styled";
 import React, { useState } from "react";
 
-export default function Header() {
+function Header() {
   const isDesktop = useMediaQuery({ minWidth: 1023 });
   const [isMenuActive, setIsMenuActive] = useState(false);
 
@@ -79,3 +79,4 @@ export default function Header() {
     </StyledHeader>
   );
 }
+export default Header;

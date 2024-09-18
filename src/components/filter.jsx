@@ -1,9 +1,17 @@
 import { StyledFilter } from "./styles/Filter.styled";
+import Button from "./Button";
 import PropTypes from "prop-types";
 
 function Filter({ handleFilter }) {
   return (
     <StyledFilter>
+      <Button
+        className='button _primary'
+        text='All'
+        type='primary'
+        filterType='All'
+        // onClick={() => handleFilter("All")}
+      />
       <li>
         <button
           className='menu-filter'

@@ -1,34 +1,21 @@
-/********* MID-SECTION ***********/
+import styled from "styled-components";
 
-.title {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 700;
-  line-height: 40px;
-}
-/* 
-.mid-wrapper {
+export const StyledFilterCardContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
-} */
 
-/* .hero-row {
+.filter-container {
   display: flex;
   flex-direction: row;
-  margin-bottom: 24px; */
-
-/*   
-
-  &._discover {
-    max-width: 600px;
-    margin-bottom: 74px;
-  } */
-/* } */
-
-.highlight {
-  font-weight: 600;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  z-index: 3;
+  margin-bottom: 20px;
 }
-/* 
+
 .filter-container::before {
   content: "";
   position: absolute;
@@ -54,10 +41,12 @@
   height: 20px;
   z-index: 6;
   background-repeat: no-repeat;
-} */
+}
 
-***** TOGGLE *****
-/* 
+
+
+/****** TOGGLE ******/
+
 .toggle-wrapper {
   display: flex;
   flex-direction: row;
@@ -103,34 +92,21 @@
 .toggle-wrapper .toggle-text {
   padding-left: 27px;
   font-size: 16px;
-} */
+}
 
-/*********************************** TABLET VERSION *********************************/
 
 /*********************************** WEB VERSION *********************************/
 
 @media only screen and (width >= 1305px) {
-  /********** MID-SECTION ************/
 
-  .title {
-    line-height: 72px;
-    margin: 80px 0 40px;
-  }
 
-  .hero-row {
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 18px;
-    position: relative;
-    width: 100%;
-    gap: 30px;
-  }
-  /* 
-  .filter-container::after {
-    display: none;
-  }
-
-  .filter-container::before {
-    display: none;
-  } */
+.filter-container::after {
+  display: none;
 }
+
+.filter-container::before {
+  display: none;
+}
+
+
+`;
