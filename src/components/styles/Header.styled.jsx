@@ -45,9 +45,7 @@ export const StyledHeader = styled.header`
     height: 100%;
     z-index: 6;
     background-color: var(--secondary-bg-color);
-   
 
-   
   }
      .top-nav-wrapper.active{
      display: flex;

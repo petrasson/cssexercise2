@@ -43,17 +43,16 @@ function FilterCardContainer() {
 
 export default FilterCardContainer;
 
-// const handleFilter = (filterType) => {
-//   console.log(filterType, "filterType");
-//   setFilterType(filterType);
+/*
+const handleToggle = (value) => { 
+ setFilteredCompleted(value);
+ 
+<
+        type='primary'
+        filterType='All'
+        onClick={() => handleFilter()}
+      />
 
-//   if (filterType === "All") {
-//     setFilteredData(data);
-//   } else {
-//     const newFilteredData = rData.filter(
-//       (item) => item.category === filterType
-//     );
 
-//     setFilteredData(newFilteredData);
-//     console.log("newFilteredData", newFilteredData);
-//   }
+
+  } */
