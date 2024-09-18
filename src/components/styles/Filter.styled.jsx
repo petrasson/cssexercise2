@@ -4,7 +4,7 @@ export const StyledFilter = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   gap: 60px;
   margin: 0;
   padding: 0;

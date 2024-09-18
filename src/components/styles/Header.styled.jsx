@@ -93,7 +93,6 @@ export const StyledHeader = styled.header`
     cursor: pointer;
     background: transparent;
   }
-  
 
   .hamburger-btn,
     .close-btn {

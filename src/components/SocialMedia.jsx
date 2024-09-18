@@ -3,7 +3,7 @@ import { StyledSocialMedia } from "./styles/SocialMedia.styled";
 
 function SocialMedia({ position }) {
   return (
-    <StyledSocialMedia position={position}>
+    <StyledSocialMedia $position={position}>
       <img
         src='images/twitter-symbol.svg'
         alt='twitter-symbol'

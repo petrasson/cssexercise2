@@ -8,6 +8,7 @@ const { cards } = rData;
 function FilterCardContainer() {
   const [filterType, setFilterType] = useState("All");
   const [filteredData, setFilteredData] = useState(cards);
+  const [filterCompleted, setFilteredCompleted] = useState(true);
 
   const handleFilter = (filterType) => {
     setFilterType(filterType);

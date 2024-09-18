@@ -44,7 +44,7 @@ function Header() {
                 <a href='/faq.html'>FAQ</a>
               </li>
             </ul>
-            <SocialMedia type='top' />
+            {!isDesktop && isMenuActive && <SocialMedia position='top' />}
           </nav>
         </div>
 
@@ -55,21 +55,16 @@ function Header() {
             onClick={handleApply}
           />
 
-          {!isMenuActive ? (
+          {!isDesktop && (
             <button
-              className='hamburger-btn'
-              aria-label='Open-nav'
+              className={isMenuActive ? "close-btn" : "hamburger-btn"}
+              aria-label={isMenuActive ? "Close nav" : "Open nav"}
               onClick={toggleMenu}
             >
-              <i className='fa-solid fa-bars' aria-hidden='true'></i>
-            </button>
-          ) : (
-            <button
-              className='close-btn'
-              aria-label='Close-nav'
-              onClick={toggleMenu}
-            >
-              <i className='fa-solid fa-xmark' aria-hidden='true'></i>
+              <i
+                className={`fa-solid ${isMenuActive ? "fa-xmark" : "fa-bars"}`}
+                aria-hidden='true'
+              ></i>
             </button>
           )}
         </div>
