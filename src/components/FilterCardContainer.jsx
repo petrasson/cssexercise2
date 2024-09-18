@@ -6,10 +6,17 @@ import rData from "../../data.json";
 const { data } = rData;
 
 function FilterCardContainer() {
+  const [filterType, setFilterType] = useState("All");
+
+  const handleFilter = (selectedFilter) => {
+    setFilterType(selectedFilter);
+    console.log("Filtering by:", selectedFilter);
+  };
+
   return (
     <StyledFilterCardContainer>
       <div className='filter-container'>
-        <Filter />
+        <Filter handleFilter={handleFilter} />
       </div>
       <div className='toggle-wrapper'>
         <input type='checkbox' id='toggle' aria-label='Show only completed' />
@@ -17,26 +24,27 @@ function FilterCardContainer() {
           Show only completed
         </label>
       </div>
-      <CardHolder data={data} />
+      <CardHolder cards={data} filterType={filterType} />
     </StyledFilterCardContainer>
   );
 }
 
 export default FilterCardContainer;
 
-// const [filteredData, setFilteredData] = useState(projects);
 // const [filterType, setFilterType] = useState("All");
+// const [filteredData, setFilteredData] = useState(data);
 
 // const handleFilter = (filterType) => {
 //   console.log(filterType, "filterType");
 //   setFilterType(filterType);
+
 //   if (filterType === "All") {
-//     setFilteredData(projects);
+//     setFilteredData(data);
 //   } else {
 //     const newFilteredData = rData.filter(
 //       (item) => item.category === filterType
 //     );
+
 //     setFilteredData(newFilteredData);
 //     console.log("newFilteredData", newFilteredData);
 //   }
-// };

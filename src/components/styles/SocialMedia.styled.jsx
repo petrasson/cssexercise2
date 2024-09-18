@@ -5,7 +5,7 @@ export const StyledSocialMedia = styled.div`
   flex-direction: row;
 
   ${(props) =>
-    props.variant === "top" &&
+    props.type === "top" &&
     `
       justify-content: center;
       gap: 32px;
@@ -16,7 +16,7 @@ export const StyledSocialMedia = styled.div`
     `}
 
   ${(props) =>
-    props.variant === "bottom" &&
+    props.type === "bottom" &&
     `
       align-content: center;
       gap: 32px;
@@ -35,13 +35,13 @@ export const StyledSocialMedia = styled.div`
   @media only screen and (width >= 1305px) {
 
  ${(props) =>
-   props.variant === "top" &&
+   props.type === "top" &&
    `
       display: none;
     `}
 
   ${(props) =>
-    props.variant === "bottom" &&
+    props.type === "bottom" &&
     `
       display: flex;
       flex-direction: row;  

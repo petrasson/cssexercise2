@@ -11,12 +11,7 @@ function Apply() {
       <div className='apply-inner'>
         <p className='apply-text'>Have a project in mind?</p>
         <p className='apply-title'>Let’s create something awesome.</p>
-        <Button
-          className='button _secondary'
-          text='Apply for grant'
-          type='secondary'
-          onClick={handleApply}
-        />
+        <Button type='secondary' text='Apply for grant' onClick={handleApply} />
       </div>
     </StyledApply>
   );

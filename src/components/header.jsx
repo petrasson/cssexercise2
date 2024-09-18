@@ -18,7 +18,7 @@ function Header() {
   };
 
   return (
-    <StyledHeader isMenuActive={isMenuActive}>
+    <StyledHeader $ismenuactive={isMenuActive}>
       <img
         src='images/dydXLogotypeBig.svg'
         alt='Dydx logotype'
@@ -44,14 +44,12 @@ function Header() {
                 <a href='/faq.html'>FAQ</a>
               </li>
             </ul>
-            <SocialMedia variant='top' />
+            <SocialMedia type='top' />
           </nav>
         </div>
 
         <div className='btn-wrapper'>
           <Button
-            className='button _accent'
-            id='apply'
             type='accent'
             text={isDesktop ? "Apply for grant" : "Apply"}
             onClick={handleApply}

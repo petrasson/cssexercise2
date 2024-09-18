@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import { StyledSocialMedia } from "./styles/SocialMedia.styled";
 
-function SocialMedia({ variant = "top" }) {
+function SocialMedia({ type }) {
   return (
-    <StyledSocialMedia variant={variant}>
+    <StyledSocialMedia type={type}>
       <img
         src='images/twitter-symbol.svg'
         alt='twitter-symbol'
@@ -17,8 +17,6 @@ function SocialMedia({ variant = "top" }) {
     </StyledSocialMedia>
   );
 }
-
-/**to provide warnings if the wrong type is passed. **/
 
 SocialMedia.propTypes = {
   type: PropTypes.oneOf(["top", "bottom"]),

@@ -6,51 +6,50 @@ function Filter({ handleFilter }) {
   return (
     <StyledFilter>
       <Button
-        className='button _primary'
         text='All'
         type='primary'
         filterType='All'
-        // onClick={() => handleFilter("All")}
+        onClick={() => handleFilter("All")}
       />
       <li>
-        <button
-          className='menu-filter'
+        <Button
+          text='Technical/Tool Development'
+          type='text'
+          filterType='Technical/Tool Development'
           onClick={() => handleFilter("Technical/Tool Development")}
-        >
-          Technical/Tool Development
-        </button>
+        />
       </li>
       <li>
-        <button
-          className='menu-filter'
+        <Button
+          text='Governance'
+          type='text'
+          filterType='Governance'
           onClick={() => handleFilter("Governance")}
-        >
-          Governance
-        </button>
+        />
       </li>
       <li>
-        <button
-          className='menu-filter'
+        <Button
+          text='Growth / Marketing'
+          type='text'
+          filterType='Growth / Marketing'
           onClick={() => handleFilter("Growth / Marketing")}
-        >
-          Growth / Marketing
-        </button>
+        />
       </li>
       <li>
-        <button
-          className='menu-filter'
+        <Button
+          text='Analytics'
+          type='text'
+          filterType='Analytics'
           onClick={() => handleFilter("Analytics")}
-        >
-          Analytics
-        </button>
+        />
       </li>
       <li>
-        <button
-          className='menu-filter'
+        <Button
+          text='Third Party Provider'
+          type='text'
+          filterType='Third Party Provider'
           onClick={() => handleFilter("Third Party Provider")}
-        >
-          Third Party Provider
-        </button>
+        />
       </li>
     </StyledFilter>
   );

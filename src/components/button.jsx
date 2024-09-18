@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import { StyledButton } from "./styles/Button.styled";
 
-function Button({ id = "default-button-id", text, type = "primary", onClick }) {
+function Button({ type, text, onClick }) {
   return (
-    <StyledButton id={id} className={`button _${type}`} onClick={onClick}>
+    <StyledButton type={type} onClick={onClick}>
       {text}
     </StyledButton>
   );
@@ -14,7 +14,7 @@ function Button({ id = "default-button-id", text, type = "primary", onClick }) {
 Button.propTypes = {
   id: PropTypes.string,
   text: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(["primary", "secondary", "accent"]),
+  type: PropTypes.oneOf(["primary", "secondary", "accent", "text"]),
   onClick: PropTypes.func.isRequired,
 };
 

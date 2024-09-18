@@ -42,7 +42,7 @@ function Footer() {
             </li>
           </ul>
         </nav>
-        <SocialMedia variant='bottom' />
+        <SocialMedia type='bottom' />
       </div>
     </StyledFooter>
   );

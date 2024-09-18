@@ -8,7 +8,7 @@ export const StyledHeader = styled.header`
   padding: 16px 24px;
   margin: 0 auto;
   background-color: ${(props) =>
-    props.isMenuActive ? "var(--secondary-bg-color)" : "transparent"};
+    props.$ismenuactive ? "var(--secondary-bg-color)" : "transparent"};
 
   .image-logotype-dydx-{
     width: 60px;

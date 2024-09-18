@@ -23,15 +23,15 @@ export const StyledFilter = styled.div`
     list-style-type: none;
   }
 
-  .menu-filter {
-    min-width: 150px;
-    position: relative;
-    z-index: 4;
-    border: none;
-    color: var(--primary-text-color);
-    font-size: 15px;
-    cursor: pointer;
-    background-color: transparent;
+  // .menu-filter {
+  //   min-width: 150px;
+  //   position: relative;
+  //   z-index: 4;
+  //   border: none;
+  //   color: var(--primary-text-color);
+  //   font-size: 15px;
+  //   cursor: pointer;
+  //   background-color: transparent;
 
     &._discover {
       min-width: 100px;
