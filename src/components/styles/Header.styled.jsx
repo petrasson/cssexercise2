@@ -39,7 +39,7 @@ export const StyledHeader = styled.header`
     align-items: center;
     width: 100%;
     position: absolute;
-    top: 95px;
+    top: 90px;
     left: 0;
     font-size: 23px;
     height: 100%;

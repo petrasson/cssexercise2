@@ -1,16 +1,19 @@
 // import Card from "Card";
-import { StyledProjects } from "./styles/Projects.styled";
-import Card from "./card";
+import { StyledCardHolder } from "./styles/CardHolder.styled";
+import Card from "./Card";
 import rData from "../../data.json";
 
 const { cards } = rData;
+console.log("cards", cards);
 
-function Projects() {
+function CardHolder() {
+  console.log("projects", cards);
   return (
-    <StyledProjects>
+    <StyledCardHolder>
       {cards.map((card) => (
         <Card
           key={card.id}
+          category={card.category}
           cardTitle={card.fundTitle}
           fundingAmountFrom={card.fundingAmountFrom}
           fundingAmountTo={card.fundingAmountTo}
@@ -18,8 +21,8 @@ function Projects() {
           attendees={card.attendees}
         />
       ))}
-    </StyledProjects>
+    </StyledCardHolder>
   );
 }
 
-export default Projects;
+export default CardHolder;

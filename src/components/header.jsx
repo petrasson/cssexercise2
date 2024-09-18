@@ -1,7 +1,7 @@
-import Button from "./button";
+import Button from "./Button";
 import SocialMedia from "./SocialMedia";
 import { useMediaQuery } from "react-responsive";
-import { StyledHeader } from "./styles/header.styled";
+import { StyledHeader } from "./styles/Header.styled";
 import React, { useState } from "react";
 
 export default function Header() {

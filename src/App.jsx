@@ -1,15 +1,32 @@
-import Header from "./components/header";
-import Filter from "./components/filter";
-import Apply from "./components/apply";
-import Button from "./components/button";
-import Footer from "./components/footer";
-import Projects from "./components/Projects";
+import Header from "./components/Header";
+import Filter from "./components/Filter";
+import Apply from "./components/Apply";
+import Button from "./components/Button";
+import Footer from "./components/Footer";
+import CardHolder from "./components/CardHolder";
 import { Container } from "./components/styles/Container.styled";
+import React, { useState } from "react";
 import "./App.css";
+import rData from "../data.json";
+console.log("rData", rData);
+const { projects } = rData;
 
 function App() {
-  const handleFilter = () => {
-    alert("on button click: show all cards");
+  const [filteredData, setFilteredData] = useState(projects);
+  const [filterType, setFilterType] = useState("All");
+
+  const handleFilter = (filterType) => {
+    console.log(filterType, "filterType");
+    setFilterType(filterType);
+    if (filterType === "All") {
+      setFilteredData(projects);
+    } else {
+      const newFilteredData = rData.filter(
+        (item) => item.category === filterType
+      );
+      setFilteredData(newFilteredData);
+      console.log("newFilteredData", newFilteredData);
+    }
   };
 
   return (
@@ -18,18 +35,16 @@ function App() {
       <Container>
         <h1 className='title'>Funded grants</h1>
         <div className='mid-wrapper'>
-          {/*  <div className='hero-row'>*/}
           <div className='filter-container'>
             <Button
               className='button _primary'
               text='All'
               type='primary'
-              onClick={handleFilter}
+              filterType='All'
+              onClick={() => handleFilter("All")}
             />
-            <Filter />
+            <Filter handleFilter={handleFilter} />
           </div>
-          {/* 
-          </div> */}
           <div className='toggle-wrapper'>
             <input
               type='checkbox'
@@ -41,7 +56,7 @@ function App() {
             </label>
           </div>
         </div>
-        <Projects />
+        <CardHolder data={filteredData} />
         <section className='card-grid-section'></section>
         <Apply />
       </Container>

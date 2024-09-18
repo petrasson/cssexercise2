@@ -1,4 +1,4 @@
-import Button from "./button";
+import Button from "./Button";
 import { StyledApply } from "./styles/Apply.styled";
 
 function Apply() {
@@ -12,7 +12,7 @@ function Apply() {
         <p className='apply-text'>Have a project in mind?</p>
         <p className='apply-title'>Let’s create something awesome.</p>
         <Button
-          className='button {$_secondary}'
+          className='button _secondary'
           text='Apply for grant'
           type='secondary'
           onClick={handleApply}

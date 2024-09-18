@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { StyledCard } from "./styles/Card.styled";
 
 function Card({
+  category,
   cardTitle,
   fundingAmountFrom,
   fundingAmountTo,
@@ -10,6 +11,7 @@ function Card({
 }) {
   return (
     <StyledCard>
+      <p className='card-category'>{category}</p>
       <p className='card-title'>{cardTitle}</p>
       <p className='sub-title'>
         Funding amount: {fundingAmountFrom}-{fundingAmountTo}
@@ -21,10 +23,11 @@ function Card({
 }
 
 Card.propTypes = {
-  cardTitle: PropTypes.string.isRequired, // cardTitle is required and should be a string
-  fundingAmountFrom: PropTypes.string.isRequired, // fundingAmountFrom is required and should be a number
-  fundingAmountTo: PropTypes.string.isRequired, // fundingAmountTo is required and should be a number
-  description: PropTypes.string.isRequired, // description is required and should be a string
+  category: PropTypes.string.isRequired,
+  cardTitle: PropTypes.string.isRequired,
+  fundingAmountFrom: PropTypes.string.isRequired,
+  fundingAmountTo: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
   attendees: PropTypes.oneOfType([
     // attendees can be a string, number, or array
     PropTypes.string,

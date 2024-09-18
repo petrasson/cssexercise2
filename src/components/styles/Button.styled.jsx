@@ -14,7 +14,7 @@ export const StyledButton = styled.button`
   max-height: 44px;
   cursor: pointer;
 
-  &._primary {
+  ._primary {
     color: var(--primary-text-color);
     background-color: var(--secondary-bg-color);
     padding: 10px 16px;
@@ -22,35 +22,35 @@ export const StyledButton = styled.button`
     height: 44px;
   }
 
-  &._primary.highlight {
+  ._primary.highlight {
     font-weight: 600;
   }
 
-  &._primary:hover {
+  ._primary:hover {
     color: var(--secondary-bg-color);
     background-color: var(--primary-text-color);
   }
 
-  &._secondary {
+  ._secondary {
     color: var(--accent-color);
     font-weight: 400;
     padding: 10px 14px;
     max-width: 240px;
   }
 
-  &._secondary:hover {
+  ._secondary:hover {
     color: var(--primary-text-color);
     background-color: var(--btn-hover-color);
   }
 
-  &._accent {
+  ._accent {
     color: var(--primary-text-color);
     background-color: var(--accent-color);
     padding: 10px 14px;
     height: 44px;
   }
 
-  &._accent:hover {
+  ._accent:hover {
     color: var(--accent-color);
     background-color: var(--primary-text-color);
   }
