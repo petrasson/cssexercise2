@@ -1,6 +1,12 @@
+import CardHolder from "./CardHolder";
+import FilterControl from "../../../shared_components/FilterControl";
+import React, { useState } from "react";
+import rData from "../../../../data.json";
+const { cards } = rData;
+
 import styled from "styled-components";
 
-export const StyledFilterCardContainer = styled.div`
+const CardFilterWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -110,3 +116,50 @@ export const StyledFilterCardContainer = styled.div`
 
 
 `;
+
+function CardFilter() {
+  const [filterType, setFilterType] = useState("All");
+  const [filteredData, setFilteredData] = useState(cards);
+  const [filterCompleted, setFilteredCompleted] = useState(true);
+
+  const handleFilter = (filterType) => {
+    setFilterType(filterType);
+
+    let newFilteredData;
+
+    if (filterType === "All") {
+      newFilteredData = cards;
+    } else {
+      newFilteredData = cards.filter((item) => item.category === filterType);
+    }
+
+    setFilteredData(newFilteredData);
+    console.log("filteredData", newFilteredData);
+  };
+
+  return (
+    <CardFilterWrapper>
+      <div className='filter-container'>
+        <FilterControl handleFilter={handleFilter} widthToggle={true} />
+      </div>
+
+      <CardHolder cards={filteredData} filterType={filteredData} />
+    </CardFilterWrapper>
+  );
+}
+
+export default CardFilter;
+
+/*
+const handleToggle = (value) => { 
+ setFilteredCompleted(value);
+ 
+<
+        type='primary'
+        filterType='All'
+        onClick={() => handleFilter()}
+      />
+
+
+
+  } */

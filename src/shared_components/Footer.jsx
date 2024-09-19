@@ -1,6 +1,7 @@
+import SocialMedia from "../pages/funded-grants/components/SocialMedia";
 import styled from "styled-components";
 
-export const StyledFooter = styled.div`
+const FooterWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -112,3 +113,51 @@ export const StyledFooter = styled.div`
     }
   }
 `;
+
+function Footer() {
+  return (
+    <FooterWrapper>
+      <div className='footer-container'>
+        <nav className='footer-wrapper'>
+          {
+            <img
+              src='images/dydxLogotypeSmall.svg'
+              alt='Dydx logotype'
+              className='image-logotype-dydx-small'
+            />
+          }
+          <ul className='bottom-nav'>
+            <li>
+              <a href='#'>About</a>
+            </li>
+            <li>
+              <a href='#'>FAQ</a>
+            </li>
+            <li>
+              <a href='#'>Brand assets</a>
+            </li>
+            <li>
+              <a href='#'>dYdX Foundation</a>
+              <img
+                src='images/external-link-symbol.svg'
+                aria-hidden='true'
+                className='external-link-symbol'
+              />
+            </li>
+            <li className='bottom-nav-link'>
+              <a href='#'>dYdX Trading</a>
+              <img
+                src='images/external-link-symbol.svg'
+                aria-hidden='true'
+                className='external-link-symbol'
+              />
+            </li>
+          </ul>
+        </nav>
+        <SocialMedia type='bottom' />
+      </div>
+    </FooterWrapper>
+  );
+}
+
+export default Footer;

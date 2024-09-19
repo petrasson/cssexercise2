@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
+import PropTypes from "prop-types";
 
-export const StyledSocialMedia = styled.div`
+const SocialMediaWrapper = styled.div`
   display: flex;
   flex-direction: row;
   gap: 32px;
@@ -35,3 +36,26 @@ export const StyledSocialMedia = styled.div`
     cursor: pointer;
   }
 `;
+
+function SocialMedia({ position }) {
+  return (
+    <SocialMediaWrapper $position={position}>
+      <img
+        src='images/twitter-symbol.svg'
+        alt='twitter-symbol'
+        className='social-media-symbol'
+      />
+      <img
+        src='images/discord-symbol.svg'
+        alt='twitter-symbol'
+        className='social-media-symbol'
+      />
+    </SocialMediaWrapper>
+  );
+}
+
+SocialMedia.propTypes = {
+  position: PropTypes.oneOf(["top", "bottom"]),
+};
+
+export default SocialMedia;

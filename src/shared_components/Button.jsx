@@ -1,4 +1,6 @@
+import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
+
 const buttonStyles = {
   primary: css`
     color: var(--primary-text-color);
@@ -47,7 +49,7 @@ const buttonStyles = {
   `,
 };
 
-export const StyledButton = styled.button`
+const ButtonWrapper = styled.button`
   font-weight: 500;
   font-family: "Cirkular Std", sans-serif;
   line-height: 20px;
@@ -63,3 +65,20 @@ export const StyledButton = styled.button`
 
   ${(props) => buttonStyles[props.type || "primary"]}
 `;
+
+function Button({ type, text, onClick }) {
+  return (
+    <ButtonWrapper type={type} onClick={onClick}>
+      {text}
+    </ButtonWrapper>
+  );
+}
+
+Button.propTypes = {
+  id: PropTypes.string,
+  text: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(["primary", "secondary", "accent", "text"]),
+  onClick: PropTypes.func.isRequired,
+};
+
+export default Button;

@@ -1,6 +1,10 @@
+import Button from "./Button";
+import SocialMedia from "../pages/funded-grants/components/SocialMedia";
+import { useMediaQuery } from "react-responsive";
+import React, { useState } from "react";
 import styled from "styled-components";
 
-export const StyledHeader = styled.header`
+const HeaderWrapper = styled.header`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -165,9 +169,74 @@ export const StyledHeader = styled.header`
    .hamburger-btn,
     .close-btn {
       display: none;
-  
-
-
-
-
 `;
+
+function Header() {
+  const isDesktop = useMediaQuery({ minWidth: 1023 });
+  const [isMenuActive, setIsMenuActive] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuActive(!isMenuActive);
+    console.log(!isMenuActive);
+  };
+
+  const handleApply = () => {
+    alert("you will now apply for a grant");
+  };
+
+  return (
+    <HeaderWrapper $ismenuactive={isMenuActive}>
+      <img
+        src='images/dydXLogotypeBig.svg'
+        alt='Dydx logotype'
+        className='image-logotype-dydx'
+      />
+      <div className='top-nav-container'>
+        <div className={`top-nav-wrapper ${isMenuActive ? "active" : ""}`}>
+          <nav>
+            <ul className='top-nav'>
+              <li>
+                <a href='/discover.html'>Discover initiatives</a>
+              </li>
+              <li>
+                <a href='/funded-grants.html'>Funded grants</a>
+              </li>
+              <li>
+                <a href='/program-expenses.html'>Program expenses</a>
+              </li>
+              <li>
+                <a href='/blog.html'>Blog</a>
+              </li>
+              <li>
+                <a href='/faq.html'>FAQ</a>
+              </li>
+            </ul>
+            {!isDesktop && isMenuActive && <SocialMedia position='top' />}
+          </nav>
+        </div>
+
+        <div className='btn-wrapper'>
+          <Button
+            type='accent'
+            text={isDesktop ? "Apply for grant" : "Apply"}
+            onClick={handleApply}
+          />
+
+          {!isDesktop && (
+            <button
+              className={isMenuActive ? "close-btn" : "hamburger-btn"}
+              aria-label={isMenuActive ? "Close nav" : "Open nav"}
+              onClick={toggleMenu}
+            >
+              <i
+                className={`fa-solid ${isMenuActive ? "fa-xmark" : "fa-bars"}`}
+                aria-hidden='true'
+              ></i>
+            </button>
+          )}
+        </div>
+      </div>
+    </HeaderWrapper>
+  );
+}
+export default Header;

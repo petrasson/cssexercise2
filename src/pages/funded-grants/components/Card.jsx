@@ -1,6 +1,7 @@
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
-export const StyledCard = styled.div`
+const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -70,3 +71,38 @@ export const StyledCard = styled.div`
     }
   }
 `;
+
+function Card({
+  category,
+  cardTitle,
+  fundingAmountFrom,
+  fundingAmountTo,
+  description,
+  attendees,
+}) {
+  return (
+    <CardWrapper>
+      <p className='card-category'>{category}</p>
+      <p className='card-title'>{cardTitle}</p>
+      <p className='sub-title'>
+        Funding amount: {fundingAmountFrom}-{fundingAmountTo}
+      </p>
+      <p className='card-text'>{description}</p>
+      <div className='avatar-container'>{attendees}</div>
+    </CardWrapper>
+  );
+}
+
+Card.propTypes = {
+  category: PropTypes.string.isRequired,
+  cardTitle: PropTypes.string.isRequired,
+  fundingAmountFrom: PropTypes.string.isRequired,
+  fundingAmountTo: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  attendees: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.array,
+  ]).isRequired,
+};
+export default Card;
