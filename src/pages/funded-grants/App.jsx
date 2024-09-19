@@ -4,6 +4,7 @@ import Apply from "../../shared_components/Apply";
 import Footer from "../../shared_components/Footer";
 import "./App.css";
 import styled from "styled-components";
+import HeadTitle from "../../shared_components/HeadTitle";
 
 const Container = styled.div`
   margin: 0 auto;
@@ -18,6 +19,8 @@ const Container = styled.div`
 
    @media only screen and (width >= 1305px) {
     padding: 0 108px;
+
+    
 `;
 
 function App() {
@@ -25,7 +28,7 @@ function App() {
     <>
       <Header />
       <Container>
-        <h1 className='title'>Funded grants</h1>
+        <HeadTitle text='Funded Grants' />
         <CardFilter />
         <Apply />
       </Container>
