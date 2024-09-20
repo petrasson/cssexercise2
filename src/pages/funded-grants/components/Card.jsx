@@ -46,6 +46,13 @@ const CardWrapper = styled.div`
     padding: 0;
   }
 
+  .avatar-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
   .image-avatar-wrapper {
     margin: 0 -9px;
   }
@@ -88,7 +95,17 @@ function Card({
         Funding amount: {fundingAmountFrom}-{fundingAmountTo}
       </p>
       <p className='card-text'>{description}</p>
-      <div className='avatar-container'>{attendees}</div>
+
+      <div className='avatar-container'>
+        {attendees.map((attendee, index) => (
+          <img
+            key={index}
+            src={`/images/${attendee}.png`}
+            alt={attendee}
+            className='avatar-image'
+          />
+        ))}
+      </div>
     </CardWrapper>
   );
 }
