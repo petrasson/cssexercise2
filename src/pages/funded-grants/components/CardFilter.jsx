@@ -10,99 +10,55 @@ const CardFilterWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
-
-
-
-
-/****** TOGGLE ******/
-
-// .toggle-wrapper {
-//   display: flex;
-//   flex-direction: row;
-//   max-width: 1440px;
-//   color: var(--secondary-text-color);
-//   align-items: center;
-//   cursor: pointer;
-// }
-
-// #toggle {
-//   appearance: none;
-//   position: relative;
-//   width: 50px;
-//   height: 20px;
-//   border-radius: 25px;
-//   background-color: var(--accent-color);
-//   transition: background 0.5s;
-//   cursor: pointer;
-// }
-
-// #toggle::after {
-//   content: "";
-//   position: absolute;
-//   top: 50%;
-//   left: 22px;
-//   transform: translate(0, -50%);
-//   border-radius: 50%;
-//   width: 30px;
-//   height: 30px;
-//   background-color: var(--primary-text-color);
-//   transition: left 0.3s;
-// }
-
-// #toggle:checked {
-//   background-color: var(--primary-text-color);
-// }
-
-// #toggle:checked::after {
-//   left: -3px;
-//   background-color: var(--primary-text-color);
-// }
-
-// .toggle-wrapper .toggle-text {
-//   padding-left: 27px;
-//   font-size: 16px;
-// }
-
-
-/*********************************** WEB VERSION *********************************/
-
-@media only screen and (width >= 1305px) {
-
-
-// .filter-container::after {
-//   display: none;
-// }
-
-// .filter-container::before {
-//   display: none;
-// }
-
-
 `;
 
 function CardFilter() {
   const [filterType, setFilterType] = useState("All");
-  const [filteredData, setFilteredData] = useState(cards);
+  const [filteredData, setFilteredData] = useState(
+    cards.filter((item) => item.completed === true)
+  );
   const [filterCompleted, setFilteredCompleted] = useState(true);
 
-  const handleFilter = (filterType) => {
-    setFilterType(filterType);
+  const applyFilters = (category, completed) => {
+    let newFilteredData = cards;
 
-    let newFilteredData;
+    // Filter by category if not "All"
+    if (category !== "All") {
+      newFilteredData = newFilteredData.filter(
+        (item) => item.category === category
+      );
+    }
 
-    if (filterType === "All") {
-      newFilteredData = cards;
+    // Filter by completion status
+    if (completed) {
+      newFilteredData = newFilteredData.filter(
+        (item) => item.completed === true
+      );
     } else {
-      newFilteredData = cards.filter((item) => item.category === filterType);
+      newFilteredData;
     }
 
     setFilteredData(newFilteredData);
     console.log("filteredData", newFilteredData);
   };
 
+  const handleFilter = (filterType) => {
+    setFilterType(filterType);
+    applyFilters(filterType, filterCompleted);
+  };
+
+  const handleToggle = (value) => {
+    setFilteredCompleted(value);
+    applyFilters(filterType, value);
+  };
+
   return (
     <CardFilterWrapper>
-      <FilterControl handleFilter={handleFilter} withToggle={true} />
+      <FilterControl
+        handleFilter={handleFilter}
+        withToggle={true}
+        handleToggle={() => handleToggle(!filterCompleted)}
+      />
 
       <CardHolder cards={filteredData} filterType={filteredData} />
     </CardFilterWrapper>
@@ -110,17 +66,3 @@ function CardFilter() {
 }
 
 export default CardFilter;
-
-/*
-const handleToggle = (value) => { 
- setFilteredCompleted(value);
- 
-<
-        type='primary'
-        filterType='All'
-        onClick={() => handleFilter()}
-      />
-
-
-
-  } */

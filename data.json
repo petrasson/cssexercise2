@@ -7,7 +7,7 @@
       "category": "Technical/Tool Development",
       "fundTitle": "Hedgie banner",
       "fondText": "Funding amount: $6.000",
-      "completed": "true",
+      "completed": false,
       "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
       "attendees": ["Don", "Lee"]
     },
@@ -18,7 +18,7 @@
       "category": "Governance",
       "fundTitle": "Hedgie banner",
       "fondText": "Funding amount: $5.000-$6.000",
-      "completed": "true",
+      "completed": false,
       "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
       "attendees": ["Sara", "Lily"]
     },
@@ -29,7 +29,7 @@
       "category": "Growth / Marketing",
       "fundTitle": "Hedgie banner",
       "fondText": "Funding amount: 5.000-6.000",
-      "completed": "false",
+      "completed": false,
       "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
       "attendees": ["Jon", "Jill"]
     },
@@ -39,7 +39,7 @@
       "fundingAmountTo": "6.000",
       "category": "Analytics",
       "fundTitle": "Hedgie banner",
-      "completed": "true",
+      "completed": false,
       "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
       "attendees": ["Bo", "Jill"]
     },
@@ -49,7 +49,7 @@
       "fundingAmountTo": "6.000",
       "category": "Third Party Provider",
       "fundTitle": "Hedgie banner",
-      "completed": "false",
+      "completed": false,
       "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
       "attendees": ["Johan", "Ho"]
     },
@@ -59,7 +59,7 @@
       "fundingAmountTo": "6.000",
       "category": "Technical/Tool Development",
       "fundTitle": "Hedgie banner",
-      "completed": "true",
+      "completed": true,
       "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
       "attendees": ["Johan", "Jill", "Jo"]
     },
@@ -69,7 +69,7 @@
       "fundingAmountTo": "6.000",
       "category": "Technical/Tool Development",
       "fundTitle": "Hedgie banner",
-      "completed": "true",
+      "completed": true,
       "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
       "attendees": ["Johan", "Jill", "Jo"]
     },
@@ -79,7 +79,7 @@
       "fundingAmountTo": "6.000",
       "category": "Technical/Tool Development",
       "fundTitle": "Hedgie banner",
-      "completed": "true",
+      "completed": false,
       "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
       "attendees": ["Johan", "Jill", "Jo"]
     },
@@ -89,7 +89,7 @@
       "fundingAmountTo": "6.000",
       "category": "Analytics",
       "fundTitle": "Hedgie banner",
-      "completed": "true",
+      "completed": true,
       "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
       "attendees": ["Johan", "Jill", "Jo"]
     },
@@ -99,7 +99,7 @@
       "fundingAmountTo": "6.000",
       "category": "Growth / Marketing",
       "fundTitle": "Hedgie banner",
-      "completed": "true",
+      "completed": false,
       "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
       "attendees": ["Johan", "Jill", "Jo"]
     },
@@ -109,7 +109,7 @@
       "fundingAmountTo": "6.000",
       "category": "Third Party Provider",
       "fundTitle": "Hedgie banner",
-      "completed": "true",
+      "completed": true,
       "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
       "attendees": ["Johan", "Jill", "Jo"]
     }

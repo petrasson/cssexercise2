@@ -49,11 +49,16 @@ const ToggleWrapper = styled.div`
   }
 `;
 
-function Toggle() {
+function Toggle({ onClick }) {
   return (
-    <ToggleWrapper>
+    <ToggleWrapper onClick={onClick}>
       <div className='toggle-wrapper'>
-        <input type='checkbox' id='toggle' aria-label='Show only completed' />
+        <input
+          type='checkbox'
+          id='toggle'
+          aria-label='Show only completed'
+          onClick={onClick}
+        />
         <label htmlFor='toggle' className='toggle-text'>
           Show only completed
         </label>
