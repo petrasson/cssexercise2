@@ -44,6 +44,13 @@ const CardWrapper = styled.div`
     left: 26px;
     margin: 0;
     padding: 0;
+    margin: 0 -9px;
+  }
+
+  .image-avatar-wrapper {
+    display: flex;
+    flex-direction: row;
+    margin: 0 -9px;
   }
 
   .avatar-image {
@@ -51,10 +58,6 @@ const CardWrapper = styled.div`
     height: 40px;
     border-radius: 50%;
     object-fit: cover;
-  }
-
-  .image-avatar-wrapper {
-    margin: 0 -9px;
   }
 
   .purple-circle {
@@ -66,6 +69,7 @@ const CardWrapper = styled.div`
     justify-content: center;
     align-items: center;
     border: solid 2px var(--secondary-bg-color);
+    margin: 0 -9px;
   }
 
   .attendee-number {
@@ -97,14 +101,21 @@ function Card({
       <p className='card-text'>{description}</p>
 
       <div className='avatar-container'>
-        {attendees.map((attendee, index) => (
-          <img
-            key={index}
-            src={`/images/${attendee}.png`}
-            alt={attendee}
-            className='avatar-image'
-          />
+        {attendees.slice(0, 3).map((attendee, index) => (
+          <p className='image-avatar-wrapper' key={index}>
+            <img
+              src={`/images/${attendee}.png`}
+              alt={attendee}
+              className='avatar-image'
+            />
+          </p>
         ))}
+
+        {attendees.length > 3 && (
+          <div className='purple-circle'>
+            <p className='attendee-number'>+{attendees.length - 3}</p>
+          </div>
+        )}
       </div>
     </CardWrapper>
   );
