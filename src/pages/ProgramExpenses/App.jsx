@@ -1,9 +1,7 @@
-import styled from "styled-components";
 import Header from "../../shared_components/Header";
-import HeadTitle from "../../shared_components/HeadTitle";
-// import CardFilter from "./components/CardFilter";
-// import Apply from "../../shared_components/Apply";
 import Footer from "../../shared_components/Footer";
+import styled from "styled-components";
+import HeadTitle from "../../shared_components/HeadTitle";
 
 const Container = styled.div`
   margin: 0 auto;
@@ -27,9 +25,7 @@ function App() {
     <>
       <Header />
       <Container>
-        <HeadTitle text='Discover Initiatives' />
-        {/* <CardFilter />
-        <Apply /> */}
+        <HeadTitle text='Program Expenses' />
       </Container>
       <Footer />
     </>

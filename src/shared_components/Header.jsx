@@ -1,4 +1,5 @@
 import Button from "./Button";
+import { Link } from "react-router-dom";
 import SocialMedia from "../pages/FundedGrants/components/SocialMedia";
 import { useMediaQuery } from "react-responsive";
 import React, { useState } from "react";
@@ -196,19 +197,19 @@ function Header() {
           <nav>
             <ul className='top-nav'>
               <li>
-                <a href='/discover.html'>Discover initiatives</a>
+                <Link to='/'>Discover Initiatives</Link>
               </li>
               <li>
-                <a href='/funded-grants.html'>Funded grants</a>
+                <Link to='/funded-grants'>Funded grants</Link>
               </li>
               <li>
-                <a href='/program-expenses.html'>Program expenses</a>
+                <Link to='/program-expenses'>Program expenses</Link>
               </li>
               <li>
-                <a href='/blog.html'>Blog</a>
+                <Link to='/blog'>Blog</Link>
               </li>
               <li>
-                <a href='/faq.html'>FAQ</a>
+                <Link to='/'>Blog</Link>
               </li>
             </ul>
             {!isDesktop && isMenuActive && <SocialMedia position='top' />}
