@@ -2,7 +2,6 @@ import Header from "../../shared_components/Header";
 import CardFilter from "./components/CardFilter";
 import Apply from "../../shared_components/Apply";
 import Footer from "../../shared_components/Footer";
-import "./App.css";
 import styled from "styled-components";
 import HeadTitle from "../../shared_components/HeadTitle";
 

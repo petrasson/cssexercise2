@@ -49,8 +49,10 @@ const buttonStyles = {
   `,
 };
 
-const ButtonWrapper = styled.button`
-  font-weight: 500;
+// Remove `highlight` from being passed to the DOM using `withConfig`(react warning message)
+const ButtonWrapper = styled.button.withConfig({
+  shouldForwardProp: (prop) => prop !== "highlight", // Prevent `highlight` from being forwarded
+})`
   font-family: "Cirkular Std", sans-serif;
   line-height: 20px;
   font-size: 14px;
@@ -64,11 +66,18 @@ const ButtonWrapper = styled.button`
   cursor: pointer;
 
   ${(props) => buttonStyles[props.type || "primary"]}
+
+  ${(props) =>
+    props.highlight &&
+    css`
+      font-weight: 600;
+      text-decoration: underline;
+    `}
 `;
 
-function Button({ type, text, onClick }) {
+function Button({ type, text, onClick, highlight }) {
   return (
-    <ButtonWrapper type={type} onClick={onClick}>
+    <ButtonWrapper type={type} onClick={onClick} highlight={highlight}>
       {text}
     </ButtonWrapper>
   );
@@ -79,6 +88,7 @@ Button.propTypes = {
   text: PropTypes.string.isRequired,
   type: PropTypes.oneOf(["primary", "secondary", "accent", "text"]),
   onClick: PropTypes.func.isRequired,
+  highlight: PropTypes.bool,
 };
 
 export default Button;

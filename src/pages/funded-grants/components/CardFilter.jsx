@@ -39,7 +39,6 @@ function CardFilter() {
     }
 
     setFilteredData(newFilteredData);
-    console.log("filteredData", newFilteredData);
   };
 
   const handleFilter = (filterType) => {
@@ -57,6 +56,7 @@ function CardFilter() {
       <FilterControl
         handleFilter={handleFilter}
         withToggle={true}
+        filterType={filterType}
         handleToggle={() => handleToggle(!filterCompleted)}
       />
 

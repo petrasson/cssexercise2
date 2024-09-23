@@ -27,7 +27,6 @@ const CardWrapper = styled.div`
 `;
 
 function CardHolder({ cards }) {
-  console.log("cards in cardholder", cards);
   return (
     <CardWrapper>
       {cards.map((card) => (

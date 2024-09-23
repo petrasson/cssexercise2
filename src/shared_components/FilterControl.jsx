@@ -92,7 +92,7 @@ const FilterControlWrapper = styled.div`
   }
 `;
 
-function FilterControl({ handleFilter, withToggle, handleToggle }) {
+function FilterControl({ handleFilter, withToggle, handleToggle, filterType }) {
   return (
     <FilterControlWrapper>
       <div className='filter-container'>
@@ -108,6 +108,7 @@ function FilterControl({ handleFilter, withToggle, handleToggle }) {
               text='Technical/Tool Development'
               type='text'
               filterType='Technical/Tool Development'
+              highlight={filterType === "Technical/Tool Development"}
               onClick={() => handleFilter("Technical/Tool Development")}
             />
           </li>
@@ -116,6 +117,7 @@ function FilterControl({ handleFilter, withToggle, handleToggle }) {
               text='Governance'
               type='text'
               filterType='Governance'
+              highlight={filterType === "Governance"}
               onClick={() => handleFilter("Governance")}
             />
           </li>
@@ -124,6 +126,7 @@ function FilterControl({ handleFilter, withToggle, handleToggle }) {
               text='Growth / Marketing'
               type='text'
               filterType='Growth / Marketing'
+              highlight={filterType === "Growth / Marketing"}
               onClick={() => handleFilter("Growth / Marketing")}
             />
           </li>
@@ -132,6 +135,7 @@ function FilterControl({ handleFilter, withToggle, handleToggle }) {
               text='Analytics'
               type='text'
               filterType='Analytics'
+              highlight={filterType === "Analytics"}
               onClick={() => handleFilter("Analytics")}
             />
           </li>
@@ -140,6 +144,7 @@ function FilterControl({ handleFilter, withToggle, handleToggle }) {
               text='Third Party Provider'
               type='text'
               filterType='Third Party Provider'
+              highlight={filterType === "Third Party Provider"}
               onClick={() => handleFilter("Third Party Provider")}
             />
           </li>
@@ -157,6 +162,8 @@ function FilterControl({ handleFilter, withToggle, handleToggle }) {
 FilterControl.propTypes = {
   handleFilter: PropTypes.func.isRequired,
   withToggle: PropTypes.bool,
+  handleToggle: PropTypes.func,
+  filterType: PropTypes.string,
 };
 
 export default FilterControl;
