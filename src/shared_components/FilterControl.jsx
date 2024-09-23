@@ -1,7 +1,7 @@
 import Button from "./Button";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import Toggle from "../pages/funded-grants/components/Toggle";
+import Toggle from "../pages/FundedGrants/components/Toggle";
 
 const FilterControlWrapper = styled.div`
   display: flex;

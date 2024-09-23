@@ -1,5 +1,5 @@
 import Button from "./Button";
-import SocialMedia from "../pages/funded-grants/components/SocialMedia";
+import SocialMedia from "../pages/FundedGrants/components/SocialMedia";
 import { useMediaQuery } from "react-responsive";
 import React, { useState } from "react";
 import styled from "styled-components";
@@ -172,7 +172,7 @@ const HeaderWrapper = styled.header`
 `;
 
 function Header() {
-  const isDesktop = useMediaQuery({ minWidth: 1023 });
+  const isDesktop = useMediaQuery({ minWidth: 1300 });
   const [isMenuActive, setIsMenuActive] = useState(false);
 
   const toggleMenu = () => {

@@ -1,4 +1,4 @@
-import SocialMedia from "../pages/funded-grants/components/SocialMedia";
+import SocialMedia from "../pages/FundedGrants/components/SocialMedia";
 import styled from "styled-components";
 
 const FooterWrapper = styled.div`

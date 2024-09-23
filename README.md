@@ -6,3 +6,5 @@
 1. `pnpm install`
 1. `pnpm run dev`
 1. Open `http://localhost:5173` in your browser
+
+# using reactBrowserRouter for this project. (source https://www.youtube.com/watch?v=oTIJunBa6MA)
