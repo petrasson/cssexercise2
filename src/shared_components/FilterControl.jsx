@@ -92,7 +92,13 @@ const FilterControlWrapper = styled.div`
   }
 `;
 
-function FilterControl({ handleFilter, withToggle, handleToggle, filterType }) {
+function FilterControl({
+  handleFilter,
+  withToggle,
+  handleToggle,
+  filterOptions,
+  filterType,
+}) {
   return (
     <FilterControlWrapper>
       <div className='filter-container'>
@@ -102,52 +108,19 @@ function FilterControl({ handleFilter, withToggle, handleToggle, filterType }) {
           filterType='All'
           onClick={() => handleFilter("All")}
         />
+
         <div className='filter-wrapper'>
-          <li>
-            <Button
-              text='Technical/Tool Development'
-              type='text'
-              filterType='Technical/Tool Development'
-              highlight={filterType === "Technical/Tool Development"}
-              onClick={() => handleFilter("Technical/Tool Development")}
-            />
-          </li>
-          <li>
-            <Button
-              text='Governance'
-              type='text'
-              filterType='Governance'
-              highlight={filterType === "Governance"}
-              onClick={() => handleFilter("Governance")}
-            />
-          </li>
-          <li>
-            <Button
-              text='Growth / Marketing'
-              type='text'
-              filterType='Growth / Marketing'
-              highlight={filterType === "Growth / Marketing"}
-              onClick={() => handleFilter("Growth / Marketing")}
-            />
-          </li>
-          <li>
-            <Button
-              text='Analytics'
-              type='text'
-              filterType='Analytics'
-              highlight={filterType === "Analytics"}
-              onClick={() => handleFilter("Analytics")}
-            />
-          </li>
-          <li>
-            <Button
-              text='Third Party Provider'
-              type='text'
-              filterType='Third Party Provider'
-              highlight={filterType === "Third Party Provider"}
-              onClick={() => handleFilter("Third Party Provider")}
-            />
-          </li>
+          {filterOptions.map((option) => (
+            <li key={option.value}>
+              <Button
+                text={option.text}
+                type='text'
+                filterType={option.value}
+                highlight={filterType === option.value}
+                onClick={() => handleFilter(option.value)}
+              />
+            </li>
+          ))}
         </div>
       </div>
       {withToggle && (
@@ -161,9 +134,15 @@ function FilterControl({ handleFilter, withToggle, handleToggle, filterType }) {
 
 FilterControl.propTypes = {
   handleFilter: PropTypes.func.isRequired,
+  filterType: PropTypes.string,
+  filterOptions: PropTypes.arrayOf(
+    PropTypes.shape({
+      text: PropTypes.string.isRequired,
+      value: PropTypes.string.isRequired,
+    })
+  ).isRequired,
   withToggle: PropTypes.bool,
   handleToggle: PropTypes.func,
-  filterType: PropTypes.string,
 };
 
 export default FilterControl;

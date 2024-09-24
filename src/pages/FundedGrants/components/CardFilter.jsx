@@ -6,6 +6,17 @@ const { cards } = rData;
 
 import styled from "styled-components";
 
+const categories = cards.map((card) => card.category);
+
+//Remove duplicates using Set
+const uniqueCategories = [...new Set(categories)];
+
+//Array to pass to the FilterControl
+const filterOptions = uniqueCategories.map((category) => ({
+  text: category,
+  value: category,
+}));
+
 const CardFilterWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -55,8 +66,9 @@ function CardFilter() {
     <CardFilterWrapper>
       <FilterControl
         handleFilter={handleFilter}
-        withToggle={true}
         filterType={filterType}
+        filterOptions={filterOptions}
+        withToggle={true}
         handleToggle={() => handleToggle(!filterCompleted)}
       />
 
