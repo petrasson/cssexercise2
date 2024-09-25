@@ -1,6 +1,6 @@
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import styled from "styled-components";
-// import ButtonTag from "./ButtonTag";
+import ButtonTag from "./ButtonTag";
 
 const CardWrapper = styled.div`
   display: flex;
@@ -14,8 +14,13 @@ const CardWrapper = styled.div`
   padding: 24px;
   text-align: left;
   position: relative;
-  overflow: hidden;
   flex: 1;
+  margin: 10px 0;
+
+  .card-wrapper-text {
+    display: flex;
+    flex-direction: column;
+  }
 
   .sub-title {
     font-family: "Space Mono", sans-serif;
@@ -34,44 +39,45 @@ const CardWrapper = styled.div`
   .card-text {
     font-size: 16px;
     line-height: 24px;
-    margin: 25px 0;
+    margin: 15px 0;
   }
 
   @media only screen and (width >= 1305px) {
+    flex-direction: row;
     .card-title {
       font-size: 24px;
     }
   }
 `;
-function DiscoveryCard() {
-  //   // // category,
-  //   // cardTitle,
-  //   // fundingAmountFrom,
-  //   // fundingAmountTo,
-  //   // description,
-  // }) {
+
+function DiscoveryCard({
+  category,
+  cardTitle,
+  fundingAmountFrom,
+  fundingAmountTo,
+  description,
+}) {
   return (
     <CardWrapper>
+      <div className='card-wrapper-text'>
+        <p className='card-title'>{cardTitle}</p>
+        <p className='card-text'>{description}</p>
+        <p className='sub-title'>
+          Funding amount: {fundingAmountFrom}-{fundingAmountTo}
+        </p>
+      </div>
       {/* <p className='card-category'>{category}</p> */}
-      <p className='card-title'>cardTitle</p>
-      <p className='card-text'>description</p>
-      <p className='sub-title'>
-        Funding amount: fundingAmountFrom-fundingAmountTo
-        {/* <p className='card-title'>{cardTitle}</p>
-      <p className='card-text'>{description}</p>
-      <p className='sub-title'>
-        Funding amount: {fundingAmountFrom}-{fundingAmountTo} */}
-      </p>
-      {/* <ButtonTag "Open"={text} /> */}
+
+      <ButtonTag category={category} />
     </CardWrapper>
   );
 }
 
-// DiscoveryCard.propTypes = {
-//   // category: PropTypes.string.isRequired,
-//   cardTitle: PropTypes.string.isRequired,
-//   fundingAmountFrom: PropTypes.string.isRequired,
-//   fundingAmountTo: PropTypes.string.isRequired,
-//   description: PropTypes.string.isRequired,
-// };
+DiscoveryCard.propTypes = {
+  category: PropTypes.string.isRequired,
+  cardTitle: PropTypes.string.isRequired,
+  fundingAmountFrom: PropTypes.string.isRequired,
+  fundingAmountTo: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+};
 export default DiscoveryCard;

@@ -72,7 +72,7 @@ function CardFilter() {
         handleToggle={() => handleToggle(!filterCompleted)}
       />
 
-      <CardHolder cards={filteredData} filterType={filteredData} />
+      <CardHolder cards={filteredData} />
     </CardFilterWrapper>
   );
 }

@@ -1,10 +1,21 @@
 import styled from "styled-components";
 import FilterControl from "../../../shared_components/FilterControl";
-import DiscoveryCard from "./InitiativeCard";
-// import DiscoverHolder from "./DiscoverHolder";
-// import React, { useState } from "react";
-// import rData from "../../../../data.json";
-// const { cards } = rData;
+import Initiatives from "./Initiatives";
+import React, { useState } from "react";
+import rData from "../../../../dataDiscovery.json";
+
+const { cards } = rData;
+
+const categories = cards.map((card) => card.category);
+
+//Remove duplicates using Set
+const uniqueCategories = [...new Set(categories)];
+
+//Create the filterOptions array to pass to the FilterControl
+const filterOptions = uniqueCategories.map((category) => ({
+  text: category,
+  value: category,
+}));
 
 const DiscoverFilterWrapper = styled.div`
   display: flex;
@@ -13,57 +24,31 @@ const DiscoverFilterWrapper = styled.div`
 `;
 
 function DiscoverFilter() {
-  // const [filterType, setFilterType] = useState("All");
-  // const [filteredData, setFilteredData] = useState(
-  //   cards.filter((item) => item.completed === true)
-  // );
-  // const [filterCompleted, setFilteredCompleted] = useState(true);
+  const [filterType, setFilterType] = useState("All");
+  const [filteredData, setFilteredData] = useState(cards);
 
-  // const applyFilters = (category, completed) => {
-  //   let newFilteredData = cards;
+  const handleFilter = (filterType) => {
+    setFilterType(filterType);
 
-  //   // Filter by category if not "All"
-  //   if (category !== "All") {
-  //     newFilteredData = newFilteredData.filter(
-  //       (item) => item.category === category
-  //     );
-  //   }
+    let newFilteredData = cards;
 
-  //   // Filter by completion status
-  //   if (completed) {
-  //     newFilteredData = newFilteredData.filter(
-  //       (item) => item.completed === true
-  //     );
-  //   } else {
-  //     newFilteredData;
-  //   }
-
-  //   setFilteredData(newFilteredData);
-  // };
-
-  // const handleFilter = (filterType) => {
-  //   setFilterType(filterType);
-  //   applyFilters(filterType, filterCompleted);
-  // };
-
-  // const handleToggle = (value) => {
-  //   setFilteredCompleted(value);
-  //   applyFilters(filterType, value);
-  // };
+    if (filterType !== "All") {
+      newFilteredData = newFilteredData.filter(
+        (item) => item.category === filterType
+      );
+    }
+    setFilteredData(newFilteredData);
+  };
 
   return (
     <DiscoverFilterWrapper>
       <FilterControl
-        // handleFilter={handleFilter}
-        withToggle={false}
+        handleFilter={handleFilter}
         filterType={filterType}
-        // handleToggle={() => handleToggle(!filterCompleted)}
+        filterOptions={filterOptions}
+        withToggle={false}
       />
-
-      {/* <CardHolder cards={filteredData} filterType={filteredData} />  */}
-
-      {/* <DiscoverHolder /> */}
-      <DiscoveryCard />
+      <Initiatives cards={filteredData} />
     </DiscoverFilterWrapper>
   );
 }

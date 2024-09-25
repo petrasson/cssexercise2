@@ -1,14 +1,13 @@
-// import { StyledCardHolder } from "./styles/CardHolder.styled";
-// import InitiativeCard from "./InitiativeCard";
+import InitiativeCard from "./InitiativeCard";
 import styled from "styled-components";
 
 const CardWrapper = styled.div`
   max-width: 1440px;
+  width: 100%;
   margin: 0 auto;
   padding: 40px 0;
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  grid-gap: 24px;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
 
   /*********************************** TABLET VERSION *********************************/
@@ -27,6 +26,10 @@ const CardWrapper = styled.div`
 `;
 
 function Initiatives({ cards }) {
+  if (!cards || cards.length === 0) {
+    return <div>No initiatives available</div>;
+  }
+
   return (
     <CardWrapper>
       {cards.map((card) => (
@@ -37,7 +40,6 @@ function Initiatives({ cards }) {
           fundingAmountFrom={card.fundingAmountFrom}
           fundingAmountTo={card.fundingAmountTo}
           description={card.descriptionText}
-          attendees={card.attendees}
         />
       ))}
     </CardWrapper>

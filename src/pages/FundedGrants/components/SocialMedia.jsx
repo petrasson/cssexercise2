@@ -23,10 +23,6 @@ const SocialMediaWrapper = styled.div`
     props.$position === "bottom" &&
     css`
       align-items: center;
-      /* Additional styles for bottom position */
-
-      @media (width >= 1023px) {
-      }
     `}
 
   .social-media-symbol {

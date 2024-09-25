@@ -10,17 +10,13 @@ const Container = styled.div`
   text-align: center;
   padding: 0 24px;
   width: 100%;
-  border: solid red;
-
-  &._discover {
-    max-width: 1100px;
-  }
+  p {
+font-size: 16px;
+}
 
    @media only screen and (width >= 1305px) {
     padding: 0 108px;
-p {
-font-size: 16px;
-}
+
     
 `;
 
@@ -35,7 +31,7 @@ function App() {
           excellent Grants. This is a living list that will continue to update
           as ideas popup.
         </p>
-        {/* <DiscoverFilter /> */}
+        <DiscoverFilter />
       </Container>
       <Footer />
     </>

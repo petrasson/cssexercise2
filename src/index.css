@@ -10,6 +10,7 @@
   --accent-color: #6966ff;
   --border-color: rgb(107 105 105 / 28.1%);
   --btn-hover-color: #434478;
+  --btn-completed: #6bbf6e;
 }
 
 body {

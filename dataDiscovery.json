@@ -1,0 +1,84 @@
+{
+  "cards": [
+    {
+      "id": "card1",
+      "fundingAmountFrom": "5.000-",
+      "fundingAmountTo": "6.000",
+      "category": "Funded",
+      "fundTitle": "Funding Rate Page",
+      "descriptionText": "Page that provides a live look at all funding rates with popular timeframes in annualized format"
+    },
+    {
+      "id": "card2",
+      "fundingAmountFrom": "56.000",
+      "fundingAmountTo": "67.000",
+      "category": "Funded",
+      "fundTitle": "CLI Trading Tool",
+      "descriptionText": "Self-hosted CLI tool leveraging the dYdX API to allow all functionalities from a terminal"
+    },
+    {
+      "id": "card3",
+      "fundingAmountFrom": "15.000",
+      "fundingAmountTo": "26.000",
+      "category": "Open",
+      "fundTitle": "New Language SDKs",
+      "descriptionText": "Replicate existing Python SDK to new programming languages with all the same features"
+    },
+    {
+      "id": "card4",
+      "fundingAmountFrom": "25.000",
+      "fundingAmountTo": "44.000",
+      "category": "Completed",
+      "fundTitle": "Liquidation Alert Tool",
+      "descriptionText": "Self-hosted tool that alerts the trader of upcoming liquidation prices across multiple messaging venues"
+    },
+    {
+      "id": "card5",
+      "fundingAmountFrom": "35.000-",
+      "fundingAmountTo": "60.000",
+      "category": "Funded",
+      "fundTitle": "Academy Contributions",
+      "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy."
+    },
+    {
+      "id": "card6",
+      "fundingAmountFrom": "15.000-",
+      "fundingAmountTo": "46.000",
+      "category": "Funded",
+      "fundTitle": "Delegation Tool",
+      "descriptionText": "Webpage to allow active participants to market their voting and enable direct delegation from DYDX holders"
+    },
+    {
+      "id": "card7",
+      "fundingAmountFrom": "25.000-",
+      "fundingAmountTo": "46.000",
+      "category": "Funded",
+      "fundTitle": "Newsletter",
+      "descriptionText": "Weekly or Monthly newsletters promoting and educating the dYdX platform"
+    },
+    {
+      "id": "card8",
+      "fundingAmountFrom": "35.000-",
+      "fundingAmountTo": "46.000",
+      "category": "Funded",
+      "fundTitle": "Academy Contributions",
+      "descriptionText": "Webpages, Courses, Glossaries and Youtube libraries educating new users on dYdX"
+    },
+    {
+      "id": "card9",
+      "fundingAmountFrom": "5.000-",
+      "fundingAmountTo": "6.000",
+      "category": "Open",
+      "fundTitle": "Discord bots",
+      "descriptionText": "Additional Discord bots that notify members of activity on dYdX and governance."
+    },
+    {
+      "id": "card10",
+      "fundingAmountFrom": "15.000-",
+      "fundingAmountTo": "26.000",
+      "category": "Completed",
+      "fundTitle": "Reward tracking & Simulator",
+      "descriptionText": "Page or tool that allows traders to calculate future rewards and simulate earnings from activity."
+    }
+  ]
+}
