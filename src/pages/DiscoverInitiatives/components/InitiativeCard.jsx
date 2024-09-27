@@ -66,8 +66,6 @@ function DiscoveryCard({
           Funding amount: {fundingAmountFrom}-{fundingAmountTo}
         </p>
       </div>
-      {/* <p className='card-category'>{category}</p> */}
-
       <ButtonTag category={category} />
     </CardWrapper>
   );

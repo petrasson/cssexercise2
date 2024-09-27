@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import FundedGrants from "./pages/FundedGrants/App";
-import DiscoverInitiatives from "./pages/DiscoverInitiatives/App";
+import FundedGrants from "./pages/FundedGrants";
+import DiscoverInitiatives from "./pages/DiscoverInitiatives";
 import ProgramExpenses from "./pages/ProgramExpenses/App";
 import NotFoundPage from "./pages/NotFoundPage";
 

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import FilterControl from "../../../shared_components/FilterControl";
+import FilterControl from "../../../shared-components/FilterControl";
 import Initiatives from "./Initiatives";
 import React, { useState } from "react";
 import rData from "../../../../dataDiscovery.json";

@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import Header from "../../shared_components/Header";
-import HeadTitle from "../../shared_components/HeadTitle";
+import Header from "../../shared-components/Header";
+import HeadTitle from "../../shared-components/HeadTitle";
 import DiscoverFilter from "./components/DiscoverFilter";
-import Footer from "../../shared_components/Footer";
+import Footer from "../../shared-components/Footer";
 
 const Container = styled.div`
   margin: 0 auto;

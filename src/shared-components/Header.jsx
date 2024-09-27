@@ -4,6 +4,7 @@ import SocialMedia from "../pages/FundedGrants/components/SocialMedia";
 import { useMediaQuery } from "react-responsive";
 import React, { useState } from "react";
 import styled from "styled-components";
+import { clsx } from "clsx";
 
 const HeaderWrapper = styled.header`
   display: flex;
@@ -178,7 +179,6 @@ function Header() {
 
   const toggleMenu = () => {
     setIsMenuActive(!isMenuActive);
-    console.log(!isMenuActive);
   };
 
   const handleApply = () => {
@@ -193,7 +193,7 @@ function Header() {
         className='image-logotype-dydx'
       />
       <div className='top-nav-container'>
-        <div className={`top-nav-wrapper ${isMenuActive ? "active" : ""}`}>
+        <div className={clsx("top-nav-wrapper", { active: isMenuActive })}>
           <nav>
             <ul className='top-nav'>
               <li>
@@ -212,7 +212,11 @@ function Header() {
                 <Link to='/blog'>Blog</Link>
               </li>
             </ul>
-            {!isDesktop && isMenuActive && <SocialMedia position='top' />}
+            <SocialMedia
+              isMenuActive={isMenuActive}
+              isDesktop={isDesktop}
+              position='top'
+            />
           </nav>
         </div>
 

@@ -11,20 +11,19 @@ const StyledButton = styled.div`
   padding: 0 10px;
   font-size: 12px;
   color: white;
-  // background-color: var(--primary-bg-color);
 
   ${(props) =>
-    props.$category === "funded" &&
-    css`
+    true &&
+    `
       background-color: var(--primary-bg-color);
     `}
 
   ${(props) =>
-    props.$category === "completed" &&
+    true &&
     css`
       background-color: var(--btn-completed);
 
-      // // arrow after completed
+      // arrow after completed
       // ::after {
       //   content: "";
       //   position: absolute;
@@ -39,11 +38,36 @@ const StyledButton = styled.div`
       // }
     `}
 
-  ${(props) =>
-    props.$category === "open" &&
-    css`
-      background-color: var(--accent-color);
-    `}
+  ${(props) => {
+    console.log(props);
+    return (
+      props.category === "Funded" &&
+      css`
+        background-color: var(--primary-bg-color);
+      `
+    );
+  }}
+
+  ${(props) => {
+    console.log(props);
+    return (
+      props.category === "Open" &&
+      css`
+        background-color: var(--accent-color);
+      `
+    );
+  }}
+
+  ${(props) => {
+    console.log(props);
+    return (
+      props.category === "Completed" &&
+      css`
+        background-color: var(--btn-completed);
+      `
+    );
+  }}
+
 
   @media only screen and (min-width: 1305px) {
     position: absolute;
@@ -56,7 +80,7 @@ const StyledButton = styled.div`
 
 function ButtonTag({ category }) {
   console.log("category", category);
-  return <StyledButton $category={category}>{category}</StyledButton>;
+  return <StyledButton category={category}>{category}</StyledButton>;
 }
 
 ButtonTag.propTypes = {

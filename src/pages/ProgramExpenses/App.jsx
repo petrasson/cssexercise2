@@ -1,7 +1,7 @@
-import Header from "../../shared_components/Header";
-import Footer from "../../shared_components/Footer";
+import Header from "../../shared-components/Header";
+import Footer from "../../shared-components/Footer";
 import styled from "styled-components";
-import HeadTitle from "../../shared_components/HeadTitle";
+import HeadTitle from "../../shared-components/HeadTitle";
 
 const Container = styled.div`
   margin: 0 auto;

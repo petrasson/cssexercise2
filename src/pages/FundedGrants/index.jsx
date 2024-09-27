@@ -1,9 +1,9 @@
-import Header from "../../shared_components/Header";
+import Header from "../../shared-components/Header";
 import CardFilter from "./components/CardFilter";
-import Apply from "../../shared_components/Apply";
-import Footer from "../../shared_components/Footer";
+import Apply from "../../shared-components/Apply";
+import Footer from "../../shared-components/Footer";
 import styled from "styled-components";
-import HeadTitle from "../../shared_components/HeadTitle";
+import HeadTitle from "../../shared-components/HeadTitle";
 
 const Container = styled.div`
   margin: 0 auto;

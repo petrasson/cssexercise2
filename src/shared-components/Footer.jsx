@@ -154,7 +154,7 @@ function Footer() {
             </li>
           </ul>
         </nav>
-        <SocialMedia type='bottom' />
+        <SocialMedia position='bottom' isMenuActive={false} isDesktop={false} />
       </div>
     </FooterWrapper>
   );

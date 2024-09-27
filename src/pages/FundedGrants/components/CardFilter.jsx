@@ -1,5 +1,5 @@
 import CardHolder from "./CardHolder";
-import FilterControl from "../../../shared_components/FilterControl";
+import FilterControl from "../../../shared-components/FilterControl";
 import React, { useState } from "react";
 import rData from "../../../../data.json";
 const { cards } = rData;
