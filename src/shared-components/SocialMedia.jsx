@@ -49,12 +49,12 @@ function SocialMedia({ isMenuActive, isDesktop, position }) {
       })}
     >
       <img
-        src='images/twitter-symbol.svg'
+        src='/images/twitter-symbol.svg'
         alt='twitter-symbol'
         className='social-media-symbol'
       />
       <img
-        src='images/discord-symbol.svg'
+        src='/images/discord-symbol.svg'
         alt='twitter-symbol'
         className='social-media-symbol'
       />

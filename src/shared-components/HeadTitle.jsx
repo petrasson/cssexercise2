@@ -7,7 +7,7 @@ const HeadTitleWrapper = styled.div`
 
   @media only screen and (width >= 1305px) {
     line-height: 72px;
-    margin: 80px 0 40px;
+    margin: 0;
   }
 `;
 

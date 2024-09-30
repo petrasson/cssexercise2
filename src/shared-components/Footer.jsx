@@ -1,4 +1,4 @@
-import SocialMedia from "../pages/FundedGrants/components/SocialMedia";
+import SocialMedia from "./SocialMedia";
 import styled from "styled-components";
 
 const FooterWrapper = styled.div`
@@ -121,7 +121,7 @@ function Footer() {
         <nav className='footer-wrapper'>
           {
             <img
-              src='images/dydxLogotypeSmall.svg'
+              src='/images/dydxLogotypeSmall.svg'
               alt='Dydx logotype'
               className='image-logotype-dydx-small'
             />
@@ -139,7 +139,7 @@ function Footer() {
             <li>
               <a href='#'>dYdX Foundation</a>
               <img
-                src='images/external-link-symbol.svg'
+                src='/images/external-link-symbol.svg'
                 aria-hidden='true'
                 className='external-link-symbol'
               />
@@ -147,7 +147,7 @@ function Footer() {
             <li className='bottom-nav-link'>
               <a href='#'>dYdX Trading</a>
               <img
-                src='images/external-link-symbol.svg'
+                src='/images/external-link-symbol.svg'
                 aria-hidden='true'
                 className='external-link-symbol'
               />

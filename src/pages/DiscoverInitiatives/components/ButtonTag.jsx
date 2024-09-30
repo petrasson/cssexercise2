@@ -79,7 +79,6 @@ const StyledButton = styled.div`
 `;
 
 function ButtonTag({ category }) {
-  console.log("category", category);
   return <StyledButton category={category}>{category}</StyledButton>;
 }
 

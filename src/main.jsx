@@ -4,6 +4,7 @@ import FundedGrants from "./pages/FundedGrants";
 import DiscoverInitiatives from "./pages/DiscoverInitiatives";
 import ProgramExpenses from "./pages/ProgramExpenses/App";
 import NotFoundPage from "./pages/NotFoundPage";
+import FundedGrantDetails from "./pages/FundedGrantDetails";
 
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "/program-expenses",
     element: <ProgramExpenses />,
+  },
+  {
+    path: "/card/:id",
+    element: <FundedGrantDetails />,
   },
 ]);
 

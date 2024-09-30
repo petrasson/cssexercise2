@@ -1,6 +1,6 @@
 import Button from "./Button";
 import { Link } from "react-router-dom";
-import SocialMedia from "../pages/FundedGrants/components/SocialMedia";
+import SocialMedia from "./SocialMedia";
 import { useMediaQuery } from "react-responsive";
 import React, { useState } from "react";
 import styled from "styled-components";
@@ -188,7 +188,7 @@ function Header() {
   return (
     <HeaderWrapper $ismenuactive={isMenuActive}>
       <img
-        src='images/dydXLogotypeBig.svg'
+        src='/images/dydXLogotypeBig.svg'
         alt='Dydx logotype'
         className='image-logotype-dydx'
       />

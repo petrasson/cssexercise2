@@ -10,8 +10,13 @@ const Container = styled.div`
   text-align: center;
   padding: 0 24px;
   width: 100%;
+
+  .space{
+    padding: 80px 0 40px;
+  }
+  
   p {
-font-size: 16px;
+    font-size: 16px;
 }
 
    @media only screen and (width >= 1305px) {
@@ -25,7 +30,9 @@ function App() {
     <>
       <Header />
       <Container>
-        <HeadTitle text='Discover Initiatives' />
+        <div className='space'>
+          <HeadTitle text='Discover Initiatives' />
+        </div>
         <p>
           The list below includes initial ideas that we think could make
           excellent Grants. This is a living list that will continue to update

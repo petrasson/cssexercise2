@@ -1,8 +1,20 @@
 // import { StyledCardHolder } from "./styles/CardHolder.styled";
 import Card from "./Card";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    text-decoration: none;
+  }
+`;
 
 const CardWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   max-width: 1440px;
   margin: 0 auto;
   padding: 40px 0;
@@ -30,15 +42,19 @@ function CardHolder({ cards }) {
   return (
     <CardWrapper>
       {cards.map((card) => (
-        <Card
-          key={card.id}
-          category={card.category}
-          cardTitle={card.fundTitle}
-          fundingAmountFrom={card.fundingAmountFrom}
-          fundingAmountTo={card.fundingAmountTo}
-          description={card.descriptionText}
-          attendees={card.attendees}
-        />
+        <>
+          <StyledLink key={card.id} to={`/card/${card.id}`} state={{ card }}>
+            <Card
+              key={card.id}
+              category={card.category}
+              cardTitle={card.fundTitle}
+              fundingAmountFrom={card.fundingAmountFrom}
+              fundingAmountTo={card.fundingAmountTo}
+              description={card.descriptionText}
+              attendees={card.attendees}
+            />
+          </StyledLink>
+        </>
       ))}
     </CardWrapper>
   );

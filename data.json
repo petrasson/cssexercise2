@@ -9,7 +9,8 @@
       "fondText": "Funding amount: $6.000",
       "completed": false,
       "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
-      "attendees": ["Alex", "Ali", "Amanda"]
+      "attendees": ["Alex", "Ali", "Amanda"],
+      "status": "Open"
     },
     {
       "id": "card2",
@@ -20,7 +21,8 @@
       "fondText": "Funding amount: $5.000-$6.000",
       "completed": false,
       "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
-      "attendees": ["Ali", "Amanda"]
+      "attendees": ["Ali", "Amanda"],
+      "status": "Completed"
     },
     {
       "id": "card3",
@@ -31,7 +33,8 @@
       "fondText": "Funding amount: 5.000-6.000",
       "completed": false,
       "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
-      "attendees": ["Helga", "John", "Ali"]
+      "attendees": ["Helga", "John", "Ali"],
+      "status": "Funded"
     },
     {
       "id": "card4",
@@ -41,7 +44,8 @@
       "fundTitle": "Hedgie banner",
       "completed": false,
       "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
-      "attendees": ["Rashid", "Helga", "Alex"]
+      "attendees": ["Rashid", "Helga", "Alex"],
+      "status": "Funded"
     },
     {
       "id": "card5",
@@ -51,7 +55,8 @@
       "fundTitle": "Hedgie banner",
       "completed": false,
       "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
-      "attendees": ["Ali"]
+      "attendees": ["Ali"],
+      "status": "Completed"
     },
     {
       "id": "card6",
@@ -61,7 +66,8 @@
       "fundTitle": "Hedgie banner",
       "completed": true,
       "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
-      "attendees": ["Amanda", "Rashid", "John", "Ali", "Helga", "Alex"]
+      "attendees": ["Amanda", "Rashid", "John", "Ali", "Helga", "Alex"],
+      "status": "Funded"
     },
     {
       "id": "card7",
@@ -71,7 +77,8 @@
       "fundTitle": "Hedgie banner",
       "completed": true,
       "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
-      "attendees": ["Ali", "Amanda"]
+      "attendees": ["Ali", "Amanda"],
+      "status": "Funded"
     },
     {
       "id": "card8",
@@ -81,7 +88,8 @@
       "fundTitle": "Hedgie banner",
       "completed": false,
       "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
-      "attendees": ["John", "Ali", "Alex"]
+      "attendees": ["John", "Ali", "Alex"],
+      "status": "Open"
     },
     {
       "id": "card9",
@@ -91,7 +99,8 @@
       "fundTitle": "Hedgie banner",
       "completed": true,
       "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
-      "attendees": ["Amanda", "Ali"]
+      "attendees": ["Amanda", "Ali"],
+      "status": "Funded"
     },
     {
       "id": "card10",
@@ -101,7 +110,8 @@
       "fundTitle": "Hedgie banner",
       "completed": false,
       "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
-      "attendees": ["Ali", "Amanda", "Helga"]
+      "attendees": ["Ali", "Amanda", "Helga"],
+      "status": "Funded"
     },
     {
       "id": "card11",
@@ -111,7 +121,8 @@
       "fundTitle": "Hedgie banner",
       "completed": true,
       "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
-      "attendees": ["Rashid", "John", "Ali", "Alex"]
+      "attendees": ["Rashid", "John", "Ali", "Alex"],
+      "status": "Completed"
     }
   ]
 }
