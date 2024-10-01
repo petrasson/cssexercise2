@@ -21,13 +21,11 @@ const Container = styled.div`
 
    @media only screen and (width >= 1305px) {
     padding: 0 108px;
-
-    
 `;
 
 function App() {
   return (
-    <>
+    <div className='page-wrapper'>
       <Header />
       <Container>
         <div className='space'>
@@ -41,7 +39,7 @@ function App() {
         <DiscoverFilter />
       </Container>
       <Footer />
-    </>
+    </div>
   );
 }
 

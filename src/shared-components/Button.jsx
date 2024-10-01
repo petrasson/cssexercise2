@@ -73,12 +73,26 @@ const ButtonWrapper = styled.button.withConfig({
       font-weight: 600;
       text-decoration: underline;
     `}
+
+img {
+    margin-left: 8px; /* Add space between text and image */
+    width: 12px; /* Set image size */
+    height: 12px; /* Set image size */
+  }
 `;
 
-function Button({ type, text, onClick, highlight }) {
+function Button({ type, text, onClick, highlight, image }) {
   return (
-    <ButtonWrapper type={type} onClick={onClick} highlight={highlight}>
+    <ButtonWrapper
+      type={type}
+      onClick={onClick}
+      highlight={highlight}
+      image={true}
+    >
       {text}
+      {image && (
+        <img src='/images/external-link-white.svg' aria-hidden='true' alt='' />
+      )}
     </ButtonWrapper>
   );
 }

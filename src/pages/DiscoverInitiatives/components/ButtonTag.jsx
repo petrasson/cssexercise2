@@ -13,7 +13,6 @@ const StyledButton = styled.div`
   color: white;
 
   ${(props) => {
-    console.log(props);
     return (
       props.status === "Funded" &&
       css`
@@ -23,7 +22,6 @@ const StyledButton = styled.div`
   }}
 
   ${(props) => {
-    console.log(props);
     return (
       props.status === "Open" &&
       css`
@@ -33,7 +31,6 @@ const StyledButton = styled.div`
   }}
 
   ${(props) => {
-    console.log(props);
     return (
       props.status === "Completed" &&
       css`

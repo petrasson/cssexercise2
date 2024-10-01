@@ -22,7 +22,7 @@ const Container = styled.div`
 
 function App() {
   return (
-    <>
+    <div className='page-wrapper'>
       <Header />
       <Container>
         <div className='space'>
@@ -32,7 +32,7 @@ function App() {
         <Apply />
       </Container>
       <Footer />
-    </>
+    </div>
   );
 }
 

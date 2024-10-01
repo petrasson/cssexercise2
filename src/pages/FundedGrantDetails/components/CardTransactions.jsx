@@ -89,7 +89,7 @@ function CardTransaction({ title, date, amount, description }) {
       </div>
       <div className='amount-wrapper'>
         <p className='amount'> {amount}</p>
-        <img src='/images/external-link-symbol.svg' aria-hidden='true' />
+        <img src='/images/external-link-grey.svg' aria-hidden='true' />
       </div>
     </CardTransactionWrapper>
   );

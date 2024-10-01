@@ -4,7 +4,8 @@ import NavButton from "./components/NavButton";
 import FundedGrantImage from "./components/FundedGrantImage";
 //import Apply from "../../shared-components/Apply";
 import Footer from "../../shared-components/Footer";
-import CardDetailsHead from "./components/CardDetailsHead";
+import GrantDetails from "./components/GrantDetails";
+import { Link } from "react-router-dom";
 
 import { useLocation } from "react-router-dom";
 
@@ -39,12 +40,15 @@ function App() {
   }
 
   return (
-    <>
+    <div className='page-wrapper'>
       <Header />
       <Container>
-        <NavButton />
+        <Link to='/funded-grants'>
+          <NavButton />
+        </Link>
+
         <FundedGrantImage />
-        <CardDetailsHead
+        <GrantDetails
           key={card.id}
           category={card.category}
           cardTitle={card.fundTitle}
@@ -57,7 +61,7 @@ function App() {
         {/* <MoreGrants /> reuse components in it */}
       </Container>
       <Footer />
-    </>
+    </div>
   );
 }
 

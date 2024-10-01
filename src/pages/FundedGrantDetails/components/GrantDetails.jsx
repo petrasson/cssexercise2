@@ -3,7 +3,7 @@ import HeadTitle from "../../../shared-components/HeadTitle";
 import Button from "../../../shared-components/Button";
 import CardTransactions from "./CardTransactions";
 
-const CardDetailsHeadWrapper = styled.div`
+const GrantDetailsWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -81,6 +81,7 @@ const CardDetailsHeadWrapper = styled.div`
 .attendees-wrapper {
 display: flex;
 flex-direction: row;
+flex-wrap: wrap;
 align-items: center;
 text-align: center;
 padding: 16px 0;
@@ -106,10 +107,11 @@ margin: 0 10px 0 5px;
 }
 
 hr {
-  height: 2px;
+  height: 1px;
   background-color: var(--secondary-bg-color);
   border: none;
   width: 100%;
+  margin: 10px;
 }
 
 .sub-title {
@@ -180,7 +182,7 @@ text-align: left;
 }
 `;
 
-function CardDetailsHead({
+function GrantDetails({
   category,
   cardTitle,
   status,
@@ -189,7 +191,7 @@ function CardDetailsHead({
   attendees,
 }) {
   return (
-    <CardDetailsHeadWrapper>
+    <GrantDetailsWrapper>
       <p className='card-category'>{category}</p>
       <HeadTitle text={cardTitle} />
       <div className='project-detail-wrapper'>
@@ -206,7 +208,8 @@ function CardDetailsHead({
           type='accent'
           text='Project link'
           onClick={console.log("ProjectLink")}
-        />{" "}
+          image='true'
+        />
       </div>
       <h3 className='sub-title'>Team</h3>
       <div className='attendees-wrapper'>
@@ -284,8 +287,8 @@ function CardDetailsHead({
         description='They were used to create the machines that launched two waves of industrial revolution'
         amount='$22,000.00'
       />
-    </CardDetailsHeadWrapper>
+    </GrantDetailsWrapper>
   );
 }
 
-export default CardDetailsHead;
+export default GrantDetails;

@@ -47,6 +47,10 @@ const FooterWrapper = styled.div`
     padding: 10px 0;
   }
 
+  .bottom-nav a {
+    text-decoration: none;
+  }
+
   .bottom-social-media-wrapper {
     display: flex;
     flex-direction: row;
@@ -139,7 +143,7 @@ function Footer() {
             <li>
               <a href='#'>dYdX Foundation</a>
               <img
-                src='/images/external-link-symbol.svg'
+                src='/images/external-link-grey.svg'
                 aria-hidden='true'
                 className='external-link-symbol'
               />
@@ -147,7 +151,7 @@ function Footer() {
             <li className='bottom-nav-link'>
               <a href='#'>dYdX Trading</a>
               <img
-                src='/images/external-link-symbol.svg'
+                src='/images/external-link-grey.svg'
                 aria-hidden='true'
                 className='external-link-symbol'
               />
