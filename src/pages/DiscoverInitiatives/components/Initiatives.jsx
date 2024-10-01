@@ -1,4 +1,4 @@
-import InitiativeCard from "./InitiativeCard";
+import DiscoveryCard from "../../../shared-components/DiscoveryCard";
 import styled from "styled-components";
 
 const CardWrapper = styled.div`
@@ -26,6 +26,7 @@ const CardWrapper = styled.div`
 `;
 
 function Initiatives({ cards }) {
+  console.log("init cards", cards);
   if (!cards || cards.length === 0) {
     return <div>No initiatives available</div>;
   }
@@ -33,9 +34,9 @@ function Initiatives({ cards }) {
   return (
     <CardWrapper>
       {cards.map((card) => (
-        <InitiativeCard
+        <DiscoveryCard
           key={card.id}
-          category={card.category}
+          status={card.status}
           cardTitle={card.fundTitle}
           fundingAmountFrom={card.fundingAmountFrom}
           fundingAmountTo={card.fundingAmountTo}

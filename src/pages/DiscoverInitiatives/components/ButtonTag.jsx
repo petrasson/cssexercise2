@@ -12,36 +12,10 @@ const StyledButton = styled.div`
   font-size: 12px;
   color: white;
 
-  ${(props) =>
-    true &&
-    `
-      background-color: var(--primary-bg-color);
-    `}
-
-  ${(props) =>
-    true &&
-    css`
-      background-color: var(--btn-completed);
-
-      // arrow after completed
-      // ::after {
-      //   content: "";
-      //   position: absolute;
-      //   top: 50%;
-      //   right: 2px;
-      //   background-image: url("../../images/rightarrow.svg");
-      //   width: 20px;
-      //   height: 20px;
-      //   z-index: 2;
-      //   background-repeat: no-repeat;
-      //   pointer-events: none;
-      // }
-    `}
-
   ${(props) => {
     console.log(props);
     return (
-      props.category === "Funded" &&
+      props.status === "Funded" &&
       css`
         background-color: var(--primary-bg-color);
       `
@@ -51,7 +25,7 @@ const StyledButton = styled.div`
   ${(props) => {
     console.log(props);
     return (
-      props.category === "Open" &&
+      props.status === "Open" &&
       css`
         background-color: var(--accent-color);
       `
@@ -61,9 +35,22 @@ const StyledButton = styled.div`
   ${(props) => {
     console.log(props);
     return (
-      props.category === "Completed" &&
+      props.status === "Completed" &&
       css`
         background-color: var(--btn-completed);
+        ::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          right: 0;
+          background-image: url("/images/arrow-right.svg");
+          width: 20px;
+          height: 20px;
+          background-color: red;
+          z-index: 3;
+          background-repeat: no-repeat;
+          pointer-events: none;
+        }
       `
     );
   }}
@@ -78,12 +65,12 @@ const StyledButton = styled.div`
   }
 `;
 
-function ButtonTag({ category }) {
-  return <StyledButton category={category}>{category}</StyledButton>;
+function ButtonTag({ status }) {
+  return <StyledButton status={status}>{status}</StyledButton>;
 }
 
 ButtonTag.propTypes = {
-  category: PropTypes.oneOf(["funded", "completed", "open"]).isRequired,
+  status: PropTypes.oneOf(["Funded", "Completed", "Open"]).isRequired,
 };
 
 export default ButtonTag;

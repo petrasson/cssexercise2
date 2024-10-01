@@ -5,6 +5,7 @@ const FundedGrantImageWrapper = styled.div`
   display: flex;
   margin: auto 0;
   width: 100%;
+  padding: 80px 0 0 0;
 
   img {
     width: 100%;

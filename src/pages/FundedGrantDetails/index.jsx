@@ -18,11 +18,13 @@ const Container = styled.div`
   text-align: center;
   padding: 0 24px;
   width: 100%;
-  p {
-font-size: 16px;
-}
 
-   @media only screen and (width >= 1305px) {
+
+  p {
+  font-size: 16px;
+  }
+
+@media only screen and (width >= 1305px) {
     padding: 0 108px;
 
     
@@ -32,6 +34,7 @@ function App() {
   const location = useLocation();
   const { card } = location.state || {};
   console.log("these are the cards", card);
+  console.log("these ", card.fundingAmountFrom);
 
   if (!card) {
     return <div>Card not found</div>;
@@ -52,10 +55,8 @@ function App() {
           description={card.descriptionText}
           attendees={card.attendees}
         />
-        {/* <CardDetailsText /> */}
         {/* <CardFundingTransactions /> reuse components in it*/}
         {/* <MoreGrants /> reuse components in it */}
-        Funding transactions
       </Container>
       <Footer />
     </>

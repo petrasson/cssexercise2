@@ -1,8 +1,7 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import ButtonTag from "./ButtonTag";
 
-const CardWrapper = styled.div`
+const CardTransactionWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -50,15 +49,15 @@ const CardWrapper = styled.div`
   }
 `;
 
-function DiscoveryCard({
-  category,
+function CardTransaction({
+  status,
   cardTitle,
   fundingAmountFrom,
   fundingAmountTo,
   description,
 }) {
   return (
-    <CardWrapper>
+    <CardTransactionWrapper>
       <div className='card-wrapper-text'>
         <p className='card-title'>{cardTitle}</p>
         <p className='card-text'>{description}</p>
@@ -66,16 +65,15 @@ function DiscoveryCard({
           Funding amount: {fundingAmountFrom}-{fundingAmountTo}
         </p>
       </div>
-      <ButtonTag category={category} />
-    </CardWrapper>
+    </CardTransactionWrapper>
   );
 }
 
-DiscoveryCard.propTypes = {
-  category: PropTypes.string.isRequired,
+CardTransaction.propTypes = {
+  status: PropTypes.string.isRequired,
   cardTitle: PropTypes.string.isRequired,
   fundingAmountFrom: PropTypes.string.isRequired,
   fundingAmountTo: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
 };
-export default DiscoveryCard;
+export default CardTransaction;

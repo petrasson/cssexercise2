@@ -2,19 +2,19 @@ import styled from "styled-components";
 import FilterControl from "../../../shared-components/FilterControl";
 import Initiatives from "./Initiatives";
 import React, { useState } from "react";
-import rData from "../../../../dataDiscovery.json";
+import rData from "../../../../data.json";
 
 const { cards } = rData;
 
-const categories = cards.map((card) => card.category);
+const status = cards.map((card) => card.status);
 
 //Remove duplicates using Set
-const uniqueCategories = [...new Set(categories)];
+const uniqueStatus = [...new Set(status)];
 
 //Create the filterOptions array to pass to the FilterControl
-const filterOptions = uniqueCategories.map((category) => ({
-  text: category,
-  value: category,
+const filterOptions = uniqueStatus.map((status) => ({
+  text: status,
+  value: status,
 }));
 
 const DiscoverFilterWrapper = styled.div`
@@ -34,9 +34,11 @@ function DiscoverFilter() {
 
     if (filterType !== "All") {
       newFilteredData = newFilteredData.filter(
-        (item) => item.category === filterType
+        (item) => item.status === filterType
       );
     }
+    console.log(filteredData, "filteredData");
+
     setFilteredData(newFilteredData);
   };
 

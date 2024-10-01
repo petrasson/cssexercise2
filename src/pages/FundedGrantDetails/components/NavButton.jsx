@@ -9,14 +9,14 @@ const NavButtonWrapper = styled.div`
     height: 40px;
     width: 40px;
     position: absolute;
-    top: 0;
-    left: -75px;
+    top: 83px;
+    left: -91px;
     display: flex;
     justify-content: center;
     align-item; center;
   }
   .image-fundedgrants {
-    width: 24px;
+    width: 15px;
   }
 `;
 
@@ -25,7 +25,7 @@ function NavButton() {
     <NavButtonWrapper>
       <div className='nav-button-back'>
         <img
-          src='/images/arrow-right.svg'
+          src='/images/left-arrow.svg'
           alt='images of the logotypes chaos labs and dydx'
           className='image-fundedgrants'
         />
