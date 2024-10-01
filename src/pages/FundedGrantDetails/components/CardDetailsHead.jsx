@@ -272,11 +272,16 @@ function CardDetailsHead({
       <h3 className='sub-title'>Funding Transactions</h3>
       <CardTransactions
         title='Round 9'
-        Date='1/2/25'
-        Description='Description'
+        date='1/2/25'
+        description='Funding Rates page will help promote and guide traders around Perpetual premiums found across all assets traded on dYdX. '
+        fundingAmount='$250,000.00'
       />
-
-      <CardTransactions />
+      <CardTransactions
+        title='Round 9'
+        date='23/8/25'
+        description='Funding Rates page will help promote and guide traders around Perpetual premiums found across all assets traded on dYdX. '
+        fundingAmount='$350,000.00'
+      />{" "}
     </CardDetailsHeadWrapper>
   );
 }
