@@ -33,8 +33,6 @@ const Container = styled.div`
 function App() {
   const location = useLocation();
   const { card } = location.state || {};
-  console.log("these are the cards", card);
-  console.log("these ", card.fundingAmountFrom);
 
   if (!card) {
     return <div>Card not found</div>;

@@ -10,7 +10,7 @@ const CardTransactionWrapper = styled.div`
   background-color: var(--secondary-bg-color);
   height: 480px;
   width: 100%;
-  padding: 24px;
+  padding: 16px 18px;
   text-align: left;
   position: relative;
   flex: 1;
@@ -19,12 +19,13 @@ const CardTransactionWrapper = styled.div`
   .card-wrapper-text {
     display: flex;
     flex-direction: column;
+    width: 100%;
   }
 
-  .card-title {
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 32px;
+  .date {
+    font-family: "Space Mono", sans-serif;
+    color: var(--secondary-text-color);
+    font-size: 14px;
     margin: 8px 0;
   }
 
@@ -35,32 +36,29 @@ const CardTransactionWrapper = styled.div`
     margin: 8px 0;
   }
 
-  .card-text {
+  .description {
     font-size: 16px;
     line-height: 24px;
     margin: 15px 0;
   }
 
-  .external-link-wrapper {
+  .amount-wrapper {
     display: flex;
     flex-direction: row;
-    width: 100%;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    img {
+      width: 18px;
+      margin-left: 10px;
+    }
   }
 
-  img {
-    width: 16px;
-  }
-
+  /****************** WEB VIEW **********************/
   @media only screen and (width >= 1305px) {
     flex-direction: row;
     justify-content: space-between;
-
-    .card-wrapper-text {
-      width: 2700px;
-    }
-
     .card-title {
       font-size: 20px;
     }
@@ -72,19 +70,25 @@ const CardTransactionWrapper = styled.div`
     .card-text {
       padding-right: 13px;
     }
+    .card-wrapper-text {
+      width: 2300px;
+    }
+    .amount-wrapper {
+      justify-content: end;
+    }
   }
 `;
 
-function CardTransaction({ title, date, description, fundingAmount }) {
+function CardTransaction({ title, date, amount, description }) {
   return (
     <CardTransactionWrapper>
       <div className='card-wrapper-text'>
         <p className='card-title'>{title}</p>
-        <p className='sub-title'> {date}</p>
-        <p className='card-text'>{description}</p>
+        <p className='date'>{date}</p>
+        <p className='description'>{description}</p>
       </div>
-      <div className='external-link-wrapper'>
-        <p className='card-text'>{fundingAmount}</p>
+      <div className='amount-wrapper'>
+        <p className='amount'> {amount}</p>
         <img src='/images/external-link-symbol.svg' aria-hidden='true' />
       </div>
     </CardTransactionWrapper>
@@ -94,7 +98,7 @@ function CardTransaction({ title, date, description, fundingAmount }) {
 CardTransaction.propTypes = {
   date: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  fundingAmount: PropTypes.string.isRequired,
+  amount: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
 };
 export default CardTransaction;

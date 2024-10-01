@@ -117,14 +117,19 @@ font-size: 20px;
 margin: 23px 0 0 0;
 }
 
+.sub-title.funding {
+margin-bottom: 20px;
+margin-right: auto;
+}
+
 .text-wrapper {
+
   p {
     font-size: 16px;
     line-height: 24px;
     color: var(--secondary-text-color);
     margin-bottom: 50px;
   }
-  
 
    .links, .external-link-symbol {
     color: var(--accent-color);
@@ -183,9 +188,6 @@ function CardDetailsHead({
   description,
   attendees,
 }) {
-  console.log("status", status);
-  console.log("fundingAmountFrom", fundingAmountFrom);
-
   return (
     <CardDetailsHeadWrapper>
       <p className='card-category'>{category}</p>
@@ -269,19 +271,19 @@ function CardDetailsHead({
           </div>
         </div>
       </div>
-      <h3 className='sub-title'>Funding Transactions</h3>
+      <h3 className='sub-title funding'>Funding Transactions</h3>
       <CardTransactions
         title='Round 9'
         date='1/2/25'
-        description='Funding Rates page will help promote and guide traders around Perpetual premiums found across all assets traded on dYdX. '
-        fundingAmount='$250,000.00'
+        description='They were used to create the machines that launched two waves of industrial revolution'
+        amount='$30,000.00'
       />
       <CardTransactions
-        title='Round 9'
-        date='23/8/25'
-        description='Funding Rates page will help promote and guide traders around Perpetual premiums found across all assets traded on dYdX. '
-        fundingAmount='$350,000.00'
-      />{" "}
+        title='Round 13'
+        date='11/4/25'
+        description='They were used to create the machines that launched two waves of industrial revolution'
+        amount='$22,000.00'
+      />
     </CardDetailsHeadWrapper>
   );
 }
