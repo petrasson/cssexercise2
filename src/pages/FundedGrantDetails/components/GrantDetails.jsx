@@ -25,8 +25,8 @@ const GrantDetailsWrapper = styled.div`
     justify-content: center;
     width: 100%;
     margin-top: 30px;
-  
-}
+  }
+
   .row-wrapper {
     display: flex;
     flex-direction: column;
@@ -34,152 +34,129 @@ const GrantDetailsWrapper = styled.div`
     justify-content: center;
     align-items: center;
     text-align: center;
- 
 
-  .status {
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    align-content: center;
-    border-radius: 30px;
-    border: none;
-    padding: 0 6px;
-   
-    font-size: 14px;
-    color: white;
-    background-color: var(--btn-completed);
-    
-        // ::after {
-        //   content: "";
-        //   position: absolute;
-        //   top: 0;
-        //   right: 0;
-        //   background-image: url("/images/arrow-right.svg");
-        //   width: 20px;
-        //   height: 20px;
-        //   background-color: red;
-        //   z-index: 3;
-        //   background-repeat: no-repeat;
-        //   pointer-events: none;
-        //}
-
-        .test {
-        padding: 6px 10px;
-        margin: 0;
-        }
- }
-
-     .funding-amount {
-    padding: 0 20px;
-    color: var(--secondary-text-color);
-     text-align: center;
+    .status {
+      display: flex;
+      text-align: center;
+      justify-content: center;
+      align-content: center;
+      border-radius: 30px;
+      border: none;
+      padding: 0 6px;
+      font-size: 14px;
+      color: white;
+      background-color: var(--btn-completed);
+      padding: 6px 10px;
     }
 
-
-}
-
-.attendees-wrapper {
-display: flex;
-flex-direction: row;
-flex-wrap: wrap;
-align-items: center;
-text-align: center;
-padding: 16px 0;
-gap: 20px;
-}
-
-.attendee {
-background-color: var(--secondary-bg-color);
-border-radius: 30px;
-padding: 5px 10px 5px 5px;
-font-size: 16px;
-display: flex;
-justify-content: center;
-align-items: center;
-}
-
-.avatar-image {
-margin-right: 10px;
-}
-
-.attendee-name {
-margin: 0 10px 0 5px;
-}
-
-hr {
-  height: 1px;
-  background-color: var(--secondary-bg-color);
-  border: none;
-  width: 100%;
-  margin: 10px;
-}
-
-.sub-title {
-font-size: 20px;
-margin: 23px 0 0 0;
-}
-
-.sub-title.funding {
-margin-bottom: 20px;
-margin-right: auto;
-}
-
-.text-wrapper {
-
-  p {
-    font-size: 16px;
-    line-height: 24px;
-    color: var(--secondary-text-color);
-    margin-bottom: 50px;
+    .funding-amount {
+      padding: 0 20px;
+      color: var(--secondary-text-color);
+      text-align: center;
+    }
   }
 
-   .links, .external-link-symbol {
+  .attendees-wrapper {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      text-align: center;
+      padding: 16px 0;
+      gap: 20px;
+  }
+
+  .attendee {
+      background-color: var(--secondary-bg-color);
+      border-radius: 30px;
+      padding: 5px 10px 5px 5px;
+      font-size: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .avatar-image {
+    margin-right: 10px;
+  }
+
+  .attendee-name {
+    margin: 0 10px 0 5px;
+  }
+
+  hr {
+    height: 1px;
+    background-color: var(--secondary-bg-color);
+    border: none;
+    width: 100%;
+    margin: 10px;
+  }
+
+  .sub-title {
+    font-size: 20px;
+    margin: 23px 0 0 0;
+  }
+
+  .sub-title.funding {
+  margin-bottom: 20px;
+  margin-right: auto;
+  }
+
+  .text-wrapper {
+
+    p {
+      font-size: 16px;
+      line-height: 24px;
+      color: var(--secondary-text-color);
+      margin-bottom: 50px;
+    }
+
+    .links, .external-link-symbol {
+      color: var(--accent-color);
+    }
+  }
+
+
+  .link-wrapper {
+    margin-top: 6px;
+  }
+
+  .link-row-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    padding: 10px 0;
+
+    .links { 
+      margin-bottom:0;
+    }
+  }
+
+  .links {
+    margin: 0;
+    padding-right: 10px;    
+  }
+
+  .external-link-symbol {
     color: var(--accent-color);
   }
-}
-
-
-.link-wrapper {
-margin-top: 6px;
-}
-
-.link-row-wrapper {
-display: flex;
-flex-direction: row;
-align-items: center;
-align-content: center;
-padding: 10px 0;
-
- .links {
-      margin-bottom:0;
-      }
-}
-
-.links {
-margin: 0;
-padding-right: 10px;
-}
-
-
-.external-link-symbol {
-color: var(--accent-color);
-}
 
 
 @media (min-width: 768px) {
-align-items: flex-start;
-align-content: flex-start;
-text-align: left;
+  align-items: flex-start;
+  align-content: flex-start;
+  text-align: left;
 
   .project-detail-wrapper {
     flex-direction: row;
     justify-content: space-between;
    
-}
+  }
+  
   .row-wrapper {
-    flex-direction: row;
-    
-}
+    flex-direction: row;  
+  }
 `;
 
 function GrantDetails({
@@ -196,11 +173,7 @@ function GrantDetails({
       <HeadTitle text={cardTitle} />
       <div className='project-detail-wrapper'>
         <div className='row-wrapper'>
-          {/* <p className='status'>{status}</p> */}
-
-          <p className='status'>
-            <p className='test'>{status}</p>
-          </p>
+          <p className='status'>{status}</p>
           <p className='funding-amount'>Funding amount:</p>
           <p>${fundingAmountFrom}</p>
         </div>
