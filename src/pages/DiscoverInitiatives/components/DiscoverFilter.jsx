@@ -37,7 +37,6 @@ function DiscoverFilter() {
         (item) => item.status === filterType
       );
     }
-    console.log(filteredData, "filteredData");
 
     setFilteredData(newFilteredData);
   };

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Card from "../../../pages/FundedGrants/components/Card";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const StyledLink = styled(Link)`
@@ -47,17 +48,25 @@ const SimilarGrantsWrapper = styled.div`
 
 `;
 
-function SimilarGrants({ similarCards }) {
+function SimilarGrants({ similarGrants }) {
+  const [showAll, setShowAll] = useState(false);
+  const reducedSimilarGrants = similarGrants.slice(0, 2);
+  const handleViewAllClick = () => {
+    setShowAll((prevShowAll) => !prevShowAll);
+  };
+  console.log("similarGrants", similarGrants);
   return (
     <SimilarGrantsWrapper>
       <h1>More grants like this</h1>
 
       <div className='link-wrapper'>
-        <p className='similar-projects-text'>View all similar projects</p>
+        <p className='similar-projects-text' onClick={handleViewAllClick}>
+          {showAll ? "View less projects" : "View all similar projects"}
+        </p>
         <img src='/images/arrow-right.svg' aria-hidden='true' />
       </div>
       <div className='similar-card-wrapper'>
-        {similarCards.map((card) => (
+        {(showAll ? similarGrants : reducedSimilarGrants).map((card) => (
           <StyledLink key={card.id} to={`/card/${card.id}`}>
             <Card
               key={card.id}

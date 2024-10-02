@@ -40,7 +40,7 @@ function App() {
   if (!card) {
     return <div>Card not found</div>;
   }
-  const similarCards = cards.filter(
+  const similarGrants = cards.filter(
     (c) => c.category === card.category && c.id !== card.id
   );
 
@@ -61,7 +61,7 @@ function App() {
           description={card.descriptionText}
           attendees={card.attendees}
         />
-        <SimilarGrants similarCards={similarCards} />
+        <SimilarGrants similarGrants={similarGrants} />
       </Container>
       <Footer />
     </div>
