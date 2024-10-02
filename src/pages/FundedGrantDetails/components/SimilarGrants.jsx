@@ -30,22 +30,21 @@ const SimilarGrantsWrapper = styled.div`
   }
 
   .similar-card-wrapper {
-   display: flex;
-  flex-direction: column;
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 40px 0;
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  grid-gap: 24px;
-  justify-content: center;
-
+    display: flex;
+    flex-direction: column;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 40px 0;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 24px;
+    justify-content: center;
   }
+
  @media only screen and (width >= 1305px) {
     
  .similar-card-wrapper {
     grid-template-columns: repeat(2, 1fr);
-
 `;
 
 function SimilarGrants({ similarGrants }) {
@@ -54,7 +53,7 @@ function SimilarGrants({ similarGrants }) {
   const handleViewAllClick = () => {
     setShowAll((prevShowAll) => !prevShowAll);
   };
-  console.log("similarGrants", similarGrants);
+
   return (
     <SimilarGrantsWrapper>
       <h1>More grants like this</h1>

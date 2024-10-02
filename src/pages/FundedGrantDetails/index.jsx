@@ -6,9 +6,7 @@ import GrantDetails from "./components/GrantDetails";
 import SimilarGrants from "./components/SimilarGrants";
 import Footer from "../../shared-components/Footer";
 import { useEffect } from "react";
-
 import { Link, useParams, useLocation } from "react-router-dom";
-
 import rData from "../../../data.json";
 const { cards } = rData;
 
@@ -30,16 +28,17 @@ const Container = styled.div`
 function App() {
   const location = useLocation();
   const { card: stateCard } = location.state || {};
-  const { id } = useParams(); // Extract the card id from the URL
+  const { id } = useParams();
   const card = stateCard || cards.find((card) => card.id === id);
 
   useEffect(() => {
-    window.scrollTo(0, 0); // Scroll to the top of the page
+    window.scrollTo(0, 0);
   }, [id]);
 
   if (!card) {
     return <div>Card not found</div>;
   }
+
   const similarGrants = cards.filter(
     (c) => c.category === card.category && c.id !== card.id
   );

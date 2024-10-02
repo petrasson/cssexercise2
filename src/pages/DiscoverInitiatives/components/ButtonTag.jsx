@@ -35,15 +35,18 @@ const StyledButton = styled.div`
       props.status === "Completed" &&
       css`
         background-color: var(--btn-completed);
+        position: relative;
+        padding-right: 30px;
         ::after {
           content: "";
           position: absolute;
-          top: 0;
-          right: 0;
-          background-image: url("/images/arrow-right.svg");
+          top: 50%;
+          right: 10px;
+          transform: translateY(-50%);
+          background-image: url("/images/check.svg");
           width: 20px;
           height: 20px;
-          background-color: red;
+          background-size: cover;
           z-index: 3;
           background-repeat: no-repeat;
           pointer-events: none;

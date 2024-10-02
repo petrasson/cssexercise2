@@ -254,7 +254,7 @@
       "fundTitle": "Dashboard banner",
       "completed": true,
       "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
-      "attendees": ["Helga, John"],
+      "attendees": ["John", "Helga"],
       "status": "Funded"
     },
     {
@@ -265,7 +265,7 @@
       "fundTitle": "Academy Contributions",
       "completed": true,
       "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
-      "attendees": ["Helga, John"],
+      "attendees": ["Helga", "John"],
       "status": "Funded"
     },
     {
@@ -276,7 +276,7 @@
       "fundTitle": "Dashboard banner",
       "completed": true,
       "descriptionText": "They can be used to deliver spacecraft to the ends of the solar system with hyper-pinpoint accuracy.",
-      "attendees": ["Helga, John"],
+      "attendees": ["Helga", "John"],
       "status": "Funded"
     }
   ]
