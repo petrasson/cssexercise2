@@ -1,35 +1,50 @@
 import styled from "styled-components";
 
 const NavButtonWrapper = styled.div`
-  position: relative;
+  
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    text-align: center;
+    padding: 16px 0;
+    gap: 20px;
+  
 
-  .nav-button-back {
-    background: var(--secondary-bg-color);
-    border-radius: 50%;
-    height: 40px;
-    width: 40px;
-    position: absolute;
-    top: 83px;
-    left: -91px;
+  .attendee {
+    background-color: var(--secondary-bg-color);
+    border-radius: 30px;
+    padding: 5px 10px 5px 5px;
+    font-size: 16px;
     display: flex;
     justify-content: center;
-    align-item; center;
+    align-items: center;
   }
-  .image-fundedgrants {
-    width: 15px;
+
+  .avatar-image {
+    margin-right: 10px;
   }
+
+  .attendee-name {
+    margin: 0 10px 0 5px;
+  }
+    }
 `;
 
-function NavButton() {
+function NavButton({ attendees }) {
+  console.log("attendees", attendees);
   return (
     <NavButtonWrapper>
-      <div className='nav-button-back'>
-        <img
-          src='/images/left-arrow.svg'
-          alt='images of the logotypes chaos labs and dydx'
-          className='image-fundedgrants'
-        />
-      </div>
+      {attendees.map((attendee, index) => (
+        <div key={index} className='attendee'>
+          <img
+            src={`/images/${attendee}.png`}
+            alt='image of attendee'
+            className='avatar-image'
+          />
+          <p className='attendee-name'>{attendee}</p>
+        </div>
+      ))}
     </NavButtonWrapper>
   );
 }

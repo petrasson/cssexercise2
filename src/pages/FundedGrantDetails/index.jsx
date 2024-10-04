@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Header from "../../shared-components/Header";
-import NavButton from "../../shared-components/NavButton";
+import BackButton from "../../shared-components/BackButton";
 import FundedGrantImage from "./components/FundedGrantImage";
 import GrantDetails from "./components/GrantDetails";
 import SimilarGrants from "./components/SimilarGrants";
@@ -48,7 +48,7 @@ function FundedGrantDetails() {
       <Header />
       <Container>
         <Link to='/funded-grants'>
-          <NavButton />
+          <BackButton />
         </Link>
         <FundedGrantImage />
         <GrantDetails

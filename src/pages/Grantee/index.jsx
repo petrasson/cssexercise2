@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Header from "../../shared-components/Header";
-import NavButton from "../../shared-components/NavButton";
+import BackButton from "../../shared-components/BackButton";
 // import GrantDetails from "./components/GrantDetails";
 // import SimilarGrants from "./components/SimilarGrants";
 import Footer from "../../shared-components/Footer";
@@ -69,7 +69,7 @@ function Grantee() {
       <Header />
       <Container>
         {/* <Link to='/funded-grants'> */}
-        <NavButton />
+        <BackButton />
         {/* </Link> */}
         <img src='/images/grantee.png' alt='image of Helga, attendee' />
         <h1 className='name-grantee'>Jane Cooper</h1>

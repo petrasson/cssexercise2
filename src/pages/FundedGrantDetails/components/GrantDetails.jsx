@@ -2,6 +2,7 @@ import styled from "styled-components";
 import HeadTitle from "../../../shared-components/HeadTitle";
 import Button from "../../../shared-components/Button";
 import CardTransactions from "./CardTransactions";
+import NavButton from "../../../shared-components/NavButton";
 
 const GrantDetailsWrapper = styled.div`
   width: 100%;
@@ -56,33 +57,6 @@ const GrantDetailsWrapper = styled.div`
     }
   }
 
-  .attendees-wrapper {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      align-items: center;
-      text-align: center;
-      padding: 16px 0;
-      gap: 20px;
-  }
-
-  .attendee {
-      background-color: var(--secondary-bg-color);
-      border-radius: 30px;
-      padding: 5px 10px 5px 5px;
-      font-size: 16px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-  }
-
-  .avatar-image {
-    margin-right: 10px;
-  }
-
-  .attendee-name {
-    margin: 0 10px 0 5px;
-  }
 
   hr {
     height: 1px;
@@ -185,18 +159,7 @@ function GrantDetails({
         />
       </div>
       <h3 className='sub-title'>Team</h3>
-      <div className='attendees-wrapper'>
-        {attendees.map((attendee, index) => (
-          <div key={index} className='attendee'>
-            <img
-              src={`/images/${attendee}.png`}
-              alt='image of attendee'
-              className='avatar-image'
-            />
-            <p className='attendee-name'>{attendee}</p>
-          </div>
-        ))}
-      </div>
+      <NavButton attendees={attendees} />
       <hr></hr>
       <div className='text-wrapper'>
         <h3 className='sub-title'>Description</h3>
