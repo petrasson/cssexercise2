@@ -2,7 +2,7 @@ import styled from "styled-components";
 import HeadTitle from "../../../shared-components/HeadTitle";
 import Button from "../../../shared-components/Button";
 import CardTransactions from "./CardTransactions";
-import NavButton from "../../../shared-components/NavButton";
+import ButtonWrapper from "../../../shared-components/ButtonWrapper";
 
 const GrantDetailsWrapper = styled.div`
   width: 100%;
@@ -56,6 +56,7 @@ const GrantDetailsWrapper = styled.div`
       text-align: center;
     }
   }
+
 
 
   hr {
@@ -159,7 +160,7 @@ function GrantDetails({
         />
       </div>
       <h3 className='sub-title'>Team</h3>
-      <NavButton attendees={attendees} />
+      <ButtonWrapper content={attendees} />
       <hr></hr>
       <div className='text-wrapper'>
         <h3 className='sub-title'>Description</h3>

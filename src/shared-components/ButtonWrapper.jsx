@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 const NavButtonWrapper = styled.div`
-  
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -9,9 +8,8 @@ const NavButtonWrapper = styled.div`
     text-align: center;
     padding: 16px 0;
     gap: 20px;
-  
-
-  .attendee {
+    
+  .content {
     background-color: var(--secondary-bg-color);
     border-radius: 30px;
     padding: 5px 10px 5px 5px;
@@ -19,34 +17,37 @@ const NavButtonWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+    align-content: center;
+}
 
-  .avatar-image {
+  .button-image {
     margin-right: 10px;
+    width: 30px;
+    height: auto;
+    margin: 0;
   }
 
-  .attendee-name {
-    margin: 0 10px 0 5px;
-  }
+  .content .button-name {
+    margin: 0 10px;
     }
+  }
 `;
 
-function NavButton({ attendees }) {
-  console.log("attendees", attendees);
+function ButtonWrapper({ content }) {
   return (
     <NavButtonWrapper>
-      {attendees.map((attendee, index) => (
-        <div key={index} className='attendee'>
+      {content.map((c, index) => (
+        <div key={index} className='content'>
           <img
-            src={`/images/${attendee}.png`}
-            alt='image of attendee'
-            className='avatar-image'
+            src={`/images/${c}.png`}
+            alt='aria-hidden'
+            className='button-image'
           />
-          <p className='attendee-name'>{attendee}</p>
+          <p className='button-name'>{c}</p>
         </div>
       ))}
     </NavButtonWrapper>
   );
 }
 
-export default NavButton;
+export default ButtonWrapper;
