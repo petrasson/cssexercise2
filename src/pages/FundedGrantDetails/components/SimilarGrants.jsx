@@ -26,6 +26,7 @@ const SimilarGrantsWrapper = styled.div`
     .similar-projects-text {
       color: var(--accent-color);
       padding-right: 10px;
+     cursor: pointer;
     }
   }
 

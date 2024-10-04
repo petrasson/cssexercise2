@@ -56,6 +56,7 @@ const CardTransactionWrapper = styled.div`
   }
 
   /****************** WEB VIEW **********************/
+
   @media only screen and (width >= 1305px) {
     flex-direction: row;
     justify-content: space-between;
@@ -70,9 +71,11 @@ const CardTransactionWrapper = styled.div`
     .card-text {
       padding-right: 13px;
     }
+
     .card-wrapper-text {
       width: 2300px;
     }
+
     .amount-wrapper {
       justify-content: end;
     }

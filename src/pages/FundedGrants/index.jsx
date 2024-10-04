@@ -20,7 +20,7 @@ const Container = styled.div`
     padding: 0 108px;  
 `;
 
-function App() {
+function FundedGrants() {
   return (
     <div className='page-wrapper'>
       <Header />
@@ -36,4 +36,4 @@ function App() {
   );
 }
 
-export default App;
+export default FundedGrants;

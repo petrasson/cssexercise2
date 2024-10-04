@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Header from "../../shared-components/Header";
-import NavButton from "./components/NavButton";
+import NavButton from "../../shared-components/NavButton";
 import FundedGrantImage from "./components/FundedGrantImage";
 import GrantDetails from "./components/GrantDetails";
 import SimilarGrants from "./components/SimilarGrants";
@@ -25,7 +25,7 @@ const Container = styled.div`
     padding: 0 108px;
 `;
 
-function App() {
+function FundedGrantDetails() {
   const location = useLocation();
   const { card: stateCard } = location.state || {};
   const { id } = useParams();
@@ -67,4 +67,4 @@ function App() {
   );
 }
 
-export default App;
+export default FundedGrantDetails;

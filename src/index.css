@@ -40,9 +40,9 @@ body::after {
   background: linear-gradient(
     to bottom,
     rgba(25, 25, 34, 0.1) 0%,
-    rgba(25, 25, 34, 0.7) 20%,
+    rgba(25, 25, 34, 0.7) 10%,
     rgba(25, 25, 34, 1) 50%,
-    rgba(25, 25, 34, 0.7) 80%,
+    rgba(25, 25, 34, 0.7) 90%,
     rgba(25, 25, 34, 0.1) 100%
   );
 }

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Header from "../../shared-components/Header";
-import NavButton from "./../FundedGrantDetails/components/NavButton";
+import NavButton from "../../shared-components/NavButton";
 // import GrantDetails from "./components/GrantDetails";
 // import SimilarGrants from "./components/SimilarGrants";
 import Footer from "../../shared-components/Footer";
@@ -47,7 +47,7 @@ const Container = styled.div`
     padding: 0 108px;
 `;
 
-function App() {
+function Grantee() {
   // const location = useLocation();
   // const { card: stateCard } = location.state || {};
   // const { id } = useParams(); // Extract the card id from the URL
@@ -101,4 +101,4 @@ function App() {
   );
 }
 
-export default App;
+export default Grantee;
