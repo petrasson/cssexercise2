@@ -51,7 +51,7 @@ function CardHolder({ cards }) {
               fundingAmountFrom={card.fundingAmountFrom}
               fundingAmountTo={card.fundingAmountTo}
               description={card.descriptionText}
-              attendees={card.attendees}
+              grantees={card.grantees}
             />
           </StyledLink>
         </>

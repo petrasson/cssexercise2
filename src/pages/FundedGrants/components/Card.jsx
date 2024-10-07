@@ -89,7 +89,7 @@ function Card({
   fundingAmountFrom,
   fundingAmountTo,
   description,
-  attendees,
+  grantees,
 }) {
   return (
     <CardWrapper>
@@ -101,7 +101,7 @@ function Card({
       <p className='card-text'>{description}</p>
 
       <div className='avatar-container'>
-        {attendees.slice(0, 3).map((attendee, index) => (
+        {grantees.slice(0, 3).map((attendee, index) => (
           <p className='image-avatar-wrapper' key={index}>
             <img
               src={`/images/${attendee}.png`}
@@ -111,9 +111,9 @@ function Card({
           </p>
         ))}
 
-        {attendees.length > 3 && (
+        {grantees.length > 3 && (
           <div className='purple-circle'>
-            <p className='attendee-number'>+{attendees.length - 3}</p>
+            <p className='attendee-number'>+{grantees.length - 3}</p>
           </div>
         )}
       </div>
@@ -127,7 +127,7 @@ Card.propTypes = {
   fundingAmountFrom: PropTypes.string.isRequired,
   fundingAmountTo: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  attendees: PropTypes.oneOfType([
+  grantees: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
     PropTypes.array,

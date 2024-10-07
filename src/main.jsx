@@ -28,7 +28,7 @@ const router = createBrowserRouter([
     element: <FundedGrantDetails />,
   },
   {
-    path: "/grantee",
+    path: "/grantee/:id",
     element: <Grantee />,
   },
 ]);

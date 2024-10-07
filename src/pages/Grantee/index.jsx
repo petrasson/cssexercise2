@@ -2,16 +2,15 @@ import styled from "styled-components";
 import Header from "../../shared-components/Header";
 import ButtonWrapper from "../../shared-components/ButtonWrapper";
 import BackButton from "../../shared-components/BackButton";
-// import GrantDetails from "./components/GrantDetails";
-// import SimilarGrants from "./components/SimilarGrants";
 import Footer from "../../shared-components/Footer";
 import HeadTitle from "../../shared-components/HeadTitle";
-// import { useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import Card from "../../pages/FundedGrants/components/Card";
 
-// import { Link, useParams, useLocation } from "react-router-dom";
-
-// import rData from "../../../data.json";
-// const { cards } = rData;
+import rData from "../../../data.json";
+const { cards } = rData;
+import rUserData from "../../../userdata.json";
+const { userdata } = rUserData;
 
 const SocialMedia = ["Twitter", "LinkedIn", "Github", "Websites"];
 
@@ -42,44 +41,66 @@ const Container = styled.div`
       color: var(--secondary-text-color);
       margin-bottom: 50px;
       text-align: left;
-      width: 100%; 
+      width: 100%;
   }
 
 .link-wrapper {
  margin-right: auto;
 }
 
+.projects-text {
+  color: var(--accent-color);
+  padding-right: 10px;
+ cursor: pointer;
+}
 
-@media only screen and (width >= 1305px) {
-    padding: 0 108px;
+.card-wrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 40px 0;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 24px;
+    justify-content: center;
+  }
+
+ @media only screen and (width >= 1305px) {
+        padding: 0 108px;
+ .card-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    text-decoration: none;
+  }
 `;
 
 function Grantee() {
-  // const location = useLocation();
-  // const { card: stateCard } = location.state || {};
-  // const { id } = useParams(); // Extract the card id from the URL
-  // const card = stateCard || cards.find((card) => card.id === id);
+  const { id } = useParams();
 
-  // useEffect(() => {
-  //   window.scrollTo(0, 0);
-  // }, [id]);
+  const userInformation = userdata.find((user) => user.id === id);
 
-  // if (!card) {
-  //   return <div>Card not found</div>;
-  // }
-  // const similarGrants = cards.filter(
-  //   (c) => c.category === card.category && c.id !== card.id
-  // );
+  if (!user) {
+    return <p>User not found</p>;
+  }
+
+  const usersCards = cards.filter((card) => card.grantees.includes(id));
 
   return (
     <div className='page-wrapper'>
       <Header />
       <Container>
-        {/* <Link to='/funded-grants'> */}
-        <BackButton />
-        {/* </Link> */}
-        <img src='/images/grantee.png' alt='image of Helga, attendee' />
-        <HeadTitle text='Jane Cooper' />
+        <Link to='/funded-grants'>
+          <BackButton />
+        </Link>
+        <img src='/images/grantee.png' alt='image of user5, attendee' />
+        <HeadTitle text={userInformation.name} />
         <div className='text-wrapper'>
           <h3 className='sub-title'>About</h3>
           <p className='grant-text'>
@@ -94,6 +115,22 @@ function Grantee() {
             <ButtonWrapper content={SocialMedia} />
           </div>
         </div>
+        <h3 className='projects-text'>Projects</h3>
+        <div className='card-wrapper'>
+          {usersCards.map((card) => (
+            <StyledLink key={card.id} to={`/card/${card.id}`}>
+              <Card
+                key={card.id}
+                category={card.category}
+                cardTitle={card.fundTitle}
+                fundingAmountFrom={card.fundingAmountFrom}
+                fundingAmountTo={card.fundingAmountTo}
+                description={card.descriptionText}
+                grantees={card.grantees}
+              />
+            </StyledLink>
+          ))}
+        </div>
       </Container>
       <Footer />
     </div>
@@ -102,15 +139,13 @@ function Grantee() {
 
 export default Grantee;
 
-{
-  /* <GrantDetails
+/* <GrantDetails
           key={card.id}
           category={card.category}
           cardTitle={card.fundTitle}
           fundingAmountFrom={card.fundingAmountFrom}
           status={card.status}
           description={card.descriptionText}
-          attendees={card.attendees}
+          grantees={card.grantees}
         />
         <SimilarGrants similarGrants={similarGrants} /> */
-}

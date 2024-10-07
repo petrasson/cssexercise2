@@ -3,6 +3,8 @@ import HeadTitle from "../../../shared-components/HeadTitle";
 import Button from "../../../shared-components/Button";
 import CardTransactions from "./CardTransactions";
 import ButtonWrapper from "../../../shared-components/ButtonWrapper";
+import rUserData from "./../../../../userdata.json";
+const { userdata } = rUserData;
 
 const GrantDetailsWrapper = styled.div`
   width: 100%;
@@ -140,8 +142,16 @@ function GrantDetails({
   status,
   fundingAmountFrom,
   description,
-  attendees,
+  grantees,
 }) {
+  const granteeData = grantees.map((id) => {
+    const user = userdata.find((user) => user.id === id);
+    if (!user) {
+      console.warn(`User with ID ${id} not found in userdata`);
+    }
+    return user;
+  });
+
   return (
     <GrantDetailsWrapper>
       <p className='card-category'>{category}</p>
@@ -160,7 +170,7 @@ function GrantDetails({
         />
       </div>
       <h3 className='sub-title'>Team</h3>
-      <ButtonWrapper content={attendees} />
+      <ButtonWrapper content={granteeData} />
       <hr></hr>
       <div className='text-wrapper'>
         <h3 className='sub-title'>Description</h3>

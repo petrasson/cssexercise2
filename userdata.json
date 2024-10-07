@@ -1,0 +1,34 @@
+{
+  "userdata": [
+    {
+      "id": "user1",
+      "name": "Simon",
+      "projects": ["card1", "card2", "card3"]
+    },
+    {
+      "id": "user2",
+      "name": "John",
+      "projects": ["card1", "card2", "card3"]
+    },
+    {
+      "id": "user3",
+      "name": "Amanda",
+      "projects": ["card11", "card5", "card9"]
+    },
+    {
+      "id": "user4",
+      "name": "Ali",
+      "projects": ["card10", "card2", "card5"]
+    },
+    {
+      "id": "user5",
+      "name": "Helga",
+      "projects": ["card19", "card12", "card8"]
+    },
+    {
+      "id": "user6",
+      "name": "Rashid",
+      "projects": ["card18", "card11", "card8"]
+    }
+  ]
+}

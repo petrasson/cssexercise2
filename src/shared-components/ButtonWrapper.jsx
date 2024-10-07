@@ -1,4 +1,19 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+
+const StyledLink = styled(Link)`
+  // color: var(--primary-text-color);
+  // background-color: var(--secondary-bg-color);
+  // padding: 10px 16px;
+  // height: 44px;
+  // border-radius: 10px;
+  // font-size: 16px;
+  text-decoration: none;
+  // &:hover {
+  //   color: var(--secondary-bg-color);
+  //   background-color: var(--primary-text-color);
+  }
+`;
 
 const NavButtonWrapper = styled.div`
     display: flex;
@@ -37,14 +52,16 @@ function ButtonWrapper({ content }) {
   return (
     <NavButtonWrapper>
       {content.map((c, index) => (
-        <div key={index} className='content'>
-          <img
-            src={`/images/${c}.png`}
-            alt='aria-hidden'
-            className='button-image'
-          />
-          <p className='button-name'>{c}</p>
-        </div>
+        <StyledLink key={c.id} to={`/grantee/${c.id}`}>
+          <div key={index} className='content'>
+            <img
+              src={`/images/${c.id}.png`}
+              alt='aria-hidden'
+              className='button-image'
+            />
+            <p className='button-name'>{c.name}</p>
+          </div>
+        </StyledLink>
       ))}
     </NavButtonWrapper>
   );

@@ -99,17 +99,17 @@
 // function renderCards(funds) {
 //   cardsGrid.innerHTML = "";
 //   funds.forEach((fund) => {
-//     let attendees = "";
+//     let grantees = "";
 
-//     if (fund.attendees.length > 3) {
+//     if (fund.grantees.length > 3) {
 //       for (let i = 0; i < 3; i++) {
-//         attendees += `<div class="image-avatar-wrapper"><img src="images/${fund.attendees[i]}.png" alt="Avatar for participant" /></div>`;
+//         grantees += `<div class="image-avatar-wrapper"><img src="images/${fund.grantees[i]}.png" alt="Avatar for participant" /></div>`;
 //       }
-//       attendees += `<div class="image-avatar-wrapper"><div class="purple-circle"><p class ="attendee-number">+${
-//         fund.attendees.length - 3
+//       grantees += `<div class="image-avatar-wrapper"><div class="purple-circle"><p class ="attendee-number">+${
+//         fund.grantees.length - 3
 //       }</p></div></div>`;
 //     } else {
-//       attendees = fund.attendees
+//       grantees = fund.grantees
 //         .map(
 //           (name) =>
 //             `<p class="image-avatar-wrapper"><img src="images/${name}.png" alt="Avatar for participant" /></p>`
@@ -127,7 +127,7 @@
 //             ${fund.funding_amount_from}-${fund.funding_amount_to}
 //           </p>
 //           <p class="card-text">${fund.description}</p>
-//           <div class="avatar-container">${attendees}</div>
+//           <div class="avatar-container">${grantees}</div>
 //         </div>
 //       `
 //     );

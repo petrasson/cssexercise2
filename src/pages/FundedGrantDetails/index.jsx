@@ -58,7 +58,7 @@ function FundedGrantDetails() {
           fundingAmountFrom={card.fundingAmountFrom}
           status={card.status}
           description={card.descriptionText}
-          attendees={card.attendees}
+          grantees={card.grantees}
         />
         <SimilarGrants similarGrants={similarGrants} />
       </Container>
