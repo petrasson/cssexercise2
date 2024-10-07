@@ -8,11 +8,11 @@
         {
           "imageSrc": "/images/Twitter.svg",
           "imageAlt": "Twitter",
-          "text": "www.simon-twitter.com",
+          "text": "Twitter",
           "link": "http://www.twitter.com"
         },
         {
-          "imageSrc": "/images/LinkedIn.svg",
+          "imageSrc": "/images/LinkedIn.png",
           "imageAlt": "LinkedIn",
           "text": "LinkedIn",
           "link": "https://www.linkedin.com"
@@ -24,7 +24,7 @@
           "link": "https://www.github.com"
         },
         {
-          "imageSrc": "/images/Websites.svg",
+          "imageSrc": "/images/Websites.png",
           "imageAlt": "Website",
           "text": "Website",
           "link": "https://www.google.com"

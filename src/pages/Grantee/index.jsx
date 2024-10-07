@@ -12,8 +12,6 @@ const { cards } = rData;
 import rUserData from "../../../userdata.json";
 const { userdata } = rUserData;
 
-const SocialMedia = ["Twitter", "LinkedIn", "Github", "Websites"];
-
 const Container = styled.div`
   margin: 0 auto;
   max-width: 1000px;
@@ -86,7 +84,10 @@ function Grantee() {
 
   const userInformation = userdata.find((user) => user.id === id);
 
-  if (!user) {
+  console.log("userInformation", userInformation);
+  console.log("cards ", cards);
+
+  if (!userInformation) {
     return <p>User not found</p>;
   }
 
@@ -112,7 +113,7 @@ function Grantee() {
           </p>
           <h3 className='sub-title'>Links</h3>
           <div className='link-wrapper'>
-            <ButtonWrapper content={SocialMedia} />
+            <ButtonWrapper items={userInformation.links} />
           </div>
         </div>
         <h3 className='projects-text'>Projects</h3>

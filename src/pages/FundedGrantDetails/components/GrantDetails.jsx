@@ -75,8 +75,8 @@ const GrantDetailsWrapper = styled.div`
   }
 
   .sub-title.funding {
-  margin-bottom: 20px;
-  margin-right: auto;
+    margin-bottom: 20px;
+    margin-right: auto;
   }
 
   .text-wrapper {
@@ -144,14 +144,26 @@ function GrantDetails({
   description,
   grantees,
 }) {
-  const granteeData = grantees.map((id) => {
-    const user = userdata.find((user) => user.id === id);
-    if (!user) {
-      console.warn(`User with ID ${id} not found in userdata`);
-    }
-    return user;
-  });
+  console.log("grantees:", grantees);
 
+  const granteeData = grantees
+    .map((id) => {
+      const user = userdata.find((user) => user.id === id);
+      console.log(`Processing grantee ID: ${id}`, "Found user:", user);
+
+      if (!user) {
+        console.warn(`User with ID ${id} not found in userdata`);
+        return null;
+      }
+
+      return {
+        imageSrc: `/images/${user.id}.png`,
+        imageAlt: user.name,
+        text: user.name,
+        link: `/grantee/${user.id}`,
+      };
+    })
+    .filter(Boolean);
   return (
     <GrantDetailsWrapper>
       <p className='card-category'>{category}</p>
@@ -170,7 +182,7 @@ function GrantDetails({
         />
       </div>
       <h3 className='sub-title'>Team</h3>
-      <ButtonWrapper content={granteeData} />
+      <ButtonWrapper items={granteeData} />
       <hr></hr>
       <div className='text-wrapper'>
         <h3 className='sub-title'>Description</h3>
@@ -179,7 +191,7 @@ function GrantDetails({
         <p>
           Funding Rates page will help promote and guide traders around
           Perpetual premiums found across all assets traded on dYdX. Rewards &
-          Tracking simulator will help market the benefits of trading on dYdX
+          Tracking simulator will help market the benefits of trading on dYdXlga
           and assist current traders in mapping out their rewards. The CLI
           trading tool will make it easier for non-UI based traders to execute
           quickly on dYdX. The general purpose of this grant is to recruit Chaos
