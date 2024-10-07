@@ -3,32 +3,188 @@
     {
       "id": "user1",
       "name": "Simon",
-      "projects": ["card1", "card2", "card3"]
+      "projects": ["card1", "card2", "card3"],
+      "links": [
+        {
+          "imageSrc": "/images/Twitter.svg",
+          "imageAlt": "Twitter",
+          "text": "www.simon-twitter.com",
+          "link": "http://www.twitter.com"
+        },
+        {
+          "imageSrc": "/images/LinkedIn.svg",
+          "imageAlt": "LinkedIn",
+          "text": "LinkedIn",
+          "link": "https://www.linkedin.com"
+        },
+        {
+          "imageSrc": "/images/Github.svg",
+          "imageAlt": "Github",
+          "text": "Github",
+          "link": "https://www.github.com"
+        },
+        {
+          "imageSrc": "/images/Websites.svg",
+          "imageAlt": "Website",
+          "text": "Website",
+          "link": "https://www.google.com"
+        }
+      ]
     },
     {
       "id": "user2",
       "name": "John",
-      "projects": ["card1", "card2", "card3"]
+      "projects": ["card1", "card2", "card3"],
+      "links": [
+        {
+          "imageSrc": "/images/Twitter.svg",
+          "imageAlt": "Twitter",
+          "text": "www.simon-twitter.com",
+          "link": "http://www.twitter.com"
+        },
+        {
+          "imageSrc": "/images/LinkedIn.svg",
+          "imageAlt": "LinkedIn",
+          "text": "LinkedIn",
+          "link": "https://www.linkedin.com"
+        },
+        {
+          "imageSrc": "/images/Github.svg",
+          "imageAlt": "Github",
+          "text": "Github",
+          "link": "https://www.github.com"
+        },
+        {
+          "imageSrc": "/images/Websites.svg",
+          "imageAlt": "Website",
+          "text": "Website",
+          "link": "https://www.google.com"
+        }
+      ]
     },
     {
       "id": "user3",
       "name": "Amanda",
-      "projects": ["card11", "card5", "card9"]
+      "projects": ["card11", "card5", "card9"],
+      "links": [
+        {
+          "imageSrc": "/images/Twitter.svg",
+          "imageAlt": "Twitter",
+          "text": "www.simon-twitter.com",
+          "link": "http://www.twitter.com"
+        },
+        {
+          "imageSrc": "/images/LinkedIn.svg",
+          "imageAlt": "LinkedIn",
+          "text": "LinkedIn",
+          "link": "https://www.linkedin.com"
+        },
+        {
+          "imageSrc": "/images/Github.svg",
+          "imageAlt": "Github",
+          "text": "Github",
+          "link": "https://www.github.com"
+        },
+        {
+          "imageSrc": "/images/Websites.svg",
+          "imageAlt": "Website",
+          "text": "Website",
+          "link": "https://www.google.com"
+        }
+      ]
     },
     {
       "id": "user4",
       "name": "Ali",
-      "projects": ["card10", "card2", "card5"]
+      "projects": ["card10", "card2", "card5"],
+      "links": [
+        {
+          "imageSrc": "/images/Twitter.svg",
+          "imageAlt": "Twitter",
+          "text": "www.simon-twitter.com",
+          "link": "http://www.twitter.com"
+        },
+        {
+          "imageSrc": "/images/LinkedIn.svg",
+          "imageAlt": "LinkedIn",
+          "text": "LinkedIn",
+          "link": "https://www.linkedin.com"
+        },
+        {
+          "imageSrc": "/images/Github.svg",
+          "imageAlt": "Github",
+          "text": "Github",
+          "link": "https://www.github.com"
+        },
+        {
+          "imageSrc": "/images/Websites.svg",
+          "imageAlt": "Website",
+          "text": "Website",
+          "link": "https://www.google.com"
+        }
+      ]
     },
     {
       "id": "user5",
       "name": "Helga",
-      "projects": ["card19", "card12", "card8"]
+      "projects": ["card19", "card12", "card8"],
+      "links": [
+        {
+          "imageSrc": "/images/Twitter.svg",
+          "imageAlt": "Twitter",
+          "text": "www.simon-twitter.com",
+          "link": "http://www.twitter.com"
+        },
+        {
+          "imageSrc": "/images/LinkedIn.svg",
+          "imageAlt": "LinkedIn",
+          "text": "LinkedIn",
+          "link": "https://www.linkedin.com"
+        },
+        {
+          "imageSrc": "/images/Github.svg",
+          "imageAlt": "Github",
+          "text": "Github",
+          "link": "https://www.github.com"
+        },
+        {
+          "imageSrc": "/images/Websites.svg",
+          "imageAlt": "Website",
+          "text": "Website",
+          "link": "https://www.google.com"
+        }
+      ]
     },
     {
       "id": "user6",
       "name": "Rashid",
-      "projects": ["card18", "card11", "card8"]
+      "projects": ["card18", "card11", "card8"],
+      "links": [
+        {
+          "imageSrc": "/images/Twitter.svg",
+          "imageAlt": "Twitter",
+          "text": "www.simon-twitter.com",
+          "link": "http://www.twitter.com"
+        },
+        {
+          "imageSrc": "/images/LinkedIn.svg",
+          "imageAlt": "LinkedIn",
+          "text": "LinkedIn",
+          "link": "https://www.linkedin.com"
+        },
+        {
+          "imageSrc": "/images/Github.svg",
+          "imageAlt": "Github",
+          "text": "Github",
+          "link": "https://www.github.com"
+        },
+        {
+          "imageSrc": "/images/Websites.svg",
+          "imageAlt": "Website",
+          "text": "Website",
+          "link": "https://www.google.com"
+        }
+      ]
     }
   ]
 }
