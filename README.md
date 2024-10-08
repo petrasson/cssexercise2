@@ -1,11 +1,15 @@
 # cssexercise2
 
-#### Getting Started
+## Getting Started
 
 1. `npm install -g pnpm`
 1. `pnpm install`
 1. `pnpm run dev`
 1. Open `http://localhost:5173` in your browser
+
+## Design
+
+All design was taken from [this Figma file](https://www.figma.com/design/eWP1AMJzYWDDTbxzkSu4Bg/dYdX-Grants?node-id=2352-27386&node-type=frame&t=3Vl1AzANGAishmmk-0)
 
 ## API
 
