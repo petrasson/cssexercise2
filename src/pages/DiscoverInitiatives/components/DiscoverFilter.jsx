@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import FilterControl from "../../../shared-components/FilterControl";
 import Initiatives from "./Initiatives";
-import React, { useState } from "react";
+import { useState } from "react";
 import rData from "../../../../data.json";
 
 const { cards } = rData;
@@ -23,8 +23,9 @@ const DiscoverFilterWrapper = styled.div`
   align-items: center;
 `;
 
-function DiscoverFilter() {
+function DiscoverFilter({ initiatives }) {
   const [filterType, setFilterType] = useState("All");
+  console.log({ initiatives, cards });
   const [filteredData, setFilteredData] = useState(cards);
 
   const handleFilter = (filterType) => {
@@ -34,7 +35,7 @@ function DiscoverFilter() {
 
     if (filterType !== "All") {
       newFilteredData = newFilteredData.filter(
-        (item) => item.status === filterType
+        (item) => item.status === filterType,
       );
     }
 
