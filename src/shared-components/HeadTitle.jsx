@@ -12,7 +12,6 @@ const HeadTitleWrapper = styled.div`
 `;
 
 function HeadTitle({ text }) {
-  console.log("text", text);
   return <HeadTitleWrapper>{text}</HeadTitleWrapper>;
 }
 

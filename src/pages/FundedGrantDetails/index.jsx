@@ -6,7 +6,7 @@ import GrantDetails from "./components/GrantDetails";
 import SimilarGrants from "./components/SimilarGrants";
 import Footer from "../../shared-components/Footer";
 import { useEffect } from "react";
-import { Link, useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 import rData from "../../../data.json";
 const { cards } = rData;
 
@@ -27,38 +27,47 @@ const Container = styled.div`
 
 function FundedGrantDetails() {
   const location = useLocation();
-  const { card: stateCard } = location.state || {};
+  const navigate = useNavigate();
+  const { card: stateCard, from } = location.state || {};
   const { id } = useParams();
-  const card = stateCard || cards.find((card) => card.id === id);
+
+  const currentCard = stateCard || cards.find((card) => card.id === id);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
 
-  if (!card) {
+  if (!currentCard) {
     return <div>Card not found</div>;
   }
 
   const similarGrants = cards.filter(
-    (c) => c.category === card.category && c.id !== card.id
+    (c) => c.category === currentCard.category && c.id !== currentCard.id
   );
+
+  const canGoBack = !!from;
 
   return (
     <div className='page-wrapper'>
       <Header />
       <Container>
-        <Link to='/funded-grants'>
-          <BackButton />
-        </Link>
+        {canGoBack && (
+          <BackButton
+            onClick={() => {
+              console.log("BackButton clicked");
+              navigate(-1);
+            }}
+          />
+        )}
         <FundedGrantImage />
         <GrantDetails
-          key={card.id}
-          category={card.category}
-          cardTitle={card.fundTitle}
-          fundingAmountFrom={card.fundingAmountFrom}
-          status={card.status}
-          description={card.descriptionText}
-          grantees={card.grantees}
+          key={currentCard.id}
+          category={currentCard.category}
+          cardTitle={currentCard.fundTitle}
+          fundingAmountFrom={currentCard.fundingAmountFrom}
+          status={currentCard.status}
+          description={currentCard.descriptionText}
+          grantees={currentCard.grantees}
         />
         <SimilarGrants similarGrants={similarGrants} />
       </Container>

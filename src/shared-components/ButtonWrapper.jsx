@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const StyledLink = styled(Link)`
   color: var(--primary-text-color);
@@ -16,19 +16,19 @@ const NavButtonWrapper = styled.div`
     gap: 20px;
 
     .link {
-    text-decoration: none;
+     text-decoration: none;
      color: var(--primary-text-color);
     }
     
-  .content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    padding: 10px;
-    font-size: 16px;
-    background-color: var(--secondary-bg-color);
-    border-radius: 30px;
+    .content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+      padding: 10px;
+      font-size: 16px;
+      background-color: var(--secondary-bg-color);
+      border-radius: 30px;
 }
 
   .button-image {
@@ -45,6 +45,7 @@ const NavButtonWrapper = styled.div`
 `;
 
 function ButtonWrapper({ items }) {
+  const location = useLocation();
   return (
     <NavButtonWrapper>
       {items.map((item, index) => {
@@ -69,7 +70,12 @@ function ButtonWrapper({ items }) {
             </div>
           </a>
         ) : (
-          <StyledLink key={index} to={item.link} className='link'>
+          <StyledLink
+            key={index}
+            to={item.link}
+            state={{ from: location }}
+            className='link'
+          >
             <div className='content'>
               {item.imageSrc && (
                 <img

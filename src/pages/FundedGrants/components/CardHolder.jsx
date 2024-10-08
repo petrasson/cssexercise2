@@ -1,7 +1,7 @@
 // import { StyledCardHolder } from "./styles/CardHolder.styled";
 import Card from "./Card";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -37,11 +37,17 @@ const CardWrapper = styled.div`
 `;
 
 function CardHolder({ cards }) {
+  const location = useLocation();
+
   return (
     <CardWrapper>
       {cards.map((card) => (
         <>
-          <StyledLink key={card.id} to={`/card/${card.id}`} state={{ card }}>
+          <StyledLink
+            key={card.id}
+            to={`/card/${card.id}`}
+            state={{ card, from: location }}
+          >
             <Card
               key={card.id}
               category={card.category}

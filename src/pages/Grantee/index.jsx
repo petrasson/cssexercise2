@@ -4,7 +4,7 @@ import ButtonWrapper from "../../shared-components/ButtonWrapper";
 import BackButton from "../../shared-components/BackButton";
 import Footer from "../../shared-components/Footer";
 import HeadTitle from "../../shared-components/HeadTitle";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
 import Card from "../../pages/FundedGrants/components/Card";
 
 import rData from "../../../data.json";
@@ -87,22 +87,29 @@ const StyledLink = styled(Link)`
 
 function Grantee() {
   const { id } = useParams();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const userInformation = userdata.find((user) => user.id === id);
 
   if (!userInformation) {
     return <p>User not found</p>;
   }
-
   const usersCards = cards.filter((card) => card.grantees.includes(id));
+  const canGoBack = location.state && location.state.from;
 
   return (
     <div className='page-wrapper'>
       <Header />
       <Container>
-        <Link to='/funded-grants'>
-          <BackButton />
-        </Link>
+        {canGoBack && (
+          <BackButton
+            onClick={() => {
+              console.log("BackButton clicked");
+              navigate(-1);
+            }}
+          />
+        )}
         <img src={`/images/${id}.png`} alt='picture of user' />
         <HeadTitle text={userInformation.name} />
         <div className='text-wrapper'>
@@ -116,7 +123,7 @@ function Grantee() {
           </p>
           <h3 className='sub-title'>Links</h3>
           <div className='link-wrapper'>
-            <ButtonWrapper items={userInformation.links} />
+            <ButtonWrapper items={userInformation.links} location={location} />
           </div>
         </div>
         <h1 className='projects-text'>Projects</h1>

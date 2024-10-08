@@ -59,8 +59,6 @@ const GrantDetailsWrapper = styled.div`
     }
   }
 
-
-
   hr {
     height: 1px;
     background-color: var(--secondary-bg-color);
@@ -144,8 +142,6 @@ function GrantDetails({
   description,
   grantees,
 }) {
-  console.log("grantees:", grantees);
-
   const granteeData = grantees
     .map((id) => {
       const user = userdata.find((user) => user.id === id);

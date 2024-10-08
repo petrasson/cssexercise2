@@ -15,7 +15,7 @@ const BackButtonWrapper = styled.div`
     justify-content: center;
     align-items: center;
   }
-  .image-fundedgrants {
+  .arrow {
     width: 15px;
   }
 `;
@@ -24,11 +24,7 @@ function BackButton() {
   return (
     <BackButtonWrapper>
       <div className='nav-button-back'>
-        <img
-          src='/images/left-arrow.svg'
-          alt='images of the logotypes chaos labs and dydx'
-          className='image-fundedgrants'
-        />
+        <img src='/images/left-arrow.svg' alt='Back arrow' className='arrow' />
       </div>
     </BackButtonWrapper>
   );
