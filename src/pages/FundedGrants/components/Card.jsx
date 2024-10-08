@@ -58,6 +58,7 @@ const CardWrapper = styled.div`
     height: 40px;
     border-radius: 50%;
     object-fit: cover;
+    margin: 0;
   }
 
   .purple-circle {

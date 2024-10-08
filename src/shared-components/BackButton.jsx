@@ -13,7 +13,7 @@ const BackButtonWrapper = styled.div`
     left: -91px;
     display: flex;
     justify-content: center;
-    align-item; center;
+    align-items: center;
   }
   .image-fundedgrants {
     width: 15px;

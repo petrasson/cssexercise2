@@ -71,7 +71,6 @@ function CardFilter() {
         withToggle={true}
         handleToggle={() => handleToggle(!filterCompleted)}
       />
-
       <CardHolder cards={filteredData} />
     </CardFilterWrapper>
   );

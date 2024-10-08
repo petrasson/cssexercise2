@@ -25,49 +25,55 @@ const Container = styled.div`
 
   img {
     width: 270px;
-    margin-top: 60px;
+    margin: 60px;
   }
 
   .text-wrapper {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    margin-top: 20px;
 
     .grant-text {
       font-size: 16px;
       line-height: 24px;
       color: var(--secondary-text-color);
-      margin-bottom: 50px;
+      margin-bottom: 30px;
       text-align: left;
       width: 100%;
+    }
   }
 
-.link-wrapper {
- margin-right: auto;
-}
+  .link-wrapper {
+    margin-right: auto;
+  }
 
-.projects-text {
-  color: var(--accent-color);
-  padding-right: 10px;
- cursor: pointer;
-}
+  .projects-text {
+    cursor: pointer;
+    margin: 120px 0 50px 0;
+  }
 
-.card-wrapper {
-    display: flex;
-    flex-direction: column;
+  .card-wrapper {
     max-width: 1440px;
     margin: 0 auto;
     padding: 40px 0;
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     grid-gap: 24px;
-    justify-content: center;
+      // justify-content: center;
+    justify-content: start;
+    text-align: left;
+    width: 100%;
   }
 
- @media only screen and (width >= 1305px) {
-        padding: 0 108px;
- .card-wrapper {
+  /*********************************** WEB VERSION *********************************/
+
+  @media only screen and (width >= 1305px) {
+
+  .card-wrapper {
     grid-template-columns: repeat(2, 1fr);
+    justify-content: start;
+  }
 `;
 
 const StyledLink = styled(Link)`
@@ -84,9 +90,6 @@ function Grantee() {
 
   const userInformation = userdata.find((user) => user.id === id);
 
-  console.log("userInformation", userInformation);
-  console.log("cards ", cards);
-
   if (!userInformation) {
     return <p>User not found</p>;
   }
@@ -100,7 +103,7 @@ function Grantee() {
         <Link to='/funded-grants'>
           <BackButton />
         </Link>
-        <img src='/images/grantee.png' alt='image of user5, attendee' />
+        <img src={`/images/${id}.png`} alt='picture of user' />
         <HeadTitle text={userInformation.name} />
         <div className='text-wrapper'>
           <h3 className='sub-title'>About</h3>
@@ -116,7 +119,7 @@ function Grantee() {
             <ButtonWrapper items={userInformation.links} />
           </div>
         </div>
-        <h3 className='projects-text'>Projects</h3>
+        <h1 className='projects-text'>Projects</h1>
         <div className='card-wrapper'>
           {usersCards.map((card) => (
             <StyledLink key={card.id} to={`/card/${card.id}`}>
@@ -139,14 +142,3 @@ function Grantee() {
 }
 
 export default Grantee;
-
-/* <GrantDetails
-          key={card.id}
-          category={card.category}
-          cardTitle={card.fundTitle}
-          fundingAmountFrom={card.fundingAmountFrom}
-          status={card.status}
-          description={card.descriptionText}
-          grantees={card.grantees}
-        />
-        <SimilarGrants similarGrants={similarGrants} /> */

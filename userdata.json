@@ -34,12 +34,12 @@
     {
       "id": "user2",
       "name": "John",
-      "projects": ["card1", "card2", "card3"],
+      "projects": ["card1", "card12"],
       "links": [
         {
           "imageSrc": "/images/Twitter.svg",
           "imageAlt": "Twitter",
-          "text": "www.simon-twitter.com",
+          "text": "Twitter",
           "link": "http://www.twitter.com"
         },
         {
@@ -70,7 +70,7 @@
         {
           "imageSrc": "/images/Twitter.svg",
           "imageAlt": "Twitter",
-          "text": "www.simon-twitter.com",
+          "text": "Twitter",
           "link": "http://www.twitter.com"
         },
         {
@@ -96,12 +96,12 @@
     {
       "id": "user4",
       "name": "Ali",
-      "projects": ["card10", "card2", "card5"],
+      "projects": ["card10", "card2"],
       "links": [
         {
           "imageSrc": "/images/Twitter.svg",
           "imageAlt": "Twitter",
-          "text": "www.simon-twitter.com",
+          "text": "Twitter",
           "link": "http://www.twitter.com"
         },
         {
@@ -132,7 +132,7 @@
         {
           "imageSrc": "/images/Twitter.svg",
           "imageAlt": "Twitter",
-          "text": "www.simon-twitter.com",
+          "text": "Twitter",
           "link": "http://www.twitter.com"
         },
         {
@@ -163,7 +163,100 @@
         {
           "imageSrc": "/images/Twitter.svg",
           "imageAlt": "Twitter",
-          "text": "www.simon-twitter.com",
+          "text": "Twitter",
+          "link": "http://www.twitter.com"
+        },
+        {
+          "imageSrc": "/images/LinkedIn.svg",
+          "imageAlt": "LinkedIn",
+          "text": "LinkedIn",
+          "link": "https://www.linkedin.com"
+        },
+        {
+          "imageSrc": "/images/Github.svg",
+          "imageAlt": "Github",
+          "text": "Github",
+          "link": "https://www.github.com"
+        },
+        {
+          "imageSrc": "/images/Websites.svg",
+          "imageAlt": "Website",
+          "text": "Website",
+          "link": "https://www.google.com"
+        }
+      ]
+    },
+    {
+      "id": "user7",
+      "name": "Ola",
+      "projects": ["card1", "card13"],
+      "links": [
+        {
+          "imageSrc": "/images/Twitter.svg",
+          "imageAlt": "Twitter",
+          "text": "Twitter",
+          "link": "http://www.twitter.com"
+        },
+        {
+          "imageSrc": "/images/LinkedIn.svg",
+          "imageAlt": "LinkedIn",
+          "text": "LinkedIn",
+          "link": "https://www.linkedin.com"
+        },
+        {
+          "imageSrc": "/images/Github.svg",
+          "imageAlt": "Github",
+          "text": "Github",
+          "link": "https://www.github.com"
+        },
+        {
+          "imageSrc": "/images/Websites.svg",
+          "imageAlt": "Website",
+          "text": "Website",
+          "link": "https://www.google.com"
+        }
+      ]
+    },
+    {
+      "id": "user8",
+      "name": "Lisa",
+      "projects": ["card8", "card6", "card20"],
+      "links": [
+        {
+          "imageSrc": "/images/Twitter.svg",
+          "imageAlt": "Twitter",
+          "text": "Twitter",
+          "link": "http://www.twitter.com"
+        },
+        {
+          "imageSrc": "/images/LinkedIn.svg",
+          "imageAlt": "LinkedIn",
+          "text": "LinkedIn",
+          "link": "https://www.linkedin.com"
+        },
+        {
+          "imageSrc": "/images/Github.svg",
+          "imageAlt": "Github",
+          "text": "Github",
+          "link": "https://www.github.com"
+        },
+        {
+          "imageSrc": "/images/Websites.svg",
+          "imageAlt": "Website",
+          "text": "Website",
+          "link": "https://www.google.com"
+        }
+      ]
+    },
+    {
+      "id": "user9",
+      "name": "Nilla",
+      "projects": ["card6", "card7", "card8"],
+      "links": [
+        {
+          "imageSrc": "/images/Twitter.svg",
+          "imageAlt": "Twitter",
+          "text": "Twitter",
           "link": "http://www.twitter.com"
         },
         {
