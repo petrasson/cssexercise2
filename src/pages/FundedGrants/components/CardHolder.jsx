@@ -1,5 +1,5 @@
 // import { StyledCardHolder } from "./styles/CardHolder.styled";
-import Card from "./Card";
+import Card from "../../../shared-components/Card";
 import styled from "styled-components";
 import { Link, useLocation } from "react-router-dom";
 

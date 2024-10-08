@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Card from "../../../pages/FundedGrants/components/Card";
+import Card from "../../../shared-components/Card";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 

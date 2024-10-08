@@ -5,7 +5,7 @@ import BackButton from "../../shared-components/BackButton";
 import Footer from "../../shared-components/Footer";
 import HeadTitle from "../../shared-components/HeadTitle";
 import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
-import Card from "../../pages/FundedGrants/components/Card";
+import Card from "../../shared-components/Card";
 
 import rData from "../../../data.json";
 const { cards } = rData;

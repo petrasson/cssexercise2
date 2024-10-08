@@ -14,15 +14,16 @@ const BackButtonWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer: 
   }
   .arrow {
     width: 15px;
   }
 `;
 
-function BackButton() {
+function BackButton({ onClick }) {
   return (
-    <BackButtonWrapper>
+    <BackButtonWrapper onClick={onClick}>
       <div className='nav-button-back'>
         <img src='/images/left-arrow.svg' alt='Back arrow' className='arrow' />
       </div>
