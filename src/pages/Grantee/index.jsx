@@ -110,7 +110,7 @@ function Grantee() {
             }}
           />
         )}
-        <img src={`/images/${id}.png`} alt='picture of user' />
+        <img src={`/images/${id}.svg`} alt='picture of user' />
         <HeadTitle text={userInformation.name} />
         <div className='text-wrapper'>
           <h3 className='sub-title'>About</h3>

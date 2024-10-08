@@ -126,7 +126,6 @@ const GrantDetailsWrapper = styled.div`
   .project-detail-wrapper {
     flex-direction: row;
     justify-content: space-between;
-   
   }
   
   .row-wrapper {
@@ -153,7 +152,7 @@ function GrantDetails({
       }
 
       return {
-        imageSrc: `/images/${user.id}.png`,
+        imageSrc: `/images/${user.id}.svg`,
         imageAlt: user.name,
         text: user.name,
         link: `/grantee/${user.id}`,

@@ -105,7 +105,7 @@ function Card({
         {grantees.slice(0, 3).map((attendee, index) => (
           <p className='image-avatar-wrapper' key={index}>
             <img
-              src={`/images/${attendee}.png`}
+              src={`/images/${attendee}.svg`}
               alt={attendee}
               className='avatar-image'
             />

@@ -1,39 +1,36 @@
 import styled, { css } from "styled-components";
 import PropTypes from "prop-types";
 import { clsx } from "clsx";
+import { FaDiscord } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
 
 const SocialMediaWrapper = styled.div`
   display: none;
   flex-direction: row;
   gap: 32px;
+  cursor: pointer;
 
   &.visible {
     display: flex;
 
-  ${(props) =>
-    props.$position === "top" &&
-    css`
-      justify-content: center;
-      align-items: center;
-      margin: 5px 0;
-      padding-top: 50px;
+    ${(props) =>
+      props.$position === "top" &&
+      css`
+        justify-content: center;
+        align-items: center;
+        margin: 5px 0;
+        padding-top: 50px;
 
-      @media (width >= 1024px) {
-        display: none;
-      }
-    `}
+        @media (width >= 1024px) {
+          display: none;
+        }
+      `}
 
-  ${(props) =>
-    props.$position === "bottom" &&
-    css`
-      align-items: center;
-    `}
-
-  .social-media-symbol {
-    display: flex;
-    width: 32px;
-    height: 32px;
-    cursor: pointer;
+    ${(props) =>
+      props.$position === "bottom" &&
+      css`
+        align-items: center;
+      `}
   }
 `;
 
@@ -48,16 +45,8 @@ function SocialMedia({ isMenuActive, isDesktop, position }) {
             : position === "bottom",
       })}
     >
-      <img
-        src='/images/Twitter.svg'
-        alt='twitter-symbol'
-        className='social-media-symbol'
-      />
-      <img
-        src='/images/Discord.svg'
-        alt='discord-symbol'
-        className='social-media-symbol'
-      />
+      <FaTwitter color='var(--secondary-text-color)' fontSize='32px' />
+      <FaDiscord color='var(--secondary-text-color)' fontSize='32px' />
     </SocialMediaWrapper>
   );
 }
