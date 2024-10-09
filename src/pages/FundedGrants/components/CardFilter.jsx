@@ -65,7 +65,7 @@ function CardFilter() {
   // };
 
   const categories = grantsData.map((card) => card.category);
-  const uniqueCategories = ["All", ...new Set(categories)];
+  const uniqueCategories = [...new Set(categories)];
 
   const filterOptions = uniqueCategories.map((category) => ({
     text: category,

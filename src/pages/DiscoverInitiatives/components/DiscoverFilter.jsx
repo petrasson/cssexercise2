@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import FilterControl from "../../../shared-components/FilterControl";
 import Initiatives from "./Initiatives";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // import rData from "../../../../data.json";
 // const { cards } = rData;
@@ -16,6 +16,10 @@ function DiscoverFilter({ initiatives }) {
   const [filterType, setFilterType] = useState("All");
   const [filteredData, setFilteredData] = useState(initiatives);
   const status = initiatives.map((initiative) => initiative.status);
+
+  useEffect(() => {
+    setFilteredData(initiatives);
+  }, [initiatives]);
 
   //Remove duplicates using Set
   const uniqueStatus = [...new Set(status)];

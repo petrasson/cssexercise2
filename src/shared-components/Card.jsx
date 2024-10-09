@@ -102,14 +102,9 @@ function Card({
       <p className='card-text'>{description}</p>
 
       <div className='avatar-container'>
-        <p>{grantees}</p>
-        {/* {grantees.slice(0, 3).map((attendee, index) => (
+        {grantees.slice(0, 3).map((attendee, index) => (
           <p className='image-avatar-wrapper' key={index}>
-            <img
-              src={`/images/${attendee}.svg`}
-              alt={attendee}
-              className='avatar-image'
-            />
+            <img src={`${attendee}`} alt={attendee} className='avatar-image' />
           </p>
         ))}
 
@@ -117,7 +112,7 @@ function Card({
           <div className='purple-circle'>
             <p className='attendee-number'>+{grantees.length - 3}</p>
           </div>
-        )} */}
+        )}
       </div>
     </CardWrapper>
   );

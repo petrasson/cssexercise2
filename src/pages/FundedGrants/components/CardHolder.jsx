@@ -2,6 +2,7 @@
 import Card from "../../../shared-components/Card";
 import styled from "styled-components";
 import { Link, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -38,30 +39,53 @@ const CardWrapper = styled.div`
 
 function CardHolder({ cards }) {
   const location = useLocation();
+  const [granteesData, setGranteesData] = useState([]);
 
-  console.log("cards in cardholder", cards);
+  useEffect(() => {
+    const getGranteesData = async () => {
+      try {
+        const data = await fetch(
+          "https://nextjs-test-beryl-gamma.vercel.app/api/grantees"
+        );
+        if (!data.ok) {
+          throw new Error(`HTTP error! status: ${data.status}`);
+        }
+        const response = await data.json();
+        setGranteesData(response.grantees);
+        console.log(response.grantees, "Fetched grantees data");
+      } catch (error) {
+        console.error("Error fetching grantees data:", error);
+      }
+    };
+    getGranteesData();
+  }, []);
 
   return (
     <CardWrapper>
-      {cards.map((card) => (
-        <>
+      {cards.map((card) => {
+        // Images of the grantees for this card
+        const granteeImages = card.grantees_ids.map((id) => {
+          const grantee = granteesData.find((g) => g.id === id);
+          return grantee ? grantee.image_url : null;
+        });
+
+        return (
           <StyledLink
             key={card.id}
             to={`/card/${card.id}`}
             state={{ card, from: location }}
           >
             <Card
-              key={card.id}
               category={card.category}
               cardTitle={card.title}
               fundingAmountFrom={card.amountFrom}
               fundingAmountTo={card.amountTo}
               description={card.description}
-              grantees={card.rantees_ids}
+              grantees={granteeImages}
             />
           </StyledLink>
-        </>
-      ))}
+        );
+      })}
     </CardWrapper>
   );
 }
