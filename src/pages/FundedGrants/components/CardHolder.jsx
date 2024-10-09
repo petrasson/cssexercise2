@@ -39,6 +39,8 @@ const CardWrapper = styled.div`
 function CardHolder({ cards }) {
   const location = useLocation();
 
+  console.log("cards in cardholder", cards);
+
   return (
     <CardWrapper>
       {cards.map((card) => (
@@ -51,11 +53,11 @@ function CardHolder({ cards }) {
             <Card
               key={card.id}
               category={card.category}
-              cardTitle={card.fundTitle}
-              fundingAmountFrom={card.fundingAmountFrom}
-              fundingAmountTo={card.fundingAmountTo}
-              description={card.descriptionText}
-              grantees={card.grantees}
+              cardTitle={card.title}
+              fundingAmountFrom={card.amountFrom}
+              fundingAmountTo={card.amountTo}
+              description={card.description}
+              grantees={card.rantees_ids}
             />
           </StyledLink>
         </>

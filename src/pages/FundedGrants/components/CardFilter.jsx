@@ -2,9 +2,6 @@ import CardHolder from "./CardHolder";
 import FilterControl from "../../../shared-components/FilterControl";
 import { useEffect, useState } from "react";
 
-// import rData from "../../../../data.json";
-// const { cards } = rData;
-
 import styled from "styled-components";
 
 const CardFilterWrapper = styled.div`
@@ -14,11 +11,6 @@ const CardFilterWrapper = styled.div`
 `;
 
 function CardFilter() {
-  const [filterType, setFilterType] = useState("All");
-  const [filteredData, setFilteredData] = useState(
-    grantsData.filter((item) => item.completed === true)
-  );
-  const [filterCompleted, setFilteredCompleted] = useState(true);
   const [grantsData, setGrantsData] = useState([]);
 
   useEffect(() => {
@@ -40,48 +32,45 @@ function CardFilter() {
     getGrantsData();
   }, []);
 
+  const [filteredData, setFilteredData] = useState([]);
+  const [filterType, setFilterType] = useState("All");
+  // const [filterCompleted, setFilteredCompleted] = useState(true);
+
+  useEffect(() => {
+    let newFilteredData = grantsData;
+
+    if (filterType !== "All") {
+      newFilteredData = newFilteredData.filter(
+        (item) => item.category === filterType
+      );
+    }
+
+    //I am missing a status completed or not in order to toggle.
+
+    // if (filterCompleted) {
+    //   newFilteredData = newFilteredData.filter(
+    //     (item) => item.completed === true
+    //   );
+    // }
+
+    setFilteredData(newFilteredData);
+  }, [grantsData, filterType]);
+
+  const handleFilter = (selectedFilterType) => {
+    setFilterType(selectedFilterType);
+  };
+
+  // const handleToggle = () => {
+  //   setFilteredCompleted((prev) => !prev);
+  // };
+
   const categories = grantsData.map((card) => card.category);
+  const uniqueCategories = ["All", ...new Set(categories)];
 
-  // Remove duplicates using Set
-  const uniqueCategories = [...new Set(categories)];
-
-  //Array to pass to the FilterControl
   const filterOptions = uniqueCategories.map((category) => ({
     text: category,
     value: category,
   }));
-
-  const applyFilters = (category, completed) => {
-    let newFilteredData = grantsData;
-
-    //   // Filter by category if not "All"
-    if (category !== "All") {
-      newFilteredData = newFilteredData.filter(
-        (item) => item.category === category
-      );
-    }
-
-    //   // Filter by completion status
-    if (completed) {
-      newFilteredData = newFilteredData.filter(
-        (item) => item.completed === true
-      );
-    } else {
-      newFilteredData;
-    }
-
-    setFilteredData(newFilteredData);
-  };
-
-  const handleFilter = (filterType) => {
-    setFilterType(filterType);
-    applyFilters(filterType, filterCompleted);
-  };
-
-  const handleToggle = (value) => {
-    setFilteredCompleted(value);
-    applyFilters(filterType, value);
-  };
 
   return (
     <CardFilterWrapper>
@@ -89,10 +78,10 @@ function CardFilter() {
         handleFilter={handleFilter}
         filterType={filterType}
         filterOptions={filterOptions}
-        withToggle={true}
-        handleToggle={() => handleToggle(!filterCompleted)}
+        // withToggle={true}
+        // handleToggle={() => handleToggle(!filterCompleted)}
       />
-      <CardHolder cards={grantsData} />
+      <CardHolder cards={filteredData} />
     </CardFilterWrapper>
   );
 }
