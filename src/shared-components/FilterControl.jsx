@@ -94,8 +94,8 @@ const FilterControlWrapper = styled.div`
 
 function FilterControl({
   handleFilter,
-  // withToggle,
-  // handleToggle,
+  withToggle,
+  handleToggle,
   filterOptions,
   filterType,
 }) {
@@ -123,11 +123,11 @@ function FilterControl({
           ))}
         </div>
       </div>
-      {/* {withToggle && (
+      {withToggle && (
         <div className='toggle-container'>
           <Toggle onClick={handleToggle} />
         </div>
-      )} */}
+      )}
     </FilterControlWrapper>
   );
 }

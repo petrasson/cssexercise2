@@ -14,19 +14,25 @@ All design was taken from [this Figma file](https://www.figma.com/design/eWP1AMJ
 ## API
 
 ### All Transactions
+
 `https://nextjs-test-beryl-gamma.vercel.app/api/transactions`
 
 ### Individual Transaction
+
 `https://nextjs-test-beryl-gamma.vercel.app/api/transactions?id=67eda635-dd7c-4a85-ba85-58fb5648e963`
 
 ### All Grants
+
 `https://nextjs-test-beryl-gamma.vercel.app/api/grants`
 
 ### Individual Grant
-`https://nextjs-test-beryl-gamma.vercel.app/api/grants?id=67eda635-dd7c-4a85-ba85-58fb5648e963`
+
+`https://nextjs-test-beryl-gamma.vercel.app/api/grants?id=2`
 
 ### All Grantees
+
 `https://nextjs-test-beryl-gamma.vercel.app/api/grantees`
 
 ### Individual Grantee
+
 `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?id=CC27C14A-0ACF-4F4A-A6C9-D45682C144B9`

@@ -24,7 +24,6 @@ function CardFilter() {
         }
         const response = await data.json();
         setGrantsData(response.grants);
-        console.log(response.grants, "Fetched grants data");
       } catch (error) {
         console.error("Error fetching grants data:", error);
       }
@@ -34,7 +33,7 @@ function CardFilter() {
 
   const [filteredData, setFilteredData] = useState([]);
   const [filterType, setFilterType] = useState("All");
-  // const [filterCompleted, setFilteredCompleted] = useState(true);
+  const [filterCompleted, setFilteredCompleted] = useState(true);
 
   useEffect(() => {
     let newFilteredData = grantsData;
@@ -45,24 +44,22 @@ function CardFilter() {
       );
     }
 
-    //I am missing a status completed or not in order to toggle.
-
-    // if (filterCompleted) {
-    //   newFilteredData = newFilteredData.filter(
-    //     (item) => item.completed === true
-    //   );
-    // }
+    if (filterCompleted) {
+      newFilteredData = newFilteredData.filter(
+        (item) => item.completed === true
+      );
+    }
 
     setFilteredData(newFilteredData);
-  }, [grantsData, filterType]);
+  }, [grantsData, filterType, filterCompleted]);
 
   const handleFilter = (selectedFilterType) => {
     setFilterType(selectedFilterType);
   };
 
-  // const handleToggle = () => {
-  //   setFilteredCompleted((prev) => !prev);
-  // };
+  const handleToggle = (filterCompleted) => {
+    setFilteredCompleted(filterCompleted);
+  };
 
   const categories = grantsData.map((card) => card.category);
   const uniqueCategories = [...new Set(categories)];
@@ -78,8 +75,8 @@ function CardFilter() {
         handleFilter={handleFilter}
         filterType={filterType}
         filterOptions={filterOptions}
-        // withToggle={true}
-        // handleToggle={() => handleToggle(!filterCompleted)}
+        withToggle={true}
+        handleToggle={() => handleToggle(!filterCompleted)}
       />
       <CardHolder cards={filteredData} />
     </CardFilterWrapper>

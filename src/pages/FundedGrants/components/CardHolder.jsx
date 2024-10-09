@@ -52,7 +52,6 @@ function CardHolder({ cards }) {
         }
         const response = await data.json();
         setGranteesData(response.grantees);
-        console.log(response.grantees, "Fetched grantees data");
       } catch (error) {
         console.error("Error fetching grantees data:", error);
       }

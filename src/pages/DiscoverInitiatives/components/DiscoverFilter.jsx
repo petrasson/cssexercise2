@@ -3,9 +3,6 @@ import FilterControl from "../../../shared-components/FilterControl";
 import Initiatives from "./Initiatives";
 import { useEffect, useState } from "react";
 
-// import rData from "../../../../data.json";
-// const { cards } = rData;
-
 const DiscoverFilterWrapper = styled.div`
   display: flex;
   flex-direction: column;
