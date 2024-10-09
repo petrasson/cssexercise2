@@ -26,6 +26,7 @@ const CardWrapper = styled.div`
 `;
 
 function Initiatives({ cards }) {
+  console.log("cards to render", cards);
   if (!cards || cards.length === 0) {
     return <div>No initiatives available</div>;
   }
@@ -36,10 +37,10 @@ function Initiatives({ cards }) {
         <DiscoveryCard
           key={card.id}
           status={card.status}
-          cardTitle={card.fundTitle}
-          fundingAmountFrom={card.fundingAmountFrom}
-          fundingAmountTo={card.fundingAmountTo}
-          description={card.descriptionText}
+          cardTitle={card.title}
+          fundingAmountFrom={card.amountFrom}
+          fundingAmountTo={card.amountTo}
+          description={card.description}
         />
       ))}
     </CardWrapper>

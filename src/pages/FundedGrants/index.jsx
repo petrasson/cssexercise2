@@ -12,12 +12,13 @@ const Container = styled.div`
   padding: 0 24px;
   width: 100%;
 
-  .space{
+  .space {
     padding: 80px 0 40px;
   }
 
-   @media only screen and (width >= 1305px) {
-    padding: 0 108px;  
+  @media only screen and (width >= 1305px) {
+    padding: 0 108px;
+  }
 `;
 
 function FundedGrants() {

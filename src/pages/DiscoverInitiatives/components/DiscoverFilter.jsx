@@ -2,20 +2,9 @@ import styled from "styled-components";
 import FilterControl from "../../../shared-components/FilterControl";
 import Initiatives from "./Initiatives";
 import { useState } from "react";
-import rData from "../../../../data.json";
 
-const { cards } = rData;
-
-const status = cards.map((card) => card.status);
-
-//Remove duplicates using Set
-const uniqueStatus = [...new Set(status)];
-
-//Create the filterOptions array to pass to the FilterControl
-const filterOptions = uniqueStatus.map((status) => ({
-  text: status,
-  value: status,
-}));
+// import rData from "../../../../data.json";
+// const { cards } = rData;
 
 const DiscoverFilterWrapper = styled.div`
   display: flex;
@@ -25,17 +14,26 @@ const DiscoverFilterWrapper = styled.div`
 
 function DiscoverFilter({ initiatives }) {
   const [filterType, setFilterType] = useState("All");
-  console.log({ initiatives, cards });
-  const [filteredData, setFilteredData] = useState(cards);
+  const [filteredData, setFilteredData] = useState(initiatives);
+  const status = initiatives.map((initiative) => initiative.status);
+
+  //Remove duplicates using Set
+  const uniqueStatus = [...new Set(status)];
+
+  //Create the filterOptions array to pass to the FilterControl
+  const filterOptions = uniqueStatus.map((status) => ({
+    text: status,
+    value: status,
+  }));
 
   const handleFilter = (filterType) => {
     setFilterType(filterType);
 
-    let newFilteredData = cards;
+    let newFilteredData = initiatives;
 
     if (filterType !== "All") {
       newFilteredData = newFilteredData.filter(
-        (item) => item.status === filterType,
+        (initiative) => initiative.status === filterType
       );
     }
 

@@ -14,7 +14,7 @@ const StyledButton = styled.div`
 
   ${(props) => {
     return (
-      props.status === "Funded" &&
+      props.status === "funded" &&
       css`
         background-color: var(--primary-bg-color);
       `
@@ -23,7 +23,7 @@ const StyledButton = styled.div`
 
   ${(props) => {
     return (
-      props.status === "Open" &&
+      props.status === "open" &&
       css`
         background-color: var(--accent-color);
       `
@@ -32,7 +32,7 @@ const StyledButton = styled.div`
 
   ${(props) => {
     return (
-      props.status === "Completed" &&
+      props.status === "completed" &&
       css`
         background-color: var(--btn-completed);
         position: relative;

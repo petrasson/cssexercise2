@@ -12,16 +12,17 @@ const Container = styled.div`
   padding: 0 24px;
   width: 100%;
 
-  .space{
+  .space {
     padding: 80px 0 40px;
   }
 
   p {
     font-size: 16px;
-}
+  }
 
-   @media only screen and (width >= 1305px) {
+  @media only screen and (width >= 1305px) {
     padding: 0 108px;
+  }
 `;
 
 function DiscoverInitiatives() {
@@ -30,7 +31,7 @@ function DiscoverInitiatives() {
   useEffect(() => {
     const getInitiatives = async () => {
       const data = await fetch(
-        "https://nextjs-test-beryl-gamma.vercel.app/api/initiatives",
+        "https://nextjs-test-beryl-gamma.vercel.app/api/initiatives"
       );
       const response = await data.json();
       setInitiatives(response.initiatives);
@@ -40,11 +41,11 @@ function DiscoverInitiatives() {
   }, []);
 
   return (
-    <div className="page-wrapper">
+    <div className='page-wrapper'>
       <Header />
       <Container>
-        <div className="space">
-          <HeadTitle text="Discover Initiatives" />
+        <div className='space'>
+          <HeadTitle text='Discover Initiatives' />
         </div>
         <p>
           The list below includes initial ideas that we think could make
