@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Card from "../../../shared-components/Card";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const StyledLink = styled(Link)`
@@ -26,7 +26,6 @@ const SimilarGrantsWrapper = styled.div`
     .similar-projects-text {
       color: var(--accent-color);
       padding-right: 10px;
-     cursor: pointer;
     }
   }
 
@@ -42,43 +41,64 @@ const SimilarGrantsWrapper = styled.div`
     justify-content: center;
   }
 
- @media only screen and (width >= 1305px) {
-    
- .similar-card-wrapper {
-    grid-template-columns: repeat(2, 1fr);
+  @media only screen and (width >= 1305px) {
+    .similar-card-wrapper {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
 `;
 
 function SimilarGrants({ similarGrants }) {
-  const [showAll, setShowAll] = useState(false);
-  const reducedSimilarGrants = similarGrants.slice(0, 2);
-  const handleViewAllClick = () => {
-    setShowAll((prevShowAll) => !prevShowAll);
-  };
+  const [granteesData, setGranteesData] = useState([]);
+
+  /*** FETCH USER DATA TO RENDER PARTICIPANTS IMAGES ***/
+
+  useEffect(() => {
+    const getGranteesData = async () => {
+      try {
+        const data = await fetch(
+          "https://nextjs-test-beryl-gamma.vercel.app/api/grantees"
+        );
+        if (!data.ok) {
+          throw new Error(`HTTP error! status: ${data.status}`);
+        }
+        const response = await data.json();
+        setGranteesData(response.grantees);
+      } catch (error) {
+        console.error("Error fetching grantees data:", error);
+      }
+    };
+    getGranteesData();
+  }, []);
 
   return (
     <SimilarGrantsWrapper>
       <h1>More grants like this</h1>
-
       <div className='link-wrapper'>
-        <p className='similar-projects-text' onClick={handleViewAllClick}>
-          {showAll ? "View less projects" : "View all similar projects"}
-        </p>
+        <p className='similar-projects-text'>Similar projects</p>
         <img src='/images/arrow-right.svg' aria-hidden='true' />
       </div>
       <div className='similar-card-wrapper'>
-        {(showAll ? similarGrants : reducedSimilarGrants).map((card) => (
-          <StyledLink key={card.id} to={`/card/${card.id}`}>
-            <Card
-              key={card.id}
-              category={card.category}
-              cardTitle={card.fundTitle}
-              fundingAmountFrom={card.fundingAmountFrom}
-              fundingAmountTo={card.fundingAmountTo}
-              description={card.descriptionText}
-              grantees={card.grantees}
-            />
-          </StyledLink>
-        ))}
+        {similarGrants.map((card) => {
+          const granteeImages = card.grantees_ids.map((id) => {
+            const grantee = granteesData.find((g) => g.id === id);
+            return grantee ? grantee.image_url : null;
+          });
+
+          return (
+            <StyledLink key={card.id} to={`/card/${card.id}`}>
+              <Card
+                key={card.id}
+                category={card.category}
+                cardTitle={card.title}
+                fundingAmountFrom={card.amountFrom}
+                fundingAmountTo={card.amountTo}
+                description={card.description}
+                grantees={granteeImages}
+              />
+            </StyledLink>
+          );
+        })}
       </div>
     </SimilarGrantsWrapper>
   );

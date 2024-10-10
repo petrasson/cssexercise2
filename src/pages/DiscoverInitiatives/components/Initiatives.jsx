@@ -26,7 +26,6 @@ const CardWrapper = styled.div`
 `;
 
 function Initiatives({ cards }) {
-  console.log("cards to render", cards);
   if (!cards || cards.length === 0) {
     return <div>No initiatives available</div>;
   }

@@ -63,7 +63,7 @@ function DiscoveryCard({
         <p className='card-title'>{cardTitle}</p>
         <p className='card-text'>{description}</p>
         <p className='sub-title'>
-          Funding amount: {fundingAmountFrom}-{fundingAmountTo}
+          Funding amount: ${fundingAmountFrom}-${fundingAmountTo}
         </p>
       </div>
       <ButtonTag status={status} />

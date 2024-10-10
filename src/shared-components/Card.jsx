@@ -97,10 +97,9 @@ function Card({
       <p className='card-category'>{category}</p>
       <p className='card-title'>{cardTitle}</p>
       <p className='sub-title'>
-        Funding amount: {fundingAmountFrom}-{fundingAmountTo}
+        Funding amount: ${fundingAmountFrom}-${fundingAmountTo}
       </p>
       <p className='card-text'>{description}</p>
-
       <div className='avatar-container'>
         {grantees.slice(0, 3).map((attendee, index) => (
           <p className='image-avatar-wrapper' key={index}>

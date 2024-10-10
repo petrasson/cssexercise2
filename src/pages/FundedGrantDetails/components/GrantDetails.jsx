@@ -2,9 +2,8 @@ import styled from "styled-components";
 import HeadTitle from "../../../shared-components/HeadTitle";
 import Button from "../../../shared-components/Button";
 import CardTransactions from "./CardTransactions";
-import ButtonWrapper from "../../../shared-components/ButtonWrapper";
-import rUserData from "./../../../../userdata.json";
-const { userdata } = rUserData;
+// import ButtonWrapper from "../../../shared-components/ButtonWrapper";
+import SimilarGrants from "./SimilarGrants";
 
 const GrantDetailsWrapper = styled.div`
   width: 100%;
@@ -139,26 +138,12 @@ function GrantDetails({
   status,
   fundingAmountFrom,
   description,
+  purpose,
+  execution,
+  payment_structure,
+  similiar,
   grantees,
 }) {
-  const granteeData = grantees
-    .map((id) => {
-      const user = userdata.find((user) => user.id === id);
-      console.log(`Processing grantee ID: ${id}`, "Found user:", user);
-
-      if (!user) {
-        console.warn(`User with ID ${id} not found in userdata`);
-        return null;
-      }
-
-      return {
-        imageSrc: `/images/${user.id}.svg`,
-        imageAlt: user.name,
-        text: user.name,
-        link: `/grantee/${user.id}`,
-      };
-    })
-    .filter(Boolean);
   return (
     <GrantDetailsWrapper>
       <p className='card-category'>{category}</p>
@@ -177,29 +162,17 @@ function GrantDetails({
         />
       </div>
       <h3 className='sub-title'>Team</h3>
-      <ButtonWrapper items={granteeData} />
+      {/* <ButtonWrapper items={granteeData} /> */}
       <hr></hr>
       <div className='text-wrapper'>
         <h3 className='sub-title'>Description</h3>
         <p>{description}</p>
         <h3 className='sub-title'>Purpose</h3>
-        <p>
-          Funding Rates page will help promote and guide traders around
-          Perpetual premiums found across all assets traded on dYdX. Rewards &
-          Tracking simulator will help market the benefits of trading on dYdXlga
-          and assist current traders in mapping out their rewards. The CLI
-          trading tool will make it easier for non-UI based traders to execute
-          quickly on dYdX. The general purpose of this grant is to recruit Chaos
-          Labs, a very qualified contributor, to work with dYdX on current and
-          future projects.
-        </p>
+        <p>{purpose}</p>
         <h3 className='sub-title'>Execution</h3>
-        <p>
-          3 months to completion. Each individual grant is estimated to take 120
-          days, but will be worked on concurrently.
-        </p>
+        <p>{execution}</p>
         <h3 className='sub-title'>Payment Structure</h3>
-        <p>25% upfront / 75% at completion of all Grants</p>
+        <p>{payment_structure}</p>
         <h3 className='sub-title'>Useful Links</h3>
         <div className='link-wrapper'>
           <div className='link-row-wrapper'>
@@ -241,6 +214,7 @@ function GrantDetails({
         description='They were used to create the machines that launched two waves of industrial revolution'
         amount='$22,000.00'
       />
+      <SimilarGrants similarGrants={similiar} />
     </GrantDetailsWrapper>
   );
 }
