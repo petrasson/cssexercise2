@@ -38,8 +38,10 @@ const fetchCard = async (id) => {
     const data = await res.json();
     console.log("API Response:", data);
 
-    // Call the function to fetch similiar cards based on IDs in the response
+    // Call the function to fetch similiar cards and transactions based on IDs in the response
     await fetchSimilarCards(data.similiar);
+    await fetchTransactions(data.transactions);
+
     return data;
   } catch (error) {
     console.error("Error fetching card data:", error); // Log any errors
@@ -77,6 +79,36 @@ const fetchSimilarCards = async (similiarIds) => {
   }
 };
 
+// /*** FETCH TRANSACTION DETAILS BASED ON RESPONS ***/
+
+const fetchTransactions = async (transactionIds) => {
+  if (!transactionIds || transactionIds.length === 0) {
+    console.log("No transactions IDs found.");
+    return;
+  }
+  try {
+    // Fetch each transaction by its ID
+    const transactionsPromises = transactionIds.map(async (id) => {
+      const res = await fetch(
+        `https://nextjs-test-beryl-gamma.vercel.app/api/transactions?id=67eda635-dd7c-4a85-ba85-58fb5648e963`
+      );
+
+      if (!res.ok) {
+        throw new Error(`Failed to fetch transaction data with id ${id}`);
+      }
+      return res.json();
+    });
+
+    /*** WAIT FOR FETCHES TO COMPLETE ***/
+
+    const transactionData = await Promise.all(transactionsPromises);
+    return transactionData;
+  } catch (error) {
+    console.error("Error fetching transaction data:", error); // Log any errors
+    throw error;
+  }
+};
+
 /*** RENDER COMPONENT ***/
 
 function FundedGrantDetails() {
@@ -86,6 +118,7 @@ function FundedGrantDetails() {
   const { id } = useParams();
   const [cardData, setCardData] = useState(null);
   const [similiarCards, setSimilarCards] = useState([]);
+  const [transactionData, setTransactionData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -104,6 +137,9 @@ function FundedGrantDetails() {
         const similiarCardsData = await fetchSimilarCards(data.similiar); // Fetch similiar cards
         setSimilarCards(similiarCardsData);
 
+        const transactionData = await fetchTransactions(data.transactions); // Fetch transactions
+        setTransactionData(transactionData);
+
         setLoading(false); // Data is fetched, set loading to false
       } catch (error) {
         setError(error.message);
@@ -117,6 +153,7 @@ function FundedGrantDetails() {
   if (error) return <div>Error: {error}</div>;
 
   // const canGoBack = !!from;
+  console.log("empty transactions", transactionData);
 
   return (
     <div className='page-wrapper'>
@@ -144,6 +181,7 @@ function FundedGrantDetails() {
             payment_structure={cardData.payment_structure}
             similiar={similiarCards}
             grantees={cardData.grantees}
+            transactions={transactionData}
           />
         )}
       </Container>

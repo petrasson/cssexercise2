@@ -143,7 +143,9 @@ function GrantDetails({
   payment_structure,
   similiar,
   grantees,
+  transactions,
 }) {
+  console.log("tom transactions?", transactions);
   return (
     <GrantDetailsWrapper>
       <p className='card-category'>{category}</p>
@@ -202,18 +204,18 @@ function GrantDetails({
         </div>
       </div>
       <h3 className='sub-title funding'>Funding Transactions</h3>
-      <CardTransactions
-        title='Round 9'
-        date='1/2/25'
-        description='They were used to create the machines that launched two waves of industrial revolution'
-        amount='$30,000.00'
-      />
-      <CardTransactions
-        title='Round 13'
-        date='11/4/25'
-        description='They were used to create the machines that launched two waves of industrial revolution'
-        amount='$22,000.00'
-      />
+      {transactions.map((card) => {
+        return (
+          <CardTransactions
+            key={card.id}
+            title={card.title}
+            date={card.date}
+            description={card.description}
+            amount={card.amound}
+          />
+        );
+      })}
+
       <SimilarGrants similarGrants={similiar} />
     </GrantDetailsWrapper>
   );
