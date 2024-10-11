@@ -47,6 +47,7 @@ const NavButtonWrapper = styled.div`
 `;
 
 function ButtonWrapper({ items }) {
+  console.log("item-id", items[0].id);
   const location = useLocation();
   // const iconMapping = {
   //   Twitter: <FaTwitter fontSize='23px' />,

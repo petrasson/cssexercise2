@@ -92,10 +92,12 @@ function Card({
   description,
   grantees,
 }) {
+  console.log("grantees from cardholder", grantees);
   return (
     <CardWrapper>
       <p className='card-category'>{category}</p>
       <p className='card-title'>{cardTitle}</p>
+
       <p className='sub-title'>
         Funding amount: ${fundingAmountFrom}-${fundingAmountTo}
       </p>

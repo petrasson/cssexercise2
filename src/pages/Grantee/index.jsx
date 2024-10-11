@@ -1,16 +1,12 @@
 import styled from "styled-components";
 import Header from "../../shared-components/Header";
 import ButtonWrapper from "../../shared-components/ButtonWrapper";
-import BackButton from "../../shared-components/BackButton";
+// import BackButton from "../../shared-components/BackButton";
 import Footer from "../../shared-components/Footer";
 import HeadTitle from "../../shared-components/HeadTitle";
 import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
 import Card from "../../shared-components/Card";
-
-import rData from "../../../data.json";
-const { cards } = rData;
-import rUserData from "../../../userdata.json";
-const { userdata } = rUserData;
+import { useEffect, useState } from "react";
 
 const Container = styled.div`
   margin: 0 auto;
@@ -85,62 +81,171 @@ const StyledLink = styled(Link)`
   }
 `;
 
-function Grantee() {
-  const { id } = useParams();
-  const location = useLocation();
-  const navigate = useNavigate();
+/** FETCH USER DATA ***/
 
-  const userInformation = userdata.find((user) => user.id === id);
-
-  if (!userInformation) {
-    return <p>User not found</p>;
+const fetchGranteeData = async (id) => {
+  console.log("Fetching card for id:", id);
+  try {
+    const res = await fetch(
+      `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?id=${id}`
+    );
+    if (!res.ok) {
+      throw new Error("Failed to fetch card details");
+    }
+    const data = await res.json();
+    console.log("API Response:", data);
+    return data;
+  } catch (error) {
+    console.error("Error fetching card data:", error); // Log any errors
+    throw error;
   }
-  const usersCards = cards.filter((card) => card.grantees.includes(id));
-  const canGoBack = location.state && location.state.from;
+};
+
+/** FETCH DETAILD GRANT DATA USING GRANT ID ***/
+
+const fetchGrantData = async (id) => {
+  try {
+    const res = await fetch(
+      `https://nextjs-test-beryl-gamma.vercel.app/api/grants?id=${id}`
+    );
+    if (!res.ok) {
+      throw new Error(`Failed to fetch grant with id ${id}`);
+    }
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching grant data:", error);
+    throw error;
+  }
+};
+
+/** FETCH USER IMAGES USING USER ID ***/
+
+const fetchGranteeImageData = async (id) => {
+  const res = await fetch(
+    `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?id=${id}`
+  );
+  if (!res.ok) {
+    throw new Error("Failed to fetch user data");
+  }
+  const data = await res.json();
+  return data.image_url;
+};
+
+function Grantee() {
+  const [granteeData, setGranteeData] = useState([]);
+  const [grantData, setGrantData] = useState([]);
+  const [granteeImages, setGranteeImages] = useState({});
+
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const { id } = useParams();
+  // const location = useLocation();
+  // const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        //fetching the users data based on id
+        const grantee = await fetchGranteeData(id);
+        setGranteeData(grantee);
+
+        //Fetch the details of each project (grant) the grantee has been involved in
+        const grantIds = grantee.grants; // Get the project IDs
+        const grantPromises = grantIds.map((grantId) =>
+          fetchGrantData(grantId)
+        );
+        const grants = await Promise.all(grantPromises); // Fetch all project data in parallel
+        setGrantData(grants);
+
+        // Fetch images for all grantees (users) involved in each project
+        const granteeImagePromises = {};
+        grants.forEach((grant) => {
+          grant.grantees_ids.forEach((granteeId) => {
+            // Avoid fetching the same image multiple times
+            if (!granteeImagePromises[granteeId]) {
+              granteeImagePromises[granteeId] =
+                fetchGranteeImageData(granteeId);
+            }
+          });
+        });
+
+        // Resolve all image fetch promises
+        const resolvedImages = await Promise.all(
+          Object.keys(granteeImagePromises).map(
+            (granteeId) => granteeImagePromises[granteeId]
+          )
+        );
+
+        // Create an object with {granteeId: imageUrl}
+        const granteeImagesMap = Object.keys(granteeImagePromises).reduce(
+          (acc, granteeId, index) => {
+            acc[granteeId] = resolvedImages[index];
+            return acc;
+          },
+          {}
+        );
+
+        setGranteeImages(granteeImagesMap);
+        console.log("granteeImagesMap", granteeImagesMap);
+
+        setLoading(false);
+      } catch (error) {
+        setError(error.message);
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [id]);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <div className='page-wrapper'>
       <Header />
       <Container>
-        {canGoBack && (
+        {/* {canGoBack && (
           <BackButton
             onClick={() => {
               console.log("BackButton clicked");
               navigate(-1);
             }}
           />
-        )}
-        <img src={`/images/${id}.svg`} alt='picture of user' />
-        <HeadTitle text={userInformation.name} />
+        )} */}
+        <img src={`${granteeData.image_url}`} alt='picture of user' />
+        <HeadTitle text={granteeData.name} />
         <div className='text-wrapper'>
           <h3 className='sub-title'>About</h3>
-          <p className='grant-text'>
-            For athletes, high altitude produces two contradictory effects on
-            performance. For explosive events (sprints up to 400 metres, long
-            jump, triple jump) the reduction in atmospheric pressure means there
-            is less resistance from the atmosphere and the athlete's performance
-            will generally be better at high altitude.
-          </p>
+          <p className='grant-text'>{granteeData.about}</p>
           <h3 className='sub-title'>Links</h3>
           <div className='link-wrapper'>
-            <ButtonWrapper items={userInformation.links} location={location} />
+            <ButtonWrapper items={granteeData.links} location={location} />
           </div>
         </div>
         <h1 className='projects-text'>Projects</h1>
         <div className='card-wrapper'>
-          {usersCards.map((card) => (
-            <StyledLink key={card.id} to={`/card/${card.id}`}>
-              <Card
-                key={card.id}
-                category={card.category}
-                cardTitle={card.fundTitle}
-                fundingAmountFrom={card.fundingAmountFrom}
-                fundingAmountTo={card.fundingAmountTo}
-                description={card.descriptionText}
-                grantees={card.grantees}
-              />
-            </StyledLink>
-          ))}
+          {grantData.map((card) => {
+            const granteeImageUrls = card.grantees_ids.map(
+              (granteeId) => granteeImages[granteeId]
+            );
+
+            return (
+              <StyledLink key={card.id} to={`/card/${card.id}`}>
+                <Card
+                  key={card.id}
+                  category={card.category}
+                  cardTitle={card.title}
+                  fundingAmountFrom={card.amountFrom}
+                  fundingAmountTo={card.amountTo}
+                  description={card.description}
+                  grantees={granteeImageUrls}
+                />
+              </StyledLink>
+            );
+          })}
         </div>
       </Container>
       <Footer />

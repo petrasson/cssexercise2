@@ -1,7 +1,7 @@
 {
   "userdata": [
     {
-      "id": "user1",
+      "id": "d6e15727-9fe1-4961-8c5b-ea44a9bd81aa",
       "name": "Simon",
       "projects": ["card1", "card2", "card3"],
       "links": [
@@ -32,7 +32,7 @@
       ]
     },
     {
-      "id": "user2",
+      "id": "3958dc9e-712f-4377-85e9-fec4b6a6442a",
       "name": "John",
       "projects": ["card1", "card12"],
       "links": [
@@ -63,7 +63,7 @@
       ]
     },
     {
-      "id": "user3",
+      "id": "3958dc9e-742f-4377-85e9-fec4b6a6442a",
       "name": "Amanda",
       "projects": ["card11", "card5", "card9"],
       "links": [
@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "user4",
+      "id": "76d65c26-f784-44a2-ac19-586678f7c2f2",
       "name": "Ali",
       "projects": ["card10", "card2"],
       "links": [
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "user5",
+      "id": "CC27C14A-0ACF-4F4A-A6C9-D45682C144B9",
       "name": "Helga",
       "projects": ["card19", "card12", "card8"],
       "links": [
@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "user6",
+      "id": "3D07535-C59E-4157-A011-F8D2EF4E0CBB",
       "name": "Rashid",
       "projects": ["card18", "card11", "card8"],
       "links": [
@@ -180,99 +180,6 @@
         },
         {
           "imageSrc": "/images//Website.svg",
-          "imageAlt": "Website",
-          "text": "Website",
-          "link": "https://www.google.com"
-        }
-      ]
-    },
-    {
-      "id": "user7",
-      "name": "Ola",
-      "projects": ["card1", "card13"],
-      "links": [
-        {
-          "imageSrc": "/images/Twitter.svg",
-          "imageAlt": "Twitter",
-          "text": "Twitter",
-          "link": "http://www.twitter.com"
-        },
-        {
-          "imageSrc": "/images/LinkedIn.png",
-          "imageAlt": "LinkedIn",
-          "text": "LinkedIn",
-          "link": "https://www.linkedin.com"
-        },
-        {
-          "imageSrc": "/images/Github.svg",
-          "imageAlt": "Github",
-          "text": "Github",
-          "link": "https://www.github.com"
-        },
-        {
-          "imageSrc": "/images/Website.svg",
-          "imageAlt": "Website",
-          "text": "Website",
-          "link": "https://www.google.com"
-        }
-      ]
-    },
-    {
-      "id": "user8",
-      "name": "Lisa",
-      "projects": ["card8", "card6", "card20"],
-      "links": [
-        {
-          "imageSrc": "/images/Twitter.svg",
-          "imageAlt": "Twitter",
-          "text": "Twitter",
-          "link": "http://www.twitter.com"
-        },
-        {
-          "imageSrc": "/images/LinkedIn.png",
-          "imageAlt": "LinkedIn",
-          "text": "LinkedIn",
-          "link": "https://www.linkedin.com"
-        },
-        {
-          "imageSrc": "/images/Github.svg",
-          "imageAlt": "Github",
-          "text": "Github",
-          "link": "https://www.github.com"
-        },
-        {
-          "imageSrc": "/images/Website.svg",
-          "imageAlt": "Website",
-          "text": "Website",
-          "link": "https://www.google.com"
-        }
-      ]
-    },
-    {
-      "id": "user9",
-      "name": "Nilla",
-      "projects": ["card6", "card7", "card8"],
-      "links": [
-        {
-          "imageSrc": "/images/Twitter.svg",
-          "imageAlt": "Twitter",
-          "text": "Twitter",
-          "link": "http://www.twitter.com"
-        },
-        {
-          "imageSrc": "/images/LinkedIn.png",
-          "imageAlt": "LinkedIn",
-          "text": "LinkedIn",
-          "link": "https://www.linkedin.com"
-        },
-        {
-          "imageSrc": "/images/Github.svg",
-          "imageAlt": "Github",
-          "text": "Github",
-          "link": "https://www.github.com"
-        },
-        {
-          "imageSrc": "/images/Website.svg",
           "imageAlt": "Website",
           "text": "Website",
           "link": "https://www.google.com"

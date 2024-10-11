@@ -27,7 +27,7 @@ const Container = styled.div`
 /*** FETCH CARD DETAILS BASED ON ID ***/
 
 const fetchCard = async (id) => {
-  console.log("Fetching card for id:", id);
+  console.log("Fetching card for user id:", id);
   try {
     const res = await fetch(
       `https://nextjs-test-beryl-gamma.vercel.app/api/grants?id=${id}`
