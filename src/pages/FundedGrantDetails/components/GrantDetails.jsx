@@ -2,8 +2,9 @@ import styled from "styled-components";
 import HeadTitle from "../../../shared-components/HeadTitle";
 import Button from "../../../shared-components/Button";
 import CardTransactions from "./CardTransactions";
-// import ButtonWrapper from "../../../shared-components/ButtonWrapper";
+import ButtonWrapper from "../../../shared-components/ButtonWrapper";
 import SimilarGrants from "./SimilarGrants";
+import { useEffect, useState } from "react";
 
 const GrantDetailsWrapper = styled.div`
   width: 100%;
@@ -132,6 +133,19 @@ const GrantDetailsWrapper = styled.div`
   }
 `;
 
+/*** FETCH GRANTEEDATA BASED ON ID ***/
+
+const fetchGranteeData = async (id) => {
+  const res = await fetch(
+    `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?id=${id}`
+  );
+  if (!res.ok) {
+    throw new Error("Failed to fetch user data");
+  }
+  const data = await res.json();
+  return { id: data.id, image_url: data.image_url, name: data.name };
+};
+
 function GrantDetails({
   category,
   cardTitle,
@@ -142,10 +156,34 @@ function GrantDetails({
   execution,
   payment_structure,
   similiar,
-  grantees,
   transactions,
+  granteeIds,
 }) {
-  console.log("tom transactions?", transactions);
+  const [graanteeData, setGraanteeData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchAllGranteeData = async () => {
+      try {
+        setLoading(true);
+        const granteePromises = granteeIds.map((id) => fetchGranteeData(id));
+        const granteesData = await Promise.all(granteePromises); // Fetch all users in parallel
+        setGraanteeData(granteesData);
+        setLoading(false);
+        console.log("Here I can see", granteesData);
+      } catch (error) {
+        setError(error.message);
+        setLoading(false);
+      }
+    };
+
+    fetchAllGranteeData();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+
   return (
     <GrantDetailsWrapper>
       <p className='card-category'>{category}</p>
@@ -164,7 +202,8 @@ function GrantDetails({
         />
       </div>
       <h3 className='sub-title'>Team</h3>
-      {/* <ButtonWrapper items={granteeData} /> */}
+
+      <ButtonWrapper items={graanteeData} />
       <hr></hr>
       <div className='text-wrapper'>
         <h3 className='sub-title'>Description</h3>

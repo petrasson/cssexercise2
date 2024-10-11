@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link, useLocation } from "react-router-dom";
-import { FaLink, FaLinkedin } from "react-icons/fa6";
-import { FaGithub, FaTwitter } from "react-icons/fa";
+// import { FaLink, FaLinkedin } from "react-icons/fa6";
+// import { FaGithub, FaTwitter } from "react-icons/fa";
 
 const StyledLink = styled(Link)`
   color: var(--primary-text-color);
@@ -48,46 +48,46 @@ const NavButtonWrapper = styled.div`
 
 function ButtonWrapper({ items }) {
   const location = useLocation();
-  const iconMapping = {
-    Twitter: <FaTwitter fontSize='23px' />,
-    LinkedIn: <FaLinkedin fontSize='23px' />,
-    Github: <FaGithub fontSize='23px' />,
-    Website: <FaLink fontSize='23px' />,
-  };
-
+  // const iconMapping = {
+  //   Twitter: <FaTwitter fontSize='23px' />,
+  //   LinkedIn: <FaLinkedin fontSize='23px' />,
+  //   Github: <FaGithub fontSize='23px' />,
+  //   Website: <FaLink fontSize='23px' />,
+  // };
   return (
     <NavButtonWrapper>
       {items.map((item, index) => {
-        const isExternalLink = item.link.startsWith("http");
-        return isExternalLink ? (
-          <a
-            key={index}
-            href={item.link}
-            target='_blank'
-            rel='noopener noreferrer'
-            className='link'
-          >
-            <div className='content'>
-              {item.text && iconMapping[item.text]}
-              <p className='button-name'>{item.text}</p>
-            </div>
-          </a>
-        ) : (
+        // const isExternalLink = item.link.startsWith("http");
+        // return isExternalLink ? (
+        //   <a
+        //     key={index}
+        //     href={item.link}
+        //     target='_blank'
+        //     rel='noopener noreferrer'
+        //     className='link'
+        //   >
+        //     <div className='content'>
+        //       {item.text && iconMapping[item.text]}
+        //       <p className='button-name'>{item.text}</p>
+        //     </div>
+        //   </a>
+        // ) : (
+        return (
           <StyledLink
             key={index}
-            to={item.link}
+            to={`/grantee/${item.id}`}
             state={{ from: location }}
             className='link'
           >
             <div className='content'>
-              {item.imageSrc && (
+              {item.image_url && (
                 <img
-                  src={item.imageSrc}
-                  alt={item.imageAlt || ""}
+                  src={item.image_url}
+                  alt={`Image of ${item.name || ""}`}
                   className='button-image'
                 />
               )}
-              <p className='button-name'>{item.text}</p>
+              <p className='button-name'>{item.name}</p>
             </div>
           </StyledLink>
         );

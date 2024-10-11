@@ -79,7 +79,7 @@ const fetchSimilarCards = async (similiarIds) => {
   }
 };
 
-// /*** FETCH TRANSACTION DETAILS BASED ON RESPONS ***/
+/*** FETCH TRANSACTION DETAILS BASED ON RESPONS ***/
 
 const fetchTransactions = async (transactionIds) => {
   if (!transactionIds || transactionIds.length === 0) {
@@ -90,9 +90,8 @@ const fetchTransactions = async (transactionIds) => {
     // Fetch each transaction by its ID
     const transactionsPromises = transactionIds.map(async (id) => {
       const res = await fetch(
-        `https://nextjs-test-beryl-gamma.vercel.app/api/transactions?id=67eda635-dd7c-4a85-ba85-58fb5648e963`
+        `https://nextjs-test-beryl-gamma.vercel.app/api/transactions?id=${id}`
       );
-
       if (!res.ok) {
         throw new Error(`Failed to fetch transaction data with id ${id}`);
       }
@@ -104,7 +103,7 @@ const fetchTransactions = async (transactionIds) => {
     const transactionData = await Promise.all(transactionsPromises);
     return transactionData;
   } catch (error) {
-    console.error("Error fetching transaction data:", error); // Log any errors
+    console.error("Error fetching transaction data:", error);
     throw error;
   }
 };
@@ -153,7 +152,6 @@ function FundedGrantDetails() {
   if (error) return <div>Error: {error}</div>;
 
   // const canGoBack = !!from;
-  console.log("empty transactions", transactionData);
 
   return (
     <div className='page-wrapper'>
@@ -180,8 +178,8 @@ function FundedGrantDetails() {
             execution={cardData.execution}
             payment_structure={cardData.payment_structure}
             similiar={similiarCards}
-            grantees={cardData.grantees}
             transactions={transactionData}
+            granteeIds={cardData.grantees_ids}
           />
         )}
       </Container>
