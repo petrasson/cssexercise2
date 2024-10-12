@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Header from "../../shared-components/Header";
 import ButtonWrapper from "../../shared-components/ButtonWrapper";
-// import BackButton from "../../shared-components/BackButton";
+import BackButton from "../../shared-components/BackButton";
 import Footer from "../../shared-components/Footer";
 import HeadTitle from "../../shared-components/HeadTitle";
 import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
@@ -84,7 +84,6 @@ const StyledLink = styled(Link)`
 /** FETCH USER DATA ***/
 
 const fetchGranteeData = async (id) => {
-  console.log("Fetching card for id:", id);
   try {
     const res = await fetch(
       `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?id=${id}`
@@ -93,7 +92,6 @@ const fetchGranteeData = async (id) => {
       throw new Error("Failed to fetch card details");
     }
     const data = await res.json();
-    console.log("API Response:", data);
     return data;
   } catch (error) {
     console.error("Error fetching card data:", error); // Log any errors
@@ -141,8 +139,10 @@ function Grantee() {
   const [error, setError] = useState(null);
 
   const { id } = useParams();
-  // const location = useLocation();
-  // const navigate = useNavigate();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { from } = location.state || {};
+  const canGoBack = !!from;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -189,8 +189,6 @@ function Grantee() {
         );
 
         setGranteeImages(granteeImagesMap);
-        console.log("granteeImagesMap", granteeImagesMap);
-
         setLoading(false);
       } catch (error) {
         setError(error.message);
@@ -207,14 +205,14 @@ function Grantee() {
     <div className='page-wrapper'>
       <Header />
       <Container>
-        {/* {canGoBack && (
+        {canGoBack && (
           <BackButton
             onClick={() => {
               console.log("BackButton clicked");
               navigate(-1);
             }}
           />
-        )} */}
+        )}
         <img src={`${granteeData.image_url}`} alt='picture of user' />
         <HeadTitle text={granteeData.name} />
         <div className='text-wrapper'>
@@ -222,7 +220,11 @@ function Grantee() {
           <p className='grant-text'>{granteeData.about}</p>
           <h3 className='sub-title'>Links</h3>
           <div className='link-wrapper'>
-            <ButtonWrapper items={granteeData.links} location={location} />
+            <ButtonWrapper
+              items={granteeData.links}
+              location={location}
+              position='external-links'
+            />
           </div>
         </div>
         <h1 className='projects-text'>Projects</h1>

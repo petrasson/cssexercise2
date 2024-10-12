@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import Header from "../../shared-components/Header";
-// import BackButton from "../../shared-components/BackButton";
+import BackButton from "../../shared-components/BackButton";
 import FundedGrantImage from "./components/FundedGrantImage";
 import GrantDetails from "./components/GrantDetails";
 import Footer from "../../shared-components/Footer";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   margin: 0 auto;
@@ -27,7 +27,6 @@ const Container = styled.div`
 /*** FETCH CARD DETAILS BASED ON ID ***/
 
 const fetchCard = async (id) => {
-  console.log("Fetching card for user id:", id);
   try {
     const res = await fetch(
       `https://nextjs-test-beryl-gamma.vercel.app/api/grants?id=${id}`
@@ -36,7 +35,6 @@ const fetchCard = async (id) => {
       throw new Error("Failed to fetch card details");
     }
     const data = await res.json();
-    console.log("API Response:", data);
 
     // Call the function to fetch similiar cards and transactions based on IDs in the response
     await fetchSimilarCards(data.similiar);
@@ -53,7 +51,6 @@ const fetchCard = async (id) => {
 
 const fetchSimilarCards = async (similiarIds) => {
   if (!similiarIds || similiarIds.length === 0) {
-    console.log("No similiar card IDs found.");
     return;
   }
   try {
@@ -111,9 +108,9 @@ const fetchTransactions = async (transactionIds) => {
 /*** RENDER COMPONENT ***/
 
 function FundedGrantDetails() {
-  // const location = useLocation();
-  // const navigate = useNavigate();
-  // const { card: stateCard, from } = location.state || {};
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { card: stateCard, from } = location.state || {};
   const { id } = useParams();
   const [cardData, setCardData] = useState(null);
   const [similiarCards, setSimilarCards] = useState([]);
@@ -151,20 +148,20 @@ function FundedGrantDetails() {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
-  // const canGoBack = !!from;
+  const canGoBack = !!from;
 
   return (
     <div className='page-wrapper'>
       <Header />
       <Container>
-        {/* {canGoBack && (
+        {canGoBack && (
           <BackButton
             onClick={() => {
               console.log("BackButton clicked");
               navigate(-1);
             }}
           />
-        )} */}
+        )}
         <FundedGrantImage />
         {cardData && (
           <GrantDetails

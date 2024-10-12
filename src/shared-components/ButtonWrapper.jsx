@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link, useLocation } from "react-router-dom";
-// import { FaLink, FaLinkedin } from "react-icons/fa6";
-// import { FaGithub, FaTwitter } from "react-icons/fa";
+import { FaLink, FaLinkedin } from "react-icons/fa6";
+import { FaGithub, FaTwitter } from "react-icons/fa";
 
 const StyledLink = styled(Link)`
   color: var(--primary-text-color);
@@ -46,34 +46,85 @@ const NavButtonWrapper = styled.div`
   }
 `;
 
-function ButtonWrapper({ items }) {
-  console.log("item-id", items[0].id);
+const granteeSocialMedia = [
+  {
+    name: "Twitter",
+    link: null,
+    icon: <FaTwitter fontSize='23px' />,
+  },
+  {
+    name: "Website",
+    link: null,
+    icon: <FaLink fontSize='23px' />,
+  },
+  {
+    name: "LinkedIn",
+    link: null,
+    icon: <FaLinkedin fontSize='23px' />,
+  },
+  {
+    name: "Github",
+    link: null,
+    icon: <FaGithub fontSize='23px' />,
+  },
+];
+
+function ButtonWrapper({ items, position }) {
   const location = useLocation();
-  // const iconMapping = {
-  //   Twitter: <FaTwitter fontSize='23px' />,
-  //   LinkedIn: <FaLinkedin fontSize='23px' />,
-  //   Github: <FaGithub fontSize='23px' />,
-  //   Website: <FaLink fontSize='23px' />,
-  // };
+
+  if (!items || items.length === 0) {
+    return <p>No items available</p>;
+  }
+
+  const updatedSocialMedia = [...granteeSocialMedia];
+  {
+    position === "external-links" &&
+      items.forEach((item) => {
+        if (item.includes("twitter")) {
+          updatedSocialMedia.find((media) => media.name === "Twitter").link =
+            item;
+        } else if (item.includes("linkedin")) {
+          updatedSocialMedia.find((media) => media.name === "LinkedIn").link =
+            item;
+        } else if (item.includes("github")) {
+          updatedSocialMedia.find((media) => media.name === "Github").link =
+            item;
+        } else {
+          // If it's not social media, we assign it as a website
+          updatedSocialMedia.find((media) => media.name === "Website").link =
+            item;
+        }
+      });
+  }
+
   return (
     <NavButtonWrapper>
-      {items.map((item, index) => {
-        // const isExternalLink = item.link.startsWith("http");
-        // return isExternalLink ? (
-        //   <a
-        //     key={index}
-        //     href={item.link}
-        //     target='_blank'
-        //     rel='noopener noreferrer'
-        //     className='link'
-        //   >
-        //     <div className='content'>
-        //       {item.text && iconMapping[item.text]}
-        //       <p className='button-name'>{item.text}</p>
-        //     </div>
-        //   </a>
-        // ) : (
-        return (
+      {/* Conditional rendering based on position */}
+      {position === "external-links" &&
+        updatedSocialMedia.map(
+          (media, index) =>
+            media.link && (
+              <a
+                key={index}
+                href={
+                  media.link.startsWith("http")
+                    ? media.link
+                    : `http://${media.link}`
+                }
+                target='_blank'
+                rel='noopener noreferrer'
+                className='link'
+              >
+                <div className='content'>
+                  {media.icon}
+                  <p className='button-name'>{media.name}</p>
+                </div>
+              </a>
+            )
+        )}
+
+      {position === "link-to-profile" &&
+        items.map((item, index) => (
           <StyledLink
             key={index}
             to={`/grantee/${item.id}`}
@@ -91,8 +142,7 @@ function ButtonWrapper({ items }) {
               <p className='button-name'>{item.name}</p>
             </div>
           </StyledLink>
-        );
-      })}
+        ))}
     </NavButtonWrapper>
   );
 }

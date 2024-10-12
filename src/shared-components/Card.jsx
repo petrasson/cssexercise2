@@ -92,7 +92,6 @@ function Card({
   description,
   grantees,
 }) {
-  console.log("grantees from cardholder", grantees);
   return (
     <CardWrapper>
       <p className='card-category'>{category}</p>

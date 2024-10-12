@@ -143,7 +143,12 @@ const fetchGranteeData = async (id) => {
     throw new Error("Failed to fetch user data");
   }
   const data = await res.json();
-  return { id: data.id, image_url: data.image_url, name: data.name };
+  return {
+    id: data.id,
+    image_url: data.image_url,
+    name: data.name,
+    links: data.links,
+  };
 };
 
 function GrantDetails({
@@ -171,7 +176,6 @@ function GrantDetails({
         const granteesData = await Promise.all(granteePromises); // Fetch all users in parallel
         setGraanteeData(granteesData);
         setLoading(false);
-        console.log("Here I can see", granteesData);
       } catch (error) {
         setError(error.message);
         setLoading(false);
@@ -202,8 +206,12 @@ function GrantDetails({
         />
       </div>
       <h3 className='sub-title'>Team</h3>
-
-      <ButtonWrapper items={graanteeData} />
+      {console.log("graanteeData", graanteeData)}
+      <ButtonWrapper
+        items={graanteeData}
+        location={location}
+        position='link-to-profile'
+      />
       <hr></hr>
       <div className='text-wrapper'>
         <h3 className='sub-title'>Description</h3>

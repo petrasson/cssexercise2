@@ -67,12 +67,6 @@ function CardHolder({ cards }) {
           const grantee = granteesData.find((g) => g.id === id);
           return grantee ? grantee.image_url : null;
         });
-        {
-          console.log(
-            "The array of images sending to Card from Cardholder",
-            granteeImages
-          );
-        }
 
         return (
           <StyledLink
