@@ -164,7 +164,7 @@ function GrantDetails({
   transactions,
   granteeIds,
 }) {
-  const [graanteeData, setGraanteeData] = useState([]);
+  const [granteeData, setGranteeData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -174,7 +174,7 @@ function GrantDetails({
         setLoading(true);
         const granteePromises = granteeIds.map((id) => fetchGranteeData(id));
         const granteesData = await Promise.all(granteePromises); // Fetch all users in parallel
-        setGraanteeData(granteesData);
+        setGranteeData(granteesData);
         setLoading(false);
       } catch (error) {
         setError(error.message);
@@ -183,7 +183,7 @@ function GrantDetails({
     };
 
     fetchAllGranteeData();
-  }, []);
+  }, [granteeIds]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -201,17 +201,12 @@ function GrantDetails({
         <Button
           type='accent'
           text='Project link'
-          onClick={console.log("ProjectLink")}
+          onClick={() => console.log("ProjectLink")}
           image='true'
         />
       </div>
       <h3 className='sub-title'>Team</h3>
-      {console.log("graanteeData", graanteeData)}
-      <ButtonWrapper
-        items={graanteeData}
-        location={location}
-        position='link-to-profile'
-      />
+      <ButtonWrapper items={granteeData} position='link-to-profile' />
       <hr></hr>
       <div className='text-wrapper'>
         <h3 className='sub-title'>Description</h3>

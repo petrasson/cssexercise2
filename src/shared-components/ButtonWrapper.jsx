@@ -70,6 +70,7 @@ const granteeSocialMedia = [
 ];
 
 function ButtonWrapper({ items, position }) {
+  console.log("items here", items);
   const location = useLocation();
 
   if (!items || items.length === 0) {
@@ -78,8 +79,14 @@ function ButtonWrapper({ items, position }) {
 
   const updatedSocialMedia = [...granteeSocialMedia];
   {
+    {
+      console.log("itemsss", items);
+    }
     position === "external-links" &&
       items.forEach((item) => {
+        {
+          console.log("item", item);
+        }
         if (item.includes("twitter")) {
           updatedSocialMedia.find((media) => media.name === "Twitter").link =
             item;

@@ -150,6 +150,7 @@ function Grantee() {
         setLoading(true);
         //fetching the users data based on id
         const grantee = await fetchGranteeData(id);
+        console.log("I can see grantee data here", grantee);
         setGranteeData(grantee);
 
         //Fetch the details of each project (grant) the grantee has been involved in
@@ -159,6 +160,7 @@ function Grantee() {
         );
         const grants = await Promise.all(grantPromises); // Fetch all project data in parallel
         setGrantData(grants);
+        console.log("This works too", grants);
 
         // Fetch images for all grantees (users) involved in each project
         const granteeImagePromises = {};
@@ -174,8 +176,14 @@ function Grantee() {
 
         // Resolve all image fetch promises
         const resolvedImages = await Promise.all(
-          Object.keys(granteeImagePromises).map(
-            (granteeId) => granteeImagePromises[granteeId]
+          Object.keys(granteeImagePromises).map((granteeId) =>
+            granteeImagePromises[granteeId].catch((error) => {
+              console.error(
+                `Error fetching image for grantee ID ${granteeId}:`,
+                error
+              );
+              return null; // Return null for failed fetches
+            })
           )
         );
 
@@ -192,6 +200,7 @@ function Grantee() {
         setLoading(false);
       } catch (error) {
         setError(error.message);
+        console.log(error.message);
         setLoading(false);
       }
     };
@@ -222,7 +231,6 @@ function Grantee() {
           <div className='link-wrapper'>
             <ButtonWrapper
               items={granteeData.links}
-              location={location}
               position='external-links'
             />
           </div>
@@ -230,9 +238,9 @@ function Grantee() {
         <h1 className='projects-text'>Projects</h1>
         <div className='card-wrapper'>
           {grantData.map((card) => {
-            const granteeImageUrls = card.grantees_ids.map(
-              (granteeId) => granteeImages[granteeId]
-            );
+            const granteeImageUrls = card.grantees_ids.map((granteeId) => {
+              return granteeImages[granteeId.toString()];
+            });
 
             return (
               <StyledLink key={card.id} to={`/card/${card.id}`}>
