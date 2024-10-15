@@ -1,14 +1,15 @@
+import { useState } from "react";
 import styled from "styled-components";
+import Button from "./../../../shared-components/Button";
 
 const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
+
   .sub-title {
-    // font-family: "Space Mono", sans-serif;
-    // color: var(--secondary-text-color);
-    font-size: 40px;
+    font-size: 34px;
     margin: 90px 0 30px;
   }
 
@@ -18,7 +19,7 @@ const FormWrapper = styled.div`
     align-items: flex-start;
     color: var(--primary-bg-color);
     background-color: var(--form-color);
-    border: solid var(--border-color);
+    border: solid var(--form-border-color);
     border-radius: 16px;
     padding: 32px 100px;
     width: 100%;
@@ -32,94 +33,138 @@ const FormWrapper = styled.div`
     line-height: 24px;
     margin: 25px 0;
     width: 100%;
-    border: solid blue;
+    p {
+      font-size: 14px;
+      margin-top: 10px;
+    }
+  }
+
+  input,
+  textarea {
+    border: solid var(--secondary-text-color);
+    width: 100%;
+    margin-top: 10px;
+    padding: 8px;
+    font-size: 16px;
+    font-family: inherit;
   }
 
   input {
-    border: solid var(--secondary-text-color);
     height: 30px;
-    width: 100%;
   }
-  // .avatar-container {
-  //   display: flex;
-  //   flex-direction: row;
-  //   position: absolute;
-  //   bottom: 8px;
-  //   left: 26px;
-  //   margin: 0;
-  //   padding: 0;
-  //   margin: 0 -9px;
-  // }
 
-  // .image-avatar-wrapper {
-  //   display: flex;
-  //   flex-direction: row;
-  //   margin: 0 -9px;
-  // }
+  textarea {
+    height: 100px;
+    resize: vertical;
+  }
 
-  // .avatar-image {
-  //   width: 40px;
-  //   height: 40px;
-  //   border-radius: 50%;
-  //   object-fit: cover;
-  //   margin: 0;
-  // }
+  .required {
+    color: red;
+  }
 
-  // .purple-circle {
-  //   background-color: var(--accent-color);
-  //   border-radius: 50%;
-  //   height: 40px;
-  //   width: 40px;
-  //   display: flex;
-  //   justify-content: center;
-  //   align-items: center;
-  //   border: solid 2px var(--secondary-bg-color);
-  //   margin: 0 -9px;
-  // }
-
-  // .attendee-number {
-  //   font-size: 12px;
-  // }
-
-  // @media only screen and (width >= 1305px) {
-  //   .card-title {
-  //     font-size: 24px;
-  //   }
-  // }
+  .error {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
 `;
 
 function Form() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [about, setAbout] = useState("");
+  const [links, setLinks] = useState("");
+  const [errors, setErrors] = useState({});
+  console.log("name", name);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    let formErrors = {};
+
+    // Check if any required field is empty or if email address is missing an '@'
+    if (!name.trim()) {
+      console.log("name is empty", name);
+      formErrors.name = "You haven't added any information.";
+    }
+
+    if (!email.trim()) {
+      formErrors.email = "You haven't added any information.";
+      console.log("email is empty", email);
+    } else if (!email.includes("@")) {
+      formErrors.email = "Add a valid email address.";
+      console.log("email is missing @", name);
+    }
+
+    if (!about.trim()) {
+      formErrors.about = "You haven't added any information.";
+      console.log("about is empty", about);
+    }
+
+    // Update the errors state
+    setErrors(formErrors);
+
+    // If no errors, proceed
+    if (Object.keys(formErrors).length === 0) {
+      alert("Form submitted successfully!");
+    }
+  };
+
   return (
     <FormWrapper>
       <h3 className='sub-title'>Grant application</h3>
-      <div className='input-wrapper'>
-        <div class='input-box'>
-          <label>Name</label>
-          <input type='text' required />
-          <i class='bx bxs-user'></i>
+      <form onSubmit={handleSubmit} noValidate>
+        <div className='input-wrapper'>
+          <div className='input-box'>
+            <label>
+              Name <span className='required'>*</span>
+            </label>
+            {errors.name && <p className='error'>{errors.name}</p>}
+            <input
+              type='text'
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+          <div className='input-box'>
+            <label>
+              Email <span className='required'>*</span>
+            </label>
+            {errors.email && <p className='error'>{errors.email}</p>}
+            <p>Primary contact if applying as a team/company</p>
+            <input
+              type='email'
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className='input-box'>
+            <label>
+              About You <span className='required'>*</span>
+            </label>
+            {errors.about && <p className='error'>{errors.about}</p>}
+            <p>Tell us about yourself and/or your team</p>
+            <textarea
+              value={about}
+              onChange={(e) => setAbout(e.target.value)}
+            ></textarea>
+          </div>
+          <div className='input-box'>
+            <label>Additional Links</label>
+            <p>
+              If helpful, please share any links about you (e.g., Website,
+              GitHub, Twitter)
+            </p>
+            <textarea
+              value={links}
+              onChange={(e) => setLinks(e.target.value)}
+            ></textarea>
+          </div>
+          <div className='button-wrapper'>
+            <Button type='accent' text='Submit' image='false' />
+          </div>
         </div>
-        <div class='input-box'>
-          <label>Email</label>
-          <p> Primary contact if applying as a team/company</p>
-          <input type='email' required />
-          <i class='bx bxs-user'></i>
-        </div>
-        <div class='input-box'>
-          <label>About You</label>
-          <p>Tell us about yourself and/or your team</p>
-          <input type='text' required />
-          <i class='bx bxs-user'></i>
-        </div>
-        <div class='input-box'>
-          <label>Additinal Links</label>
-          <p>
-            If helpful, please share any links about you (e.g. Website, GitHub,
-            Twitter)
-          </p>
-          <input type='text' required />
-          <i class='bx bxs-user'></i>
-        </div>
-      </div>
+      </form>
     </FormWrapper>
   );
 }

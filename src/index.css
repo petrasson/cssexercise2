@@ -13,7 +13,8 @@
   --border-color: rgb(107 105 105 / 28.1%);
   --btn-hover-color: #434478;
   --btn-completed: #6bbf98;
-  --form-color: #e4e3ec;
+  --form-color: #f1efef;
+  --form-border-color: #cbcaca;
 }
 
 body {

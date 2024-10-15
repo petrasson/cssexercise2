@@ -87,7 +87,7 @@ function Button({ type, text, onClick, highlight, image }) {
       type={type}
       onClick={onClick}
       highlight={highlight}
-      image={true}
+      image={image}
     >
       {text}
       {image && (
