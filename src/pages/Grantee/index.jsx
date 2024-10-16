@@ -208,6 +208,7 @@ function Grantee() {
         const granteeImagePromises = allGranteeIds.map((granteeId) =>
           fetchGranteeImage(granteeId)
         );
+
         const resolvedImages = await Promise.all(granteeImagePromises);
 
         // Map grantee IDs to images
