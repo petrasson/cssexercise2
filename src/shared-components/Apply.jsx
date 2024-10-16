@@ -1,5 +1,15 @@
 import Button from "./Button";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    text-decoration: none;
+  }
+`;
 
 const ApplyWrapper = styled.div`
   display: flex;
@@ -71,44 +81,17 @@ const ApplyWrapper = styled.div`
 `;
 
 function Apply() {
-  const handleApply = () => {
-    alert("Button clicked: you will now apply for a grant application");
-  };
-
   return (
     <ApplyWrapper>
       <div className='apply-inner'>
         <p className='apply-text'>Have a project in mind?</p>
         <p className='apply-title'>Let’s create something awesome.</p>
-        <Button type='secondary' text='Apply for grant' onClick={handleApply} />
+        <StyledLink to='/apply'>
+          <Button type='secondary' text='Apply for grant' />
+        </StyledLink>
       </div>
     </ApplyWrapper>
   );
 }
 
-// //  <img
-// src="images/arrowb-rigth.svg"
-// aria-hidden="true"
-// className="arrowb-right"
-// />
-
 export default Apply;
-
-// <section className='apply-wrapper'>
-// <div className='apply-inner'>
-//   <p className='apply-text'>Have a project in mind?</p>
-//   <p className='apply-title'>Let’s create something awesome.</p>
-//   <Button />
-// </div>
-// </section>
-
-/**Button in apply*/
-
-// <button className='button _secondary'>
-//     Apply for grant
-//     <img
-//       src='images/arrowb-rigth.svg'
-//       aria-hidden='true'
-//       className='arrowb-right'
-//     />
-//   </button>

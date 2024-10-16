@@ -5,8 +5,8 @@ import Button from "./../../../shared-components/Button";
 const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   text-align: left;
+  padding: 30px;
 
   .sub-title {
     font-size: 34px;
@@ -21,7 +21,7 @@ const FormWrapper = styled.div`
     background-color: var(--form-color);
     border: solid var(--form-border-color);
     border-radius: 16px;
-    padding: 32px 100px;
+    padding: 22px 40px;
     width: 100%;
   }
 
@@ -67,6 +67,12 @@ const FormWrapper = styled.div`
     font-size: 14px;
     margin-bottom: 5px;
   }
+
+  @media and screen (width >= 1305px) {
+    padding: 80px .input-wrapper {
+      padding: 32px 100px;
+    }
+  }
 `;
 
 function Form() {
@@ -75,7 +81,6 @@ function Form() {
   const [about, setAbout] = useState("");
   const [links, setLinks] = useState("");
   const [errors, setErrors] = useState({});
-  console.log("name", name);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -84,21 +89,17 @@ function Form() {
 
     // Check if any required field is empty or if email address is missing an '@'
     if (!name.trim()) {
-      console.log("name is empty", name);
       formErrors.name = "You haven't added any information.";
     }
 
     if (!email.trim()) {
       formErrors.email = "You haven't added any information.";
-      console.log("email is empty", email);
     } else if (!email.includes("@")) {
       formErrors.email = "Add a valid email address.";
-      console.log("email is missing @", name);
     }
 
     if (!about.trim()) {
       formErrors.about = "You haven't added any information.";
-      console.log("about is empty", about);
     }
 
     // Update the errors state

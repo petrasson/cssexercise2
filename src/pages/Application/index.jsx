@@ -20,7 +20,7 @@ const Container = styled.div`
   }
 
   @media only screen and (width >= 1305px) {
-    padding: 0 108px;
+    // padding: 0 108px;
   }
 `;
 

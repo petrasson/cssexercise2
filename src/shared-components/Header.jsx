@@ -2,9 +2,18 @@ import Button from "./Button";
 import { Link } from "react-router-dom";
 import SocialMedia from "./SocialMedia";
 import { useMediaQuery } from "react-responsive";
-import React, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import { clsx } from "clsx";
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    text-decoration: none;
+  }
+`;
 
 const HeaderWrapper = styled.header`
   display: flex;
@@ -181,10 +190,6 @@ function Header() {
     setIsMenuActive(!isMenuActive);
   };
 
-  const handleApply = () => {
-    alert("you will now apply for a grant");
-  };
-
   return (
     <HeaderWrapper $ismenuactive={isMenuActive}>
       <img
@@ -221,11 +226,12 @@ function Header() {
         </div>
 
         <div className='btn-wrapper'>
-          <Button
-            type='accent'
-            text={isDesktop ? "Apply for grant" : "Apply"}
-            onClick={handleApply}
-          />
+          <StyledLink to='/apply'>
+            <Button
+              type='accent'
+              text={isDesktop ? "Apply for grant" : "Apply"}
+            />
+          </StyledLink>
 
           {!isDesktop && (
             <button
