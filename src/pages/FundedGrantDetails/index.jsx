@@ -21,7 +21,6 @@ const Container = styled.div`
   @media only screen and (width >= 1305px) {
     padding: 0 108px;
   }
-  //
 `;
 
 /*** FETCH CARD DETAILS BASED ON ID ***/
@@ -39,7 +38,6 @@ const fetchCard = async (id) => {
     // Call the function to fetch similiar cards and transactions based on IDs in the response
     await fetchSimilarCards(data.similiar);
     await fetchTransactions(data.transactions);
-
     return data;
   } catch (error) {
     console.error("Error fetching card data:", error); // Log any errors
@@ -51,6 +49,7 @@ const fetchCard = async (id) => {
 
 const fetchSimilarCards = async (similiarIds) => {
   if (!similiarIds || similiarIds.length === 0) {
+    console.log("No similar IDs found.");
     return;
   }
   try {
@@ -66,12 +65,12 @@ const fetchSimilarCards = async (similiarIds) => {
       return res.json();
     });
 
-    /*** WAIT FOR FETCHES TO COMPLETE ***/
+    // Wait for fetches to complete
 
     const similiarCardsData = await Promise.all(similiarCardPromises);
     return similiarCardsData;
   } catch (error) {
-    console.error("Error fetching similiar cards:", error); // Log any errors
+    console.error("Error fetching similiar cards:", error);
     throw error;
   }
 };
@@ -95,8 +94,7 @@ const fetchTransactions = async (transactionIds) => {
       return res.json();
     });
 
-    /*** WAIT FOR FETCHES TO COMPLETE ***/
-
+    // Wait for data to complete
     const transactionData = await Promise.all(transactionsPromises);
     return transactionData;
   } catch (error) {
@@ -105,12 +103,10 @@ const fetchTransactions = async (transactionIds) => {
   }
 };
 
-/*** RENDER COMPONENT ***/
-
 function FundedGrantDetails() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { card: stateCard, from } = location.state || {};
+  const { from } = location.state || {};
   const { id } = useParams();
   const [cardData, setCardData] = useState(null);
   const [similiarCards, setSimilarCards] = useState([]);
@@ -123,6 +119,8 @@ function FundedGrantDetails() {
     window.scrollTo(0, 0);
   }, [id]);
 
+  // Fetch all data needed for that card to render based on useParams Id
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -130,13 +128,16 @@ function FundedGrantDetails() {
         const data = await fetchCard(id);
         setCardData(data);
 
-        const similiarCardsData = await fetchSimilarCards(data.similiar); // Fetch similiar cards
+        // Fetch similiar cards
+        const similiarCardsData = await fetchSimilarCards(data.similiar);
         setSimilarCards(similiarCardsData);
 
-        const transactionData = await fetchTransactions(data.transactions); // Fetch transactions
+        // Fetch transactions
+        const transactionData = await fetchTransactions(data.transactions);
         setTransactionData(transactionData);
 
-        setLoading(false); // Data is fetched, set loading to false
+        // Data is fetched, set loading to false
+        setLoading(false);
       } catch (error) {
         setError(error.message);
         setLoading(false);
@@ -157,7 +158,6 @@ function FundedGrantDetails() {
         {canGoBack && (
           <BackButton
             onClick={() => {
-              console.log("BackButton clicked");
               navigate(-1);
             }}
           />

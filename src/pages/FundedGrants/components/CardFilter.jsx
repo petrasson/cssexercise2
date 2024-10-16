@@ -12,6 +12,9 @@ const CardFilterWrapper = styled.div`
 
 function CardFilter() {
   const [grantsData, setGrantsData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+  const [filterType, setFilterType] = useState("All");
+  const [filterCompleted, setFilteredCompleted] = useState(true);
 
   useEffect(() => {
     const getGrantsData = async () => {
@@ -30,10 +33,6 @@ function CardFilter() {
     };
     getGrantsData();
   }, []);
-
-  const [filteredData, setFilteredData] = useState([]);
-  const [filterType, setFilterType] = useState("All");
-  const [filterCompleted, setFilteredCompleted] = useState(true);
 
   useEffect(() => {
     let newFilteredData = grantsData;

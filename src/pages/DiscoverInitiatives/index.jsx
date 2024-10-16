@@ -3,7 +3,6 @@ import Header from "../../shared-components/Header";
 import HeadTitle from "../../shared-components/HeadTitle";
 import DiscoverFilter from "./components/DiscoverFilter";
 import Footer from "../../shared-components/Footer";
-import { useEffect, useState } from "react";
 
 const Container = styled.div`
   margin: 0 auto;
@@ -26,20 +25,6 @@ const Container = styled.div`
 `;
 
 function DiscoverInitiatives() {
-  const [initiatives, setInitiatives] = useState([]);
-
-  useEffect(() => {
-    const getInitiatives = async () => {
-      const data = await fetch(
-        "https://nextjs-test-beryl-gamma.vercel.app/api/initiatives"
-      );
-      const response = await data.json();
-      setInitiatives(response.initiatives);
-    };
-
-    getInitiatives();
-  }, []);
-
   return (
     <div className='page-wrapper'>
       <Header />
@@ -52,7 +37,7 @@ function DiscoverInitiatives() {
           excellent Grants. This is a living list that will continue to update
           as ideas popup.
         </p>
-        <DiscoverFilter initiatives={initiatives} />
+        <DiscoverFilter />
       </Container>
       <Footer />
     </div>

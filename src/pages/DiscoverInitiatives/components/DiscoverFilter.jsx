@@ -9,14 +9,27 @@ const DiscoverFilterWrapper = styled.div`
   align-items: center;
 `;
 
-function DiscoverFilter({ initiatives }) {
+function DiscoverFilter() {
+  const [initiatives, setInitiatives] = useState([]);
   const [filterType, setFilterType] = useState("All");
   const [filteredData, setFilteredData] = useState(initiatives);
-  const status = initiatives.map((initiative) => initiative.status);
 
+  //fetch all initiatives
   useEffect(() => {
-    setFilteredData(initiatives);
-  }, [initiatives]);
+    const getInitiatives = async () => {
+      const data = await fetch(
+        "https://nextjs-test-beryl-gamma.vercel.app/api/initiatives"
+      );
+      const response = await data.json();
+      setInitiatives(response.initiatives);
+    };
+
+    getInitiatives();
+  }, []);
+
+  /*** HANDLE AND UPDATE FILTERED DATA BASED ON STATUS ***/
+
+  const status = initiatives.map((initiative) => initiative.status);
 
   //Remove duplicates using Set
   const uniqueStatus = [...new Set(status)];
@@ -37,9 +50,13 @@ function DiscoverFilter({ initiatives }) {
         (initiative) => initiative.status === filterType
       );
     }
-
     setFilteredData(newFilteredData);
   };
+
+  //uppdate filtered data
+  useEffect(() => {
+    setFilteredData(initiatives);
+  }, [initiatives]);
 
   return (
     <DiscoverFilterWrapper>

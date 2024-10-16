@@ -36,3 +36,25 @@ All design was taken from [this Figma file](https://www.figma.com/design/eWP1AMJ
 ### Individual Grantee
 
 `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?id=CC27C14A-0ACF-4F4A-A6C9-D45682C144B9`
+
+### Todo
+
+#### Try and catch on each fetch and error handling
+
+#### prop validation
+
+#### check all the @media quaries
+
+#### komments
+
+#### Loading
+
+#### images
+
+#### optional chaining
+
+#### optimize performance
+
+#### remov all console logs
+
+#### another two pages?

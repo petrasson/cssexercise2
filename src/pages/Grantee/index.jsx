@@ -81,7 +81,7 @@ const StyledLink = styled(Link)`
   }
 `;
 
-/** FETCH USER DATA ***/
+/*** FETCH USER PROFILE DATA ***/
 
 const fetchGranteeData = async (id) => {
   try {
@@ -99,7 +99,7 @@ const fetchGranteeData = async (id) => {
   }
 };
 
-/** FETCH DETAILD GRANT DATA USING GRANT ID ***/
+/*** FETCH DETAILD GRANT DATA USING GRANT ID ***/
 
 const fetchGrantData = async (id) => {
   try {
@@ -117,18 +117,45 @@ const fetchGrantData = async (id) => {
   }
 };
 
-/** FETCH USER IMAGES USING USER ID ***/
+/*** FETCH GRANTEE IMAGE DATA ***/
 
 const fetchGranteeImageData = async (id) => {
   const res = await fetch(
     `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?id=${id}`
   );
   if (!res.ok) {
-    throw new Error("Failed to fetch user data");
+    throw new Error(`Failed to fetch grantee data for ID ${id}`);
   }
   const data = await res.json();
+  console.log("data.image_url", data.image_url);
   return data.image_url;
 };
+
+/*** ASYNC FUNCTION WITH TRY/CATCH FOR FETCHING GRANTEE IMAGES ***/
+
+const fetchGranteeImage = async (granteeId) => {
+  try {
+    const imageUrl = await fetchGranteeImageData(granteeId);
+    return { granteeId, imageUrl };
+  } catch (error) {
+    console.error(`Error fetching image for grantee ID ${granteeId}:`, error);
+    console.log("fetchGranteeImage", { granteeId, imageUrl: null });
+    return { granteeId, imageUrl: null };
+  }
+};
+
+// /** FETCH USER IMAGES USING USER ID ***/
+
+// const fetchGranteeImageData = async (id) => {
+//   const res = await fetch(
+//     `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?id=${id}`
+//   );
+//   if (!res.ok) {
+//     throw new Error("Failed to fetch user data");
+//   }
+//   const data = await res.json();
+//   return data.image_url;
+// };
 
 function Grantee() {
   const [granteeData, setGranteeData] = useState([]);
@@ -148,62 +175,57 @@ function Grantee() {
     const fetchData = async () => {
       try {
         setLoading(true);
-        //fetching the users data based on id
+        //Fetching grantee data based on the id from the URL
         const grantee = await fetchGranteeData(id);
         console.log("I can see grantee data here", grantee);
         setGranteeData(grantee);
 
-        //Fetch the details of each project (grant) the grantee has been involved in
-        const grantIds = grantee.grants; // Get the project IDs
+        //Fetching grant data for each grant the grantee is involved in
+        const grantIds = grantee.grants; // Get the card IDs the user have been part of
         const grantPromises = grantIds.map((grantId) =>
           fetchGrantData(grantId)
         );
         const grants = await Promise.all(grantPromises); // Fetch all project data in parallel
         setGrantData(grants);
-        console.log("This works too", grants);
+        console.log(
+          "I can see all data from projects the grantee haven been part of",
+          grants
+        );
 
-        // Fetch images for all grantees (users) involved in each project
-        const granteeImagePromises = {};
+        // Fetching images for all grantees involved in each grant
+
+        // Collect unique grantee IDs
+        const granteeIdsSet = new Set();
         grants.forEach((grant) => {
           grant.grantees_ids.forEach((granteeId) => {
-            // Avoid fetching the same image multiple times
-            if (!granteeImagePromises[granteeId]) {
-              granteeImagePromises[granteeId] =
-                fetchGranteeImageData(granteeId);
-            }
+            granteeIdsSet.add(granteeId);
           });
         });
+        console.log("granteeIdsSet", granteeIdsSet);
+        const allGranteeIds = Array.from(granteeIdsSet);
 
-        // Resolve all image fetch promises
-        const resolvedImages = await Promise.all(
-          Object.keys(granteeImagePromises).map((granteeId) =>
-            granteeImagePromises[granteeId].catch((error) => {
-              console.error(
-                `Error fetching image for grantee ID ${granteeId}:`,
-                error
-              );
-              return null; // Return null for failed fetches
-            })
-          )
+        // Fetch grantee images with error handling
+        const granteeImagePromises = allGranteeIds.map((granteeId) =>
+          fetchGranteeImage(granteeId)
         );
+        const resolvedImages = await Promise.all(granteeImagePromises);
 
-        // Create an object with {granteeId: imageUrl}
-        const granteeImagesMap = Object.keys(granteeImagePromises).reduce(
-          (acc, granteeId, index) => {
-            acc[granteeId] = resolvedImages[index];
-            return acc;
-          },
-          {}
-        );
+        // Map grantee IDs to images
+        const granteeImagesMap = {};
+        resolvedImages.forEach(({ granteeId, imageUrl }) => {
+          granteeImagesMap[granteeId] = imageUrl;
+        });
 
         setGranteeImages(granteeImagesMap);
+
         setLoading(false);
       } catch (error) {
         setError(error.message);
-        console.log(error.message);
+        console.error(error);
         setLoading(false);
       }
     };
+
     fetchData();
   }, [id]);
 

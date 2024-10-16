@@ -62,8 +62,10 @@ function CardHolder({ cards }) {
   return (
     <CardWrapper>
       {cards.map((card) => {
-        // Images of the grantees for this card
-        const granteeImages = card.grantees_ids.map((id) => {
+        const GranteesId = card.grantees_ids;
+        // Get Images of the grantees for this card
+        const granteeImages = GranteesId.map((id) => {
+          //find the IDs in granteesData that match each granteesIds in my array and return it's image.
           const grantee = granteesData.find((g) => g.id === id);
           return grantee ? grantee.image_url : null;
         });
@@ -72,7 +74,7 @@ function CardHolder({ cards }) {
           <StyledLink
             key={card.id}
             to={`/card/${card.id}`}
-            state={{ card, from: location }}
+            state={{ from: location }}
           >
             <Card
               category={card.category}
