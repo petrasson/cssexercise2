@@ -56,7 +56,7 @@ const StyledButton = styled.div`
   }}
 
 
-  @media only screen and (min-width: 1305px) {
+  @media only screen and (width >= 1305px) {
     position: absolute;
     top: 16px;
     right: 16px;

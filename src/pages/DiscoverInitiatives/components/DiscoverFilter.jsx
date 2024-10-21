@@ -12,7 +12,7 @@ const DiscoverFilterWrapper = styled.div`
 function DiscoverFilter() {
   const [initiatives, setInitiatives] = useState([]);
   const [filterType, setFilterType] = useState("All");
-  const [filteredData, setFilteredData] = useState(initiatives);
+  const [filteredInitiatives, setFilteredInitiatives] = useState(initiatives);
 
   //fetch all initiatives
   useEffect(() => {
@@ -21,7 +21,7 @@ function DiscoverFilter() {
         "https://nextjs-test-beryl-gamma.vercel.app/api/initiatives"
       );
       const response = await data.json();
-      setInitiatives(response.initiatives);
+      setInitiatives(response?.initiatives);
     };
 
     getInitiatives();
@@ -42,19 +42,19 @@ function DiscoverFilter() {
   const handleFilter = (filterType) => {
     setFilterType(filterType);
 
-    let newFilteredData = initiatives;
+    let newFilteredInitiatives = initiatives;
 
     if (filterType !== "All") {
-      newFilteredData = newFilteredData.filter(
+      newFilteredInitiatives = newFilteredInitiatives?.filter(
         (initiative) => initiative.status === filterType
       );
     }
-    setFilteredData(newFilteredData);
+    setFilteredInitiatives(newFilteredInitiatives);
   };
 
   //uppdate filtered data
   useEffect(() => {
-    setFilteredData(initiatives);
+    setFilteredInitiatives(initiatives);
   }, [initiatives]);
 
   return (
@@ -65,7 +65,7 @@ function DiscoverFilter() {
         filterOptions={filterOptions}
         withToggle={false}
       />
-      <Initiatives cards={filteredData} />
+      <Initiatives cards={filteredInitiatives} />
     </DiscoverFilterWrapper>
   );
 }

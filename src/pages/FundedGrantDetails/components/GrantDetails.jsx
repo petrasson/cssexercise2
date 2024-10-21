@@ -119,7 +119,7 @@ const GrantDetailsWrapper = styled.div`
   }
 
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   align-items: flex-start;
   align-content: flex-start;
   text-align: left;

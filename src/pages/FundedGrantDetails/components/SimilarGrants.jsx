@@ -50,7 +50,6 @@ const SimilarGrantsWrapper = styled.div`
 `;
 
 function SimilarGrants({ similarGrants }) {
-  console.log("similarGrants", similarGrants);
   const [granteesData, setGranteesData] = useState([]);
 
   /*** FETCH USER DATA TO RENDER PARTICIPANTS IMAGES ***/

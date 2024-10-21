@@ -39,22 +39,22 @@ All design was taken from [this Figma file](https://www.figma.com/design/eWP1AMJ
 
 ### Todo
 
+#### optional chaining
+
 #### Try and catch on each fetch and error handling
 
-#### prop validation
-
-#### check all the @media quaries
-
-#### komments
+#### add komments
 
 #### Loading
 
 #### images
-
-#### optional chaining
 
 #### optimize performance
 
 #### remov all console logs
 
 #### another two pages?
+
+#### prop validation
+
+#### check all the @media quaries

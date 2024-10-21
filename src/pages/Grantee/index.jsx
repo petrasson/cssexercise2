@@ -166,7 +166,7 @@ function Grantee() {
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
-  const { from } = location.state || {};
+  const { from } = location?.state || {};
   const canGoBack = !!from;
 
   useEffect(() => {
@@ -243,15 +243,15 @@ function Grantee() {
             }}
           />
         )}
-        <img src={`${granteeData.image_url}`} alt='picture of user' />
-        <HeadTitle text={granteeData.name} />
+        <img src={`${granteeData?.image_url}`} alt='picture of user' />
+        <HeadTitle text={granteeData?.name} />
         <div className='text-wrapper'>
           <h3 className='sub-title'>About</h3>
-          <p className='grant-text'>{granteeData.about}</p>
+          <p className='grant-text'>{granteeData?.about}</p>
           <h3 className='sub-title'>Links</h3>
           <div className='link-wrapper'>
             <ButtonWrapper
-              items={granteeData.links}
+              items={granteeData?.links}
               position='external-links'
             />
           </div>
@@ -259,19 +259,19 @@ function Grantee() {
         <h1 className='projects-text'>Projects</h1>
         <div className='card-wrapper'>
           {grantData.map((card) => {
-            const granteeImageUrls = card.grantees_ids.map((granteeId) => {
+            const granteeImageUrls = card?.grantees_ids?.map((granteeId) => {
               return granteeImages[granteeId.toString()];
             });
 
             return (
               <StyledLink key={card.id} to={`/card/${card.id}`}>
                 <Card
-                  key={card.id}
-                  category={card.category}
-                  cardTitle={card.title}
-                  fundingAmountFrom={card.amountFrom}
-                  fundingAmountTo={card.amountTo}
-                  description={card.description}
+                  key={card?.id}
+                  category={card?.category}
+                  cardTitle={card?.title}
+                  fundingAmountFrom={card?.amountFrom}
+                  fundingAmountTo={card?.amountTo}
+                  description={card?.description}
                   grantees={granteeImageUrls}
                 />
               </StyledLink>
