@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const HeadTitleWrapper = styled.div`
   font-size: clamp(2rem, 5vw, 3.5rem);
@@ -14,5 +15,8 @@ const HeadTitleWrapper = styled.div`
 function HeadTitle({ text }) {
   return <HeadTitleWrapper>{text}</HeadTitleWrapper>;
 }
+HeadTitle.propTypes = {
+  text: PropTypes.string.isRequired,
+};
 
 export default HeadTitle;

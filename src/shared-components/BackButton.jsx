@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const BackButtonWrapper = styled.div`
   position: relative;
@@ -30,5 +31,9 @@ function BackButton({ onClick }) {
     </BackButtonWrapper>
   );
 }
+
+BackButton.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
 
 export default BackButton;

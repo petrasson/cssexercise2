@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Link, useLocation } from "react-router-dom";
 import { FaLink, FaLinkedin } from "react-icons/fa6";
 import { FaGithub, FaTwitter } from "react-icons/fa";
+import PropTypes from "prop-types";
 
 const StyledLink = styled(Link)`
   color: var(--primary-text-color);
@@ -70,7 +71,6 @@ const granteeSocialMedia = [
 ];
 
 function ButtonWrapper({ items, position }) {
-  console.log("items here", items);
   const location = useLocation();
 
   if (!items || items.length === 0) {
@@ -79,14 +79,8 @@ function ButtonWrapper({ items, position }) {
 
   const updatedSocialMedia = [...granteeSocialMedia];
   {
-    {
-      console.log("itemsss", items);
-    }
     position === "external-links" &&
       items.forEach((item) => {
-        {
-          console.log("item", item);
-        }
         if (item.includes("twitter")) {
           updatedSocialMedia.find((media) => media.name === "Twitter").link =
             item;
@@ -153,5 +147,9 @@ function ButtonWrapper({ items, position }) {
     </NavButtonWrapper>
   );
 }
+ButtonWrapper.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.string).isRequired,
+  position: PropTypes.oneOf(["link-to-profile", "external-links"]),
+};
 
 export default ButtonWrapper;

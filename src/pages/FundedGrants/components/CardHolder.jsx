@@ -3,6 +3,7 @@ import Card from "../../../shared-components/Card";
 import styled from "styled-components";
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -91,4 +92,15 @@ function CardHolder({ cards }) {
   );
 }
 
+CardHolder.propTypes = {
+  cards: PropTypes.arrayOf(
+    PropTypes.shape({
+      key: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      amount: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+};
 export default CardHolder;

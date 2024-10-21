@@ -101,7 +101,7 @@ function CardTransaction({ title, date, amount, description }) {
 CardTransaction.propTypes = {
   date: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  amount: PropTypes.string.isRequired,
+  amount: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,
 };
 export default CardTransaction;

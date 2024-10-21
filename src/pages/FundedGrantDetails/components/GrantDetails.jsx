@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import HeadTitle from "../../../shared-components/HeadTitle";
 import Button from "../../../shared-components/Button";
 import CardTransactions from "./CardTransactions";
@@ -154,7 +155,7 @@ const fetchGranteeData = async (id) => {
 function GrantDetails({
   category,
   cardTitle,
-  status,
+  // status,
   fundingAmountFrom,
   description,
   purpose,
@@ -246,6 +247,7 @@ function GrantDetails({
         </div>
       </div>
       <h3 className='sub-title funding'>Funding Transactions</h3>
+      {console.log(transactions, "transactions")}
       {transactions.map((card) => {
         return (
           <CardTransactions
@@ -257,10 +259,31 @@ function GrantDetails({
           />
         );
       })}
-
       <SimilarGrants similarGrants={similiar} />
     </GrantDetailsWrapper>
   );
 }
+
+GrantDetails.propTypes = {
+  category: PropTypes.string.isRequired,
+  cardTitle: PropTypes.string.isRequired,
+  // status: PropTypes.string.isRequired,
+  fundingAmountFrom: PropTypes.number.isRequired,
+  description: PropTypes.string.isRequired,
+  purpose: PropTypes.string.isRequired,
+  execution: PropTypes.string.isRequired,
+  payment_structure: PropTypes.string.isRequired,
+  similiar: PropTypes.arrayOf(PropTypes.string).isRequired,
+  granteeIds: PropTypes.arrayOf(PropTypes.string).isRequired,
+  transactions: PropTypes.arrayOf(
+    PropTypes.shape({
+      key: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      amount: PropTypes.number.isRequired,
+    })
+  ),
+};
 
 export default GrantDetails;

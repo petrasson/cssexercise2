@@ -169,7 +169,7 @@ function FundedGrantDetails() {
             category={cardData.category}
             cardTitle={cardData.title}
             fundingAmountFrom={cardData.amountFrom}
-            status={cardData.status}
+            // status={cardData.status} finns ej
             description={cardData.description}
             purpose={cardData.purpose}
             execution={cardData.execution}

@@ -127,7 +127,6 @@ const fetchGranteeImageData = async (id) => {
     throw new Error(`Failed to fetch grantee data for ID ${id}`);
   }
   const data = await res.json();
-  console.log("data.image_url", data.image_url);
   return data.image_url;
 };
 
@@ -164,7 +163,6 @@ function Grantee() {
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
@@ -177,7 +175,6 @@ function Grantee() {
         setLoading(true);
         //Fetching grantee data based on the id from the URL
         const grantee = await fetchGranteeData(id);
-        console.log("I can see grantee data here", grantee);
         setGranteeData(grantee);
 
         //Fetching grant data for each grant the grantee is involved in
@@ -186,22 +183,23 @@ function Grantee() {
           fetchGrantData(grantId)
         );
         const grants = await Promise.all(grantPromises); // Fetch all project data in parallel
-        setGrantData(grants);
-        console.log(
-          "I can see all data from projects the grantee haven been part of",
-          grants
+        //filterar all but empty Objects
+        const filteredGrants = grants.filter(
+          (grant) => Object.keys(grant).length > 0
         );
+
+        setGrantData(filteredGrants);
 
         // Fetching images for all grantees involved in each grant
 
         // Collect unique grantee IDs
         const granteeIdsSet = new Set();
-        grants.forEach((grant) => {
-          grant.grantees_ids.forEach((granteeId) => {
+        filteredGrants.forEach((grant) => {
+          grant?.grantees_ids.forEach((granteeId) => {
             granteeIdsSet.add(granteeId);
           });
         });
-        console.log("granteeIdsSet", granteeIdsSet);
+
         const allGranteeIds = Array.from(granteeIdsSet);
 
         // Fetch grantee images with error handling

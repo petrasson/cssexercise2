@@ -74,8 +74,8 @@ function DiscoveryCard({
 DiscoveryCard.propTypes = {
   status: PropTypes.string.isRequired,
   cardTitle: PropTypes.string.isRequired,
-  fundingAmountFrom: PropTypes.string.isRequired,
-  fundingAmountTo: PropTypes.string.isRequired,
+  fundingAmountFrom: PropTypes.number.isRequired,
+  fundingAmountTo: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,
 };
 export default DiscoveryCard;

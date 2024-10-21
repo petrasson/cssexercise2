@@ -28,7 +28,6 @@ function DiscoverFilter() {
   }, []);
 
   /*** HANDLE AND UPDATE FILTERED DATA BASED ON STATUS ***/
-
   const status = initiatives.map((initiative) => initiative.status);
 
   //Remove duplicates using Set

@@ -101,8 +101,9 @@ Button.propTypes = {
   id: PropTypes.string,
   text: PropTypes.string.isRequired,
   type: PropTypes.oneOf(["primary", "secondary", "accent", "text"]),
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   highlight: PropTypes.bool,
+  image: PropTypes.string,
 };
 
 export default Button;

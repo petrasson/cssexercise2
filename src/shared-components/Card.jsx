@@ -121,8 +121,8 @@ function Card({
 Card.propTypes = {
   category: PropTypes.string.isRequired,
   cardTitle: PropTypes.string.isRequired,
-  fundingAmountFrom: PropTypes.string.isRequired,
-  fundingAmountTo: PropTypes.string.isRequired,
+  fundingAmountFrom: PropTypes.number.isRequired,
+  fundingAmountTo: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,
   grantees: PropTypes.oneOfType([
     PropTypes.string,

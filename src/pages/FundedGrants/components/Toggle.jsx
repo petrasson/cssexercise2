@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const ToggleWrapper = styled.div`
   .toggle-wrapper {
@@ -66,4 +67,8 @@ function Toggle({ onClick }) {
     </ToggleWrapper>
   );
 }
+Toggle.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
+
 export default Toggle;

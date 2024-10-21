@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Card from "../../../shared-components/Card";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -49,6 +50,7 @@ const SimilarGrantsWrapper = styled.div`
 `;
 
 function SimilarGrants({ similarGrants }) {
+  console.log("similarGrants", similarGrants);
   const [granteesData, setGranteesData] = useState([]);
 
   /*** FETCH USER DATA TO RENDER PARTICIPANTS IMAGES ***/
@@ -79,32 +81,49 @@ function SimilarGrants({ similarGrants }) {
         <img src='/images/arrow-right.svg' aria-hidden='true' />
       </div>
       <div className='similar-card-wrapper'>
-        {similarGrants.map((card) => {
-          //array with granteesIds for each card
-          const granteesId = card.grantees_ids;
-          // map each Id and find the matching id in grantee
-          const granteeImages = granteesId.map((id) => {
-            const grantee = granteesData.find((g) => g.id === id);
-            return grantee ? grantee.image_url : null;
-          });
+        {Array.isArray(similarGrants) && similarGrants.length > 0 ? (
+          similarGrants.map((card) => {
+            //array with granteesIds for each card
+            const granteesId = card.grantees_ids;
+            // map each Id and find the matching id in grantee
+            const granteeImages = granteesId.map((id) => {
+              const grantee = granteesData.find((g) => g.id === id);
+              return grantee ? grantee.image_url : null;
+            });
 
-          return (
-            <StyledLink key={card.id} to={`/card/${card.id}`}>
-              <Card
-                key={card.id}
-                category={card.category}
-                cardTitle={card.title}
-                fundingAmountFrom={card.amountFrom}
-                fundingAmountTo={card.amountTo}
-                description={card.description}
-                grantees={granteeImages}
-              />
-            </StyledLink>
-          );
-        })}
+            return (
+              <StyledLink key={card.id} to={`/card/${card.id}`}>
+                <Card
+                  key={card.id}
+                  category={card.category}
+                  cardTitle={card.title}
+                  fundingAmountFrom={card.amountFrom}
+                  fundingAmountTo={card.amountTo}
+                  description={card.description}
+                  grantees={granteeImages}
+                />
+              </StyledLink>
+            );
+          })
+        ) : (
+          <div>No similar grants available</div>
+        )}
       </div>
     </SimilarGrantsWrapper>
   );
 }
+
+SimilarGrants.propTypes = {
+  similarGrants: PropTypes.arrayOf(
+    PropTypes.shape({
+      category: PropTypes.string.isRequired,
+      cardTitle: PropTypes.string.isRequired,
+      fundingAmountFrom: PropTypes.number.isRequired,
+      fundingAmountTo: PropTypes.number.isRequired,
+      description: PropTypes.string.isRequired,
+      grantees_ids: PropTypes.arrayOf(PropTypes.string).isRequired,
+    })
+  ).isRequired,
+};
 
 export default SimilarGrants;
