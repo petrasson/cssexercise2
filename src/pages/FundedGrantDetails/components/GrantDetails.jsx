@@ -5,8 +5,8 @@ import Button from "../../../shared-components/Button";
 import CardTransactions from "./CardTransactions";
 import ButtonWrapper from "../../../shared-components/ButtonWrapper";
 import SimilarGrants from "./SimilarGrants";
-import { useEffect, useState } from "react";
-import LottieAnimation from "../../../shared-components/LottieAnimation";
+// import { useEffect, useState } from "react";
+// import LottieAnimation from "../../../shared-components/LottieAnimation";
 
 const GrantDetailsWrapper = styled.div`
   width: 100%;
@@ -137,68 +137,62 @@ const GrantDetailsWrapper = styled.div`
 
 /*** FETCH GRANTEEDATA BASED ON ID ***/
 
-const fetchGranteeData = async (id) => {
-  const res = await fetch(
-    `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?id=${id}`
-  );
-  if (!res.ok) {
-    throw new Error("Failed to fetch user data");
-  }
-  const data = await res.json();
-  return {
-    id: data.id,
-    image_url: data.image_url,
-    name: data.name,
-    links: data.links,
-  };
-};
+// const fetchGranteeData = async (id) => {
+//   const res = await fetch(
+//     `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?id=${id}`
+//   );
+//   if (!res.ok) {
+//     throw new Error("Failed to fetch user data");
+//   }
+//   const data = await res.json();
+//   return {
+//     id: data.id,
+//     image_url: data.image_url,
+//     name: data.name,
+//     links: data.links,
+//   };
+// };
 
-function GrantDetails({
-  category,
-  cardTitle,
-  // status,
-  fundingAmountFrom,
-  description,
-  purpose,
-  execution,
-  payment_structure,
-  similiar,
-  transactions,
-  granteeIds,
-}) {
-  const [granteeData, setGranteeData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+function GrantDetails({ resource }) {
+  // const [granteeData, setGranteeData] = useState([]);
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState(null);
+  //
+  // useEffect(() => {
+  // const fetchAllGranteeData = async () => {
+  // try {
+  // setLoading(true);
+  // const granteePromises = granteeIds.map((id) => fetchGranteeData(id));
+  // const granteesData = await Promise.all(granteePromises); // Fetch all users in parallel
+  // setGranteeData(granteesData);
+  // setLoading(false);
+  // } catch (error) {
+  // setError(error.message);
+  // setLoading(false);
+  // }
+  // };
+  //
+  // fetchAllGranteeData();
+  // }, [granteeIds]);
 
-  useEffect(() => {
-    const fetchAllGranteeData = async () => {
-      try {
-        setLoading(true);
-        const granteePromises = granteeIds.map((id) => fetchGranteeData(id));
-        const granteesData = await Promise.all(granteePromises); // Fetch all users in parallel
-        setGranteeData(granteesData);
-        setLoading(false);
-      } catch (error) {
-        setError(error.message);
-        setLoading(false);
-      }
-    };
-
-    fetchAllGranteeData();
-  }, [granteeIds]);
-
-  if (loading) return <LottieAnimation />;
-  if (error) return <div>Error: {error}</div>;
+  // if (loading) return <LottieAnimation />;
+  // if (error) return <div>Error: {error}</div>;
+  const cardData = resource.cardData.read();
+  const similiarCards = resource.similiarCards.read();
+  const transactionData = resource.transactions.read();
+  console.log("cardData", cardData);
+  console.log("similiarCards", similiarCards);
+  console.log("transactionData", transactionData);
 
   return (
     <GrantDetailsWrapper>
-      <p className='card-category'>{category}</p>
-      <HeadTitle text={cardTitle} />
+      <p className='card-category'>{cardData.category}</p>
+      <HeadTitle text={cardData.title} />
       <div className='project-detail-wrapper'>
         <div className='row-wrapper'>
-          <p className='status'>{status}</p>
+          <p className='status'>{cardData.completed}</p>
           <p className='funding-amount'>Funding amount:</p>
-          <p>${fundingAmountFrom}</p>
+          <p>${cardData.amountFrom}</p>
         </div>
         <Button
           type='accent'
@@ -208,17 +202,17 @@ function GrantDetails({
         />
       </div>
       <h3 className='sub-title'>Team</h3>
-      <ButtonWrapper items={granteeData} position='link-to-profile' />
+      <ButtonWrapper items={cardData.grantees_ids} position='link-to-profile' />
       <hr></hr>
       <div className='text-wrapper'>
         <h3 className='sub-title'>Description</h3>
-        <p>{description}</p>
+        <p>{cardData.description}</p>
         <h3 className='sub-title'>Purpose</h3>
-        <p>{purpose}</p>
+        <p>{cardData.purpose}</p>
         <h3 className='sub-title'>Execution</h3>
-        <p>{execution}</p>
+        <p>{cardData.execution}</p>
         <h3 className='sub-title'>Payment Structure</h3>
-        <p>{payment_structure}</p>
+        <p>{cardData.payment_structure}</p>
         <h3 className='sub-title'>Useful Links</h3>
         <div className='link-wrapper'>
           <div className='link-row-wrapper'>
@@ -248,7 +242,7 @@ function GrantDetails({
         </div>
       </div>
       <h3 className='sub-title funding'>Funding Transactions</h3>
-      {transactions.map((card) => {
+      {transactionData.map((card) => {
         return (
           <CardTransactions
             key={card.id}
@@ -259,7 +253,7 @@ function GrantDetails({
           />
         );
       })}
-      <SimilarGrants similarGrants={similiar} />
+      <SimilarGrants similarGrants={similiarCards} />
     </GrantDetailsWrapper>
   );
 }
@@ -267,7 +261,7 @@ function GrantDetails({
 GrantDetails.propTypes = {
   category: PropTypes.string.isRequired,
   cardTitle: PropTypes.string.isRequired,
-  // status: PropTypes.string.isRequired,
+  status: PropTypes.string.isRequired,
   fundingAmountFrom: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,
   purpose: PropTypes.string.isRequired,

@@ -57,7 +57,7 @@ All design was taken from [this Figma file](https://www.figma.com/design/eWP1AMJ
 
 #### check all pages in different browsers and screens
 
-#### Expenses
+#### Expenses - filter data
 
 #### Webpage button hover effect
 
