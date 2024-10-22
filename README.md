@@ -39,22 +39,28 @@ All design was taken from [this Figma file](https://www.figma.com/design/eWP1AMJ
 
 ### Todo
 
-#### optional chaining
-
 #### Try and catch on each fetch and error handling
 
-#### add komments
+#### Handle the scrollbar when loading?
 
-#### Loading
-
-#### images
+#### add comments
 
 #### optimize performance
+
+#### add/remove an images on buttons
+
+#### transition
 
 #### remov all console logs
 
 #### another two pages?
 
+#### Lottie animation
+
+#### images
+
 #### prop validation
 
 #### check all the @media quaries
+
+#### optional chaining

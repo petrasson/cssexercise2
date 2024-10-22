@@ -6,6 +6,7 @@ import GrantDetails from "./components/GrantDetails";
 import Footer from "../../shared-components/Footer";
 import { useEffect, useState } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
+import LottieAnimation from "../../shared-components/LottieAnimation";
 
 const Container = styled.div`
   margin: 0 auto;
@@ -13,6 +14,7 @@ const Container = styled.div`
   text-align: center;
   padding: 0 24px;
   width: 100%;
+  min-height: 100vh;
 
   p {
     font-size: 16px;
@@ -145,8 +147,9 @@ function FundedGrantDetails() {
     };
     fetchData();
   }, [id]); // Re-run the effect when the id changes
+  // if (loading) return <div>Loading ..</div>;
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <LottieAnimation />;
   if (error) return <div>Error: {error}</div>;
 
   const canGoBack = !!from;

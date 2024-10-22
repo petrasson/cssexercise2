@@ -6,6 +6,7 @@ import CardTransactions from "./CardTransactions";
 import ButtonWrapper from "../../../shared-components/ButtonWrapper";
 import SimilarGrants from "./SimilarGrants";
 import { useEffect, useState } from "react";
+import LottieAnimation from "../../../shared-components/LottieAnimation";
 
 const GrantDetailsWrapper = styled.div`
   width: 100%;
@@ -186,7 +187,7 @@ function GrantDetails({
     fetchAllGranteeData();
   }, [granteeIds]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <LottieAnimation />;
   if (error) return <div>Error: {error}</div>;
 
   return (

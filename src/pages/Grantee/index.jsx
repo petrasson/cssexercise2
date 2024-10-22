@@ -7,6 +7,7 @@ import HeadTitle from "../../shared-components/HeadTitle";
 import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
 import Card from "../../shared-components/Card";
 import { useEffect, useState } from "react";
+import LottieAnimation from "../../shared-components/LottieAnimation";
 
 const Container = styled.div`
   margin: 0 auto;
@@ -228,7 +229,7 @@ function Grantee() {
     fetchData();
   }, [id]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <LottieAnimation />;
   if (error) return <div>Error: {error}</div>;
 
   return (

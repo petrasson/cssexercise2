@@ -17,6 +17,10 @@
   --form-border-color: #cbcaca;
 }
 
+html {
+  overflow-y: scroll; /* Always show scrollbar, even if not needed, to prevent layout shifting */
+}
+
 body {
   font: 400 14pt/20pt "Cirkular Std", sans-serif;
   color: var(--primary-text-color);

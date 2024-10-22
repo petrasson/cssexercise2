@@ -11,6 +11,7 @@ const Container = styled.div`
   text-align: center;
   padding: 0 24px;
   width: 100%;
+  min-height: 100vh;
 
   .space {
     padding: 80px 0 40px;
