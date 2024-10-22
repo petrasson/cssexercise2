@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import FundedGrants from "./pages/FundedGrants";
 import DiscoverInitiatives from "./pages/DiscoverInitiatives";
-import ProgramExpenses from "./pages/ProgramExpenses/App";
+import ProgramExpenses from "./pages/ProgramExpenses";
 import NotFoundPage from "./pages/NotFoundPage";
 import FundedGrantDetails from "./pages/FundedGrantDetails";
 import Grantee from "./pages/Grantee";

@@ -45,15 +45,27 @@ All design was taken from [this Figma file](https://www.figma.com/design/eWP1AMJ
 
 #### add comments
 
-#### optimize performance
+#### optimize performance/fetch
 
 #### add/remove an images on buttons
 
-#### transition
+#### Status button green
+
+#### transitioning buttons
 
 #### remov all console logs
 
-#### another two pages?
+#### check all pages in different browsers and screens
+
+#### Expenses
+
+#### Webpage button hover effect
+
+#### Blog
+
+### Done
+
+#### FAQ
 
 #### Lottie animation
 

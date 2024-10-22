@@ -1,0 +1,124 @@
+{
+  "expenses": [
+    {
+      "id": "1",
+      "title": "Airtable Yearly Subscription",
+      "type": "Vendor",
+      "description": "Airtable is used to build the application form and store all application data.",
+      "amount": "$500.00",
+      "category": "Direct Cost"
+    },
+    {
+      "id": "2",
+      "title": "AWS Cloud Hosting",
+      "type": "Vendor",
+      "description": "Monthly payment for hosting the application on AWS.",
+      "amount": "$300.00",
+      "category": "Variable Cost"
+    },
+    {
+      "id": "3",
+      "title": "Office Rent",
+      "type": "Rent",
+      "description": "Monthly office space rental cost.",
+      "amount": "$2,000.00",
+      "category": "Fixed Cost"
+    },
+    {
+      "id": "4",
+      "title": "Marketing Campaign",
+      "type": "Advertising",
+      "description": "Online and social media marketing expenses for the grant program.",
+      "amount": "$1,200.00",
+      "category": "Variable Cost"
+    },
+    {
+      "id": "5",
+      "title": "Legal Consultation",
+      "type": "Professional Services",
+      "description": "Fees for legal services related to compliance and contracts.",
+      "amount": "$1,500.00",
+      "category": "Indirect Cost"
+    },
+    {
+      "id": "6",
+      "title": "Developer Salary",
+      "type": "Payroll",
+      "description": "Monthly salary for the software developer working on the project.",
+      "amount": "$5,000.00",
+      "category": "Direct Cost"
+    },
+    {
+      "id": "7",
+      "title": "Software Licenses",
+      "type": "Vendor",
+      "description": "Annual payment for various software licenses used by the team.",
+      "amount": "$800.00",
+      "category": "Fixed Cost"
+    },
+    {
+      "id": "8",
+      "title": "Graphic Design Services",
+      "type": "Freelancer",
+      "description": "Payment for a freelance designer to create promotional materials.",
+      "amount": "$1,000.00",
+      "category": "Variable Cost"
+    },
+    {
+      "id": "9",
+      "title": "Event Venue Rental",
+      "type": "Event",
+      "description": "Cost for renting a venue for a public presentation and networking event.",
+      "amount": "$2,500.00",
+      "category": "Fixed Cost"
+    },
+    {
+      "id": "10",
+      "title": "Travel Expenses",
+      "type": "Travel",
+      "description": "Flights and accommodation for team members attending a conference.",
+      "amount": "$1,800.00",
+      "category": "Indirect Cost"
+    },
+    {
+      "id": "11",
+      "title": "Team Lunch",
+      "type": "Entertainment",
+      "description": "Team-building lunch to celebrate project milestones.",
+      "amount": "$250.00",
+      "category": "Sunk Cost"
+    },
+    {
+      "id": "12",
+      "title": "Old Equipment Disposal",
+      "type": "Disposal",
+      "description": "Cost of disposing old and obsolete office equipment.",
+      "amount": "$100.00",
+      "category": "Sunk Cost"
+    },
+    {
+      "id": "13",
+      "title": "Office Supplies",
+      "type": "Supplies",
+      "description": "Monthly office supplies, including paper, pens, and cleaning materials.",
+      "amount": "$150.00",
+      "category": "Indirect Cost"
+    },
+    {
+      "id": "14",
+      "title": "Website Maintenance",
+      "type": "Vendor",
+      "description": "Yearly maintenance and updates for the company's website.",
+      "amount": "$600.00",
+      "category": "Fixed Cost"
+    },
+    {
+      "id": "15",
+      "title": "Consultant Fee",
+      "type": "Consultant",
+      "description": "Consultant hired for project management and guidance.",
+      "amount": "$3,500.00",
+      "category": "Direct Cost"
+    }
+  ]
+}
