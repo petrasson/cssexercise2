@@ -248,7 +248,6 @@ function GrantDetails({
         </div>
       </div>
       <h3 className='sub-title funding'>Funding Transactions</h3>
-      {console.log(transactions, "transactions")}
       {transactions.map((card) => {
         return (
           <CardTransactions

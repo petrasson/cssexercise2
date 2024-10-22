@@ -7,6 +7,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import FundedGrantDetails from "./pages/FundedGrantDetails";
 import Grantee from "./pages/Grantee";
 import Application from "./pages/Application";
+import FaqPage from "./pages/FAQ";
 
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
   {
     path: "/grantee/:id",
     element: <Grantee />,
+  },
+  {
+    path: "/faq",
+    element: <FaqPage />,
   },
 ]);
 
