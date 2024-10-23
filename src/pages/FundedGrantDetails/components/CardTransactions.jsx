@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const CardTransactionWrapper = styled.div`
@@ -98,10 +97,4 @@ function CardTransaction({ title, date, amount, description }) {
   );
 }
 
-CardTransaction.propTypes = {
-  date: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  amount: PropTypes.number.isRequired,
-  description: PropTypes.string.isRequired,
-};
 export default CardTransaction;

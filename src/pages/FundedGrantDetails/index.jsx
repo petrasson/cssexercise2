@@ -6,7 +6,7 @@ import GrantDetails from "./components/GrantDetails";
 import Footer from "../../shared-components/Footer";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import LottieAnimation from "../../shared-components/LottieAnimation";
-import { createCardResource } from "../../services/CardService";
+
 import { Suspense, useEffect } from "react";
 
 const Container = styled.div`
@@ -26,88 +26,6 @@ const Container = styled.div`
   }
 `;
 
-// /*** FETCH CARD DETAILS BASED ON ID ***/
-
-// const fetchCard = async (id) => {
-//   try {
-//     const res = await fetch(
-//       `https://nextjs-test-beryl-gamma.vercel.app/api/grants?id=${id}`
-//     );
-//     if (!res.ok) {
-//       throw new Error("Failed to fetch card details");
-//     }
-//     const data = await res.json();
-
-//     // Call the function to fetch similiar cards and transactions based on IDs in the response
-//     await fetchSimilarCards(data.similiar);
-//     await fetchTransactions(data.transactions);
-//     return data;
-//   } catch (error) {
-//     console.error("Error fetching card data:", error); // Log any errors
-//     throw error;
-//   }
-// };
-
-// /*** FETCH SIMILAR CARD DETAILS BASED ON RESPONS ***/
-
-// const fetchSimilarCards = async (similiarIds) => {
-//   if (!similiarIds || similiarIds.length === 0) {
-//     console.log("No similar IDs found.");
-//     return;
-//   }
-//   try {
-//     // Fetch each similiar card by its ID
-//     const similiarCardPromises = similiarIds.map(async (id) => {
-//       const res = await fetch(
-//         `https://nextjs-test-beryl-gamma.vercel.app/api/grants?id=${id}`
-//       );
-
-//       if (!res.ok) {
-//         throw new Error(`Failed to fetch similiar card with id ${id}`);
-//       }
-//       return res.json();
-//     });
-
-//     // Wait for fetches to complete
-
-//     const similiarCardsData = await Promise.all(similiarCardPromises);
-//     return similiarCardsData;
-//   } catch (error) {
-//     console.error("Error fetching similiar cards:", error);
-//     throw error;
-//   }
-// };
-
-// /*** FETCH TRANSACTION DETAILS BASED ON RESPONS ***/
-
-// const fetchTransactions = async (transactionIds) => {
-//   if (!transactionIds || transactionIds.length === 0) {
-//     console.log("No transactions IDs found.");
-//     return;
-//   }
-//   try {
-//     // Fetch each transaction by its ID
-//     const transactionsPromises = transactionIds.map(async (id) => {
-//       const res = await fetch(
-//         `https://nextjs-test-beryl-gamma.vercel.app/api/transactions?id=${id}`
-//       );
-//       if (!res.ok) {
-//         throw new Error(`Failed to fetch transaction data with id ${id}`);
-//       }
-//       return res.json();
-//     });
-
-//     // Wait for data to complete
-//     const transactionData = await Promise.all(transactionsPromises);
-//     return transactionData;
-//   } catch (error) {
-//     console.error("Error fetching transaction data:", error);
-//     throw error;
-//   }
-// };
-
-let cardResource;
-
 function FundedGrantDetails() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -115,10 +33,10 @@ function FundedGrantDetails() {
   const { id } = useParams();
   const canGoBack = !!from;
 
-  // Fetch the data only once when the component mounts
-  if (!cardResource || cardResource.id !== id) {
-    cardResource = createCardResource(id);
-  }
+  // // Fetch the data only once when the component mounts
+  // if (!cardResource || cardResource.id !== id) {
+  //   cardResource = createCardResource(id);
+  // }
 
   // const [cardData, setCardData] = useState(null);
   // const [similiarCards, setSimilarCards] = useState([]);
@@ -175,7 +93,7 @@ function FundedGrantDetails() {
         )}
         <FundedGrantImage />
         <Suspense fallback={<LottieAnimation />}>
-          <GrantDetails resource={cardResource} />
+          <GrantDetails id={id} />
         </Suspense>
       </Container>
       <Footer />

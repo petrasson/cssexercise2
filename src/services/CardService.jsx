@@ -1,77 +1,52 @@
-// Helper to wrap a promise for Suspense
+//fetching all detaild card info based on id
+export const fetchCard = async (id) => {
+  try {
+    const res = await fetch(
+      `https://nextjs-test-beryl-gamma.vercel.app/api/grants?id=${id}`
+    );
 
-const wrapPromise = (promise) => {
-  let status = "pending";
-  let result;
-  let suspender = promise.then(
-    (r) => {
-      status = "success";
-      result = r;
-    },
-    (e) => {
-      status = "error";
-      result = e;
-    }
-  );
-  return {
-    read() {
-      if (status === "pending") {
-        throw suspender; // Suspense will handle this as "loading"
-      } else if (status === "error") {
-        throw result; // Suspense will throw the error
-      } else if (status === "success") {
-        return result; // Data is ready
-      }
-    },
-  };
+    if (!res.ok) throw new Error("Failed to fetch card data");
+
+    const data = await res.json();
+    console.log("Fetched card data:", data); // Log the actual card data
+    return data;
+  } catch (error) {
+    console.error("Error in fetchCard:", error);
+    throw error;
+  }
 };
 
-// Function to fetch card data based on ID and wrap it in the resource
-const fetchCard = async (id) => {
-  const res = await fetch(
-    `https://nextjs-test-beryl-gamma.vercel.app/api/grants?id=${id}`
-  );
-  if (!res.ok) throw new Error("Failed to fetch card data");
-  return res.json();
-};
-
-const fetchSimilarCards = async (similiarIds) => {
+//fetching similar grant data based on data I get from fetchCard above
+export const fetchSimilarCards = async (similiarIds) => {
+  console.log("I can see this", similiarIds);
   if (!similiarIds || similiarIds.length === 0) return [];
   const promises = similiarIds.map(async (id) => {
     const res = await fetch(
       `https://nextjs-test-beryl-gamma.vercel.app/api/grants?id=${id}`
     );
+    console.log("I can see this", promises);
     if (!res.ok) throw new Error(`Failed to fetch similiar card with id ${id}`);
     return res.json();
   });
   return Promise.all(promises);
 };
 
-const fetchTransactions = async (transactionIds) => {
+//fetching transaction data based on the data I get from fetchCard above
+export const fetchTransactions = async (transactionIds) => {
+  console.log(
+    "I see this as well, Fetching transactoin data for IDs:",
+    transactionIds
+  );
+
   if (!transactionIds || transactionIds.length === 0) return [];
   const promises = transactionIds.map(async (id) => {
     const res = await fetch(
       `https://nextjs-test-beryl-gamma.vercel.app/api/transactions?id=${id}`
     );
     if (!res.ok) throw new Error(`Failed to fetch transaction with id ${id}`);
-    return res.json();
+    const transaction = await res.json();
+    console.log(`Fetched transaction for id ${id}:`, transaction); // Log each transaction object
+    return transaction;
   });
   return Promise.all(promises);
 };
-
-// Create a function to wrap all data-fetching logic into resources
-const createCardResource = (id) => {
-  const cardPromise = fetchCard(id);
-
-  return {
-    cardData: wrapPromise(cardPromise),
-    similiarCards: wrapPromise(
-      cardPromise.then((data) => fetchSimilarCards(data.similiar))
-    ),
-    transactions: wrapPromise(
-      cardPromise.then((data) => fetchTransactions(data.transactions))
-    ),
-  };
-};
-
-export { createCardResource };

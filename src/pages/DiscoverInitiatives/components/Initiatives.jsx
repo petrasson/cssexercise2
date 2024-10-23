@@ -1,6 +1,5 @@
 import DiscoveryCard from "../../../shared-components/DiscoveryCard";
 import styled from "styled-components";
-import PropTypes from "prop-types";
 
 const CardWrapper = styled.div`
   max-width: 1440px;
@@ -46,18 +45,5 @@ function Initiatives({ cards }) {
     </CardWrapper>
   );
 }
-
-Initiatives.propTypes = {
-  cards: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      status: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      amountFrom: PropTypes.string.isRequired,
-      amountTo: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-    })
-  ),
-};
 
 export default Initiatives;

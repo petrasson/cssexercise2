@@ -1,12 +1,15 @@
 import styled from "styled-components";
-import PropTypes from "prop-types";
 import HeadTitle from "../../../shared-components/HeadTitle";
 import Button from "../../../shared-components/Button";
 import CardTransactions from "./CardTransactions";
 import ButtonWrapper from "../../../shared-components/ButtonWrapper";
 import SimilarGrants from "./SimilarGrants";
-// import { useEffect, useState } from "react";
-// import LottieAnimation from "../../../shared-components/LottieAnimation";
+import {
+  fetchCard,
+  fetchTransactions,
+  fetchSimilarCards,
+} from "../../../services/CardService";
+import { useEffect, useState } from "react";
 
 const GrantDetailsWrapper = styled.div`
   width: 100%;
@@ -135,64 +138,69 @@ const GrantDetailsWrapper = styled.div`
   }
 `;
 
-/*** FETCH GRANTEEDATA BASED ON ID ***/
+function GrantDetails({ id }) {
+  const [card, setCard] = useState({});
+  const [similarCards, setSimilarCards] = useState({});
+  const [transactionsData, setTransactionsData] = useState([]); // Här låg felet, det var en {}
 
-// const fetchGranteeData = async (id) => {
-//   const res = await fetch(
-//     `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?id=${id}`
-//   );
-//   if (!res.ok) {
-//     throw new Error("Failed to fetch user data");
-//   }
-//   const data = await res.json();
-//   return {
-//     id: data.id,
-//     image_url: data.image_url,
-//     name: data.name,
-//     links: data.links,
-//   };
-// };
+  useEffect(() => {
+    const fetchAllData = async () => {
+      try {
+        // Fetch the main card data by ID
+        const cardData = await fetchCard(id);
+        setCard(cardData);
 
-function GrantDetails({ resource }) {
-  // const [granteeData, setGranteeData] = useState([]);
-  // const [loading, setLoading] = useState(true);
-  // const [error, setError] = useState(null);
-  //
-  // useEffect(() => {
-  // const fetchAllGranteeData = async () => {
-  // try {
-  // setLoading(true);
-  // const granteePromises = granteeIds.map((id) => fetchGranteeData(id));
-  // const granteesData = await Promise.all(granteePromises); // Fetch all users in parallel
-  // setGranteeData(granteesData);
-  // setLoading(false);
-  // } catch (error) {
-  // setError(error.message);
-  // setLoading(false);
-  // }
-  // };
-  //
-  // fetchAllGranteeData();
-  // }, [granteeIds]);
+        // Fetch similar cards only if the 'similiar' array exists and has items
+        if (cardData.similiar && cardData.similiar.length > 0) {
+          const similarCardsData = await fetchSimilarCards(cardData.similiar);
+          setSimilarCards(similarCardsData);
+        } else {
+          console.log("No similar card IDs found in cardData.");
+        }
 
-  // if (loading) return <LottieAnimation />;
-  // if (error) return <div>Error: {error}</div>;
-  const cardData = resource.cardData.read();
-  const similiarCards = resource.similiarCards.read();
-  const transactionData = resource.transactions.read();
-  console.log("cardData", cardData);
-  console.log("similiarCards", similiarCards);
-  console.log("transactionData", transactionData);
+        // Fetch transactions only if the 'transactions' array is present and has items
+        if (cardData.transactions && cardData.transactions.length > 0) {
+          console.log(
+            "I see this, fetching transactions for IDs:",
+            cardData.transactions
+          );
+          const transactionsData = await fetchTransactions(
+            cardData.transactions
+          );
+          setTransactionsData(transactionsData);
+        } else {
+          console.log("No transaction IDs found in cardData.");
+        }
+      } catch (error) {
+        // Error handling
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchAllData(); // Call the fetchAllData function when the component mounts or when 'id' changes
+  }, [id]); // rerun when 'id' changes
+
+  const {
+    grantees_ids,
+    category,
+    title,
+    completed,
+    amountFrom,
+    description,
+    purpose,
+    execution,
+    payment_structure,
+  } = card;
 
   return (
     <GrantDetailsWrapper>
-      <p className='card-category'>{cardData.category}</p>
-      <HeadTitle text={cardData.title} />
+      <p className='card-category'>{category}</p>
+      <HeadTitle text={title} />
       <div className='project-detail-wrapper'>
         <div className='row-wrapper'>
-          <p className='status'>{cardData.completed}</p>
+          <p className='status'>{completed ? "Completed" : "Open"}</p>
           <p className='funding-amount'>Funding amount:</p>
-          <p>${cardData.amountFrom}</p>
+          <p>${amountFrom}</p>
         </div>
         <Button
           type='accent'
@@ -202,17 +210,17 @@ function GrantDetails({ resource }) {
         />
       </div>
       <h3 className='sub-title'>Team</h3>
-      <ButtonWrapper items={cardData.grantees_ids} position='link-to-profile' />
+      <ButtonWrapper items={grantees_ids} position='link-to-profile' />
       <hr></hr>
       <div className='text-wrapper'>
         <h3 className='sub-title'>Description</h3>
-        <p>{cardData.description}</p>
+        <p>{description}</p>
         <h3 className='sub-title'>Purpose</h3>
-        <p>{cardData.purpose}</p>
+        <p>{purpose}</p>
         <h3 className='sub-title'>Execution</h3>
-        <p>{cardData.execution}</p>
+        <p>{execution}</p>
         <h3 className='sub-title'>Payment Structure</h3>
-        <p>{cardData.payment_structure}</p>
+        <p>{payment_structure}</p>
         <h3 className='sub-title'>Useful Links</h3>
         <div className='link-wrapper'>
           <div className='link-row-wrapper'>
@@ -242,42 +250,21 @@ function GrantDetails({ resource }) {
         </div>
       </div>
       <h3 className='sub-title funding'>Funding Transactions</h3>
-      {transactionData.map((card) => {
+
+      {transactionsData?.map((card) => {
         return (
           <CardTransactions
-            key={card.id}
+            key={card?.id}
             title={card.title}
-            date={card.date}
-            description={card.description}
-            amount={card.amound}
+            date={card?.date}
+            description={card?.description}
+            amount={card?.amound}
           />
         );
       })}
-      <SimilarGrants similarGrants={similiarCards} />
+      <SimilarGrants similarGrants={similarCards} />
     </GrantDetailsWrapper>
   );
 }
-
-GrantDetails.propTypes = {
-  category: PropTypes.string.isRequired,
-  cardTitle: PropTypes.string.isRequired,
-  status: PropTypes.string.isRequired,
-  fundingAmountFrom: PropTypes.number.isRequired,
-  description: PropTypes.string.isRequired,
-  purpose: PropTypes.string.isRequired,
-  execution: PropTypes.string.isRequired,
-  payment_structure: PropTypes.string.isRequired,
-  similiar: PropTypes.arrayOf(PropTypes.string).isRequired,
-  granteeIds: PropTypes.arrayOf(PropTypes.string).isRequired,
-  transactions: PropTypes.arrayOf(
-    PropTypes.shape({
-      key: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      date: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      amount: PropTypes.number.isRequired,
-    })
-  ),
-};
 
 export default GrantDetails;
