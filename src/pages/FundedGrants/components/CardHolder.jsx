@@ -38,27 +38,27 @@ const CardWrapper = styled.div`
   }
 `;
 
-function CardHolder({ cards }) {
+function CardHolder({ cards, granteeData }) {
   const location = useLocation();
-  const [granteesData, setGranteesData] = useState([]);
+  // const [granteesData, setGranteesData] = useState([]);
 
-  useEffect(() => {
-    const getGranteesData = async () => {
-      try {
-        const data = await fetch(
-          "https://nextjs-test-beryl-gamma.vercel.app/api/grantees"
-        );
-        if (!data.ok) {
-          throw new Error(`HTTP error! status: ${data.status}`);
-        }
-        const response = await data.json();
-        setGranteesData(response.grantees);
-      } catch (error) {
-        console.error("Error fetching grantees data:", error);
-      }
-    };
-    getGranteesData();
-  }, []);
+  // useEffect(() => {
+  //   const getGranteesData = async () => {
+  //     try {
+  //       const data = await fetch(
+  //         "https://nextjs-test-beryl-gamma.vercel.app/api/grantees"
+  //       );
+  //       if (!data.ok) {
+  //         throw new Error(`HTTP error! status: ${data.status}`);
+  //       }
+  //       const response = await data.json();
+  //       setGranteesData(response.grantees);
+  //     } catch (error) {
+  //       console.error("Error fetching grantees data:", error);
+  //     }
+  //   };
+  //   getGranteesData();
+  // }, []);
 
   return (
     <CardWrapper>
@@ -67,7 +67,7 @@ function CardHolder({ cards }) {
         // Get Images of the grantees for this card
         const granteeImages = GranteesId.map((id) => {
           //find the IDs in granteesData that match each granteesIds in my array and return it's image.
-          const grantee = granteesData.find((g) => g.id === id);
+          const grantee = granteeData.find((g) => g.id === id);
           return grantee ? grantee.image_url : null;
         });
 

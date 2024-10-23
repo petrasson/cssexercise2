@@ -52,7 +52,6 @@ export const fetchGrantees = async (userIds) => {
     );
     if (!res.ok) throw new Error(`Failed to fetch userinfo with id ${id}`);
     const userData = await res.json();
-    console.log("I got userdata to returnI see this, ", userData);
     return userData;
   });
   return Promise.all(promises);
@@ -68,7 +67,6 @@ export const fetchInitiatives = async () => {
 
     if (!res.ok) throw new Error("Failed to fetch initiatives data");
     const data = await res.json();
-    console.log("I will return these initiatives in service:", data);
     return data;
   } catch (error) {
     console.error("Error in fetching initiatives:", error);
@@ -86,7 +84,6 @@ export const fetchGrants = async () => {
 
     if (!res.ok) throw new Error("Failed to fetch all card data");
     const data = await res.json();
-    console.log("I will return these cards in service:", data);
     return data;
   } catch (error) {
     console.error("Error in fetching all cardData:", error);

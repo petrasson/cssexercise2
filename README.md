@@ -63,6 +63,8 @@ All design was taken from [this Figma file](https://www.figma.com/design/eWP1AMJ
 
 #### Blog
 
+#### Only send user.URL_img to cards to render?
+
 ### Done
 
 #### FAQ
