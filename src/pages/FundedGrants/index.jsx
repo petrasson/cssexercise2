@@ -4,6 +4,8 @@ import Apply from "../../shared-components/Apply";
 import Footer from "../../shared-components/Footer";
 import styled from "styled-components";
 import HeadTitle from "../../shared-components/HeadTitle";
+import { Suspense } from "react";
+import LottieAnimation from "../../shared-components/LottieAnimation";
 
 const Container = styled.div`
   margin: 0 auto;
@@ -27,11 +29,14 @@ function FundedGrants() {
     <div className='page-wrapper'>
       <Header />
       <Container>
-        <div className='space'>
-          <HeadTitle text='Funded Grants' />
-        </div>
-        <CardFilter />
-        <Apply />
+        <Suspense fallback={<LottieAnimation />}>
+          <div className='space'>
+            <HeadTitle text='Funded Grants' />
+          </div>
+
+          <CardFilter />
+          <Apply />
+        </Suspense>
       </Container>
       <Footer />
     </div>

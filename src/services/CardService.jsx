@@ -68,10 +68,28 @@ export const fetchInitiatives = async () => {
 
     if (!res.ok) throw new Error("Failed to fetch initiatives data");
     const data = await res.json();
-    console.log("I will return this in service:", data);
+    console.log("I will return these initiatives in service:", data);
     return data;
   } catch (error) {
     console.error("Error in fetching initiatives:", error);
+    throw error;
+  }
+};
+
+//fetching all cardData
+
+export const fetchGrants = async () => {
+  try {
+    const res = await fetch(
+      `https://nextjs-test-beryl-gamma.vercel.app/api/grants`
+    );
+
+    if (!res.ok) throw new Error("Failed to fetch all card data");
+    const data = await res.json();
+    console.log("I will return these cards in service:", data);
+    return data;
+  } catch (error) {
+    console.error("Error in fetching all cardData:", error);
     throw error;
   }
 };

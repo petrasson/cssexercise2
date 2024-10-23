@@ -1,6 +1,7 @@
 import CardHolder from "./CardHolder";
 import FilterControl from "../../../shared-components/FilterControl";
 import { useEffect, useState } from "react";
+import { fetchGrants } from "../../../services/CardService";
 
 import styled from "styled-components";
 
@@ -18,18 +19,8 @@ function CardFilter() {
 
   useEffect(() => {
     const getGrantsData = async () => {
-      try {
-        const data = await fetch(
-          "https://nextjs-test-beryl-gamma.vercel.app/api/grants"
-        );
-        if (!data.ok) {
-          throw new Error(`HTTP error! status: ${data.status}`);
-        }
-        const response = await data.json();
-        setGrantsData(response.grants);
-      } catch (error) {
-        console.error("Error fetching grants data:", error);
-      }
+      const { grants: cardsData } = await fetchGrants();
+      setGrantsData(cardsData);
     };
     getGrantsData();
   }, []);
