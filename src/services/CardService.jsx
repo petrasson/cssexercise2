@@ -57,3 +57,21 @@ export const fetchGrantees = async (userIds) => {
   });
   return Promise.all(promises);
 };
+
+//fetching all Initiatives
+
+export const fetchInitiatives = async () => {
+  try {
+    const res = await fetch(
+      `https://nextjs-test-beryl-gamma.vercel.app/api/initiatives`
+    );
+
+    if (!res.ok) throw new Error("Failed to fetch initiatives data");
+    const data = await res.json();
+    console.log("I will return this in service:", data);
+    return data;
+  } catch (error) {
+    console.error("Error in fetching initiatives:", error);
+    throw error;
+  }
+};
