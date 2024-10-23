@@ -8,6 +8,7 @@ import {
   fetchCard,
   fetchTransactions,
   fetchSimilarCards,
+  fetchGrantees,
 } from "../../../services/CardService";
 import { useEffect, useState } from "react";
 
@@ -142,6 +143,8 @@ function GrantDetails({ id }) {
   const [card, setCard] = useState({});
   const [similarCards, setSimilarCards] = useState({});
   const [transactionsData, setTransactionsData] = useState([]); // Här låg felet, det var en {}
+  const [granteesData, setGranteesData] = useState([]);
+  const [similarCardGranteesData, setSimilarCardGranteesData] = useState([]);
 
   useEffect(() => {
     const fetchAllData = async () => {
@@ -160,16 +163,32 @@ function GrantDetails({ id }) {
 
         // Fetch transactions only if the 'transactions' array is present and has items
         if (cardData.transactions && cardData.transactions.length > 0) {
-          console.log(
-            "I see this, fetching transactions for IDs:",
-            cardData.transactions
-          );
           const transactionsData = await fetchTransactions(
             cardData.transactions
           );
           setTransactionsData(transactionsData);
         } else {
           console.log("No transaction IDs found in cardData.");
+        }
+
+        // Fetch transactions only if the 'transactions' array is present and has items
+        if (cardData.grantees_ids && cardData.grantees_ids.length > 0) {
+          const granteesData = await fetchGrantees(cardData.grantees_ids);
+          setGranteesData(granteesData);
+        } else {
+          console.log("No granteesIDs found in cardData.");
+        }
+
+        //Fetch userImages to render on each similar card
+        if (similarCards.grantees_ids && similarCards.grantees_ids.length > 0) {
+          console.log("Before fetch, don't see it", similarCards.grantees_ids);
+          const similarCardGranteesData = await fetchGrantees(
+            similarCards.grantees_ids
+          );
+          setSimilarCardGranteesData(similarCardGranteesData);
+          console.log("After fetch, don't see it", similarCardGranteesData);
+        } else {
+          console.log("No granteesIDs found in similarCards.");
         }
       } catch (error) {
         // Error handling
@@ -179,6 +198,28 @@ function GrantDetails({ id }) {
 
     fetchAllData(); // Call the fetchAllData function when the component mounts or when 'id' changes
   }, [id]); // rerun when 'id' changes
+
+  useEffect(() => {
+    const fetchSimilarCardGrantees = async () => {
+      if (Array.isArray(similarCards) && similarCards.length > 0) {
+        const granteeIds = similarCards.flatMap(
+          (card) => card.grantees_ids || []
+        );
+        if (granteeIds.length > 0) {
+          const similarCardGranteesData = await fetchGrantees(granteeIds);
+          setSimilarCardGranteesData(similarCardGranteesData);
+          console.log(
+            "Fetched similar card grantees:",
+            similarCardGranteesData
+          );
+        } else {
+          console.log("No granteesIDs found in similarCards.");
+        }
+      }
+    };
+
+    fetchSimilarCardGrantees(); // Fetch grantee data for similar cards when similarCards changes
+  }, [similarCards]);
 
   const {
     grantees_ids,
@@ -210,7 +251,7 @@ function GrantDetails({ id }) {
         />
       </div>
       <h3 className='sub-title'>Team</h3>
-      <ButtonWrapper items={grantees_ids} position='link-to-profile' />
+      <ButtonWrapper grantees={granteesData} position='link-to-profile' />
       <hr></hr>
       <div className='text-wrapper'>
         <h3 className='sub-title'>Description</h3>
@@ -262,7 +303,11 @@ function GrantDetails({ id }) {
           />
         );
       })}
-      <SimilarGrants similarGrants={similarCards} />
+
+      <SimilarGrants
+        similarGrants={similarCards}
+        granteesData={similarCardGranteesData}
+      />
     </GrantDetailsWrapper>
   );
 }

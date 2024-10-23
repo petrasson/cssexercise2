@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import Card from "../../../shared-components/Card";
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -49,29 +47,7 @@ const SimilarGrantsWrapper = styled.div`
   }
 `;
 
-function SimilarGrants({ similarGrants }) {
-  const [granteesData, setGranteesData] = useState([]);
-
-  /*** FETCH USER DATA TO RENDER PARTICIPANTS IMAGES ***/
-
-  useEffect(() => {
-    const getGranteesData = async () => {
-      try {
-        const data = await fetch(
-          "https://nextjs-test-beryl-gamma.vercel.app/api/grantees"
-        );
-        if (!data.ok) {
-          throw new Error(`HTTP error! status: ${data.status}`);
-        }
-        const response = await data.json();
-        setGranteesData(response.grantees);
-      } catch (error) {
-        console.error("Error fetching grantees data:", error);
-      }
-    };
-    getGranteesData();
-  }, []);
-
+function SimilarGrants({ similarGrants, granteesData }) {
   return (
     <SimilarGrantsWrapper>
       <h1>More grants like this</h1>
@@ -111,18 +87,5 @@ function SimilarGrants({ similarGrants }) {
     </SimilarGrantsWrapper>
   );
 }
-
-SimilarGrants.propTypes = {
-  similarGrants: PropTypes.arrayOf(
-    PropTypes.shape({
-      category: PropTypes.string.isRequired,
-      cardTitle: PropTypes.string.isRequired,
-      fundingAmountFrom: PropTypes.number.isRequired,
-      fundingAmountTo: PropTypes.number.isRequired,
-      description: PropTypes.string.isRequired,
-      grantees_ids: PropTypes.arrayOf(PropTypes.string).isRequired,
-    })
-  ).isRequired,
-};
 
 export default SimilarGrants;

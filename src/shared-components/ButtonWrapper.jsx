@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { Link, useLocation } from "react-router-dom";
 import { FaLink, FaLinkedin } from "react-icons/fa6";
 import { FaGithub, FaTwitter } from "react-icons/fa";
-import PropTypes from "prop-types";
 
 const StyledLink = styled(Link)`
   color: var(--primary-text-color);
@@ -70,30 +69,30 @@ const granteeSocialMedia = [
   },
 ];
 
-function ButtonWrapper({ items, position }) {
+function ButtonWrapper({ grantees, position }) {
   const location = useLocation();
 
-  if (!items || items.length === 0) {
+  if (!grantees || grantees.length === 0) {
     return <p>No items available</p>;
   }
 
   const updatedSocialMedia = [...granteeSocialMedia];
   {
     position === "external-links" &&
-      items.forEach((item) => {
-        if (item.includes("twitter")) {
+      grantees.forEach((grantee) => {
+        if (grantee.includes("twitter")) {
           updatedSocialMedia.find((media) => media.name === "Twitter").link =
-            item;
-        } else if (item.includes("linkedin")) {
+            grantee;
+        } else if (grantee.includes("linkedin")) {
           updatedSocialMedia.find((media) => media.name === "LinkedIn").link =
-            item;
-        } else if (item.includes("github")) {
+            grantee;
+        } else if (grantee.includes("github")) {
           updatedSocialMedia.find((media) => media.name === "Github").link =
-            item;
+            grantee;
         } else {
           // If it's not social media, we assign it as a website
           updatedSocialMedia.find((media) => media.name === "Website").link =
-            item;
+            grantee;
         }
       });
   }
@@ -125,31 +124,27 @@ function ButtonWrapper({ items, position }) {
         )}
 
       {position === "link-to-profile" &&
-        items.map((item, index) => (
+        grantees.map((grantee, index) => (
           <StyledLink
             key={index}
-            to={`/grantee/${item.id}`}
+            to={`/grantee/${grantee.id}`}
             state={{ from: location }}
             className='link'
           >
             <div className='content'>
-              {item.image_url && (
+              {grantee.image_url && (
                 <img
-                  src={item.image_url}
-                  alt={`Image of ${item.name || ""}`}
+                  src={grantee.image_url}
+                  alt={`Image of ${grantee.name || ""}`}
                   className='button-image'
                 />
               )}
-              <p className='button-name'>{item.name}</p>
+              <p className='button-name'>{grantee.name}</p>
             </div>
           </StyledLink>
         ))}
     </NavButtonWrapper>
   );
 }
-ButtonWrapper.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.string).isRequired,
-  position: PropTypes.oneOf(["link-to-profile", "external-links"]),
-};
 
 export default ButtonWrapper;
