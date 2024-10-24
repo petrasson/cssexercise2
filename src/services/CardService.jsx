@@ -1,4 +1,49 @@
-//fetching all detaild card info based on id
+//fetching all Discover Initiatives
+export const fetchInitiatives = async () => {
+  try {
+    const res = await fetch(
+      `https://nextjs-test-beryl-gamma.vercel.app/api/initiatives`
+    );
+
+    if (!res.ok) throw new Error("Failed to fetch initiatives data");
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error("Error in fetching initiatives:", error);
+    throw error;
+  }
+};
+
+//fetching all Funded grants
+export const fetchGrants = async () => {
+  try {
+    const res = await fetch(
+      `https://nextjs-test-beryl-gamma.vercel.app/api/grants`
+    );
+
+    if (!res.ok) throw new Error("Failed to fetch all card data");
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error("Error in fetching all cardData:", error);
+    throw error;
+  }
+};
+
+//fetching grants detailed data based cardIds
+export const fetchSimilarCards = async (similiarIds) => {
+  if (!similiarIds || similiarIds.length === 0) return [];
+  const promises = similiarIds.map(async (id) => {
+    const res = await fetch(
+      `https://nextjs-test-beryl-gamma.vercel.app/api/grants?id=${id}`
+    );
+    if (!res.ok) throw new Error(`Failed to fetch similiar card with id ${id}`);
+    return res.json();
+  });
+  return Promise.all(promises);
+};
+
+//fetching one detaild card info based on id
 export const fetchCard = async (id) => {
   try {
     const res = await fetch(
@@ -15,20 +60,7 @@ export const fetchCard = async (id) => {
   }
 };
 
-//fetching similar grant data based on data I get from fetchCard above
-export const fetchSimilarCards = async (similiarIds) => {
-  if (!similiarIds || similiarIds.length === 0) return [];
-  const promises = similiarIds.map(async (id) => {
-    const res = await fetch(
-      `https://nextjs-test-beryl-gamma.vercel.app/api/grants?id=${id}`
-    );
-    if (!res.ok) throw new Error(`Failed to fetch similiar card with id ${id}`);
-    return res.json();
-  });
-  return Promise.all(promises);
-};
-
-//fetching transaction data based on the data I get from fetchCard above
+//fetching transaction data based transactionsIds
 export const fetchTransactions = async (transactionIds) => {
   if (!transactionIds || transactionIds.length === 0) return [];
   const promises = transactionIds.map(async (id) => {
@@ -42,8 +74,7 @@ export const fetchTransactions = async (transactionIds) => {
   return Promise.all(promises);
 };
 
-//fetching Grantee data base on the data I get from fetchCard above (userIds)
-
+//fetching Grantees detaild data based on userIds
 export const fetchGrantees = async (userIds) => {
   if (!userIds || userIds.length === 0) return [];
   const promises = userIds.map(async (id) => {
@@ -57,36 +88,20 @@ export const fetchGrantees = async (userIds) => {
   return Promise.all(promises);
 };
 
-//fetching all Initiatives
-
-export const fetchInitiatives = async () => {
+/*Fråga: onödigt att ha en separat fetch för bara en användare*/
+//fetching one Grantee data based on userId
+export const fetchGrantee = async (id) => {
   try {
     const res = await fetch(
-      `https://nextjs-test-beryl-gamma.vercel.app/api/initiatives`
+      `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?id=${id}`
     );
 
-    if (!res.ok) throw new Error("Failed to fetch initiatives data");
+    if (!res.ok) throw new Error("Failed to fetch user data");
+
     const data = await res.json();
     return data;
   } catch (error) {
-    console.error("Error in fetching initiatives:", error);
-    throw error;
-  }
-};
-
-//fetching all cardData
-
-export const fetchGrants = async () => {
-  try {
-    const res = await fetch(
-      `https://nextjs-test-beryl-gamma.vercel.app/api/grants`
-    );
-
-    if (!res.ok) throw new Error("Failed to fetch all card data");
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    console.error("Error in fetching all cardData:", error);
+    console.error("Error in fetchCard:", error);
     throw error;
   }
 };

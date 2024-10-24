@@ -94,9 +94,9 @@ function Card({
 }) {
   return (
     <CardWrapper>
+      {console.log("gggg", grantees)}
       <p className='card-category'>{category}</p>
       <p className='card-title'>{cardTitle}</p>
-
       <p className='sub-title'>
         Funding amount: ${fundingAmountFrom}-${fundingAmountTo}
       </p>
@@ -118,16 +118,4 @@ function Card({
   );
 }
 
-Card.propTypes = {
-  category: PropTypes.string.isRequired,
-  cardTitle: PropTypes.string.isRequired,
-  fundingAmountFrom: PropTypes.number.isRequired,
-  fundingAmountTo: PropTypes.number.isRequired,
-  description: PropTypes.string.isRequired,
-  grantees: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.array,
-  ]).isRequired,
-};
 export default Card;

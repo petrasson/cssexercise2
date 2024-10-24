@@ -7,7 +7,13 @@ import HeadTitle from "../../shared-components/HeadTitle";
 import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
 import Card from "../../shared-components/Card";
 import { useEffect, useState } from "react";
+import { Suspense } from "react";
 import LottieAnimation from "../../shared-components/LottieAnimation";
+import {
+  fetchGrantee,
+  fetchGrantees,
+  fetchSimilarCards,
+} from "../../services/CardService";
 
 const Container = styled.div`
   margin: 0 auto;
@@ -81,89 +87,11 @@ const StyledLink = styled(Link)`
     text-decoration: none;
   }
 `;
-
-/*** FETCH USER PROFILE DATA ***/
-
-const fetchGranteeData = async (id) => {
-  try {
-    const res = await fetch(
-      `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?id=${id}`
-    );
-    if (!res.ok) {
-      throw new Error("Failed to fetch card details");
-    }
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    console.error("Error fetching card data:", error); // Log any errors
-    throw error;
-  }
-};
-
-/*** FETCH DETAILD GRANT DATA USING GRANT ID ***/
-
-const fetchGrantData = async (id) => {
-  try {
-    const res = await fetch(
-      `https://nextjs-test-beryl-gamma.vercel.app/api/grants?id=${id}`
-    );
-    if (!res.ok) {
-      throw new Error(`Failed to fetch grant with id ${id}`);
-    }
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    console.error("Error fetching grant data:", error);
-    throw error;
-  }
-};
-
-/*** FETCH GRANTEE IMAGE DATA ***/
-
-const fetchGranteeImageData = async (id) => {
-  const res = await fetch(
-    `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?id=${id}`
-  );
-  if (!res.ok) {
-    throw new Error(`Failed to fetch grantee data for ID ${id}`);
-  }
-  const data = await res.json();
-  return data.image_url;
-};
-
-/*** ASYNC FUNCTION WITH TRY/CATCH FOR FETCHING GRANTEE IMAGES ***/
-
-const fetchGranteeImage = async (granteeId) => {
-  try {
-    const imageUrl = await fetchGranteeImageData(granteeId);
-    return { granteeId, imageUrl };
-  } catch (error) {
-    console.error(`Error fetching image for grantee ID ${granteeId}:`, error);
-    console.log("fetchGranteeImage", { granteeId, imageUrl: null });
-    return { granteeId, imageUrl: null };
-  }
-};
-
-// /** FETCH USER IMAGES USING USER ID ***/
-
-// const fetchGranteeImageData = async (id) => {
-//   const res = await fetch(
-//     `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?id=${id}`
-//   );
-//   if (!res.ok) {
-//     throw new Error("Failed to fetch user data");
-//   }
-//   const data = await res.json();
-//   return data.image_url;
-// };
-
 function Grantee() {
   const [granteeData, setGranteeData] = useState([]);
   const [grantData, setGrantData] = useState([]);
-  const [granteeImages, setGranteeImages] = useState({});
+  const [granteeDataforGrants, setGranteeDataforGrants] = useState([]);
 
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
@@ -171,66 +99,38 @@ function Grantee() {
   const canGoBack = !!from;
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchAllData = async () => {
       try {
-        setLoading(true);
-        //Fetching grantee data based on the id from the URL
-        const grantee = await fetchGranteeData(id);
-        setGranteeData(grantee);
+        //Fetch the grantee profile data by ID
+        const granteeData = await fetchGrantee(id);
+        setGranteeData(granteeData);
 
-        //Fetching grant data for each grant the grantee is involved in
-        const grantIds = grantee.grants; // Get the card IDs the user have been part of
-        const grantPromises = grantIds.map((grantId) =>
-          fetchGrantData(grantId)
-        );
-        const grants = await Promise.all(grantPromises); // Fetch all project data in parallel
-        //filterar all but empty Objects
-        const filteredGrants = grants.filter(
-          (grant) => Object.keys(grant).length > 0
-        );
+        //Fetch the grant data based on the grantee's grants array
+        if (granteeData.grants && granteeData.grants.length > 0) {
+          const grantsData = await fetchSimilarCards(granteeData.grants);
+          setGrantData(grantsData);
 
-        setGrantData(filteredGrants);
+          //Fetch grantee data for each card based on grantees_ids in the grants
+          const granteeIds = grantsData.flatMap(
+            (card) => card.grantees_ids || []
+          );
 
-        // Fetching images for all grantees involved in each grant
-
-        // Collect unique grantee IDs
-        const granteeIdsSet = new Set();
-        filteredGrants.forEach((grant) => {
-          grant?.grantees_ids.forEach((granteeId) => {
-            granteeIdsSet.add(granteeId);
-          });
-        });
-
-        const allGranteeIds = Array.from(granteeIdsSet);
-
-        // Fetch grantee images with error handling
-        const granteeImagePromises = allGranteeIds.map((granteeId) =>
-          fetchGranteeImage(granteeId)
-        );
-
-        const resolvedImages = await Promise.all(granteeImagePromises);
-
-        // Map grantee IDs to images
-        const granteeImagesMap = {};
-        resolvedImages.forEach(({ granteeId, imageUrl }) => {
-          granteeImagesMap[granteeId] = imageUrl;
-        });
-
-        setGranteeImages(granteeImagesMap);
-
-        setLoading(false);
+          if (granteeIds.length > 0) {
+            const cardGranteesData = await fetchGrantees(granteeIds);
+            setGranteeDataforGrants(cardGranteesData);
+          } else {
+            console.log("No granteesIDs found in grant data.");
+          }
+        } else {
+          console.log("No grants found in grantee data.");
+        }
       } catch (error) {
-        setError(error.message);
-        console.error(error);
-        setLoading(false);
+        console.error("Error fetching data:", error);
       }
     };
 
-    fetchData();
-  }, [id]);
-
-  if (loading) return <LottieAnimation />;
-  if (error) return <div>Error: {error}</div>;
+    fetchAllData(); // Trigger the data fetching when component mounts or ID changes
+  }, [id]); // Ensure this effect runs when 'id' changes
 
   return (
     <div className='page-wrapper'>
@@ -244,41 +144,47 @@ function Grantee() {
             }}
           />
         )}
-        <img src={`${granteeData?.image_url}`} alt='picture of user' />
-        <HeadTitle text={granteeData?.name} />
-        <div className='text-wrapper'>
-          <h3 className='sub-title'>About</h3>
-          <p className='grant-text'>{granteeData?.about}</p>
-          <h3 className='sub-title'>Links</h3>
-          <div className='link-wrapper'>
-            <ButtonWrapper
-              items={granteeData?.links}
-              position='external-links'
-            />
+        <Suspense fallback={<LottieAnimation />}>
+          <img src={`${granteeData?.image_url}`} alt='picture of user' />
+          <HeadTitle text={granteeData?.name} />
+          <div className='text-wrapper'>
+            <h3 className='sub-title'>About</h3>
+            <p className='grant-text'>{granteeData?.about}</p>
+            <h3 className='sub-title'>Links</h3>
+            <div className='link-wrapper'>
+              <ButtonWrapper
+                items={granteeData?.links}
+                position='external-links'
+              />
+            </div>
           </div>
-        </div>
-        <h1 className='projects-text'>Projects</h1>
-        <div className='card-wrapper'>
-          {grantData.map((card) => {
-            const granteeImageUrls = card?.grantees_ids?.map((granteeId) => {
-              return granteeImages[granteeId.toString()];
-            });
-
-            return (
-              <StyledLink key={card.id} to={`/card/${card.id}`}>
-                <Card
-                  key={card?.id}
-                  category={card?.category}
-                  cardTitle={card?.title}
-                  fundingAmountFrom={card?.amountFrom}
-                  fundingAmountTo={card?.amountTo}
-                  description={card?.description}
-                  grantees={granteeImageUrls}
-                />
-              </StyledLink>
-            );
-          })}
-        </div>
+          <h1 className='projects-text'>Projects</h1>
+          <div className='card-wrapper'>
+            {grantData.map((card) => {
+              const granteeImageUrls = card?.grantees_ids?.map((granteeId) => {
+                // Find the grantee data using the granteeId
+                const grantee = granteeDataforGrants.find(
+                  (grantee) => grantee.id === granteeId
+                );
+                // Return the imageUrl, or handle cases where the grantee is not found
+                return grantee ? grantee.image_url : null; // Return image_url from grantee data
+              });
+              return (
+                <StyledLink key={card.id} to={`/card/${card.id}`}>
+                  <Card
+                    key={card?.id}
+                    category={card?.category}
+                    cardTitle={card?.title}
+                    fundingAmountFrom={card?.amountFrom}
+                    fundingAmountTo={card?.amountTo}
+                    description={card?.description}
+                    grantees={granteeImageUrls}
+                  />
+                </StyledLink>
+              );
+            })}
+          </div>
+        </Suspense>
       </Container>
       <Footer />
     </div>

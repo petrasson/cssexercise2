@@ -15,8 +15,5 @@ const HeadTitleWrapper = styled.div`
 function HeadTitle({ text }) {
   return <HeadTitleWrapper>{text}</HeadTitleWrapper>;
 }
-HeadTitle.propTypes = {
-  text: PropTypes.string.isRequired,
-};
 
 export default HeadTitle;

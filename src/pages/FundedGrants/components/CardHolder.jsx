@@ -40,25 +40,6 @@ const CardWrapper = styled.div`
 
 function CardHolder({ cards, granteeData }) {
   const location = useLocation();
-  // const [granteesData, setGranteesData] = useState([]);
-
-  // useEffect(() => {
-  //   const getGranteesData = async () => {
-  //     try {
-  //       const data = await fetch(
-  //         "https://nextjs-test-beryl-gamma.vercel.app/api/grantees"
-  //       );
-  //       if (!data.ok) {
-  //         throw new Error(`HTTP error! status: ${data.status}`);
-  //       }
-  //       const response = await data.json();
-  //       setGranteesData(response.grantees);
-  //     } catch (error) {
-  //       console.error("Error fetching grantees data:", error);
-  //     }
-  //   };
-  //   getGranteesData();
-  // }, []);
 
   return (
     <CardWrapper>

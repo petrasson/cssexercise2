@@ -171,7 +171,7 @@ function GrantDetails({ id }) {
           console.log("No transaction IDs found in cardData.");
         }
 
-        // Fetch transactions only if the 'transactions' array is present and has items
+        // Fetch grandee data to show who has been part of this project only, name, image
         if (cardData.grantees_ids && cardData.grantees_ids.length > 0) {
           const granteesData = await fetchGrantees(cardData.grantees_ids);
           setGranteesData(granteesData);
@@ -179,17 +179,18 @@ function GrantDetails({ id }) {
           console.log("No granteesIDs found in cardData.");
         }
 
-        //Fetch userImages to render on each similar card
-        if (similarCards.grantees_ids && similarCards.grantees_ids.length > 0) {
-          console.log("Before fetch, don't see it", similarCards.grantees_ids);
-          const similarCardGranteesData = await fetchGrantees(
-            similarCards.grantees_ids
-          );
-          setSimilarCardGranteesData(similarCardGranteesData);
-          console.log("After fetch, don't see it", similarCardGranteesData);
-        } else {
-          console.log("No granteesIDs found in similarCards.");
-        }
+        // //Fetch userImages to render on each similar card
+        // if (similarCards.grantees_ids && similarCards.grantees_ids.length > 0) {
+        //   console.log("Before fetch, don't see it", similarCards.grantees_ids);
+        //   const similarCardGranteesData = await fetchGrantees(
+        //     similarCards.grantees_ids
+        //   );
+
+        //   setSimilarCardGranteesData(similarCardGranteesData);
+        //   console.log("After fetch, don't see it", similarCardGranteesData);
+        // } else {
+        //   console.log("No granteesIDs found in similarCards.");
+        // }
       } catch (error) {
         // Error handling
         console.error("Error fetching data:", error);
@@ -209,7 +210,7 @@ function GrantDetails({ id }) {
           const similarCardGranteesData = await fetchGrantees(granteeIds);
           setSimilarCardGranteesData(similarCardGranteesData);
           console.log(
-            "Fetched similar card grantees:",
+            "Fetched similar card grantees to render images on cards:",
             similarCardGranteesData
           );
         } else {
