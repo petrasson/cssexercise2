@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import styled from "styled-components";
 import ButtonTag from "../pages/DiscoverInitiatives/components/ButtonTag";
 
@@ -71,11 +70,4 @@ function DiscoveryCard({
   );
 }
 
-DiscoveryCard.propTypes = {
-  status: PropTypes.string.isRequired,
-  cardTitle: PropTypes.string.isRequired,
-  fundingAmountFrom: PropTypes.number.isRequired,
-  fundingAmountTo: PropTypes.number.isRequired,
-  description: PropTypes.string.isRequired,
-};
 export default DiscoveryCard;

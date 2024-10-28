@@ -2,7 +2,7 @@ import styled from "styled-components";
 import FilterControl from "../../../shared-components/FilterControl";
 import Initiatives from "./Initiatives";
 import { useEffect, useState } from "react";
-import { fetchInitiatives } from "../../../services/CardService";
+import { fetchAllInitiatives } from "../../../services/Service";
 
 const DiscoverFilterWrapper = styled.div`
   display: flex;
@@ -17,9 +17,8 @@ function DiscoverFilter() {
 
   useEffect(() => {
     const getInitiatives = async () => {
-      const { initiatives: initiativesData } = await fetchInitiatives();
+      const { initiatives: initiativesData } = await fetchAllInitiatives();
       setInitiatives(initiativesData);
-      console.log("Fetched initiatives :", initiativesData);
     };
 
     getInitiatives(); // Fetch initiatives data when page mount

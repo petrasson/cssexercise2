@@ -1,5 +1,5 @@
 //fetching all Discover Initiatives
-export const fetchInitiatives = async () => {
+export const fetchAllInitiatives = async () => {
   try {
     const res = await fetch(
       `https://nextjs-test-beryl-gamma.vercel.app/api/initiatives`
@@ -15,7 +15,7 @@ export const fetchInitiatives = async () => {
 };
 
 //fetching all Funded grants
-export const fetchGrants = async () => {
+export const fetchAllGrants = async () => {
   try {
     const res = await fetch(
       `https://nextjs-test-beryl-gamma.vercel.app/api/grants`
@@ -31,20 +31,20 @@ export const fetchGrants = async () => {
 };
 
 //fetching grants detailed data based cardIds
-export const fetchSimilarCards = async (similiarIds) => {
-  if (!similiarIds || similiarIds.length === 0) return [];
-  const promises = similiarIds.map(async (id) => {
+export const fetchGrants = async (grantsIds) => {
+  if (!grantsIds || grantsIds.length === 0) return [];
+  const promises = grantsIds.map(async (id) => {
     const res = await fetch(
       `https://nextjs-test-beryl-gamma.vercel.app/api/grants?id=${id}`
     );
-    if (!res.ok) throw new Error(`Failed to fetch similiar card with id ${id}`);
+    if (!res.ok) throw new Error(`Failed to fetch cards with id ${id}`);
     return res.json();
   });
   return Promise.all(promises);
 };
 
 //fetching one detaild card info based on id
-export const fetchCard = async (id) => {
+export const fetchGrant = async (id) => {
   try {
     const res = await fetch(
       `https://nextjs-test-beryl-gamma.vercel.app/api/grants?id=${id}`
@@ -55,7 +55,7 @@ export const fetchCard = async (id) => {
     const data = await res.json();
     return data;
   } catch (error) {
-    console.error("Error in fetchCard:", error);
+    console.error("Error in fetchGrant:", error);
     throw error;
   }
 };
@@ -101,7 +101,7 @@ export const fetchGrantee = async (id) => {
     const data = await res.json();
     return data;
   } catch (error) {
-    console.error("Error in fetchCard:", error);
+    console.error("Error in fetchGrant:", error);
     throw error;
   }
 };

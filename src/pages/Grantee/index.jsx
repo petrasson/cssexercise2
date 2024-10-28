@@ -12,8 +12,8 @@ import LottieAnimation from "../../shared-components/LottieAnimation";
 import {
   fetchGrantee,
   fetchGrantees,
-  fetchSimilarCards,
-} from "../../services/CardService";
+  fetchGrants,
+} from "../../services/Service";
 
 const Container = styled.div`
   margin: 0 auto;
@@ -107,7 +107,7 @@ function Grantee() {
 
         //Fetch the grant data based on the grantee's grants array
         if (granteeData.grants && granteeData.grants.length > 0) {
-          const grantsData = await fetchSimilarCards(granteeData.grants);
+          const grantsData = await fetchGrants(granteeData.grants);
           setGrantData(grantsData);
 
           //Fetch grantee data for each card based on grantees_ids in the grants

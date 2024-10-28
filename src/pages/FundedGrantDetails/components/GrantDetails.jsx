@@ -5,11 +5,11 @@ import CardTransactions from "./CardTransactions";
 import ButtonWrapper from "../../../shared-components/ButtonWrapper";
 import SimilarGrants from "./SimilarGrants";
 import {
-  fetchCard,
+  fetchGrant,
   fetchTransactions,
-  fetchSimilarCards,
+  fetchGrants,
   fetchGrantees,
-} from "../../../services/CardService";
+} from "../../../services/Service";
 import { useEffect, useState } from "react";
 
 const GrantDetailsWrapper = styled.div`
@@ -150,12 +150,12 @@ function GrantDetails({ id }) {
     const fetchAllData = async () => {
       try {
         // Fetch the main card data by ID
-        const cardData = await fetchCard(id);
+        const cardData = await fetchGrant(id);
         setCard(cardData);
 
         // Fetch similar cards only if the 'similiar' array exists and has items
         if (cardData.similiar && cardData.similiar.length > 0) {
-          const similarCardsData = await fetchSimilarCards(cardData.similiar);
+          const similarCardsData = await fetchGrants(cardData.similiar);
           setSimilarCards(similarCardsData);
         } else {
           console.log("No similar card IDs found in cardData.");
@@ -178,19 +178,6 @@ function GrantDetails({ id }) {
         } else {
           console.log("No granteesIDs found in cardData.");
         }
-
-        // //Fetch userImages to render on each similar card
-        // if (similarCards.grantees_ids && similarCards.grantees_ids.length > 0) {
-        //   console.log("Before fetch, don't see it", similarCards.grantees_ids);
-        //   const similarCardGranteesData = await fetchGrantees(
-        //     similarCards.grantees_ids
-        //   );
-
-        //   setSimilarCardGranteesData(similarCardGranteesData);
-        //   console.log("After fetch, don't see it", similarCardGranteesData);
-        // } else {
-        //   console.log("No granteesIDs found in similarCards.");
-        // }
       } catch (error) {
         // Error handling
         console.error("Error fetching data:", error);
@@ -198,7 +185,7 @@ function GrantDetails({ id }) {
     };
 
     fetchAllData(); // Call the fetchAllData function when the component mounts or when 'id' changes
-  }, [id]); // rerun when 'id' changes
+  }, [id]); // retun when 'id' changes
 
   useEffect(() => {
     const fetchSimilarCardGrantees = async () => {

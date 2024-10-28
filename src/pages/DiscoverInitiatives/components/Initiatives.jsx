@@ -10,6 +10,10 @@ const CardWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
 
+  .error-message {
+    color: red;
+  }
+
   /*********************************** TABLET VERSION *********************************/
 
   @media only screen and (width >= 700px) {
@@ -26,22 +30,26 @@ const CardWrapper = styled.div`
 `;
 
 function Initiatives({ cards }) {
-  if (!cards || cards.length === 0) {
-    return <div>No initiatives available</div>;
+  if (!cards) {
+    return null;
   }
 
   return (
     <CardWrapper>
-      {cards.map((card) => (
-        <DiscoveryCard
-          key={card.id}
-          status={card.status}
-          cardTitle={card.title}
-          fundingAmountFrom={card.amountFrom}
-          fundingAmountTo={card.amountTo}
-          description={card.description}
-        />
-      ))}
+      {cards.length === 0 ? (
+        <div className='error-message'>No initiatives available</div>
+      ) : (
+        cards.map((card) => (
+          <DiscoveryCard
+            key={card.id}
+            status={card.status}
+            cardTitle={card.title}
+            fundingAmountFrom={card.amountFrom}
+            fundingAmountTo={card.amountTo}
+            description={card.description}
+          />
+        ))
+      )}
     </CardWrapper>
   );
 }

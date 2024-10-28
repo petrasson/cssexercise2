@@ -1,7 +1,7 @@
 import CardHolder from "./CardHolder";
 import FilterControl from "../../../shared-components/FilterControl";
 import { useEffect, useState } from "react";
-import { fetchGrants, fetchGrantees } from "../../../services/CardService";
+import { fetchAllGrants, fetchGrantees } from "../../../services/Service";
 
 import styled from "styled-components";
 
@@ -22,7 +22,7 @@ function CardFilter() {
 
   useEffect(() => {
     const getGrantsData = async () => {
-      const { grants: cardsData } = await fetchGrants();
+      const { grants: cardsData } = await fetchAllGrants();
       setGrantsData(cardsData);
     };
     getGrantsData();

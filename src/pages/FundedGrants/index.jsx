@@ -33,7 +33,6 @@ function FundedGrants() {
           <div className='space'>
             <HeadTitle text='Funded Grants' />
           </div>
-
           <CardFilter />
           <Apply />
         </Suspense>
