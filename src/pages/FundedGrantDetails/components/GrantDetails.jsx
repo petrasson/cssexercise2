@@ -10,7 +10,7 @@ import {
   fetchGrants,
   fetchGrantees,
 } from "../../../services/Service";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 
 const GrantDetailsWrapper = styled.div`
   width: 100%;
@@ -140,6 +140,7 @@ const GrantDetailsWrapper = styled.div`
 `;
 
 function GrantDetails({ id }) {
+  const [isPending, startTransition] = useTransition();
   const [card, setCard] = useState({});
   const [similarCards, setSimilarCards] = useState({});
   const [transactionsData, setTransactionsData] = useState([]); // Här låg felet, det var en {}
@@ -148,45 +149,49 @@ function GrantDetails({ id }) {
 
   useEffect(() => {
     const fetchAllData = async () => {
-      try {
-        // Fetch the main card data by ID
-        const cardData = await fetchGrant(id);
-        setCard(cardData);
+      startTransition(async () => {
+        try {
+          // Fetch the main card data by ID
+          const cardData = await fetchGrant(id);
+          setCard(cardData);
 
-        // Fetch similar cards only if the 'similiar' array exists and has items
-        if (cardData.similiar && cardData.similiar.length > 0) {
-          const similarCardsData = await fetchGrants(cardData.similiar);
-          setSimilarCards(similarCardsData);
-        } else {
-          console.log("No similar card IDs found in cardData.");
-        }
+          // Fetch similar cards only if the 'similiar' array exists and has items
+          if (cardData.similiar && cardData.similiar.length > 0) {
+            const similarCardsData = await fetchGrants(cardData.similiar);
+            setSimilarCards(similarCardsData);
+          } else {
+            console.log("No similar card IDs found in cardData.");
+          }
 
-        // Fetch transactions only if the 'transactions' array is present and has items
-        if (cardData.transactions && cardData.transactions.length > 0) {
-          const transactionsData = await fetchTransactions(
-            cardData.transactions
-          );
-          setTransactionsData(transactionsData);
-        } else {
-          console.log("No transaction IDs found in cardData.");
-        }
+          // Fetch transactions only if the 'transactions' array is present and has items
+          if (cardData.transactions && cardData.transactions.length > 0) {
+            const transactionsData = await fetchTransactions(
+              cardData.transactions
+            );
+            setTransactionsData(transactionsData);
+          } else {
+            console.log("No transaction IDs found in cardData.");
+          }
 
-        // Fetch grandee data to show who has been part of this project only, name, image
-        if (cardData.grantees_ids && cardData.grantees_ids.length > 0) {
-          const granteesData = await fetchGrantees(cardData.grantees_ids);
-          setGranteesData(granteesData);
-        } else {
-          console.log("No granteesIDs found in cardData.");
+          // Fetch grandee data to show who has been part of this project only, name, image
+          if (cardData.grantees_ids && cardData.grantees_ids.length > 0) {
+            const granteesData = await fetchGrantees(cardData.grantees_ids);
+            setGranteesData(granteesData);
+            console.log("granteesData", granteesData);
+          } else {
+            console.log("No granteesIDs found in cardData.");
+          }
+        } catch (error) {
+          // Error handling
+          console.error("Error fetching data:", error);
         }
-      } catch (error) {
-        // Error handling
-        console.error("Error fetching data:", error);
-      }
+      });
     };
 
     fetchAllData(); // Call the fetchAllData function when the component mounts or when 'id' changes
   }, [id]); // retun when 'id' changes
 
+  // fetch the images of grantees to render on each similar card
   useEffect(() => {
     const fetchSimilarCardGrantees = async () => {
       if (Array.isArray(similarCards) && similarCards.length > 0) {
@@ -210,7 +215,7 @@ function GrantDetails({ id }) {
   }, [similarCards]);
 
   const {
-    grantees_ids,
+    // grantees_ids,
     category,
     title,
     completed,
@@ -223,79 +228,85 @@ function GrantDetails({ id }) {
 
   return (
     <GrantDetailsWrapper>
-      <p className='card-category'>{category}</p>
-      <HeadTitle text={title} />
-      <div className='project-detail-wrapper'>
-        <div className='row-wrapper'>
-          <p className='status'>{completed ? "Completed" : "Open"}</p>
-          <p className='funding-amount'>Funding amount:</p>
-          <p>${amountFrom}</p>
-        </div>
-        <Button
-          type='accent'
-          text='Project link'
-          onClick={() => console.log("ProjectLink")}
-          image='true'
-        />
-      </div>
-      <h3 className='sub-title'>Team</h3>
-      <ButtonWrapper grantees={granteesData} position='link-to-profile' />
-      <hr></hr>
-      <div className='text-wrapper'>
-        <h3 className='sub-title'>Description</h3>
-        <p>{description}</p>
-        <h3 className='sub-title'>Purpose</h3>
-        <p>{purpose}</p>
-        <h3 className='sub-title'>Execution</h3>
-        <p>{execution}</p>
-        <h3 className='sub-title'>Payment Structure</h3>
-        <p>{payment_structure}</p>
-        <h3 className='sub-title'>Useful Links</h3>
-        <div className='link-wrapper'>
-          <div className='link-row-wrapper'>
-            <p className='links'>www.granttileproject.com</p>
-            <img
-              src='/images/external-link-purple.svg'
-              aria-hidden='true'
-              className='external-link-purple'
+      {isPending ? (
+        <div>Loading...</div> // Optional loading message while pending
+      ) : (
+        <>
+          <p className='card-category'>{category}</p>
+          <HeadTitle text={title} />
+          <div className='project-detail-wrapper'>
+            <div className='row-wrapper'>
+              <p className='status'>{completed ? "Completed" : "Open"}</p>
+              <p className='funding-amount'>Funding amount:</p>
+              <p>${amountFrom}</p>
+            </div>
+            <Button
+              type='accent'
+              text='Project link'
+              onClick={() => console.log("ProjectLink")}
+              image='true'
             />
           </div>
-          <div className='link-row-wrapper'>
-            <p className='links'>www.granttileproject.com</p>
-            <img
-              src='/images/external-link-purple.svg'
-              aria-hidden='true'
-              className='external-link-purple'
-            />
+          <h3 className='sub-title'>Team</h3>
+          <ButtonWrapper grantees={granteesData} position='link-to-profile' />
+          <hr></hr>
+          <div className='text-wrapper'>
+            <h3 className='sub-title'>Description</h3>
+            <p>{description}</p>
+            <h3 className='sub-title'>Purpose</h3>
+            <p>{purpose}</p>
+            <h3 className='sub-title'>Execution</h3>
+            <p>{execution}</p>
+            <h3 className='sub-title'>Payment Structure</h3>
+            <p>{payment_structure}</p>
+            <h3 className='sub-title'>Useful Links</h3>
+            <div className='link-wrapper'>
+              <div className='link-row-wrapper'>
+                <p className='links'>www.granttileproject.com</p>
+                <img
+                  src='/images/external-link-purple.svg'
+                  aria-hidden='true'
+                  className='external-link-purple'
+                />
+              </div>
+              <div className='link-row-wrapper'>
+                <p className='links'>www.granttileproject.com</p>
+                <img
+                  src='/images/external-link-purple.svg'
+                  aria-hidden='true'
+                  className='external-link-purple'
+                />
+              </div>
+              <div className='link-row-wrapper'>
+                <p className='links'>www.granttileproject.com</p>
+                <img
+                  src='/images/external-link-purple.svg'
+                  aria-hidden='true'
+                  className='external-link-purple'
+                />
+              </div>
+            </div>
           </div>
-          <div className='link-row-wrapper'>
-            <p className='links'>www.granttileproject.com</p>
-            <img
-              src='/images/external-link-purple.svg'
-              aria-hidden='true'
-              className='external-link-purple'
-            />
-          </div>
-        </div>
-      </div>
-      <h3 className='sub-title funding'>Funding Transactions</h3>
+          <h3 className='sub-title funding'>Funding Transactions</h3>
 
-      {transactionsData?.map((card) => {
-        return (
-          <CardTransactions
-            key={card?.id}
-            title={card.title}
-            date={card?.date}
-            description={card?.description}
-            amount={card?.amound}
+          {transactionsData?.map((card) => {
+            return (
+              <CardTransactions
+                key={card?.id}
+                title={card.title}
+                date={card?.date}
+                description={card?.description}
+                amount={card?.amound}
+              />
+            );
+          })}
+
+          <SimilarGrants
+            similarGrants={similarCards}
+            granteesData={similarCardGranteesData}
           />
-        );
-      })}
-
-      <SimilarGrants
-        similarGrants={similarCards}
-        granteesData={similarCardGranteesData}
-      />
+        </>
+      )}
     </GrantDetailsWrapper>
   );
 }
