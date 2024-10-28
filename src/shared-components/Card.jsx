@@ -94,7 +94,6 @@ function Card({
 }) {
   return (
     <CardWrapper>
-      {console.log("gggg", grantees)}
       <p className='card-category'>{category}</p>
       <p className='card-title'>{cardTitle}</p>
       <p className='sub-title'>

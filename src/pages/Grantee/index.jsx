@@ -7,7 +7,7 @@ import HeadTitle from "../../shared-components/HeadTitle";
 import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
 import Card from "../../shared-components/Card";
 import { useEffect, useState } from "react";
-import { Suspense } from "react";
+import { Suspense, useTransition } from "react";
 import LottieAnimation from "../../shared-components/LottieAnimation";
 import {
   fetchGrantee,
@@ -88,6 +88,7 @@ const StyledLink = styled(Link)`
   }
 `;
 function Grantee() {
+  const [isPending, startTransition] = useTransition();
   const [granteeData, setGranteeData] = useState([]);
   const [grantData, setGrantData] = useState([]);
   const [granteeDataforGrants, setGranteeDataforGrants] = useState([]);
@@ -99,7 +100,7 @@ function Grantee() {
   const canGoBack = !!from;
 
   useEffect(() => {
-    const fetchAllData = async () => {
+    startTransition(async () => {
       try {
         //Fetch the grantee profile data by ID
         const granteeData = await fetchGrantee(id);
@@ -127,10 +128,12 @@ function Grantee() {
       } catch (error) {
         console.error("Error fetching data:", error);
       }
-    };
-
-    fetchAllData(); // Trigger the data fetching when component mounts or ID changes
+    });
   }, [id]); // Ensure this effect runs when 'id' changes
+
+  if (isPending) {
+    if (isPending) return <div>Loading data...</div>;
+  }
 
   return (
     <div className='page-wrapper'>

@@ -1,6 +1,6 @@
 import CardHolder from "./CardHolder";
 import FilterControl from "../../../shared-components/FilterControl";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { fetchAllGrants, fetchGrantees } from "../../../services/Service";
 
 import styled from "styled-components";
@@ -12,41 +12,37 @@ const CardFilterWrapper = styled.div`
 `;
 
 function CardFilter() {
+  const [isPending, startTransition] = useTransition();
   const [grantsData, setGrantsData] = useState([]);
   const [granteesData, setGranteesData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [filterType, setFilterType] = useState("All");
   const [filterCompleted, setFilteredCompleted] = useState(true);
 
-  //Fetch grants data to render
-
   useEffect(() => {
-    const getGrantsData = async () => {
-      const { grants: cardsData } = await fetchAllGrants();
-      setGrantsData(cardsData);
-    };
-    getGrantsData();
-  }, []);
+    startTransition(async () => {
+      try {
+        // Fetch grants data
+        const { grants: cardsData } = await fetchAllGrants();
+        setGrantsData(cardsData);
 
-  //Fetch grantees data to render their images on each card
+        // Fetch grantees data based on fetched grants
+        if (Array.isArray(cardsData) && cardsData.length > 0) {
+          const granteeIds = cardsData.flatMap(
+            (card) => card.grantees_ids || []
+          );
 
-  useEffect(() => {
-    const fetchGranteesData = async () => {
-      if (Array.isArray(grantsData) && grantsData.length > 0) {
-        const granteeIds = grantsData.flatMap(
-          (card) => card.grantees_ids || []
-        );
-        if (granteeIds.length > 0) {
-          const granteesData = await fetchGrantees(granteeIds);
-          setGranteesData(granteesData);
-        } else {
-          console.log("No grantees data found.");
+          // Only fetch grantees if we have valid IDs
+          if (granteeIds.length > 0) {
+            const fetchedGranteesData = await fetchGrantees(granteeIds);
+            setGranteesData(fetchedGranteesData);
+          }
         }
+      } catch (error) {
+        console.error("Error fetching data:", error);
       }
-    };
-
-    fetchGranteesData(); // Fetch grantee data to render users URL on cards
-  }, [grantsData]);
+    });
+  }, []);
 
   useEffect(() => {
     let newFilteredData = grantsData;
@@ -81,6 +77,8 @@ function CardFilter() {
     text: category,
     value: category,
   }));
+
+  if (isPending) return <div>Loading data...</div>;
 
   return (
     <CardFilterWrapper>

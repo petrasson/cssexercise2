@@ -19,7 +19,7 @@ const Container = styled.div`
     padding: 80px 0 40px;
   }
 
-  @media only screen and (width >= 1305px) {
+  @media only screen and (width >= 1305pgit x) {
     padding: 0 108px;
   }
 `;

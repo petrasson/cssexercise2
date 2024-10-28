@@ -177,7 +177,6 @@ function GrantDetails({ id }) {
           if (cardData.grantees_ids && cardData.grantees_ids.length > 0) {
             const granteesData = await fetchGrantees(cardData.grantees_ids);
             setGranteesData(granteesData);
-            console.log("granteesData", granteesData);
           } else {
             console.log("No granteesIDs found in cardData.");
           }
@@ -201,10 +200,6 @@ function GrantDetails({ id }) {
         if (granteeIds.length > 0) {
           const similarCardGranteesData = await fetchGrantees(granteeIds);
           setSimilarCardGranteesData(similarCardGranteesData);
-          console.log(
-            "Fetched similar card grantees to render images on cards:",
-            similarCardGranteesData
-          );
         } else {
           console.log("No granteesIDs found in similarCards.");
         }
