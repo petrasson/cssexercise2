@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import FilterControl from "../../../shared-components/FilterControl";
 import Initiatives from "./Initiatives";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { fetchAllInitiatives } from "../../../services/Service";
 
 const DiscoverFilterWrapper = styled.div`
@@ -11,27 +11,25 @@ const DiscoverFilterWrapper = styled.div`
 `;
 
 function DiscoverFilter() {
+  const [isPending, startTransition] = useTransition();
   const [initiatives, setInitiatives] = useState([]);
   const [filterType, setFilterType] = useState("All");
   const [filteredInitiatives, setFilteredInitiatives] = useState([]);
 
   useEffect(() => {
     const getInitiatives = async () => {
-      const { initiatives: initiativesData } = await fetchAllInitiatives();
-      setInitiatives(initiativesData);
-    };
+      // Start the transition to manage async data loading without blocking
+      startTransition(async () => {
+        const data = await fetchAllInitiatives();
 
-    getInitiatives(); // Fetch initiatives data when page mount
-  }, []);
-
-  //fetch all initiatives
-  useEffect(() => {
-    const getInitiatives = async () => {
-      const data = await fetch(
-        "https://nextjs-test-beryl-gamma.vercel.app/api/initiatives"
-      );
-      const response = await data.json();
-      setInitiatives(response?.initiatives);
+        // Check that the data format is as expected and destructure initiatives
+        if (data && data.initiatives) {
+          setInitiatives(data.initiatives);
+          setFilteredInitiatives(data.initiatives);
+        } else {
+          console.error("Unexpected data format:", data);
+        }
+      });
     };
 
     getInitiatives();
@@ -62,11 +60,6 @@ function DiscoverFilter() {
     setFilteredInitiatives(newFilteredInitiatives);
   };
 
-  //uppdate filtered data
-  useEffect(() => {
-    setFilteredInitiatives(initiatives);
-  }, [initiatives]);
-
   return (
     <DiscoverFilterWrapper>
       <FilterControl
@@ -75,7 +68,12 @@ function DiscoverFilter() {
         filterOptions={filterOptions}
         withToggle={false}
       />
-      <Initiatives cards={filteredInitiatives} />
+
+      {isPending ? (
+        <div>Loading...</div>
+      ) : (
+        <Initiatives cards={filteredInitiatives} />
+      )}
     </DiscoverFilterWrapper>
   );
 }
