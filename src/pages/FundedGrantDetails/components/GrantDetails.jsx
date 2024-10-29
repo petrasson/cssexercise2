@@ -44,18 +44,40 @@ const GrantDetailsWrapper = styled.div`
     align-items: center;
     text-align: center;
 
-    .status {
+    .completed, .open {
+      position: relative;
       display: flex;
       text-align: center;
       justify-content: center;
       align-content: center;
       border-radius: 30px;
       border: none;
-      padding: 3px 10px;
-      font-size: 14px;
-      color: white;
+      
+      .text {
+        font-size: 14px;
+        color: white;
+        margin: 0;
+      }
+
+      .check-icon {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        width: 10px;
+        height: 10px;      
+        }
+    }
+
+    .completed {
       background-color: var(--btn-completed);
-     
+      padding: 5px 30px 5px 10px;
+
+    }
+    .open {
+      background-color: var(--accent-color);
+      padding: 5px 10px;
+
     }
 
     .funding-amount {
@@ -231,7 +253,20 @@ function GrantDetails({ id }) {
           <HeadTitle text={title} />
           <div className='project-detail-wrapper'>
             <div className='row-wrapper'>
-              <p className='status'>{completed ? "Completed" : "Open"}</p>
+              {completed ? (
+                <>
+                  <p className='completed'>
+                    <p className='text'>Completed</p>
+                    <img
+                      src='/images/check.svg'
+                      alt='check icon'
+                      className='check-icon'
+                    />
+                  </p>
+                </>
+              ) : (
+                <p className='open'>Open</p>
+              )}
               <p className='funding-amount'>Funding amount:</p>
               <p>${amountFrom}</p>
             </div>
@@ -239,7 +274,7 @@ function GrantDetails({ id }) {
               type='accent'
               text='Project link'
               onClick={() => console.log("ProjectLink")}
-              image='true'
+              image={true}
             />
           </div>
           <h3 className='sub-title'>Team</h3>

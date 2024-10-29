@@ -41,27 +41,31 @@ All design was taken from [this Figma file](https://www.figma.com/design/eWP1AMJ
 
 ### Todo
 
-#### add try/catch on each fetch and error handling
-
-#### add comments
-
-#### optimize performance/fetch
-
 #### add/remove an images on buttons
 
 #### Status button green
 
 #### transitioning buttons
 
-#### remov all console logs
-
-#### check all pages in different browsers and screens
+#### Blog
 
 #### Webpage button hover effect
 
-#### Blog
+#### links
+
+#### add try/catch on each fetch and error handling
+
+#### add comments
+
+#### optimize performance/fetch
+
+#### remove all console logs
+
+#### check all pages in different browsers and screens
 
 #### Only send user.URL_img to cards to render?
+
+#### Typescript
 
 ### Done
 

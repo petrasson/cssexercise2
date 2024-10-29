@@ -31,29 +31,26 @@ const StyledButton = styled.div`
   }}
 
   ${(props) => {
+    console.log("propsss", props);
+
     return (
       props.status === "completed" &&
       css`
         background-color: var(--btn-completed);
         position: relative;
-        padding-right: 30px;
-        ::after {
-          content: "";
+        padding: 0 30px 0 10px;
+
+        .check-icon {
           position: absolute;
           top: 50%;
           right: 10px;
           transform: translateY(-50%);
-          background-image: url("/images/check.svg");
-          width: 20px;
-          height: 20px;
-          background-size: cover;
-          z-index: 3;
-          background-repeat: no-repeat;
-          pointer-events: none;
+          width: 10px;
+          height: 10px;
         }
       `
     );
-  }}
+  }}  
 
 
   @media only screen and (width >= 1305px) {
@@ -66,7 +63,14 @@ const StyledButton = styled.div`
 `;
 
 function ButtonTag({ status }) {
-  return <StyledButton status={status}>{status}</StyledButton>;
+  return (
+    <StyledButton status={status}>
+      {status}
+      {status === "completed" && (
+        <img src='/images/check.svg' alt='check icon' className='check-icon' />
+      )}
+    </StyledButton>
+  );
 }
 
 ButtonTag.propTypes = {

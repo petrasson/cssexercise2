@@ -162,7 +162,7 @@ function Form() {
             ></textarea>
           </div>
           <div className='button-wrapper'>
-            <Button type='accent' text='Submit' image='false' />
+            <Button type='accent' text='Submit' image={false} />
           </div>
         </div>
       </form>

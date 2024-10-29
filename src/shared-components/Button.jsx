@@ -75,9 +75,9 @@ const ButtonWrapper = styled.button.withConfig({
     `}
 
 img {
-    margin-left: 8px; /* Add space between text and image */
-    width: 12px; /* Set image size */
-    height: 12px; /* Set image size */
+    margin-left: 8px;
+    width: 12px;
+    height: 12px;
   }
 `;
 
