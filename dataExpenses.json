@@ -86,7 +86,7 @@
       "type": "Entertainment",
       "description": "Team-building lunch to celebrate project milestones.",
       "amount": "250.00",
-      "category": "Sunk Cost"
+      "category": "Fixed Cost"
     },
     {
       "id": "12",
@@ -94,7 +94,7 @@
       "type": "Disposal",
       "description": "Cost of disposing old and obsolete office equipment.",
       "amount": "100.00",
-      "category": "Sunk Cost"
+      "category": "Fixed Cost"
     },
     {
       "id": "13",

@@ -41,8 +41,6 @@ All design was taken from [this Figma file](https://www.figma.com/design/eWP1AMJ
 
 ### Todo
 
-#### Expenses - filter data
-
 #### add try/catch on each fetch and error handling
 
 #### add comments
@@ -82,3 +80,5 @@ All design was taken from [this Figma file](https://www.figma.com/design/eWP1AMJ
 #### optional chaining
 
 #### Handle the scrollbar when loading?
+
+#### Expenses - filter data

@@ -27,7 +27,7 @@ const NavButtonWrapper = styled.div`
       justify-content: center;
       align-items: center;
       align-content: center;
-      padding: 10px;
+      padding: 5px 6px;
       font-size: 16px;
       background-color: var(--secondary-bg-color);
       border-radius: 30px;

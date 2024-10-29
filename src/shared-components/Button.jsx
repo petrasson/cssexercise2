@@ -6,7 +6,7 @@ const buttonStyles = {
     color: var(--primary-text-color);
     background-color: var(--secondary-bg-color);
     padding: 10px 16px;
-    margin-right: 36px;
+    margin-right: 65px;
     height: 44px;
     max-width: 50px;
 
@@ -38,14 +38,14 @@ const buttonStyles = {
     }
   `,
   text: css`
-    min-width: 150px;
     position: relative;
     z-index: 4;
-    border: none;
     color: var(--primary-text-color);
     font-size: 15px;
     cursor: pointer;
     background-color: transparent;
+    text-align: left;
+    justify-content: start;
   `,
 };
 

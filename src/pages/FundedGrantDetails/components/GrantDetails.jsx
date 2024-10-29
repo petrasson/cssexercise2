@@ -51,11 +51,11 @@ const GrantDetailsWrapper = styled.div`
       align-content: center;
       border-radius: 30px;
       border: none;
-      padding: 0 6px;
+      padding: 3px 10px;
       font-size: 14px;
       color: white;
       background-color: var(--btn-completed);
-      padding: 6px 10px;
+     
     }
 
     .funding-amount {
@@ -75,7 +75,7 @@ const GrantDetailsWrapper = styled.div`
 
   .sub-title {
     font-size: 20px;
-    margin: 23px 0 0 0;
+    margin: 35px 0 0 0;
   }
 
   .sub-title.funding {

@@ -3,6 +3,7 @@ import Header from "../../shared-components/Header";
 import HeadTitle from "../../shared-components/HeadTitle";
 import Footer from "../../shared-components/Footer";
 import Form from "./components/Form";
+import { useEffect } from "react";
 
 const Container = styled.div`
   margin: 0 auto;
@@ -12,11 +13,18 @@ const Container = styled.div`
   width: 100%;
 
   .space {
-    padding: 80px 0 40px;
+    padding: 60px 0 40px;
   }
 
-  p {
+  .text {
     font-size: 16px;
+    max-width: 700px;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .purple {
+    color: var(--accent-color);
   }
 
   @media only screen and (width >= 1305px) {
@@ -25,6 +33,9 @@ const Container = styled.div`
 `;
 
 function Application() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className='page-wrapper'>
       <Header />
@@ -32,7 +43,12 @@ function Application() {
         <div className='space'>
           <HeadTitle text='Apply for a grant' />
         </div>
-        <p>Please complete application below for Grant consideration!</p>
+        <p className='text'>
+          Please complete the application below for Grant consideration!{" "}
+          <span className='purple'>
+            Learn more about the criteria used for selecting grants.
+          </span>
+        </p>
         <Form />
       </Container>
       <Footer />

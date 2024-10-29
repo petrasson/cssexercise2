@@ -5,7 +5,7 @@ const QuestionsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   text-align: left;
-  padding: 30px;
+  padding: 30px 0 90px;
 
   .sub-title {
     font-size: 34px;

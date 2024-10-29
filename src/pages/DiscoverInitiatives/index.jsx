@@ -15,11 +15,13 @@ const Container = styled.div`
   min-height: 100vh;
 
   .space {
-    padding: 80px 0 40px;
+    padding: 90px 0 40px;
   }
 
-  p {
+  .text {
     font-size: 16px;
+    margin: 0 0 45px 0;
+    color: var(--secondary-text-color);
   }
 
   @media only screen and (width >= 1305px) {
@@ -35,7 +37,7 @@ function DiscoverInitiatives() {
         <div className='space'>
           <HeadTitle text='Discover Initiatives' />
         </div>
-        <p>
+        <p className='text'>
           The list below includes initial ideas that we think could make
           excellent Grants. This is a living list that will continue to update
           as ideas popup.

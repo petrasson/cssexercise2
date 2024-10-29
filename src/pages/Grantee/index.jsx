@@ -41,7 +41,7 @@ const Container = styled.div`
       font-size: 16px;
       line-height: 24px;
       color: var(--secondary-text-color);
-      margin-bottom: 30px;
+      margin: 0 0 30px;
       text-align: left;
       width: 100%;
     }

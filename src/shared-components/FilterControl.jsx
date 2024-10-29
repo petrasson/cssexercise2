@@ -23,9 +23,9 @@ const FilterControlWrapper = styled.div`
     z-index: 3;
     margin-bottom: 20px;
 
-    .filter-wrapper {
-      gap: 10px;
-    }
+    // .filter-wrapper {
+    //   gap: 10px;
+    // }
   }
 
   .filter-container::before {
@@ -61,7 +61,6 @@ const FilterControlWrapper = styled.div`
   .filter-wrapper {
     display: flex;
     flex-direction: row;
-    align-items: start;
     gap: 10px;
     margin: 0px;
     overflow-x: auto;
@@ -87,7 +86,6 @@ const FilterControlWrapper = styled.div`
 
     .filter-wrapper {
       overflow-x: hidden;
-      gap: 60px;
     }
   }
 `;

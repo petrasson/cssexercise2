@@ -3,6 +3,7 @@ import Header from "../../shared-components/Header";
 import HeadTitle from "../../shared-components/HeadTitle";
 import Questions from "./components/Questions";
 import Footer from "../../shared-components/Footer";
+import Apply from "../../shared-components/Apply";
 
 const Container = styled.div`
   margin: 0 auto;
@@ -13,11 +14,12 @@ const Container = styled.div`
   min-height: 100vh;
 
   .space {
-    padding: 80px 0 40px;
+    padding: 90px 0 40px;
   }
 
   p {
     font-size: 16px;
+    margin: 0 0 15px 0;
   }
 
   @media only screen and (width >= 1305px) {
@@ -33,12 +35,8 @@ function FaqPage() {
         <div className='space'>
           <HeadTitle text='Frequently asked questions' />
         </div>
-        <p>
-          The list below includes initial ideas that we think could make
-          excellent Grants. This is a living list that will continue to update
-          as ideas popup.
-        </p>
         <Questions />
+        <Apply />
       </Container>
       <Footer />
     </div>

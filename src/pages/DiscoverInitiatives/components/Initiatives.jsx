@@ -23,7 +23,7 @@ const CardWrapper = styled.div`
   /*********************************** WEB VERSION *********************************/
 
   @media only screen and (width >= 1305px) {
-    padding: 80px 0;
+    padding: 25px 0;
     grid-template-columns: repeat(3, 1fr);
     justify-content: start;
   }

@@ -16,7 +16,7 @@ const Container = styled.div`
   min-height: 100vh;
 
   .space {
-    padding: 80px 0 40px;
+    padding: 90px 0 40px;
   }
 
   @media only screen and (width >= 1305pgit x) {
