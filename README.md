@@ -37,11 +37,13 @@ All design was taken from [this Figma file](https://www.figma.com/design/eWP1AMJ
 
 `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?id=CC27C14A-0ACF-4F4A-A6C9-D45682C144B9`
 
+####
+
 ### Todo
 
-#### Try and catch on each fetch and error handling
+#### Expenses - filter data
 
-#### Handle the scrollbar when loading?
+#### add try/catch on each fetch and error handling
 
 #### add comments
 
@@ -57,8 +59,6 @@ All design was taken from [this Figma file](https://www.figma.com/design/eWP1AMJ
 
 #### check all pages in different browsers and screens
 
-#### Expenses - filter data
-
 #### Webpage button hover effect
 
 #### Blog
@@ -66,6 +66,8 @@ All design was taken from [this Figma file](https://www.figma.com/design/eWP1AMJ
 #### Only send user.URL_img to cards to render?
 
 ### Done
+
+#### Add suspense and useTransition to all fetches
 
 #### FAQ
 
@@ -78,3 +80,5 @@ All design was taken from [this Figma file](https://www.figma.com/design/eWP1AMJ
 #### check all the @media quaries
 
 #### optional chaining
+
+#### Handle the scrollbar when loading?

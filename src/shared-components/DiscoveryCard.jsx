@@ -61,9 +61,13 @@ function DiscoveryCard({
       <div className='card-wrapper-text'>
         <p className='card-title'>{cardTitle}</p>
         <p className='card-text'>{description}</p>
-        <p className='sub-title'>
-          Funding amount: ${fundingAmountFrom}-${fundingAmountTo}
-        </p>
+        {fundingAmountTo ? (
+          <p className='sub-title'>
+            Funding amount: ${fundingAmountFrom}-${fundingAmountTo}
+          </p>
+        ) : (
+          <p className='sub-title'>Funding amount: ${fundingAmountFrom}</p>
+        )}
       </div>
       <ButtonTag status={status} />
     </CardWrapper>

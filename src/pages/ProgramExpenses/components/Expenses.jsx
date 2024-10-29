@@ -27,7 +27,6 @@ const CardWrapper = styled.div`
 `;
 
 function Expenses({ cards }) {
-  console.log("cards", cards);
   if (!cards || cards.length === 0) {
     return <div>No expenses available</div>;
   }
@@ -39,8 +38,7 @@ function Expenses({ cards }) {
           key={card.id}
           status={card.status}
           cardTitle={card.title}
-          fundingAmountFrom={card.amountFrom}
-          fundingAmountTo={card.amountTo}
+          fundingAmountFrom={card.amount}
           description={card.description}
         />
       ))}
