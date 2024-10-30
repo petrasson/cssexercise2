@@ -1,31 +1,28 @@
 //fetching all Discover Initiatives
-export const fetchAllInitiatives = async () => {
-  try {
-    const res = await fetch(
-      `https://nextjs-test-beryl-gamma.vercel.app/api/initiatives`
-    );
+import useSWR from 'swr';
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
+const API_URL = 'https://nextjs-test-beryl-gamma.vercel.app/api';
 
-    if (!res.ok) throw new Error("Failed to fetch initiatives data");
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    console.error("Error in fetching initiatives:", error);
-    throw error;
-  }
+export const useFetchAllInitiatives = () => {
+  const { data } = useSWR(`${API_URL}/initiatives`, fetcher, {
+    suspense: true,
+  });
+
+  return data;
 };
 
 //fetching all Funded grants
 export const fetchAllGrants = async () => {
   try {
     const res = await fetch(
-      `https://nextjs-test-beryl-gamma.vercel.app/api/grants`
+      `https://nextjs-test-beryl-gamma.vercel.app/api/grants`,
     );
 
-    if (!res.ok) throw new Error("Failed to fetch all card data");
+    if (!res.ok) throw new Error('Failed to fetch all card data');
     const data = await res.json();
     return data;
   } catch (error) {
-    console.error("Error in fetching all cardData:", error);
+    console.error('Error in fetching all cardData:', error);
     throw error;
   }
 };
@@ -35,7 +32,7 @@ export const fetchGrants = async (grantsIds) => {
   if (!grantsIds || grantsIds.length === 0) return [];
   const promises = grantsIds.map(async (id) => {
     const res = await fetch(
-      `https://nextjs-test-beryl-gamma.vercel.app/api/grants?id=${id}`
+      `https://nextjs-test-beryl-gamma.vercel.app/api/grants?id=${id}`,
     );
     if (!res.ok) throw new Error(`Failed to fetch cards with id ${id}`);
     return res.json();
@@ -47,15 +44,15 @@ export const fetchGrants = async (grantsIds) => {
 export const fetchGrant = async (id) => {
   try {
     const res = await fetch(
-      `https://nextjs-test-beryl-gamma.vercel.app/api/grants?id=${id}`
+      `https://nextjs-test-beryl-gamma.vercel.app/api/grants?id=${id}`,
     );
 
-    if (!res.ok) throw new Error("Failed to fetch card data");
+    if (!res.ok) throw new Error('Failed to fetch card data');
 
     const data = await res.json();
     return data;
   } catch (error) {
-    console.error("Error in fetchGrant:", error);
+    console.error('Error in fetchGrant:', error);
     throw error;
   }
 };
@@ -65,7 +62,7 @@ export const fetchTransactions = async (transactionIds) => {
   if (!transactionIds || transactionIds.length === 0) return [];
   const promises = transactionIds.map(async (id) => {
     const res = await fetch(
-      `https://nextjs-test-beryl-gamma.vercel.app/api/transactions?id=${id}`
+      `https://nextjs-test-beryl-gamma.vercel.app/api/transactions?id=${id}`,
     );
     if (!res.ok) throw new Error(`Failed to fetch transaction with id ${id}`);
     const transaction = await res.json();
@@ -79,7 +76,7 @@ export const fetchGrantees = async (userIds) => {
   if (!userIds || userIds.length === 0) return [];
   const promises = userIds.map(async (id) => {
     const res = await fetch(
-      `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?id=${id}`
+      `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?id=${id}`,
     );
     if (!res.ok) throw new Error(`Failed to fetch userinfo with id ${id}`);
     const userData = await res.json();
@@ -93,15 +90,15 @@ export const fetchGrantees = async (userIds) => {
 export const fetchGrantee = async (id) => {
   try {
     const res = await fetch(
-      `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?id=${id}`
+      `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?id=${id}`,
     );
 
-    if (!res.ok) throw new Error("Failed to fetch user data");
+    if (!res.ok) throw new Error('Failed to fetch user data');
 
     const data = await res.json();
     return data;
   } catch (error) {
-    console.error("Error in fetchGrant:", error);
+    console.error('Error in fetchGrant:', error);
     throw error;
   }
 };

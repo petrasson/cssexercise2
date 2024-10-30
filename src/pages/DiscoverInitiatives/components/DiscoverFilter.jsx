@@ -1,10 +1,9 @@
-import styled from "styled-components";
-import FilterControl from "../../../shared-components/FilterControl";
-import Initiatives from "./Initiatives";
-import { useEffect, useState, useTransition, Suspense } from "react";
-import { fetchAllInitiatives } from "../../../services/Service";
-import LottieAnimation from "../../../shared-components/LottieAnimation";
-// import { useQuery } from 'react-query'
+import styled from 'styled-components';
+import FilterControl from 'src/shared-components/FilterControl';
+import Initiatives from './Initiatives';
+import { useState, Suspense } from 'react';
+import { useFetchAllInitiatives } from 'src/services/Service.jsx';
+import LottieAnimation from 'src/shared-components/LottieAnimation';
 
 const DiscoverFilterWrapper = styled.div`
   display: flex;
@@ -13,29 +12,14 @@ const DiscoverFilterWrapper = styled.div`
 `;
 
 function DiscoverFilter() {
-  // const {  data } = useQuery('initiatives', fetchAllInitiatives)
+  const data = useFetchAllInitiatives();
 
-  const [isPending, startTransition] = useTransition();
-  const [initiatives, setInitiatives] = useState([]);
-  const [filterType, setFilterType] = useState("All");
-  const [filteredInitiatives, setFilteredInitiatives] = useState([]);
+  const initiatives = data?.initiatives || [];
+
+  const [filterType, setFilterType] = useState('All');
+  const [filteredInitiatives, setFilteredInitiatives] = useState(initiatives);
 
   //fetch data initially
-
-  useEffect(() => {
-    const getInitiatives = async () => {
-      const data = await fetchAllInitiatives();
-      if (data && data.initiatives) {
-        setInitiatives(data.initiatives);
-        setFilteredInitiatives(data.initiatives);
-      } else {
-        console.error("Unexpected data format:", data);
-      }
-    };
-
-    getInitiatives();
-  }, []);
-
   /*** HANDLE AND UPDATE FILTERED DATA BASED ON STATUS ***/
   const status = initiatives.map((initiative) => initiative.status);
 
@@ -53,16 +37,14 @@ function DiscoverFilter() {
 
     //adding transition to ensure that the UI stays responsive if the filtering operation takes time
 
-    startTransition(() => {
-      let newFilteredInitiatives = initiatives;
+    let newFilteredInitiatives = initiatives;
 
-      if (filterType !== "All") {
-        newFilteredInitiatives = newFilteredInitiatives.filter(
-          (initiative) => initiative.status === filterType
-        );
-      }
-      setFilteredInitiatives(newFilteredInitiatives);
-    });
+    if (filterType !== 'All') {
+      newFilteredInitiatives = newFilteredInitiatives.filter(
+        (initiative) => initiative.status === filterType,
+      );
+    }
+    setFilteredInitiatives(newFilteredInitiatives);
   };
 
   return (
@@ -75,11 +57,7 @@ function DiscoverFilter() {
           withToggle={false}
         />
 
-        {isPending ? (
-          <div>Filtering...</div> // showing during filtering transitions
-        ) : (
-          <Initiatives cards={filteredInitiatives} />
-        )}
+        <Initiatives cards={filteredInitiatives} />
       </DiscoverFilterWrapper>
     </Suspense>
   );

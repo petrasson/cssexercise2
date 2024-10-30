@@ -1,8 +1,10 @@
-import styled from "styled-components";
-import Header from "../../shared-components/Header";
-import HeadTitle from "../../shared-components/HeadTitle";
-import DiscoverFilter from "./components/DiscoverFilter";
-import Footer from "../../shared-components/Footer";
+import styled from 'styled-components';
+import Header from '../../shared-components/Header';
+import HeadTitle from '../../shared-components/HeadTitle';
+import DiscoverFilter from './components/DiscoverFilter';
+import Footer from '../../shared-components/Footer';
+import { Suspense } from 'react';
+import LottieAnimation from '../../shared-components/LottieAnimation.jsx';
 
 const Container = styled.div`
   margin: 0 auto;
@@ -29,18 +31,20 @@ const Container = styled.div`
 
 function DiscoverInitiatives() {
   return (
-    <div className='page-wrapper'>
+    <div className="page-wrapper">
       <Header />
       <Container>
-        <div className='space'>
-          <HeadTitle text='Discover Initiatives' />
+        <div className="space">
+          <HeadTitle text="Discover Initiatives" />
         </div>
-        <p className='text'>
+        <p className="text">
           The list below includes initial ideas that we think could make
           excellent Grants. This is a living list that will continue to update
           as ideas popup.
         </p>
-        <DiscoverFilter />
+        <Suspense fallback={<LottieAnimation />}>
+          <DiscoverFilter />
+        </Suspense>
       </Container>
       <Footer />
     </div>
