@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import PropTypes from "prop-types";
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const ToggleWrapper = styled.div`
   .toggle-wrapper {
@@ -53,14 +53,14 @@ const ToggleWrapper = styled.div`
 function Toggle({ onClick }) {
   return (
     <ToggleWrapper onClick={onClick}>
-      <div className='toggle-wrapper'>
+      <div className="toggle-wrapper">
         <input
-          type='checkbox'
-          id='toggle'
-          aria-label='Show only completed'
+          type="checkbox"
+          id="toggle"
+          aria-label="Show only completed"
           onClick={onClick}
         />
-        <label htmlFor='toggle' className='toggle-text'>
+        <label htmlFor="toggle" className="toggle-text">
           Show only completed
         </label>
       </div>

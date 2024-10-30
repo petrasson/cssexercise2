@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import PropTypes from "prop-types";
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const BackButtonWrapper = styled.div`
   position: relative;
@@ -25,8 +25,8 @@ const BackButtonWrapper = styled.div`
 function BackButton({ onClick }) {
   return (
     <BackButtonWrapper onClick={onClick}>
-      <div className='nav-button-back'>
-        <img src='/images/left-arrow.svg' alt='Back arrow' className='arrow' />
+      <div className="nav-button-back">
+        <img src="/images/left-arrow.svg" alt="Back arrow" className="arrow" />
       </div>
     </BackButtonWrapper>
   );

@@ -1,19 +1,19 @@
-import styled from "styled-components";
-import HeadTitle from "../../../shared-components/HeadTitle";
-import Button from "../../../shared-components/Button";
-import CardTransactions from "./CardTransactions";
-import ButtonWrapper from "../../../shared-components/ButtonWrapper";
-import SimilarGrants from "./SimilarGrants";
-import LottieAnimation from "../../../shared-components/LottieAnimation";
-import { Suspense } from "react";
+import styled from 'styled-components';
+import HeadTitle from '../../../shared-components/HeadTitle';
+import Button from '../../../shared-components/Button';
+import CardTransactions from './CardTransactions';
+import ButtonWrapper from '../../../shared-components/ButtonWrapper';
+import SimilarGrants from './SimilarGrants';
+import LottieAnimation from '../../../shared-components/LottieAnimation';
+import { Suspense } from 'react';
 
 import {
   fetchGrant,
   fetchTransactions,
   fetchGrants,
   fetchGrantees,
-} from "../../../services/Service";
-import { useEffect, useState } from "react";
+} from '../../../services/Service';
+import { useEffect, useState } from 'react';
 
 const GrantDetailsWrapper = styled.div`
   width: 100%;
@@ -183,17 +183,17 @@ function GrantDetails({ id }) {
           const similarCardsData = await fetchGrants(cardData.similiar);
           setSimilarCards(similarCardsData);
         } else {
-          console.log("No similar card IDs found in cardData.");
+          console.log('No similar card IDs found in cardData.');
         }
 
         // Fetch transactions only if the 'transactions' array is present and has items
         if (cardData.transactions && cardData.transactions.length > 0) {
           const transactionsData = await fetchTransactions(
-            cardData.transactions
+            cardData.transactions,
           );
           setTransactionsData(transactionsData);
         } else {
-          console.log("No transaction IDs found in cardData.");
+          console.log('No transaction IDs found in cardData.');
         }
 
         // Fetch grandee data to show who has been part of this project only, name, image
@@ -201,11 +201,11 @@ function GrantDetails({ id }) {
           const granteesData = await fetchGrantees(cardData.grantees_ids);
           setGranteesData(granteesData);
         } else {
-          console.log("No granteesIDs found in cardData.");
+          console.log('No granteesIDs found in cardData.');
         }
       } catch (error) {
         // Error handling
-        console.error("Error fetching data:", error);
+        console.error('Error fetching data:', error);
       }
     };
 
@@ -217,13 +217,13 @@ function GrantDetails({ id }) {
     const fetchSimilarCardGrantees = async () => {
       if (Array.isArray(similarCards) && similarCards.length > 0) {
         const granteeIds = similarCards.flatMap(
-          (card) => card.grantees_ids || []
+          (card) => card.grantees_ids || [],
         );
         if (granteeIds.length > 0) {
           const similarCardGranteesData = await fetchGrantees(granteeIds);
           setSimilarCardGranteesData(similarCardGranteesData);
         } else {
-          console.log("No granteesIDs found in similarCards.");
+          console.log('No granteesIDs found in similarCards.');
         }
       }
     };
@@ -247,75 +247,75 @@ function GrantDetails({ id }) {
     <Suspense fallback={<LottieAnimation />}>
       <GrantDetailsWrapper>
         <>
-          <p className='card-category'>{category}</p>
+          <p className="card-category">{category}</p>
           <HeadTitle text={title} />
-          <div className='project-detail-wrapper'>
-            <div className='row-wrapper'>
+          <div className="project-detail-wrapper">
+            <div className="row-wrapper">
               {completed ? (
                 <>
-                  <p className='completed'>
-                    <p className='text'>Completed</p>
+                  <p className="completed">
+                    <p className="text">Completed</p>
                     <img
-                      src='/images/check.svg'
-                      alt='check icon'
-                      className='check-icon'
+                      src="/images/check.svg"
+                      alt="check icon"
+                      className="check-icon"
                     />
                   </p>
                 </>
               ) : (
-                <p className='open'>Open</p>
+                <p className="open">Open</p>
               )}
-              <p className='funding-amount'>Funding amount:</p>
+              <p className="funding-amount">Funding amount:</p>
               <p>${amountFrom}</p>
             </div>
             <Button
-              type='accent'
-              text='Project link'
-              onClick={() => console.log("ProjectLink")}
+              type="accent"
+              text="Project link"
+              onClick={() => console.log('ProjectLink')}
               image={true}
             />
           </div>
-          <h3 className='sub-title'>Team</h3>
-          <ButtonWrapper grantees={granteesData} position='link-to-profile' />
+          <h3 className="sub-title">Team</h3>
+          <ButtonWrapper grantees={granteesData} position="link-to-profile" />
           <hr></hr>
-          <div className='text-wrapper'>
-            <h3 className='sub-title'>Description</h3>
+          <div className="text-wrapper">
+            <h3 className="sub-title">Description</h3>
             <p>{description}</p>
-            <h3 className='sub-title'>Purpose</h3>
+            <h3 className="sub-title">Purpose</h3>
             <p>{purpose}</p>
-            <h3 className='sub-title'>Execution</h3>
+            <h3 className="sub-title">Execution</h3>
             <p>{execution}</p>
-            <h3 className='sub-title'>Payment Structure</h3>
+            <h3 className="sub-title">Payment Structure</h3>
             <p>{payment_structure}</p>
-            <h3 className='sub-title'>Useful Links</h3>
-            <div className='link-wrapper'>
-              <div className='link-row-wrapper'>
-                <p className='links'>www.granttileproject.com</p>
+            <h3 className="sub-title">Useful Links</h3>
+            <div className="link-wrapper">
+              <div className="link-row-wrapper">
+                <p className="links">www.granttileproject.com</p>
                 <img
-                  src='/images/external-link-purple.svg'
-                  aria-hidden='true'
-                  className='external-link-purple'
+                  src="/images/external-link-purple.svg"
+                  aria-hidden="true"
+                  className="external-link-purple"
                 />
               </div>
-              <div className='link-row-wrapper'>
-                <p className='links'>www.granttileproject.com</p>
+              <div className="link-row-wrapper">
+                <p className="links">www.granttileproject.com</p>
                 <img
-                  src='/images/external-link-purple.svg'
-                  aria-hidden='true'
-                  className='external-link-purple'
+                  src="/images/external-link-purple.svg"
+                  aria-hidden="true"
+                  className="external-link-purple"
                 />
               </div>
-              <div className='link-row-wrapper'>
-                <p className='links'>www.granttileproject.com</p>
+              <div className="link-row-wrapper">
+                <p className="links">www.granttileproject.com</p>
                 <img
-                  src='/images/external-link-purple.svg'
-                  aria-hidden='true'
-                  className='external-link-purple'
+                  src="/images/external-link-purple.svg"
+                  aria-hidden="true"
+                  className="external-link-purple"
                 />
               </div>
             </div>
           </div>
-          <h3 className='sub-title funding'>Funding Transactions</h3>
+          <h3 className="sub-title funding">Funding Transactions</h3>
 
           {transactionsData?.map((card) => {
             return (

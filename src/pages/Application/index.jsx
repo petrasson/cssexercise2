@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import Header from "../../shared-components/Header";
-import HeadTitle from "../../shared-components/HeadTitle";
-import Footer from "../../shared-components/Footer";
-import Form from "./components/Form";
-import { useEffect } from "react";
+import styled from 'styled-components';
+import Header from '../../shared-components/Header';
+import HeadTitle from '../../shared-components/HeadTitle';
+import Footer from '../../shared-components/Footer';
+import Form from './components/Form';
+import { useEffect } from 'react';
 
 const Container = styled.div`
   margin: 0 auto;
@@ -37,15 +37,15 @@ function Application() {
     window.scrollTo(0, 0);
   }, []);
   return (
-    <div className='page-wrapper'>
+    <div className="page-wrapper">
       <Header />
       <Container>
-        <div className='space'>
-          <HeadTitle text='Apply for a grant' />
+        <div className="space">
+          <HeadTitle text="Apply for a grant" />
         </div>
-        <p className='text'>
-          Please complete the application below for Grant consideration!{" "}
-          <span className='purple'>
+        <p className="text">
+          Please complete the application below for Grant consideration!{' '}
+          <span className="purple">
             Learn more about the criteria used for selecting grants.
           </span>
         </p>

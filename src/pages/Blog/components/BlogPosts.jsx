@@ -1,6 +1,6 @@
-import BlogCard from "./BlogCard";
-import styled from "styled-components";
-import { Link, useLocation } from "react-router-dom";
+import BlogCard from './BlogCard';
+import styled from 'styled-components';
+import { Link, useLocation } from 'react-router-dom';
 
 const StyledLink = styled(Link)`
   text-decoration: none;

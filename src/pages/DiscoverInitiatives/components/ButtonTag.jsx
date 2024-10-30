@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
-import PropTypes from "prop-types";
+import styled, { css } from 'styled-components';
+import PropTypes from 'prop-types';
 
 const StyledButton = styled.div`
   position: relative;
@@ -14,7 +14,7 @@ const StyledButton = styled.div`
 
   ${(props) => {
     return (
-      props.status === "funded" &&
+      props.status === 'funded' &&
       css`
         background-color: var(--primary-bg-color);
       `
@@ -23,7 +23,7 @@ const StyledButton = styled.div`
 
   ${(props) => {
     return (
-      props.status === "open" &&
+      props.status === 'open' &&
       css`
         background-color: var(--accent-color);
       `
@@ -32,7 +32,7 @@ const StyledButton = styled.div`
 
   ${(props) => {
     return (
-      props.status === "completed" &&
+      props.status === 'completed' &&
       css`
         background-color: var(--btn-completed);
         position: relative;
@@ -64,15 +64,15 @@ function ButtonTag({ status }) {
   return (
     <StyledButton status={status}>
       {status}
-      {status === "completed" && (
-        <img src='/images/check.svg' alt='check icon' className='check-icon' />
+      {status === 'completed' && (
+        <img src="/images/check.svg" alt="check icon" className="check-icon" />
       )}
     </StyledButton>
   );
 }
 
 ButtonTag.propTypes = {
-  status: PropTypes.oneOf(["Funded", "Completed", "Open"]).isRequired,
+  status: PropTypes.oneOf(['Funded', 'Completed', 'Open']).isRequired,
 };
 
 export default ButtonTag;

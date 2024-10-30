@@ -1,5 +1,5 @@
-import PropTypes from "prop-types";
-import styled, { css } from "styled-components";
+import PropTypes from 'prop-types';
+import styled, { css } from 'styled-components';
 
 const buttonStyles = {
   primary: css`
@@ -51,7 +51,7 @@ const buttonStyles = {
 
 // Remove `highlight` from being passed to the DOM using `withConfig`(react warning message)
 const ButtonWrapper = styled.button.withConfig({
-  shouldForwardProp: (prop) => prop !== "highlight", // Prevent `highlight` from being forwarded
+  shouldForwardProp: (prop) => prop !== 'highlight', // Prevent `highlight` from being forwarded
 })`
   font-family: "Cirkular Std", sans-serif;
   line-height: 20px;
@@ -65,7 +65,7 @@ const ButtonWrapper = styled.button.withConfig({
   max-height: 44px;
   cursor: pointer;
 
-  ${(props) => buttonStyles[props.type || "primary"]}
+  ${(props) => buttonStyles[props.type || 'primary']}
 
   ${(props) =>
     props.highlight &&
@@ -91,7 +91,7 @@ function Button({ type, text, onClick, highlight, image }) {
     >
       {text}
       {image && (
-        <img src='/images/external-link-white.svg' aria-hidden='true' alt='' />
+        <img src="/images/external-link-white.svg" aria-hidden="true" alt="" />
       )}
     </ButtonWrapper>
   );
@@ -100,7 +100,7 @@ function Button({ type, text, onClick, highlight, image }) {
 Button.propTypes = {
   id: PropTypes.string,
   text: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(["primary", "secondary", "accent", "text"]),
+  type: PropTypes.oneOf(['primary', 'secondary', 'accent', 'text']),
   onClick: PropTypes.func,
   highlight: PropTypes.bool,
   image: PropTypes.string,

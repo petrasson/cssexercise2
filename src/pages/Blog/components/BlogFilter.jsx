@@ -1,12 +1,12 @@
-import styled from "styled-components";
-import FilterControl from "../../../shared-components/FilterControl";
-import BlogPosts from "./BlogPosts";
-import Button from "./../../../shared-components/Button";
-import { useEffect, useState, useTransition } from "react";
-import { blogs as BlogData } from "../../../../dataBlogs.json";
+import styled from 'styled-components';
+import FilterControl from '../../../shared-components/FilterControl';
+import BlogPosts from './BlogPosts';
+import Button from './../../../shared-components/Button';
+import { useEffect, useState, useTransition } from 'react';
+import { blogs as BlogData } from '../../../../dataBlogs.json';
 // import { startTransition } from "react";
-import LottieAnimation from "../../../shared-components/LottieAnimation";
-import { Suspense } from "react";
+import LottieAnimation from '../../../shared-components/LottieAnimation';
+import { Suspense } from 'react';
 
 const BlogFilterWrapper = styled.div`
   display: flex;
@@ -21,7 +21,7 @@ const BlogFilterWrapper = styled.div`
 function BlogFilter() {
   const [isPending, startTransition] = useTransition();
   const [blogPosts, setBlogPosts] = useState([]);
-  const [filterType, setFilterType] = useState("All");
+  const [filterType, setFilterType] = useState('All');
   const [filteredBlogPosts, setFilteredBlogPosts] = useState(blogPosts);
   const [showAll, setShowAll] = useState(false);
 
@@ -46,7 +46,7 @@ function BlogFilter() {
 
     startTransition(() => {
       const newFilteredBlogPosts =
-        selectedFilterType === "All"
+        selectedFilterType === 'All'
           ? blogPosts
           : blogPosts.filter((exp) => exp.category === selectedFilterType);
 
@@ -76,8 +76,8 @@ function BlogFilter() {
         <BlogPosts cards={cardsToShow} />
         {filteredBlogPosts.length > 6 && !showAll && (
           <Button
-            type='primary'
-            text='Load more posts'
+            type="primary"
+            text="Load more posts"
             onClick={() => setShowAll(true)}
           />
         )}

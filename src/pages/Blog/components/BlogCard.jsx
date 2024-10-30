@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const CardWrapper = styled.div`
   display: flex;
@@ -93,19 +93,19 @@ const CardWrapper = styled.div`
 function BlogCard({ category, date, cardTitle, similiar }) {
   return (
     <CardWrapper>
-      <div className='blog-img'>
+      <div className="blog-img">
         {/* Wrapping text content inside .blog-img-content */}
-        <div className='blog-img-content'>
-          <p className='top-title'>Funding Round</p>
-          <p className='title'>{cardTitle}</p>
-          <p className='title'>of approvals</p>
+        <div className="blog-img-content">
+          <p className="top-title">Funding Round</p>
+          <p className="title">{cardTitle}</p>
+          <p className="title">of approvals</p>
         </div>
       </div>
 
-      <div className='text-wrapper'>
-        <p className='card-category'>{category}</p>
-        <p className='card-title'>{cardTitle}</p>
-        <p className='sub-title'>Date: {date}</p>
+      <div className="text-wrapper">
+        <p className="card-category">{category}</p>
+        <p className="card-title">{cardTitle}</p>
+        <p className="sub-title">Date: {date}</p>
       </div>
     </CardWrapper>
   );

@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import Header from "../../shared-components/Header";
-import HeadTitle from "../../shared-components/HeadTitle";
-import BlogFilter from "./components/BlogFilter";
-import Footer from "../../shared-components/Footer";
+import styled from 'styled-components';
+import Header from '../../shared-components/Header';
+import HeadTitle from '../../shared-components/HeadTitle';
+import BlogFilter from './components/BlogFilter';
+import Footer from '../../shared-components/Footer';
 
 const Container = styled.div`
   margin: 0 auto;
@@ -23,11 +23,11 @@ const Container = styled.div`
 
 function Blog() {
   return (
-    <div className='page-wrapper'>
+    <div className="page-wrapper">
       <Header />
       <Container>
-        <div className='space'>
-          <HeadTitle text='Blog' />
+        <div className="space">
+          <HeadTitle text="Blog" />
         </div>
         <BlogFilter />
       </Container>

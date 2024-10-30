@@ -1,19 +1,19 @@
-import styled from "styled-components";
-import Header from "../../shared-components/Header";
-import ButtonWrapper from "../../shared-components/ButtonWrapper";
-import BackButton from "../../shared-components/BackButton";
-import Footer from "../../shared-components/Footer";
-import HeadTitle from "../../shared-components/HeadTitle";
-import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
-import Card from "../../shared-components/Card";
-import { useEffect, useState } from "react";
-import { Suspense } from "react";
-import LottieAnimation from "../../shared-components/LottieAnimation";
+import styled from 'styled-components';
+import Header from '../../shared-components/Header';
+import ButtonWrapper from '../../shared-components/ButtonWrapper';
+import BackButton from '../../shared-components/BackButton';
+import Footer from '../../shared-components/Footer';
+import HeadTitle from '../../shared-components/HeadTitle';
+import { Link, useParams, useLocation, useNavigate } from 'react-router-dom';
+import Card from '../../shared-components/Card';
+import { useEffect, useState } from 'react';
+import { Suspense } from 'react';
+import LottieAnimation from '../../shared-components/LottieAnimation';
 import {
   fetchGrantee,
   fetchGrantees,
   fetchGrants,
-} from "../../services/Service";
+} from '../../services/Service';
 
 const Container = styled.div`
   margin: 0 auto;
@@ -115,7 +115,7 @@ function Grantee() {
 
           // Fetch grantee data for each card based on grantees_ids in the grants
           const granteeIds = grantsData.flatMap(
-            (card) => card.grantees_ids || []
+            (card) => card.grantees_ids || [],
           );
           if (granteeIds.length > 0) {
             const cardGranteesData = await fetchGrantees(granteeIds);
@@ -123,7 +123,7 @@ function Grantee() {
           }
         }
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error('Error fetching data:', error);
       } finally {
         setLoading(false);
       }
@@ -137,38 +137,38 @@ function Grantee() {
   }
 
   return (
-    <div className='page-wrapper'>
+    <div className="page-wrapper">
       <Header />
       <Container>
         {canGoBack && (
           <BackButton
             onClick={() => {
-              console.log("BackButton clicked");
+              console.log('BackButton clicked');
               navigate(-1);
             }}
           />
         )}
         <Suspense fallback={<LottieAnimation />}>
-          <img src={`${granteeData?.image_url}`} alt='picture of user' />
+          <img src={`${granteeData?.image_url}`} alt="picture of user" />
           <HeadTitle text={granteeData?.name} />
-          <div className='text-wrapper'>
-            <h3 className='sub-title'>About</h3>
-            <p className='grant-text'>{granteeData?.about}</p>
-            <h3 className='sub-title'>Links</h3>
-            <div className='link-wrapper'>
+          <div className="text-wrapper">
+            <h3 className="sub-title">About</h3>
+            <p className="grant-text">{granteeData?.about}</p>
+            <h3 className="sub-title">Links</h3>
+            <div className="link-wrapper">
               <ButtonWrapper
                 items={granteeData?.links}
-                position='external-links'
+                position="external-links"
               />
             </div>
           </div>
-          <h1 className='projects-text'>Projects</h1>
-          <div className='card-wrapper'>
+          <h1 className="projects-text">Projects</h1>
+          <div className="card-wrapper">
             {grantData.map((card) => {
               const granteeImageUrls = card?.grantees_ids?.map((granteeId) => {
                 // Find the grantee data using the granteeId
                 const grantee = granteeDataforGrants.find(
-                  (grantee) => grantee.id === granteeId
+                  (grantee) => grantee.id === granteeId,
                 );
                 // Return the imageUrl, or handle cases where the grantee is not found
                 return grantee ? grantee.image_url : null; // Return image_url from grantee data

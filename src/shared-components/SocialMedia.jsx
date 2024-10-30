@@ -1,8 +1,8 @@
-import styled, { css } from "styled-components";
-import PropTypes from "prop-types";
-import { clsx } from "clsx";
-import { FaDiscord } from "react-icons/fa";
-import { FaTwitter } from "react-icons/fa";
+import styled, { css } from 'styled-components';
+import PropTypes from 'prop-types';
+import { clsx } from 'clsx';
+import { FaDiscord } from 'react-icons/fa';
+import { FaTwitter } from 'react-icons/fa';
 
 const SocialMediaWrapper = styled.div`
   display: none;
@@ -14,7 +14,7 @@ const SocialMediaWrapper = styled.div`
     display: flex;
 
     ${(props) =>
-      props.$position === "top" &&
+      props.$position === 'top' &&
       css`
         justify-content: center;
         align-items: center;
@@ -27,7 +27,7 @@ const SocialMediaWrapper = styled.div`
       `}
 
     ${(props) =>
-      props.$position === "bottom" &&
+      props.$position === 'bottom' &&
       css`
         align-items: center;
       `}
@@ -40,19 +40,19 @@ function SocialMedia({ isMenuActive, isDesktop, position }) {
       $position={position}
       className={clsx({
         visible:
-          position === "top"
+          position === 'top'
             ? !isDesktop && isMenuActive
-            : position === "bottom",
+            : position === 'bottom',
       })}
     >
-      <FaTwitter color='var(--secondary-text-color)' fontSize='32px' />
-      <FaDiscord color='var(--secondary-text-color)' fontSize='32px' />
+      <FaTwitter color="var(--secondary-text-color)" fontSize="32px" />
+      <FaDiscord color="var(--secondary-text-color)" fontSize="32px" />
     </SocialMediaWrapper>
   );
 }
 
 SocialMedia.propTypes = {
-  position: PropTypes.oneOf(["top", "bottom"]),
+  position: PropTypes.oneOf(['top', 'bottom']),
   isMenuActive: PropTypes.bool.isRequired,
   isDesktop: PropTypes.bool.isRequired,
 };

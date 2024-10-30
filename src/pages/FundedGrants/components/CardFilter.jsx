@@ -1,11 +1,11 @@
-import CardHolder from "./CardHolder";
-import FilterControl from "../../../shared-components/FilterControl";
-import { useEffect, useState, useTransition } from "react";
-import { fetchAllGrants, fetchGrantees } from "../../../services/Service";
-import { Suspense } from "react";
-import LottieAnimation from "../../../shared-components/LottieAnimation";
+import CardHolder from './CardHolder';
+import FilterControl from '../../../shared-components/FilterControl';
+import { useEffect, useState, useTransition } from 'react';
+import { fetchAllGrants, fetchGrantees } from '../../../services/Service';
+import { Suspense } from 'react';
+import LottieAnimation from '../../../shared-components/LottieAnimation';
 
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const CardFilterWrapper = styled.div`
   display: flex;
@@ -18,7 +18,7 @@ function CardFilter() {
   const [grantsData, setGrantsData] = useState([]);
   const [granteesData, setGranteesData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
-  const [filterType, setFilterType] = useState("All");
+  const [filterType, setFilterType] = useState('All');
   const [filterCompleted, setFilteredCompleted] = useState(true);
 
   // Fetch data on page load
@@ -31,7 +31,7 @@ function CardFilter() {
         // Fetch grantees data based on fetched grants
         if (Array.isArray(cardsData) && cardsData.length > 0) {
           const granteeIds = cardsData.flatMap(
-            (card) => card.grantees_ids || []
+            (card) => card.grantees_ids || [],
           );
 
           if (granteeIds.length > 0) {
@@ -40,7 +40,7 @@ function CardFilter() {
           }
         }
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error('Error fetching data:', error);
       }
     };
 
@@ -51,15 +51,15 @@ function CardFilter() {
     startTransition(() => {
       let newFilteredData = grantsData;
 
-      if (filterType !== "All") {
+      if (filterType !== 'All') {
         newFilteredData = newFilteredData.filter(
-          (item) => item.category === filterType
+          (item) => item.category === filterType,
         );
       }
 
       if (filterCompleted) {
         newFilteredData = newFilteredData.filter(
-          (item) => item.completed === true
+          (item) => item.completed === true,
         );
       }
 
