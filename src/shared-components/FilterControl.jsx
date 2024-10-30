@@ -62,7 +62,7 @@ const FilterControlWrapper = styled.div`
     display: flex;
     flex-direction: row;
     gap: 10px;
-    margin: 0px;
+    margin-left: 65px;
     overflow-x: auto;
     scrollbar-width: none;
     color: var(--secondary-text-color);

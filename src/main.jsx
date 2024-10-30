@@ -8,6 +8,7 @@ import FundedGrantDetails from "./pages/FundedGrantDetails";
 import Grantee from "./pages/Grantee";
 import Application from "./pages/Application";
 import FaqPage from "./pages/FAQ";
+import Blog from "./pages/Blog";
 
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
   {
     path: "/faq",
     element: <FaqPage />,
+  },
+  {
+    path: "/blog",
+    element: <Blog />,
   },
 ]);
 

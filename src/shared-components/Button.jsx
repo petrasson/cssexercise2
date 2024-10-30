@@ -6,9 +6,9 @@ const buttonStyles = {
     color: var(--primary-text-color);
     background-color: var(--secondary-bg-color);
     padding: 10px 16px;
-    margin-right: 65px;
+    // margin-right: 65px;
     height: 44px;
-    max-width: 50px;
+    max-width: auto;
 
     &:hover {
       color: var(--secondary-bg-color);

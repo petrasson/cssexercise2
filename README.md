@@ -41,15 +41,13 @@ All design was taken from [this Figma file](https://www.figma.com/design/eWP1AMJ
 
 ### Todo
 
-#### add/remove an images on buttons
-
-#### Status button green
-
 #### transitioning buttons
 
 #### Blog
 
 #### Webpage button hover effect
+
+#### check all grids
 
 #### links
 
@@ -86,3 +84,7 @@ All design was taken from [this Figma file](https://www.figma.com/design/eWP1AMJ
 #### Handle the scrollbar when loading?
 
 #### Expenses - filter data
+
+#### add/remove an images on buttons
+
+#### Status button green
