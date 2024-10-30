@@ -21,7 +21,7 @@
     "indentWidth": 2,
     "lineEnding": "lf"
   },
-  "organizeImports": { "enabled": false },
+  "organizeImports": { "enabled": true },
   "linter": { "enabled": false },
   "javascript": {
     "formatter": {

@@ -1,9 +1,9 @@
-import styled from 'styled-components';
-import FilterControl from 'src/shared-components/FilterControl';
-import Initiatives from './Initiatives';
-import { useState, Suspense } from 'react';
+import { Suspense, useState } from 'react';
 import { useFetchAllInitiatives } from 'src/services/Service.jsx';
+import FilterControl from 'src/shared-components/FilterControl';
 import LottieAnimation from 'src/shared-components/LottieAnimation';
+import styled from 'styled-components';
+import Initiatives from './Initiatives';
 
 const DiscoverFilterWrapper = styled.div`
   display: flex;
