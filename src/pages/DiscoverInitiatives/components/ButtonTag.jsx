@@ -31,8 +31,6 @@ const StyledButton = styled.div`
   }}
 
   ${(props) => {
-    console.log("propsss", props);
-
     return (
       props.status === "completed" &&
       css`

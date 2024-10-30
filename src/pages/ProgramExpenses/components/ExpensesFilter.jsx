@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import FilterControl from "../../../shared-components/FilterControl";
 import Expenses from "./Expenses";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { expenses as expensesData } from "../../../../dataExpenses.json";
 
 const ExpensesFilterWrapper = styled.div`
@@ -11,6 +11,7 @@ const ExpensesFilterWrapper = styled.div`
 `;
 
 function ExpensesFilter() {
+  const [isPending, startTransition] = useTransition();
   const [expenses, setExpenses] = useState([]);
   const [filterType, setFilterType] = useState("All");
   const [filteredExpenses, setFilteredExpenses] = useState(expenses);
@@ -32,16 +33,18 @@ function ExpensesFilter() {
   }));
 
   const handleFilter = (filterType) => {
-    setFilterType(filterType);
+    startTransition(() => {
+      setFilterType(filterType);
 
-    let newFilteredExpenses = expenses;
+      let newFilteredExpenses = expenses;
 
-    if (filterType !== "All") {
-      newFilteredExpenses = newFilteredExpenses?.filter(
-        (exp) => exp.category === filterType
-      );
-    }
-    setFilteredExpenses(newFilteredExpenses);
+      if (filterType !== "All") {
+        newFilteredExpenses = newFilteredExpenses?.filter(
+          (exp) => exp.category === filterType
+        );
+      }
+      setFilteredExpenses(newFilteredExpenses);
+    });
   };
 
   //uppdate filtered data
@@ -57,7 +60,12 @@ function ExpensesFilter() {
         filterOptions={filterOptions}
         withToggle={false}
       />
-      <Expenses cards={filteredExpenses} />
+
+      {isPending ? (
+        <div>Loading...</div>
+      ) : (
+        <Expenses cards={filteredExpenses} />
+      )}
     </ExpensesFilterWrapper>
   );
 }

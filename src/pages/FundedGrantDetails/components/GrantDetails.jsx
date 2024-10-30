@@ -4,13 +4,16 @@ import Button from "../../../shared-components/Button";
 import CardTransactions from "./CardTransactions";
 import ButtonWrapper from "../../../shared-components/ButtonWrapper";
 import SimilarGrants from "./SimilarGrants";
+import LottieAnimation from "../../../shared-components/LottieAnimation";
+import { Suspense } from "react";
+
 import {
   fetchGrant,
   fetchTransactions,
   fetchGrants,
   fetchGrantees,
 } from "../../../services/Service";
-import { useEffect, useState, useTransition } from "react";
+import { useEffect, useState } from "react";
 
 const GrantDetailsWrapper = styled.div`
   width: 100%;
@@ -162,7 +165,6 @@ const GrantDetailsWrapper = styled.div`
 `;
 
 function GrantDetails({ id }) {
-  const [isPending, startTransition] = useTransition();
   const [card, setCard] = useState({});
   const [similarCards, setSimilarCards] = useState({});
   const [transactionsData, setTransactionsData] = useState([]); // Här låg felet, det var en {}
@@ -171,42 +173,40 @@ function GrantDetails({ id }) {
 
   useEffect(() => {
     const fetchAllData = async () => {
-      startTransition(async () => {
-        try {
-          // Fetch the main card data by ID
-          const cardData = await fetchGrant(id);
-          setCard(cardData);
+      try {
+        // Fetch the main card data by ID
+        const cardData = await fetchGrant(id);
+        setCard(cardData);
 
-          // Fetch similar cards only if the 'similiar' array exists and has items
-          if (cardData.similiar && cardData.similiar.length > 0) {
-            const similarCardsData = await fetchGrants(cardData.similiar);
-            setSimilarCards(similarCardsData);
-          } else {
-            console.log("No similar card IDs found in cardData.");
-          }
-
-          // Fetch transactions only if the 'transactions' array is present and has items
-          if (cardData.transactions && cardData.transactions.length > 0) {
-            const transactionsData = await fetchTransactions(
-              cardData.transactions
-            );
-            setTransactionsData(transactionsData);
-          } else {
-            console.log("No transaction IDs found in cardData.");
-          }
-
-          // Fetch grandee data to show who has been part of this project only, name, image
-          if (cardData.grantees_ids && cardData.grantees_ids.length > 0) {
-            const granteesData = await fetchGrantees(cardData.grantees_ids);
-            setGranteesData(granteesData);
-          } else {
-            console.log("No granteesIDs found in cardData.");
-          }
-        } catch (error) {
-          // Error handling
-          console.error("Error fetching data:", error);
+        // Fetch similar cards only if the 'similiar' array exists and has items
+        if (cardData.similiar && cardData.similiar.length > 0) {
+          const similarCardsData = await fetchGrants(cardData.similiar);
+          setSimilarCards(similarCardsData);
+        } else {
+          console.log("No similar card IDs found in cardData.");
         }
-      });
+
+        // Fetch transactions only if the 'transactions' array is present and has items
+        if (cardData.transactions && cardData.transactions.length > 0) {
+          const transactionsData = await fetchTransactions(
+            cardData.transactions
+          );
+          setTransactionsData(transactionsData);
+        } else {
+          console.log("No transaction IDs found in cardData.");
+        }
+
+        // Fetch grandee data to show who has been part of this project only, name, image
+        if (cardData.grantees_ids && cardData.grantees_ids.length > 0) {
+          const granteesData = await fetchGrantees(cardData.grantees_ids);
+          setGranteesData(granteesData);
+        } else {
+          console.log("No granteesIDs found in cardData.");
+        }
+      } catch (error) {
+        // Error handling
+        console.error("Error fetching data:", error);
+      }
     };
 
     fetchAllData(); // Call the fetchAllData function when the component mounts or when 'id' changes
@@ -244,10 +244,8 @@ function GrantDetails({ id }) {
   } = card;
 
   return (
-    <GrantDetailsWrapper>
-      {isPending ? (
-        <div>Loading...</div> // Optional loading message while pending
-      ) : (
+    <Suspense fallback={<LottieAnimation />}>
+      <GrantDetailsWrapper>
         <>
           <p className='card-category'>{category}</p>
           <HeadTitle text={title} />
@@ -336,8 +334,8 @@ function GrantDetails({ id }) {
             granteesData={similarCardGranteesData}
           />
         </>
-      )}
-    </GrantDetailsWrapper>
+      </GrantDetailsWrapper>
+    </Suspense>
   );
 }
 

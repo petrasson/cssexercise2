@@ -5,8 +5,7 @@ import FundedGrantImage from "./components/FundedGrantImage";
 import GrantDetails from "./components/GrantDetails";
 import Footer from "../../shared-components/Footer";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
-import LottieAnimation from "../../shared-components/LottieAnimation";
-import { Suspense, useEffect } from "react";
+import { useEffect } from "react";
 
 const Container = styled.div`
   margin: 0 auto;
@@ -49,9 +48,8 @@ function FundedGrantDetails() {
           />
         )}
         <FundedGrantImage />
-        <Suspense fallback={<LottieAnimation />}>
-          <GrantDetails id={id} />
-        </Suspense>
+
+        <GrantDetails id={id} />
       </Container>
       <Footer />
     </div>

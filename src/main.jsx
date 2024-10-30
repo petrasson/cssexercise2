@@ -10,9 +10,12 @@ import Application from "./pages/Application";
 import FaqPage from "./pages/FAQ";
 import Blog from "./pages/Blog";
 import BlogDetails from "./pages/BlogDetails";
+// import { QueryClient, QueryClientProvider } from 'react-query'
 
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+// const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
@@ -59,3 +62,9 @@ createRoot(document.getElementById("root")).render(
     <RouterProvider router={router} />
   </StrictMode>
 );
+
+// <StrictMode>
+// <QueryClientProvider client={queryClient}>
+// <RouterProvider router={router} />
+// </QueryClientProvider>
+// </StrictMode>

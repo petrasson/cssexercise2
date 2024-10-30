@@ -3,8 +3,6 @@ import Header from "../../shared-components/Header";
 import HeadTitle from "../../shared-components/HeadTitle";
 import DiscoverFilter from "./components/DiscoverFilter";
 import Footer from "../../shared-components/Footer";
-import { Suspense } from "react";
-import LottieAnimation from "../../shared-components/LottieAnimation";
 
 const Container = styled.div`
   margin: 0 auto;
@@ -42,9 +40,7 @@ function DiscoverInitiatives() {
           excellent Grants. This is a living list that will continue to update
           as ideas popup.
         </p>
-        <Suspense fallback={<LottieAnimation />}>
-          <DiscoverFilter />
-        </Suspense>
+        <DiscoverFilter />
       </Container>
       <Footer />
     </div>

@@ -2,6 +2,8 @@ import CardHolder from "./CardHolder";
 import FilterControl from "../../../shared-components/FilterControl";
 import { useEffect, useState, useTransition } from "react";
 import { fetchAllGrants, fetchGrantees } from "../../../services/Service";
+import { Suspense } from "react";
+import LottieAnimation from "../../../shared-components/LottieAnimation";
 
 import styled from "styled-components";
 
@@ -19,10 +21,10 @@ function CardFilter() {
   const [filterType, setFilterType] = useState("All");
   const [filterCompleted, setFilteredCompleted] = useState(true);
 
+  // Fetch data on page load
   useEffect(() => {
-    startTransition(async () => {
+    const getData = async () => {
       try {
-        // Fetch grants data
         const { grants: cardsData } = await fetchAllGrants();
         setGrantsData(cardsData);
 
@@ -32,7 +34,6 @@ function CardFilter() {
             (card) => card.grantees_ids || []
           );
 
-          // Only fetch grantees if we have valid IDs
           if (granteeIds.length > 0) {
             const fetchedGranteesData = await fetchGrantees(granteeIds);
             setGranteesData(fetchedGranteesData);
@@ -41,25 +42,29 @@ function CardFilter() {
       } catch (error) {
         console.error("Error fetching data:", error);
       }
-    });
+    };
+
+    getData();
   }, []);
 
   useEffect(() => {
-    let newFilteredData = grantsData;
+    startTransition(() => {
+      let newFilteredData = grantsData;
 
-    if (filterType !== "All") {
-      newFilteredData = newFilteredData.filter(
-        (item) => item.category === filterType
-      );
-    }
+      if (filterType !== "All") {
+        newFilteredData = newFilteredData.filter(
+          (item) => item.category === filterType
+        );
+      }
 
-    if (filterCompleted) {
-      newFilteredData = newFilteredData.filter(
-        (item) => item.completed === true
-      );
-    }
+      if (filterCompleted) {
+        newFilteredData = newFilteredData.filter(
+          (item) => item.completed === true
+        );
+      }
 
-    setFilteredData(newFilteredData);
+      setFilteredData(newFilteredData);
+    });
   }, [grantsData, filterType, filterCompleted]);
 
   const handleFilter = (selectedFilterType) => {
@@ -78,19 +83,23 @@ function CardFilter() {
     value: category,
   }));
 
-  if (isPending) return <div>Loading data...</div>;
-
   return (
-    <CardFilterWrapper>
-      <FilterControl
-        handleFilter={handleFilter}
-        filterType={filterType}
-        filterOptions={filterOptions}
-        withToggle={true}
-        handleToggle={() => handleToggle(!filterCompleted)}
-      />
-      <CardHolder cards={filteredData} granteeData={granteesData} />
-    </CardFilterWrapper>
+    <Suspense fallback={<LottieAnimation />}>
+      <CardFilterWrapper>
+        <FilterControl
+          handleFilter={handleFilter}
+          filterType={filterType}
+          filterOptions={filterOptions}
+          withToggle={true}
+          handleToggle={() => handleToggle(!filterCompleted)}
+        />
+        {isPending ? (
+          <div>Loading...</div>
+        ) : (
+          <CardHolder cards={filteredData} granteeData={granteesData} />
+        )}
+      </CardFilterWrapper>
+    </Suspense>
   );
 }
 

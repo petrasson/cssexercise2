@@ -3,8 +3,6 @@ import Header from "../../shared-components/Header";
 import HeadTitle from "../../shared-components/HeadTitle";
 import BlogFilter from "./components/BlogFilter";
 import Footer from "../../shared-components/Footer";
-import LottieAnimation from "../../shared-components/LottieAnimation";
-import { Suspense } from "react";
 
 const Container = styled.div`
   margin: 0 auto;
@@ -28,12 +26,10 @@ function Blog() {
     <div className='page-wrapper'>
       <Header />
       <Container>
-        <Suspense fallback={<LottieAnimation />}>
-          <div className='space'>
-            <HeadTitle text='Blog' />
-          </div>
-          <BlogFilter />
-        </Suspense>
+        <div className='space'>
+          <HeadTitle text='Blog' />
+        </div>
+        <BlogFilter />
       </Container>
       <Footer />
     </div>

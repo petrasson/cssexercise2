@@ -2,8 +2,11 @@ import styled from "styled-components";
 import FilterControl from "../../../shared-components/FilterControl";
 import BlogPosts from "./BlogPosts";
 import Button from "./../../../shared-components/Button";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { blogs as BlogData } from "../../../../dataBlogs.json";
+// import { startTransition } from "react";
+import LottieAnimation from "../../../shared-components/LottieAnimation";
+import { Suspense } from "react";
 
 const BlogFilterWrapper = styled.div`
   display: flex;
@@ -16,13 +19,14 @@ const BlogFilterWrapper = styled.div`
 `;
 
 function BlogFilter() {
+  const [isPending, startTransition] = useTransition();
   const [blogPosts, setBlogPosts] = useState([]);
   const [filterType, setFilterType] = useState("All");
   const [filteredBlogPosts, setFilteredBlogPosts] = useState(blogPosts);
   const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
-    setBlogPosts(BlogData); // Only set blogPosts once when the component mounts
+    setBlogPosts(BlogData); //set blogPosts once when the page mounts
   }, []);
 
   /*** HANDLE AND UPDATE FILTERED DATA BASED ON TYPE ***/
@@ -37,18 +41,18 @@ function BlogFilter() {
     value: type,
   }));
 
-  const handleFilter = (filterType) => {
-    setFilterType(filterType);
+  const handleFilter = (selectedFilterType) => {
+    setFilterType(selectedFilterType);
 
-    let newFilteredBlogPosts = blogPosts;
+    startTransition(() => {
+      const newFilteredBlogPosts =
+        selectedFilterType === "All"
+          ? blogPosts
+          : blogPosts.filter((exp) => exp.category === selectedFilterType);
 
-    if (filterType !== "All") {
-      newFilteredBlogPosts = newFilteredBlogPosts?.filter(
-        (exp) => exp.category === filterType
-      );
-    }
-    setFilteredBlogPosts(newFilteredBlogPosts);
-    setShowAll(false);
+      setFilteredBlogPosts(newFilteredBlogPosts);
+      setShowAll(false);
+    });
   };
 
   //uppdate filtered data
@@ -61,22 +65,25 @@ function BlogFilter() {
     : filteredBlogPosts.slice(0, 6);
 
   return (
-    <BlogFilterWrapper>
-      <FilterControl
-        handleFilter={handleFilter}
-        filterType={filterType}
-        filterOptions={filterOptions}
-        withToggle={false}
-      />
-      <BlogPosts cards={cardsToShow} />
-      {filteredBlogPosts.length > 6 && !showAll && (
-        <Button
-          type='primary'
-          text='Load more posts'
-          onClick={() => setShowAll(true)}
+    <Suspense fallback={<LottieAnimation />}>
+      <BlogFilterWrapper>
+        <FilterControl
+          handleFilter={handleFilter}
+          filterType={filterType}
+          filterOptions={filterOptions}
+          withToggle={false}
         />
-      )}
-    </BlogFilterWrapper>
+        <BlogPosts cards={cardsToShow} />
+        {filteredBlogPosts.length > 6 && !showAll && (
+          <Button
+            type='primary'
+            text='Load more posts'
+            onClick={() => setShowAll(true)}
+          />
+        )}
+        {isPending && <div>Loading filtered results...</div>}
+      </BlogFilterWrapper>
+    </Suspense>
   );
 }
 

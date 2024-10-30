@@ -7,7 +7,7 @@ import HeadTitle from "../../shared-components/HeadTitle";
 import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
 import Card from "../../shared-components/Card";
 import { useEffect, useState } from "react";
-import { Suspense, useTransition } from "react";
+import { Suspense } from "react";
 import LottieAnimation from "../../shared-components/LottieAnimation";
 import {
   fetchGrantee,
@@ -88,10 +88,10 @@ const StyledLink = styled(Link)`
   }
 `;
 function Grantee() {
-  const [isPending, startTransition] = useTransition();
   const [granteeData, setGranteeData] = useState([]);
   const [grantData, setGrantData] = useState([]);
   const [granteeDataforGrants, setGranteeDataforGrants] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const { id } = useParams();
   const location = useLocation();
@@ -100,39 +100,40 @@ function Grantee() {
   const canGoBack = !!from;
 
   useEffect(() => {
-    startTransition(async () => {
+    const fetchData = async () => {
       try {
+        setLoading(true);
+
         //Fetch the grantee profile data by ID
         const granteeData = await fetchGrantee(id);
         setGranteeData(granteeData);
 
-        //Fetch the grant data based on the grantee's grants array
+        // Fetch the grant data based on the grantee's grants array
         if (granteeData.grants && granteeData.grants.length > 0) {
           const grantsData = await fetchGrants(granteeData.grants);
           setGrantData(grantsData);
 
-          //Fetch grantee data for each card based on grantees_ids in the grants
+          // Fetch grantee data for each card based on grantees_ids in the grants
           const granteeIds = grantsData.flatMap(
             (card) => card.grantees_ids || []
           );
-
           if (granteeIds.length > 0) {
             const cardGranteesData = await fetchGrantees(granteeIds);
             setGranteeDataforGrants(cardGranteesData);
-          } else {
-            console.log("No granteesIDs found in grant data.");
           }
-        } else {
-          console.log("No grants found in grantee data.");
         }
       } catch (error) {
         console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
       }
-    });
-  }, [id]); // Ensure this effect runs when 'id' changes
+    };
 
-  if (isPending) {
-    if (isPending) return <div>Loading data...</div>;
+    fetchData();
+  }, [id]);
+
+  if (loading) {
+    return <div>Loading data...</div>;
   }
 
   return (

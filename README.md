@@ -43,7 +43,7 @@ All design was taken from [this Figma file](https://www.figma.com/design/eWP1AMJ
 
 #### transitioning buttons
 
-#### Blog
+#### Detaild Blog page
 
 #### Webpage button hover effect
 
@@ -88,3 +88,5 @@ All design was taken from [this Figma file](https://www.figma.com/design/eWP1AMJ
 #### add/remove an images on buttons
 
 #### Status button green
+
+#### Blog page
