@@ -1,5 +1,15 @@
 import BlogCard from "./BlogCard";
 import styled from "styled-components";
+import { Link, useLocation } from "react-router-dom";
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    text-decoration: none;
+  }
+`;
 
 const CardWrapper = styled.div`
   // max-width: 1440px;
@@ -26,19 +36,27 @@ const CardWrapper = styled.div`
 `;
 
 function BlogPosts({ cards }) {
+  const location = useLocation();
+
   if (!cards || cards.length === 0) {
     return <div>No blog posts available</div>;
   }
   return (
     <CardWrapper>
       {cards.map((card) => (
-        <BlogCard
+        <StyledLink
           key={card.id}
-          category={card.category}
-          cardTitle={card.title}
-          date={card.date}
-          // description={card.description}
-        />
+          to={`/blog/${card.id}`}
+          state={{ from: location }}
+        >
+          <BlogCard
+            key={card.id}
+            category={card.category}
+            cardTitle={card.title}
+            date={card.date}
+            // description={card.description}
+          />
+        </StyledLink>
       ))}
     </CardWrapper>
   );
