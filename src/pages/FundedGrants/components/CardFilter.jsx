@@ -1,3 +1,4 @@
+
 import CardHolder from "./CardHolder";
 import FilterControl from "../../../shared-components/FilterControl";
 import { useEffect, useState } from "react";
@@ -20,10 +21,13 @@ function CardFilter() {
   console.log({ grants });
   const [granteesData, setGranteesData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
-  const [filterType, setFilterType] = useState("All");
-  const [filterCompleted, setFilteredCompleted] = useState("true");
+
+  const [filterType, setFilterType] = useState('All');
+  const [filterCompleted, setFilteredCompleted] = useState(true);
+
 
   useEffect(() => {
+
     if (grants.length > 0) {
       setFilteredData(grants);
 
@@ -50,8 +54,10 @@ function CardFilter() {
   if (grantsLoading) return <div>Loading...</div>;
   if (grantsError) return <div>Error loading grants data.</div>;
 
+
   useEffect(() => {
     let newFilteredData = grants;
+
 
     if (filterType !== "All") {
       newFilteredData = newFilteredData.filter(
@@ -64,6 +70,7 @@ function CardFilter() {
         (item) => item.completed === true
       );
     }
+
 
     setFilteredData(newFilteredData);
   }, [grants, filterType, filterCompleted]);

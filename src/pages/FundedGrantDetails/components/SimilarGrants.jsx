@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import Card from "../../../shared-components/Card";
-import { Link } from "react-router-dom";
+import styled from 'styled-components';
+import Card from '../../../shared-components/Card';
+import { Link } from 'react-router-dom';
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -51,11 +51,11 @@ function SimilarGrants({ similarGrants, granteesData }) {
   return (
     <SimilarGrantsWrapper>
       <h1>More grants like this</h1>
-      <div className='link-wrapper'>
-        <p className='similar-projects-text'>Similar projects</p>
-        <img src='/images/arrow-right.svg' aria-hidden='true' />
+      <div className="link-wrapper">
+        <p className="similar-projects-text">Similar projects</p>
+        <img src="/images/arrow-right.svg" aria-hidden="true" />
       </div>
-      <div className='similar-card-wrapper'>
+      <div className="similar-card-wrapper">
         {Array.isArray(similarGrants) && similarGrants.length > 0 ? (
           similarGrants.map((card) => {
             // array with granteesIds for each card

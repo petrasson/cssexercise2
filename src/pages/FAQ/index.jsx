@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import Header from "../../shared-components/Header";
-import HeadTitle from "../../shared-components/HeadTitle";
-import Questions from "./components/Questions";
-import Footer from "../../shared-components/Footer";
-import Apply from "../../shared-components/Apply";
+import styled from 'styled-components';
+import Header from '../../shared-components/Header';
+import HeadTitle from '../../shared-components/HeadTitle';
+import Questions from './components/Questions';
+import Footer from '../../shared-components/Footer';
+import Apply from '../../shared-components/Apply';
 
 const Container = styled.div`
   margin: 0 auto;
@@ -29,11 +29,11 @@ const Container = styled.div`
 
 function FaqPage() {
   return (
-    <div className='page-wrapper'>
+    <div className="page-wrapper">
       <Header />
       <Container>
-        <div className='space'>
-          <HeadTitle text='Frequently asked questions' />
+        <div className="space">
+          <HeadTitle text="Frequently asked questions" />
         </div>
         <Questions />
         <Apply />

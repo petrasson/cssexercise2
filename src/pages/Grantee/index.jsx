@@ -1,3 +1,4 @@
+
 import styled from "styled-components";
 import Header from "../../shared-components/Header";
 import ButtonWrapper from "../../shared-components/ButtonWrapper";
@@ -12,6 +13,7 @@ import useSWR from "swr";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 import { useGranteeDetails } from "../../services/Service";
+
 
 const Container = styled.div`
   margin: 0 auto;
@@ -128,6 +130,7 @@ function Grantee() {
     fetcher
   );
 
+
   if (granteeDataError || grantsDetailsError || granteesDetailsError)
     return <div>Error loading data</div>;
   if (
@@ -137,40 +140,29 @@ function Grantee() {
   )
     return <div>Loading...</div>;
 
+
   return (
-    <div className='page-wrapper'>
+    <div className="page-wrapper">
       <Header />
       <Container>
         {canGoBack && (
           <BackButton
             onClick={() => {
-              console.log("BackButton clicked");
+              console.log('BackButton clicked');
               navigate(-1);
             }}
           />
         )}
         <Suspense fallback={<LottieAnimation />}>
-          <img src={`${granteeData?.image_url}`} alt='picture of user' />
+          <img src={`${granteeData?.image_url}`} alt="picture of user" />
           <HeadTitle text={granteeData?.name} />
-          <div className='text-wrapper'>
-            <h3 className='sub-title'>About</h3>
-            <p className='grant-text'>{granteeData?.about}</p>
-            <h3 className='sub-title'>Links</h3>
-            <div className='link-wrapper'>
+          <div className="text-wrapper">
+            <h3 className="sub-title">About</h3>
+            <p className="grant-text">{granteeData?.about}</p>
+            <h3 className="sub-title">Links</h3>
+            <div className="link-wrapper">
               <ButtonWrapper
-                data={granteeData?.links}
-                position='external-links'
-              />
-            </div>
-          </div>
-          <h1 className='projects-text'>Projects</h1>
 
-          <div className='card-wrapper'>
-            {grantsDetails.grants.map((card) => {
-              // Wrap logic with braces so `granteeImageUrls` is computed correctly
-              const granteeImageUrls = card?.grantees_ids?.map((granteeId) => {
-                const grantee = granteesDetails?.grantees.find(
-                  (grantee) => grantee.id === granteeId
                 );
                 return grantee ? grantee.image_url : null;
               });

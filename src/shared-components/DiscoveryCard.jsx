@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import ButtonTag from "../pages/DiscoverInitiatives/components/ButtonTag";
+import styled from 'styled-components';
+import ButtonTag from '../pages/DiscoverInitiatives/components/ButtonTag';
 
 const CardWrapper = styled.div`
   display: flex;
@@ -58,15 +58,15 @@ function DiscoveryCard({
 }) {
   return (
     <CardWrapper>
-      <div className='card-wrapper-text'>
-        <p className='card-title'>{cardTitle}</p>
-        <p className='card-text'>{description}</p>
+      <div className="card-wrapper-text">
+        <p className="card-title">{cardTitle}</p>
+        <p className="card-text">{description}</p>
         {fundingAmountTo ? (
-          <p className='sub-title'>
+          <p className="sub-title">
             Funding amount: ${fundingAmountFrom}-${fundingAmountTo}
           </p>
         ) : (
-          <p className='sub-title'>Funding amount: ${fundingAmountFrom}</p>
+          <p className="sub-title">Funding amount: ${fundingAmountFrom}</p>
         )}
       </div>
       <ButtonTag status={status} />

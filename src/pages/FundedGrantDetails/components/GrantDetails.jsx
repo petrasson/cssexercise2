@@ -1,3 +1,4 @@
+
 import styled from "styled-components";
 import HeadTitle from "../../../shared-components/HeadTitle";
 import Button from "../../../shared-components/Button";
@@ -161,6 +162,7 @@ const GrantDetailsWrapper = styled.div`
 
 // fetch grant details
 function GrantDetails({ id }) {
+
   const {
     data: grantData,
     isLoading: grantDataIsLoading,
@@ -183,6 +185,7 @@ function GrantDetails({ id }) {
       : null,
     fetcher
   );
+
 
   console.log("granteesDetails:", granteesDetails);
 
@@ -290,6 +293,7 @@ function GrantDetails({ id }) {
   } = grantData;
 
   return (
+
     <GrantDetailsWrapper>
       <>
         <p className='card-category'>{category}</p>
@@ -348,6 +352,7 @@ function GrantDetails({ id }) {
                 src='/images/external-link-purple.svg'
                 aria-hidden='true'
                 className='external-link-purple'
+
               />
             </div>
             <div className='link-row-wrapper'>

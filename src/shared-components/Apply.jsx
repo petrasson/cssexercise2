@@ -1,6 +1,6 @@
-import Button from "./Button";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import Button from './Button';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -83,11 +83,11 @@ const ApplyWrapper = styled.div`
 function Apply() {
   return (
     <ApplyWrapper>
-      <div className='apply-inner'>
-        <p className='apply-text'>Have a project in mind?</p>
-        <p className='apply-title'>Let’s create something awesome.</p>
-        <StyledLink to='/apply'>
-          <Button type='secondary' text='Apply for grant' />
+      <div className="apply-inner">
+        <p className="apply-text">Have a project in mind?</p>
+        <p className="apply-title">Let’s create something awesome.</p>
+        <StyledLink to="/apply">
+          <Button type="secondary" text="Apply for grant" />
         </StyledLink>
       </div>
     </ApplyWrapper>

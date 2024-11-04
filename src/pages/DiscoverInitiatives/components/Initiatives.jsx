@@ -1,5 +1,5 @@
-import DiscoveryCard from "../../../shared-components/DiscoveryCard";
-import styled from "styled-components";
+import DiscoveryCard from '../../../shared-components/DiscoveryCard';
+import styled from 'styled-components';
 
 const CardWrapper = styled.div`
   max-width: 1440px;
@@ -38,7 +38,7 @@ function Initiatives({ cards }) {
   return (
     <CardWrapper>
       {cards.length === 0 ? (
-        <div className='error-message'>No initiatives available</div>
+        <div className="error-message">No initiatives available</div>
       ) : (
         cards.map((card) => (
           <DiscoveryCard

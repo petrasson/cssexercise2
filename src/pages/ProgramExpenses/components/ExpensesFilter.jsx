@@ -1,8 +1,10 @@
+
 import styled from "styled-components";
 import FilterControl from "../../../shared-components/FilterControl";
 import Expenses from "./Expenses";
 import { useEffect, useState } from "react";
 import { expenses as expensesData } from "../../../../dataExpenses.json";
+
 
 const ExpensesFilterWrapper = styled.div`
   display: flex;
@@ -12,7 +14,7 @@ const ExpensesFilterWrapper = styled.div`
 
 function ExpensesFilter() {
   const [expenses, setExpenses] = useState([]);
-  const [filterType, setFilterType] = useState("All");
+  const [filterType, setFilterType] = useState('All');
   const [filteredExpenses, setFilteredExpenses] = useState(expenses);
 
   useEffect(() => {
@@ -36,12 +38,14 @@ function ExpensesFilter() {
 
     let newFilteredExpenses = expenses;
 
+
     if (filterType !== "All") {
       newFilteredExpenses = newFilteredExpenses?.filter(
         (exp) => exp.category === filterType
       );
     }
     setFilteredExpenses(newFilteredExpenses);
+
   };
 
   //uppdate filtered data

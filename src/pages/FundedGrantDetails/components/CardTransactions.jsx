@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const CardTransactionWrapper = styled.div`
   display: flex;
@@ -84,14 +84,14 @@ const CardTransactionWrapper = styled.div`
 function CardTransaction({ title, date, amount, description }) {
   return (
     <CardTransactionWrapper>
-      <div className='card-wrapper-text'>
-        <p className='card-title'>{title}</p>
-        <p className='date'>{date}</p>
-        <p className='description'>{description}</p>
+      <div className="card-wrapper-text">
+        <p className="card-title">{title}</p>
+        <p className="date">{date}</p>
+        <p className="description">{description}</p>
       </div>
-      <div className='amount-wrapper'>
-        <p className='amount'> {amount}</p>
-        <img src='/images/external-link-grey.svg' aria-hidden='true' />
+      <div className="amount-wrapper">
+        <p className="amount"> {amount}</p>
+        <img src="/images/external-link-grey.svg" aria-hidden="true" />
       </div>
     </CardTransactionWrapper>
   );

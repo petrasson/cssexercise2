@@ -1,12 +1,14 @@
+
 import styled from "styled-components";
 import FilterControl from "../../../shared-components/FilterControl";
 import BlogPosts from "./BlogPosts";
 import Button from "./../../../shared-components/Button";
 import { useEffect, useState } from "react";
 import { blogs as BlogData } from "../../../../dataBlogs.json";
+
 // import { startTransition } from "react";
-import LottieAnimation from "../../../shared-components/LottieAnimation";
-import { Suspense } from "react";
+import LottieAnimation from '../../../shared-components/LottieAnimation';
+import { Suspense } from 'react';
 
 const BlogFilterWrapper = styled.div`
   display: flex;
@@ -20,7 +22,7 @@ const BlogFilterWrapper = styled.div`
 
 function BlogFilter() {
   const [blogPosts, setBlogPosts] = useState([]);
-  const [filterType, setFilterType] = useState("All");
+  const [filterType, setFilterType] = useState('All');
   const [filteredBlogPosts, setFilteredBlogPosts] = useState(blogPosts);
   const [showAll, setShowAll] = useState(false);
 
@@ -43,10 +45,12 @@ function BlogFilter() {
   const handleFilter = (selectedFilterType) => {
     setFilterType(selectedFilterType);
 
+
     const newFilteredBlogPosts =
       selectedFilterType === "All"
         ? blogPosts
         : blogPosts.filter((exp) => exp.category === selectedFilterType);
+
 
     setFilteredBlogPosts(newFilteredBlogPosts);
     setShowAll(false);
@@ -73,8 +77,8 @@ function BlogFilter() {
         <BlogPosts cards={cardsToShow} />
         {filteredBlogPosts.length > 6 && !showAll && (
           <Button
-            type='primary'
-            text='Load more posts'
+            type="primary"
+            text="Load more posts"
             onClick={() => setShowAll(true)}
           />
         )}

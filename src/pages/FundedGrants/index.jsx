@@ -1,3 +1,4 @@
+
 import Header from "../../shared-components/Header";
 import CardFilter from "./components/CardFilter";
 import Apply from "../../shared-components/Apply";
@@ -6,6 +7,7 @@ import styled from "styled-components";
 import HeadTitle from "../../shared-components/HeadTitle";
 import { Suspense } from "react";
 import LottieAnimation from "../../shared-components/LottieAnimation";
+
 
 const Container = styled.div`
   margin: 0 auto;
@@ -26,11 +28,11 @@ const Container = styled.div`
 
 function FundedGrants() {
   return (
-    <div className='page-wrapper'>
+    <div className="page-wrapper">
       <Header />
       <Container>
-        <div className='space'>
-          <HeadTitle text='Funded Grants' />
+        <div className="space">
+          <HeadTitle text="Funded Grants" />
         </div>
         <Suspense fallback={<LottieAnimation />}>
           <CardFilter />

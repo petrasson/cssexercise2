@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const FundedGrantImageWrapper = styled.div`
   border-radius: 30px;
@@ -17,9 +17,9 @@ function FundedGrantImage() {
   return (
     <FundedGrantImageWrapper>
       <img
-        src='/images/funded-grant.png'
-        alt='images of the logotypes chaos labs and dydx'
-        className='image-fundedgrants'
+        src="/images/funded-grant.png"
+        alt="images of the logotypes chaos labs and dydx"
+        className="image-fundedgrants"
       />
     </FundedGrantImageWrapper>
   );

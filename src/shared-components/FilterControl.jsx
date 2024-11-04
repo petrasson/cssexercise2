@@ -1,7 +1,7 @@
-import Button from "./Button";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import Toggle from "../pages/FundedGrants/components/Toggle";
+import Button from './Button';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import Toggle from '../pages/FundedGrants/components/Toggle';
 
 const FilterControlWrapper = styled.div`
   display: flex;
@@ -99,20 +99,20 @@ function FilterControl({
 }) {
   return (
     <FilterControlWrapper>
-      <div className='filter-container'>
+      <div className="filter-container">
         <Button
-          text='All'
-          type='primary'
-          filterType='All'
-          onClick={() => handleFilter("All")}
+          text="All"
+          type="primary"
+          filterType="All"
+          onClick={() => handleFilter('All')}
         />
 
-        <div className='filter-wrapper'>
+        <div className="filter-wrapper">
           {filterOptions.map((option) => (
             <li key={option.value}>
               <Button
                 text={option.text}
-                type='text'
+                type="text"
                 filterType={option.value}
                 highlight={filterType === option.value}
                 onClick={() => handleFilter(option.value)}
@@ -122,7 +122,7 @@ function FilterControl({
         </div>
       </div>
       {withToggle && (
-        <div className='toggle-container'>
+        <div className="toggle-container">
           <Toggle onClick={handleToggle} />
         </div>
       )}
@@ -137,7 +137,7 @@ FilterControl.propTypes = {
     PropTypes.shape({
       text: PropTypes.string.isRequired,
       value: PropTypes.string.isRequired,
-    })
+    }),
   ).isRequired,
   withToggle: PropTypes.bool,
   handleToggle: PropTypes.func,

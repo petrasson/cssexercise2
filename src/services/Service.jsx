@@ -1,3 +1,4 @@
+
 import useSWR from "swr";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
@@ -88,7 +89,7 @@ export const fetchGrants = async (grantsIds) => {
   if (!grantsIds || grantsIds.length === 0) return [];
   const promises = grantsIds.map(async (id) => {
     const res = await fetch(
-      `https://nextjs-test-beryl-gamma.vercel.app/api/grants?id=${id}`
+      `https://nextjs-test-beryl-gamma.vercel.app/api/grants?id=${id}`,
     );
     if (!res.ok) throw new Error(`Failed to fetch cards with id ${id}`);
     return res.json();
@@ -142,6 +143,7 @@ export const useGrantDetails = (id) => {
 //To fix this, we should ensure that fetchTransactionById is a pure function that doesn't rely on hooks like useSWR
 export const fetchTransactionById = async (id) => {
   try {
+
     const response = await fetch(
       `https://nextjs-test-beryl-gamma.vercel.app/api/transactions?id=${id}`
     );
@@ -153,9 +155,11 @@ export const fetchTransactionById = async (id) => {
       return null;
     }
 
+
     const transactionData = await response.json();
     return transactionData;
   } catch (error) {
+
     console.error(`Error fetching transaction with ID ${id}:`, error);
     return null;
   }
@@ -166,7 +170,7 @@ export const fetchGrantees = async (userIds) => {
   if (!userIds || userIds.length === 0) return [];
   const promises = userIds.map(async (id) => {
     const res = await fetch(
-      `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?id=${id}`
+      `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?id=${id}`,
     );
     if (!res.ok) throw new Error(`Failed to fetch userinfo with id ${id}`);
     const userData = await res.json();
@@ -261,15 +265,15 @@ export const fetchGrantById = async (id) => {
 export const fetchGrantee = async (id) => {
   try {
     const res = await fetch(
-      `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?id=${id}`
+      `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?id=${id}`,
     );
 
-    if (!res.ok) throw new Error("Failed to fetch user data");
+    if (!res.ok) throw new Error('Failed to fetch user data');
 
     const data = await res.json();
     return data;
   } catch (error) {
-    console.error("Error in fetchGrant:", error);
+    console.error('Error in fetchGrant:', error);
     throw error;
   }
 };

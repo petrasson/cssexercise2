@@ -1,5 +1,5 @@
-import SocialMedia from "./SocialMedia";
-import styled from "styled-components";
+import SocialMedia from './SocialMedia';
+import styled from 'styled-components';
 
 const FooterWrapper = styled.div`
   display: flex;
@@ -121,44 +121,44 @@ const FooterWrapper = styled.div`
 function Footer() {
   return (
     <FooterWrapper>
-      <div className='footer-container'>
-        <nav className='footer-wrapper'>
+      <div className="footer-container">
+        <nav className="footer-wrapper">
           {
             <img
-              src='/images/dydxLogotypeSmall.svg'
-              alt='Dydx logotype'
-              className='image-logotype-dydx-small'
+              src="/images/dydxLogotypeSmall.svg"
+              alt="Dydx logotype"
+              className="image-logotype-dydx-small"
             />
           }
-          <ul className='bottom-nav'>
+          <ul className="bottom-nav">
             <li>
-              <a href='#'>About</a>
+              <a href="#">About</a>
             </li>
             <li>
-              <a href='#'>FAQ</a>
+              <a href="#">FAQ</a>
             </li>
             <li>
-              <a href='#'>Brand assets</a>
+              <a href="#">Brand assets</a>
             </li>
             <li>
-              <a href='#'>dYdX Foundation</a>
+              <a href="#">dYdX Foundation</a>
               <img
-                src='/images/external-link-grey.svg'
-                aria-hidden='true'
-                className='external-link-symbol'
+                src="/images/external-link-grey.svg"
+                aria-hidden="true"
+                className="external-link-symbol"
               />
             </li>
-            <li className='bottom-nav-link'>
-              <a href='#'>dYdX Trading</a>
+            <li className="bottom-nav-link">
+              <a href="#">dYdX Trading</a>
               <img
-                src='/images/external-link-grey.svg'
-                aria-hidden='true'
-                className='external-link-symbol'
+                src="/images/external-link-grey.svg"
+                aria-hidden="true"
+                className="external-link-symbol"
               />
             </li>
           </ul>
         </nav>
-        <SocialMedia position='bottom' isMenuActive={false} isDesktop={false} />
+        <SocialMedia position="bottom" isMenuActive={false} isDesktop={false} />
       </div>
     </FooterWrapper>
   );

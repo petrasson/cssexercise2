@@ -1,6 +1,6 @@
-import DiscoveryCard from "../../../shared-components/DiscoveryCard";
-import styled from "styled-components";
-import PropTypes from "prop-types";
+import DiscoveryCard from '../../../shared-components/DiscoveryCard';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const CardWrapper = styled.div`
   max-width: 1440px;
@@ -55,7 +55,7 @@ Expenses.propTypes = {
       amountFrom: PropTypes.string.isRequired,
       amountTo: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
-    })
+    }),
   ),
 };
 

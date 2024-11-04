@@ -1,66 +1,66 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import FundedGrants from "./pages/FundedGrants";
-import DiscoverInitiatives from "./pages/DiscoverInitiatives";
-import ProgramExpenses from "./pages/ProgramExpenses";
-import NotFoundPage from "./pages/NotFoundPage";
-import FundedGrantDetails from "./pages/FundedGrantDetails";
-import Grantee from "./pages/Grantee";
-import Application from "./pages/Application";
-import FaqPage from "./pages/FAQ";
-import Blog from "./pages/Blog";
-import BlogDetails from "./pages/BlogDetails";
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import FundedGrants from './pages/FundedGrants';
+import DiscoverInitiatives from './pages/DiscoverInitiatives';
+import ProgramExpenses from './pages/ProgramExpenses';
+import NotFoundPage from './pages/NotFoundPage';
+import FundedGrantDetails from './pages/FundedGrantDetails';
+import Grantee from './pages/Grantee';
+import Application from './pages/Application';
+import FaqPage from './pages/FAQ';
+import Blog from './pages/Blog';
+import BlogDetails from './pages/BlogDetails';
 // import { QueryClient, QueryClientProvider } from 'react-query'
 
-import "./index.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import './index.css';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 // const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <DiscoverInitiatives />,
     errorElement: <NotFoundPage />,
   },
   {
-    path: "/funded-grants",
+    path: '/funded-grants',
     element: <FundedGrants />,
   },
   {
-    path: "/program-expenses",
+    path: '/program-expenses',
     element: <ProgramExpenses />,
   },
   {
-    path: "/card/:id",
+    path: '/card/:id',
     element: <FundedGrantDetails />,
   },
   {
-    path: "/apply",
+    path: '/apply',
     element: <Application />,
   },
   {
-    path: "/grantee/:id",
+    path: '/grantee/:id',
     element: <Grantee />,
   },
   {
-    path: "/faq",
+    path: '/faq',
     element: <FaqPage />,
   },
   {
-    path: "/blog",
+    path: '/blog',
     element: <Blog />,
   },
   {
-    path: "/blog/:id",
+    path: '/blog/:id',
     element: <BlogDetails />,
   },
 ]);
 
-createRoot(document.getElementById("root")).render(
+createRoot(document.getElementById('root')).render(
   <StrictMode>
     <RouterProvider router={router} />
-  </StrictMode>
+  </StrictMode>,
 );
 
 // <StrictMode>

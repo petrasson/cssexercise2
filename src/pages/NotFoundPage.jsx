@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Error = styled.div`
   margin-top: 300px;
@@ -31,7 +31,7 @@ const NotFoundPage = () => {
   return (
     <Error>
       <h1>404 - Page Not Found</h1>
-      <StyledLink to='/'>Go Back Home</StyledLink>
+      <StyledLink to="/">Go Back Home</StyledLink>
     </Error>
   );
 };

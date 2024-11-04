@@ -20,7 +20,7 @@ html {
 }
 
 body {
-  font: 400 14pt/20pt "Cirkular Std", sans-serif;
+  font: 400 14pt / 20pt "Cirkular Std", sans-serif;
   color: var(--primary-text-color);
   background-color: var(--primary-bg-color);
   background-image: linear-gradient(rgb(255 255 255 / 10%) 1px, transparent 1px),

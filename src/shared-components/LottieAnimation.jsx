@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import "@dotlottie/player-component";
+import styled from 'styled-components';
+import '@dotlottie/player-component';
 
 const LottieWrapper = styled.div`
   position: fixed;
@@ -17,10 +17,10 @@ function LottieAnimation() {
   return (
     <LottieWrapper>
       <dotlottie-player
-        src='https://lottie.host/de0f6455-017d-48d0-99f9-4be0a6f43122/qK0R5OJxQH.lottie'
+        src="https://lottie.host/de0f6455-017d-48d0-99f9-4be0a6f43122/qK0R5OJxQH.lottie"
         autoplay
         loop
-        style={{ height: "400px", width: "400px" }}
+        style={{ height: '400px', width: '400px' }}
       ></dotlottie-player>
     </LottieWrapper>
   );

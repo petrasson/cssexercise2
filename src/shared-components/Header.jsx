@@ -1,10 +1,10 @@
-import Button from "./Button";
-import { Link } from "react-router-dom";
-import SocialMedia from "./SocialMedia";
-import { useMediaQuery } from "react-responsive";
-import { useState } from "react";
-import styled from "styled-components";
-import { clsx } from "clsx";
+import Button from './Button';
+import { Link } from 'react-router-dom';
+import SocialMedia from './SocialMedia';
+import { useMediaQuery } from 'react-responsive';
+import { useState } from 'react';
+import styled from 'styled-components';
+import { clsx } from 'clsx';
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -23,7 +23,7 @@ const HeaderWrapper = styled.header`
   padding: 16px 24px;
   margin: 0 auto;
   background-color: ${(props) =>
-    props.$ismenuactive ? "var(--secondary-bg-color)" : "transparent"};
+    props.$ismenuactive ? 'var(--secondary-bg-color)' : 'transparent'};
 
   .image-logotype-dydx-{
     width: 60px;
@@ -193,55 +193,55 @@ function Header() {
   return (
     <HeaderWrapper $ismenuactive={isMenuActive}>
       <img
-        src='/images/dydXLogotypeBig.svg'
-        alt='Dydx logotype'
-        className='image-logotype-dydx'
+        src="/images/dydXLogotypeBig.svg"
+        alt="Dydx logotype"
+        className="image-logotype-dydx"
       />
-      <div className='top-nav-container'>
-        <div className={clsx("top-nav-wrapper", { active: isMenuActive })}>
+      <div className="top-nav-container">
+        <div className={clsx('top-nav-wrapper', { active: isMenuActive })}>
           <nav>
-            <ul className='top-nav'>
+            <ul className="top-nav">
               <li>
-                <Link to='/'>Discover Initiatives</Link>
+                <Link to="/">Discover Initiatives</Link>
               </li>
               <li>
-                <Link to='/funded-grants'>Funded grants</Link>
+                <Link to="/funded-grants">Funded grants</Link>
               </li>
               <li>
-                <Link to='/program-expenses'>Program expenses</Link>
+                <Link to="/program-expenses">Program expenses</Link>
               </li>
               <li>
-                <Link to='/faq'>FAQ</Link>
+                <Link to="/faq">FAQ</Link>
               </li>
               <li>
-                <Link to='/blog'>Blog</Link>
+                <Link to="/blog">Blog</Link>
               </li>
             </ul>
             <SocialMedia
               isMenuActive={isMenuActive}
               isDesktop={isDesktop}
-              position='top'
+              position="top"
             />
           </nav>
         </div>
 
-        <div className='btn-wrapper'>
-          <StyledLink to='/apply'>
+        <div className="btn-wrapper">
+          <StyledLink to="/apply">
             <Button
-              type='accent'
-              text={isDesktop ? "Apply for grant" : "Apply"}
+              type="accent"
+              text={isDesktop ? 'Apply for grant' : 'Apply'}
             />
           </StyledLink>
 
           {!isDesktop && (
             <button
-              className={isMenuActive ? "close-btn" : "hamburger-btn"}
-              aria-label={isMenuActive ? "Close nav" : "Open nav"}
+              className={isMenuActive ? 'close-btn' : 'hamburger-btn'}
+              aria-label={isMenuActive ? 'Close nav' : 'Open nav'}
               onClick={toggleMenu}
             >
               <i
-                className={`fa-solid ${isMenuActive ? "fa-xmark" : "fa-bars"}`}
-                aria-hidden='true'
+                className={`fa-solid ${isMenuActive ? 'fa-xmark' : 'fa-bars'}`}
+                aria-hidden="true"
               ></i>
             </button>
           )}
