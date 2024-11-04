@@ -6,14 +6,12 @@ import Footer from "../../shared-components/Footer";
 import HeadTitle from "../../shared-components/HeadTitle";
 import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
 import Card from "../../shared-components/Card";
-import { useEffect, useState } from "react";
 import { Suspense } from "react";
 import LottieAnimation from "../../shared-components/LottieAnimation";
-import {
-  fetchGrantee,
-  fetchGrantees,
-  fetchGrants,
-} from "../../services/Service";
+import useSWR from "swr";
+
+const fetcher = (url) => fetch(url).then((res) => res.json());
+import { useGranteeDetails } from "../../services/Service";
 
 const Container = styled.div`
   margin: 0 auto;
@@ -87,54 +85,57 @@ const StyledLink = styled(Link)`
     text-decoration: none;
   }
 `;
-function Grantee() {
-  const [granteeData, setGranteeData] = useState([]);
-  const [grantData, setGrantData] = useState([]);
-  const [granteeDataforGrants, setGranteeDataforGrants] = useState([]);
-  const [loading, setLoading] = useState(true);
 
+function Grantee() {
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
   const { from } = location?.state || {};
   const canGoBack = !!from;
+  const {
+    data: granteeData,
+    isLoading: isGranteeDataLoading,
+    error: granteeDataError,
+  } = useGranteeDetails(id);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
+  const grantIds = granteeData ? granteeData.grants : null;
+  const {
+    data: grantsDetails,
+    isLoading: isgrantsDetailsLoading,
+    error: grantsDetailsError,
+  } = useSWR(
+    grantIds && Array.isArray(grantIds) && grantIds.length > 0
+      ? `https://nextjs-test-beryl-gamma.vercel.app/api/grants?ids=${grantIds.join(
+          ","
+        )}`
+      : null,
+    fetcher
+  );
+  const granteesIds = grantsDetails
+    ? grantsDetails.grants.flatMap((grant) => grant.grantees_ids)
+    : null;
 
-        //Fetch the grantee profile data by ID
-        const granteeData = await fetchGrantee(id);
-        setGranteeData(granteeData);
+  const {
+    data: granteesDetails,
+    isLoading: isgranteesDetailsLoading,
+    error: granteesDetailsError,
+  } = useSWR(
+    granteesIds && Array.isArray(granteesIds) && granteesIds.length > 0
+      ? `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?ids=${granteesIds.join(
+          ","
+        )}`
+      : null,
+    fetcher
+  );
 
-        // Fetch the grant data based on the grantee's grants array
-        if (granteeData.grants && granteeData.grants.length > 0) {
-          const grantsData = await fetchGrants(granteeData.grants);
-          setGrantData(grantsData);
-
-          // Fetch grantee data for each card based on grantees_ids in the grants
-          const granteeIds = grantsData.flatMap(
-            (card) => card.grantees_ids || []
-          );
-          if (granteeIds.length > 0) {
-            const cardGranteesData = await fetchGrantees(granteeIds);
-            setGranteeDataforGrants(cardGranteesData);
-          }
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [id]);
-
-  if (loading) {
-    return <div>Loading data...</div>;
-  }
+  if (granteeDataError || grantsDetailsError || granteesDetailsError)
+    return <div>Error loading data</div>;
+  if (
+    isGranteeDataLoading ||
+    isgrantsDetailsLoading ||
+    isgranteesDetailsLoading
+  )
+    return <div>Loading...</div>;
 
   return (
     <div className='page-wrapper'>
@@ -157,22 +158,23 @@ function Grantee() {
             <h3 className='sub-title'>Links</h3>
             <div className='link-wrapper'>
               <ButtonWrapper
-                items={granteeData?.links}
+                data={granteeData?.links}
                 position='external-links'
               />
             </div>
           </div>
           <h1 className='projects-text'>Projects</h1>
+
           <div className='card-wrapper'>
-            {grantData.map((card) => {
+            {grantsDetails.grants.map((card) => {
+              // Wrap logic with braces so `granteeImageUrls` is computed correctly
               const granteeImageUrls = card?.grantees_ids?.map((granteeId) => {
-                // Find the grantee data using the granteeId
-                const grantee = granteeDataforGrants.find(
+                const grantee = granteesDetails?.grantees.find(
                   (grantee) => grantee.id === granteeId
                 );
-                // Return the imageUrl, or handle cases where the grantee is not found
-                return grantee ? grantee.image_url : null; // Return image_url from grantee data
+                return grantee ? grantee.image_url : null;
               });
+
               return (
                 <StyledLink key={card.id} to={`/card/${card.id}`}>
                   <Card

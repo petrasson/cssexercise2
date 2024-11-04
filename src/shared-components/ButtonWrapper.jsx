@@ -69,30 +69,34 @@ const granteeSocialMedia = [
   },
 ];
 
-function ButtonWrapper({ grantees, position }) {
+function ButtonWrapper({ data, position }) {
+  {
+    console.log("data", data);
+  }
+
   const location = useLocation();
 
-  if (!grantees || grantees.length === 0) {
+  if (!data || data.length === 0) {
     return <p>No items available</p>;
   }
 
   const updatedSocialMedia = [...granteeSocialMedia];
   {
     position === "external-links" &&
-      grantees.forEach((grantee) => {
-        if (grantee.includes("twitter")) {
+      data.forEach((btn) => {
+        if (btn.includes("twitter")) {
           updatedSocialMedia.find((media) => media.name === "Twitter").link =
-            grantee;
-        } else if (grantee.includes("linkedin")) {
+            btn;
+        } else if (btn.includes("linkedin")) {
           updatedSocialMedia.find((media) => media.name === "LinkedIn").link =
-            grantee;
-        } else if (grantee.includes("github")) {
+            btn;
+        } else if (btn.includes("github")) {
           updatedSocialMedia.find((media) => media.name === "Github").link =
-            grantee;
+            btn;
         } else {
-          // If it's not social media, we assign it as a website
+          // If it's not one of the social media above, it's assign as a website
           updatedSocialMedia.find((media) => media.name === "Website").link =
-            grantee;
+            btn;
         }
       });
   }
@@ -122,9 +126,8 @@ function ButtonWrapper({ grantees, position }) {
               </a>
             )
         )}
-
       {position === "link-to-profile" &&
-        grantees.map((grantee, index) => (
+        data.map((grantee, index) => (
           <StyledLink
             key={index}
             to={`/grantee/${grantee.id}`}
