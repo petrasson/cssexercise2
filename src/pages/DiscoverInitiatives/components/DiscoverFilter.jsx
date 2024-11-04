@@ -1,23 +1,32 @@
-import { Suspense, useState } from 'react';
-import { useFetchAllInitiatives } from 'src/services/Service.jsx';
-import FilterControl from 'src/shared-components/FilterControl';
-import LottieAnimation from 'src/shared-components/LottieAnimation';
-import styled from 'styled-components';
-import Initiatives from './Initiatives';
+
+import styled from "styled-components";
+import FilterControl from "../../../shared-components/FilterControl";
+import Initiatives from "./Initiatives";
+import { useState, useEffect } from "react";
+import { useAllInitiatives } from "../../../services/Service";
+
 
 const DiscoverFilterWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
-
 function DiscoverFilter() {
-  const data = useFetchAllInitiatives();
 
+  const { data, isLoading, error } = useAllInitiatives();
   const initiatives = data?.initiatives || [];
-
-  const [filterType, setFilterType] = useState('All');
+  const [filterType, setFilterType] = useState("All");
   const [filteredInitiatives, setFilteredInitiatives] = useState(initiatives);
+
+  useEffect(() => {
+    if (data?.initiatives) {
+      setFilteredInitiatives(data.initiatives);
+    }
+  }, [data]);
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error loading data.</div>;
+
 
   //fetch data initially
   /*** HANDLE AND UPDATE FILTERED DATA BASED ON STATUS ***/
@@ -39,27 +48,28 @@ function DiscoverFilter() {
 
     let newFilteredInitiatives = initiatives;
 
-    if (filterType !== 'All') {
+
+    if (filterType !== "All") {
       newFilteredInitiatives = newFilteredInitiatives.filter(
-        (initiative) => initiative.status === filterType,
+        (initiative) => initiative.status === filterType
+
       );
     }
     setFilteredInitiatives(newFilteredInitiatives);
   };
 
   return (
-    <Suspense fallback={<LottieAnimation />}>
-      <DiscoverFilterWrapper>
-        <FilterControl
-          handleFilter={handleFilter}
-          filterType={filterType}
-          filterOptions={filterOptions}
-          withToggle={false}
-        />
 
-        <Initiatives cards={filteredInitiatives} />
-      </DiscoverFilterWrapper>
-    </Suspense>
+    <DiscoverFilterWrapper>
+      <FilterControl
+        handleFilter={handleFilter}
+        filterType={filterType}
+        filterOptions={filterOptions}
+        withToggle={false}
+      />
+      <Initiatives cards={filteredInitiatives} />
+    </DiscoverFilterWrapper>
+
   );
 }
 

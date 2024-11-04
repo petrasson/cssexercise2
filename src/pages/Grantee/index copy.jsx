@@ -1,4 +1,3 @@
-
 import styled from "styled-components";
 import Header from "../../shared-components/Header";
 import ButtonWrapper from "../../shared-components/ButtonWrapper";
@@ -9,11 +8,8 @@ import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
 import Card from "../../shared-components/Card";
 import { Suspense } from "react";
 import LottieAnimation from "../../shared-components/LottieAnimation";
-import useSWR from "swr";
 
-const fetcher = (url) => fetch(url).then((res) => res.json());
-import { useGranteeDetails } from "../../services/Service";
-
+import { useGranteeDetails, useGrantsDetails } from "../../services/Service";
 
 const Container = styled.div`
   margin: 0 auto;
@@ -94,79 +90,61 @@ function Grantee() {
   const navigate = useNavigate();
   const { from } = location?.state || {};
   const canGoBack = !!from;
+  const { data: granteeData, error: granteeError } = useGranteeDetails(id);
+  const grantsIds = granteeData?.grants || [];
+  console.log("grantsIds:", grantsIds);
   const {
-    data: granteeData,
-    isLoading: isGranteeDataLoading,
-    error: granteeDataError,
-  } = useGranteeDetails(id);
+    data: grantsData,
+    error: grantsError,
+    isLoading: grantsLoading,
+  } = useGrantsDetails(grantsIds);
 
-  const grantIds = granteeData ? granteeData.grants : null;
-  const {
-    data: grantsDetails,
-    isLoading: isgrantsDetailsLoading,
-    error: grantsDetailsError,
-  } = useSWR(
-    grantIds && Array.isArray(grantIds) && grantIds.length > 0
-      ? `https://nextjs-test-beryl-gamma.vercel.app/api/grants?ids=${grantIds.join(
-          ","
-        )}`
-      : null,
-    fetcher
-  );
-  const granteesIds = grantsDetails
-    ? grantsDetails.grants.flatMap((grant) => grant.grantees_ids)
-    : null;
+  console.log("grantsData:", grantsData);
 
-  const {
-    data: granteesDetails,
-    isLoading: isgranteesDetailsLoading,
-    error: granteesDetailsError,
-  } = useSWR(
-    granteesIds && Array.isArray(granteesIds) && granteesIds.length > 0
-      ? `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?ids=${granteesIds.join(
-          ","
-        )}`
-      : null,
-    fetcher
-  );
+  if (granteeError) return <div>Error loading grantee details.</div>;
+  if (!granteeData) return <div>Loading grantee data...</div>;
 
-
-  if (granteeDataError || grantsDetailsError || granteesDetailsError)
-    return <div>Error loading data</div>;
-  if (
-    isGranteeDataLoading ||
-    isgrantsDetailsLoading ||
-    isgranteesDetailsLoading
-  )
-    return <div>Loading...</div>;
-
+  if (grantsError) return <div>Error loading grants.</div>;
+  if (grantsLoading) return <div>Loading grants...</div>;
 
   return (
-    <div className="page-wrapper">
+    <div className='page-wrapper'>
       <Header />
       <Container>
         {canGoBack && (
           <BackButton
             onClick={() => {
-              console.log('BackButton clicked');
+              console.log("BackButton clicked");
               navigate(-1);
             }}
           />
         )}
         <Suspense fallback={<LottieAnimation />}>
-          <img src={`${granteeData?.image_url}`} alt="picture of user" />
+          <img src={`${granteeData?.image_url}`} alt='picture of user' />
           <HeadTitle text={granteeData?.name} />
-          <div className="text-wrapper">
-            <h3 className="sub-title">About</h3>
-            <p className="grant-text">{granteeData?.about}</p>
-            <h3 className="sub-title">Links</h3>
-            <div className="link-wrapper">
+          <div className='text-wrapper'>
+            <h3 className='sub-title'>About</h3>
+            <p className='grant-text'>{granteeData?.about}</p>
+            <h3 className='sub-title'>Links</h3>
+            <div className='link-wrapper'>
               <ButtonWrapper
+                items={granteeData?.links}
+                position='external-links'
+              />
+            </div>
+          </div>
+          <h1 className='projects-text'>Projects</h1>
 
+          <div className='card-wrapper'>
+            {grantsData.map((card) => {
+              const granteeImageUrls = card?.grantees_ids?.map((granteeId) => {
+                // Find the grantee data using the granteeId
+                const grantee = granteesData.find(
+                  (grantee) => grantee.id === granteeId
                 );
-                return grantee ? grantee.image_url : null;
+                // Return the imageUrl, or handle cases where the grantee is not found
+                return grantee ? grantee.image_url : null; // Return image_url from grantee data
               });
-
               return (
                 <StyledLink key={card.id} to={`/card/${card.id}`}>
                   <Card

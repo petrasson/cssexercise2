@@ -69,30 +69,31 @@ const granteeSocialMedia = [
   },
 ];
 
-function ButtonWrapper({ grantees, position }) {
+function ButtonWrapper({ data, position }) {
   const location = useLocation();
 
-  if (!grantees || grantees.length === 0) {
+  if (!data || data.length === 0) {
     return <p>No items available</p>;
   }
 
   const updatedSocialMedia = [...granteeSocialMedia];
   {
-    position === 'external-links' &&
-      grantees.forEach((grantee) => {
-        if (grantee.includes('twitter')) {
-          updatedSocialMedia.find((media) => media.name === 'Twitter').link =
-            grantee;
-        } else if (grantee.includes('linkedin')) {
-          updatedSocialMedia.find((media) => media.name === 'LinkedIn').link =
-            grantee;
-        } else if (grantee.includes('github')) {
-          updatedSocialMedia.find((media) => media.name === 'Github').link =
-            grantee;
+
+    position === "external-links" &&
+      data.forEach((btn) => {
+        if (btn.includes("twitter")) {
+          updatedSocialMedia.find((media) => media.name === "Twitter").link =
+            btn;
+        } else if (btn.includes("linkedin")) {
+          updatedSocialMedia.find((media) => media.name === "LinkedIn").link =
+            btn;
+        } else if (btn.includes("github")) {
+          updatedSocialMedia.find((media) => media.name === "Github").link =
+            btn;
         } else {
-          // If it's not social media, we assign it as a website
-          updatedSocialMedia.find((media) => media.name === 'Website').link =
-            grantee;
+          // If it's not one of the social media above, it's assign as a website
+          updatedSocialMedia.find((media) => media.name === "Website").link =
+            btn;
         }
       });
   }
@@ -123,8 +124,8 @@ function ButtonWrapper({ grantees, position }) {
             ),
         )}
 
-      {position === 'link-to-profile' &&
-        grantees.map((grantee, index) => (
+      {position === "link-to-profile" &&
+        data.map((grantee, index) => (
           <StyledLink
             key={index}
             to={`/grantee/${grantee.id}`}

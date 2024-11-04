@@ -1,10 +1,12 @@
-import { Suspense } from 'react';
-import Footer from 'src/shared-components/Footer';
-import HeadTitle from 'src/shared-components/HeadTitle';
-import Header from 'src/shared-components/Header';
-import LottieAnimation from 'src/shared-components/LottieAnimation';
-import styled from 'styled-components';
-import DiscoverFilter from './components/DiscoverFilter';
+
+import styled from "styled-components";
+import Header from "../../shared-components/Header";
+import HeadTitle from "../../shared-components/HeadTitle";
+import DiscoverFilter from "./components/DiscoverFilter";
+import Footer from "../../shared-components/Footer";
+import { Suspense } from "react";
+import LottieAnimation from "./../../shared-components/LottieAnimation";
+
 
 const Container = styled.div`
   margin: 0 auto;
