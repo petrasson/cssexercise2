@@ -70,10 +70,6 @@ const granteeSocialMedia = [
 ];
 
 function ButtonWrapper({ data, position }) {
-  {
-    console.log("data", data);
-  }
-
   const location = useLocation();
 
   if (!data || data.length === 0) {

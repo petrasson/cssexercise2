@@ -30,6 +30,7 @@ const CardWrapper = styled.div`
 `;
 
 function Initiatives({ cards }) {
+  console.log({ cards });
   if (!cards) {
     return null;
   }

@@ -67,7 +67,7 @@ All design was taken from [this Figma file](https://www.figma.com/design/eWP1AMJ
 
 ### Done
 
-#### Add suspense and useTransition to all fetches
+#### Add suspense to all fetches
 
 #### FAQ
 

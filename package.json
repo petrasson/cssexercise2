@@ -35,7 +35,8 @@
     "react-lottie": "^1.2.4",
     "react-responsive": "^10.0.0",
     "react-router-dom": "^6.26.2",
-    "styled-components": "^6.1.13"
+    "styled-components": "^6.1.13",
+    "swr": "^2.2.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",

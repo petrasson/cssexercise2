@@ -58,9 +58,9 @@ function SimilarGrants({ similarGrants, granteesData }) {
       <div className='similar-card-wrapper'>
         {Array.isArray(similarGrants) && similarGrants.length > 0 ? (
           similarGrants.map((card) => {
-            //array with granteesIds for each card
+            // array with granteesIds for each card
             const granteesId = card.grantees_ids;
-            // map each Id and find the matching id in grantee
+            //map each Id and find the matching id in grantee
             const granteeImages = granteesId.map((id) => {
               const grantee = granteesData.find((g) => g.id === id);
               return grantee ? grantee.image_url : null;

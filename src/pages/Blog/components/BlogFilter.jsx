@@ -2,7 +2,7 @@ import styled from "styled-components";
 import FilterControl from "../../../shared-components/FilterControl";
 import BlogPosts from "./BlogPosts";
 import Button from "./../../../shared-components/Button";
-import { useEffect, useState, useTransition } from "react";
+import { useEffect, useState } from "react";
 import { blogs as BlogData } from "../../../../dataBlogs.json";
 // import { startTransition } from "react";
 import LottieAnimation from "../../../shared-components/LottieAnimation";
@@ -19,7 +19,6 @@ const BlogFilterWrapper = styled.div`
 `;
 
 function BlogFilter() {
-  const [isPending, startTransition] = useTransition();
   const [blogPosts, setBlogPosts] = useState([]);
   const [filterType, setFilterType] = useState("All");
   const [filteredBlogPosts, setFilteredBlogPosts] = useState(blogPosts);
@@ -44,15 +43,13 @@ function BlogFilter() {
   const handleFilter = (selectedFilterType) => {
     setFilterType(selectedFilterType);
 
-    startTransition(() => {
-      const newFilteredBlogPosts =
-        selectedFilterType === "All"
-          ? blogPosts
-          : blogPosts.filter((exp) => exp.category === selectedFilterType);
+    const newFilteredBlogPosts =
+      selectedFilterType === "All"
+        ? blogPosts
+        : blogPosts.filter((exp) => exp.category === selectedFilterType);
 
-      setFilteredBlogPosts(newFilteredBlogPosts);
-      setShowAll(false);
-    });
+    setFilteredBlogPosts(newFilteredBlogPosts);
+    setShowAll(false);
   };
 
   //uppdate filtered data
@@ -81,7 +78,7 @@ function BlogFilter() {
             onClick={() => setShowAll(true)}
           />
         )}
-        {isPending && <div>Loading filtered results...</div>}
+        <div>Loading filtered results...</div>
       </BlogFilterWrapper>
     </Suspense>
   );

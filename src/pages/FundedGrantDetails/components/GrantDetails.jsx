@@ -4,16 +4,11 @@ import Button from "../../../shared-components/Button";
 import CardTransactions from "./CardTransactions";
 import ButtonWrapper from "../../../shared-components/ButtonWrapper";
 import SimilarGrants from "./SimilarGrants";
-import LottieAnimation from "../../../shared-components/LottieAnimation";
-import { Suspense } from "react";
+import useSWR from "swr";
 
-import {
-  fetchGrant,
-  fetchTransactions,
-  fetchGrants,
-  fetchGrantees,
-} from "../../../services/Service";
-import { useEffect, useState } from "react";
+const fetcher = (url) => fetch(url).then((res) => res.json());
+
+import { useGrantDetails } from "../../../services/Service";
 
 const GrantDetailsWrapper = styled.div`
   width: 100%;
@@ -164,75 +159,126 @@ const GrantDetailsWrapper = styled.div`
   }
 `;
 
+// fetch grant details
 function GrantDetails({ id }) {
-  const [card, setCard] = useState({});
-  const [similarCards, setSimilarCards] = useState({});
-  const [transactionsData, setTransactionsData] = useState([]); // Här låg felet, det var en {}
-  const [granteesData, setGranteesData] = useState([]);
-  const [similarCardGranteesData, setSimilarCardGranteesData] = useState([]);
+  const {
+    data: grantData,
+    isLoading: grantDataIsLoading,
+    error: grantDataError,
+  } = useGrantDetails(id);
 
-  useEffect(() => {
-    const fetchAllData = async () => {
-      try {
-        // Fetch the main card data by ID
-        const cardData = await fetchGrant(id);
-        setCard(cardData);
+  const teamMembersIds = grantData ? grantData.grantees_ids : null;
+  console.log({ teamMembersIds });
 
-        // Fetch similar cards only if the 'similiar' array exists and has items
-        if (cardData.similiar && cardData.similiar.length > 0) {
-          const similarCardsData = await fetchGrants(cardData.similiar);
-          setSimilarCards(similarCardsData);
-        } else {
-          console.log("No similar card IDs found in cardData.");
-        }
+  // fetch grantee details based on teamIds
+  const {
+    data: granteesDetails,
+    isLoading: isGranteesDetailsLoading,
+    error: granteesDetailsError,
+  } = useSWR(
+    teamMembersIds && Array.isArray(teamMembersIds) && teamMembersIds.length > 0
+      ? `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?ids=${teamMembersIds.join(
+          ","
+        )}`
+      : null,
+    fetcher
+  );
 
-        // Fetch transactions only if the 'transactions' array is present and has items
-        if (cardData.transactions && cardData.transactions.length > 0) {
-          const transactionsData = await fetchTransactions(
-            cardData.transactions
-          );
-          setTransactionsData(transactionsData);
-        } else {
-          console.log("No transaction IDs found in cardData.");
-        }
+  console.log("granteesDetails:", granteesDetails);
 
-        // Fetch grandee data to show who has been part of this project only, name, image
-        if (cardData.grantees_ids && cardData.grantees_ids.length > 0) {
-          const granteesData = await fetchGrantees(cardData.grantees_ids);
-          setGranteesData(granteesData);
-        } else {
-          console.log("No granteesIDs found in cardData.");
-        }
-      } catch (error) {
-        // Error handling
-        console.error("Error fetching data:", error);
-      }
-    };
+  /***********SIMILAR PROJECTS***********/
 
-    fetchAllData(); // Call the fetchAllData function when the component mounts or when 'id' changes
-  }, [id]); // retun when 'id' changes
+  const similarProjectsIds = grantData ? grantData.similiar : null;
+  console.log("similarProjectsIds:", similarProjectsIds);
 
-  // fetch the images of grantees to render on each similar card
-  useEffect(() => {
-    const fetchSimilarCardGrantees = async () => {
-      if (Array.isArray(similarCards) && similarCards.length > 0) {
-        const granteeIds = similarCards.flatMap(
-          (card) => card.grantees_ids || []
-        );
-        if (granteeIds.length > 0) {
-          const similarCardGranteesData = await fetchGrantees(granteeIds);
-          setSimilarCardGranteesData(similarCardGranteesData);
-        } else {
-          console.log("No granteesIDs found in similarCards.");
-        }
-      }
-    };
+  //fetch similar project data
+  const {
+    data: similarGrantsDetails,
+    isLoading: isSimilarGrantsDetailsLoading,
+    error: similarGrantsDetailsError,
+  } = useSWR(
+    similarProjectsIds &&
+      Array.isArray(similarProjectsIds) &&
+      similarProjectsIds.length > 0
+      ? `https://nextjs-test-beryl-gamma.vercel.app/api/grants?ids=${similarProjectsIds.join(
+          ","
+        )}`
+      : null,
+    fetcher
+  );
+  console.log("similarGrantsDetails:", similarGrantsDetails);
 
-    fetchSimilarCardGrantees(); // Fetch grantee data for similar cards when similarCards changes
-  }, [similarCards]);
+  const similarGranteesIds = similarGrantsDetails
+    ? similarGrantsDetails.grants.flatMap((grant) => grant.grantees_ids)
+    : null;
+
+  //fetch grantee data based on similar project data
 
   const {
-    // grantees_ids,
+    data: similarGrantsGranteesDetails,
+    isLoading: isSimilarGrantsGranteesDetailsLoading,
+    error: similarGrantsGranteesDetailsError,
+  } = useSWR(
+    similarGranteesIds &&
+      Array.isArray(similarGranteesIds) &&
+      similarGranteesIds.length > 0
+      ? `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?ids=${similarGranteesIds.join(
+          ","
+        )}`
+      : null,
+    fetcher
+  );
+  console.log("similarGrantsGranteesDetails:", similarGrantsGranteesDetails);
+
+  /***********TRANSACTIONS***********/
+
+  const transactoinsIds = grantData ? grantData.transactions : null;
+
+  console.log({ transactoinsIds });
+
+  //fetch transactions data based on the transactionsId in grantData
+
+  const {
+    data: transactionsDetails,
+    isLoading: isTransactionsDetailsLoading,
+    error: transactionsDetailsError,
+  } = useSWR(
+    transactoinsIds &&
+      Array.isArray(transactoinsIds) &&
+      transactoinsIds.length > 0
+      ? `https://nextjs-test-beryl-gamma.vercel.app/api/transactions?ids=${transactoinsIds.join(
+          ","
+        )}`
+      : null,
+    fetcher
+  );
+  console.log("transactionsDetails:", transactionsDetails);
+
+  const transactionsData = transactionsDetails.transactions;
+  console.log("transactionsData:", transactionsData);
+
+  /************ ERRORS AND LOADING HANDELING *************/
+
+  if (grantDataError) return <div>Error loading grant details</div>;
+  if (granteesDetailsError) return <div>Error loading grantees details</div>;
+  if (similarGrantsDetailsError)
+    return <div>Error loading similar grants details</div>;
+  if (similarGrantsGranteesDetailsError)
+    return <div>Error loading grantees details for each grant card</div>;
+  if (transactionsDetailsError)
+    return <div>Error loading transactions details </div>;
+
+  if (
+    grantDataIsLoading ||
+    isGranteesDetailsLoading ||
+    isSimilarGrantsDetailsLoading ||
+    isSimilarGrantsGranteesDetailsLoading ||
+    isTransactionsDetailsLoading
+  )
+    return <div>Loading...</div>;
+
+  const {
+    //grantees_ids,
     category,
     title,
     completed,
@@ -241,101 +287,99 @@ function GrantDetails({ id }) {
     purpose,
     execution,
     payment_structure,
-  } = card;
+  } = grantData;
 
   return (
-    <Suspense fallback={<LottieAnimation />}>
-      <GrantDetailsWrapper>
-        <>
-          <p className='card-category'>{category}</p>
-          <HeadTitle text={title} />
-          <div className='project-detail-wrapper'>
-            <div className='row-wrapper'>
-              {completed ? (
-                <>
-                  <p className='completed'>
-                    <p className='text'>Completed</p>
-                    <img
-                      src='/images/check.svg'
-                      alt='check icon'
-                      className='check-icon'
-                    />
-                  </p>
-                </>
-              ) : (
-                <p className='open'>Open</p>
-              )}
-              <p className='funding-amount'>Funding amount:</p>
-              <p>${amountFrom}</p>
-            </div>
-            <Button
-              type='accent'
-              text='Project link'
-              onClick={() => console.log("ProjectLink")}
-              image={true}
-            />
+    <GrantDetailsWrapper>
+      <>
+        <p className='card-category'>{category}</p>
+        <HeadTitle text={title} />
+        <div className='project-detail-wrapper'>
+          <div className='row-wrapper'>
+            {completed ? (
+              <>
+                <p className='completed'>
+                  <p className='text'>Completed</p>
+                  <img
+                    src='/images/check.svg'
+                    alt='check icon'
+                    className='check-icon'
+                  />
+                </p>
+              </>
+            ) : (
+              <p className='open'>Open</p>
+            )}
+            <p className='funding-amount'>Funding amount:</p>
+            <p>${amountFrom}</p>
           </div>
-          <h3 className='sub-title'>Team</h3>
-          <ButtonWrapper grantees={granteesData} position='link-to-profile' />
-          <hr></hr>
-          <div className='text-wrapper'>
-            <h3 className='sub-title'>Description</h3>
-            <p>{description}</p>
-            <h3 className='sub-title'>Purpose</h3>
-            <p>{purpose}</p>
-            <h3 className='sub-title'>Execution</h3>
-            <p>{execution}</p>
-            <h3 className='sub-title'>Payment Structure</h3>
-            <p>{payment_structure}</p>
-            <h3 className='sub-title'>Useful Links</h3>
-            <div className='link-wrapper'>
-              <div className='link-row-wrapper'>
-                <p className='links'>www.granttileproject.com</p>
-                <img
-                  src='/images/external-link-purple.svg'
-                  aria-hidden='true'
-                  className='external-link-purple'
-                />
-              </div>
-              <div className='link-row-wrapper'>
-                <p className='links'>www.granttileproject.com</p>
-                <img
-                  src='/images/external-link-purple.svg'
-                  aria-hidden='true'
-                  className='external-link-purple'
-                />
-              </div>
-              <div className='link-row-wrapper'>
-                <p className='links'>www.granttileproject.com</p>
-                <img
-                  src='/images/external-link-purple.svg'
-                  aria-hidden='true'
-                  className='external-link-purple'
-                />
-              </div>
-            </div>
-          </div>
-          <h3 className='sub-title funding'>Funding Transactions</h3>
-
-          {transactionsData?.map((card) => {
-            return (
-              <CardTransactions
-                key={card?.id}
-                title={card.title}
-                date={card?.date}
-                description={card?.description}
-                amount={card?.amound}
-              />
-            );
-          })}
-
-          <SimilarGrants
-            similarGrants={similarCards}
-            granteesData={similarCardGranteesData}
+          <Button
+            type='accent'
+            text='Project link'
+            onClick={() => console.log("ProjectLink")}
+            image={true}
           />
-        </>
-      </GrantDetailsWrapper>
-    </Suspense>
+        </div>
+        <h3 className='sub-title'>Team</h3>
+        <ButtonWrapper data={granteesDetails} position='link-to-profile' />
+        <hr></hr>
+        <div className='text-wrapper'>
+          <h3 className='sub-title'>Description</h3>
+          <p>{description}</p>
+          <h3 className='sub-title'>Purpose</h3>
+          <p>{purpose}</p>
+          <h3 className='sub-title'>Execution</h3>
+          <p>{execution}</p>
+          <h3 className='sub-title'>Payment Structure</h3>
+          <p>{payment_structure}</p>
+          <h3 className='sub-title'>Useful Links</h3>
+          <div className='link-wrapper'>
+            <div className='link-row-wrapper'>
+              <p className='links'>www.granttileproject.com</p>
+              <img
+                src='/images/external-link-purple.svg'
+                aria-hidden='true'
+                className='external-link-purple'
+              />
+            </div>
+            <div className='link-row-wrapper'>
+              <p className='links'>www.granttileproject.com</p>
+              <img
+                src='/images/external-link-purple.svg'
+                aria-hidden='true'
+                className='external-link-purple'
+              />
+            </div>
+            <div className='link-row-wrapper'>
+              <p className='links'>www.granttileproject.com</p>
+              <img
+                src='/images/external-link-purple.svg'
+                aria-hidden='true'
+                className='external-link-purple'
+              />
+            </div>
+          </div>
+        </div>
+        <h3 className='sub-title funding'>Funding Transactions</h3>
+
+        {transactionsData?.map((card) => {
+          return (
+            <CardTransactions
+              key={card?.id}
+              title={card.title}
+              date={card?.date}
+              description={card?.description}
+              amount={card?.amound}
+            />
+          );
+        })}
+
+        <SimilarGrants
+          similarGrants={similarGrantsDetails}
+          granteesData={similarGrantsGranteesDetails}
+        />
+      </>
+    </GrantDetailsWrapper>
   );
 }
 

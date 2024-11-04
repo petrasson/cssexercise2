@@ -1,40 +1,28 @@
 import styled from "styled-components";
 import FilterControl from "../../../shared-components/FilterControl";
 import Initiatives from "./Initiatives";
-import { useEffect, useState, useTransition, Suspense } from "react";
-import { fetchAllInitiatives } from "../../../services/Service";
-import LottieAnimation from "../../../shared-components/LottieAnimation";
-// import { useQuery } from 'react-query'
+import { useState, useEffect } from "react";
+import { useAllInitiatives } from "../../../services/Service";
 
 const DiscoverFilterWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
-
 function DiscoverFilter() {
-  // const {  data } = useQuery('initiatives', fetchAllInitiatives)
-
-  const [isPending, startTransition] = useTransition();
-  const [initiatives, setInitiatives] = useState([]);
+  const { data, isLoading, error } = useAllInitiatives();
+  const initiatives = data?.initiatives || [];
   const [filterType, setFilterType] = useState("All");
-  const [filteredInitiatives, setFilteredInitiatives] = useState([]);
-
-  //fetch data initially
+  const [filteredInitiatives, setFilteredInitiatives] = useState(initiatives);
 
   useEffect(() => {
-    const getInitiatives = async () => {
-      const data = await fetchAllInitiatives();
-      if (data && data.initiatives) {
-        setInitiatives(data.initiatives);
-        setFilteredInitiatives(data.initiatives);
-      } else {
-        console.error("Unexpected data format:", data);
-      }
-    };
+    if (data?.initiatives) {
+      setFilteredInitiatives(data.initiatives);
+    }
+  }, [data]);
 
-    getInitiatives();
-  }, []);
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error loading data.</div>;
 
   /*** HANDLE AND UPDATE FILTERED DATA BASED ON STATUS ***/
   const status = initiatives.map((initiative) => initiative.status);
@@ -53,35 +41,26 @@ function DiscoverFilter() {
 
     //adding transition to ensure that the UI stays responsive if the filtering operation takes time
 
-    startTransition(() => {
-      let newFilteredInitiatives = initiatives;
+    let newFilteredInitiatives = initiatives;
 
-      if (filterType !== "All") {
-        newFilteredInitiatives = newFilteredInitiatives.filter(
-          (initiative) => initiative.status === filterType
-        );
-      }
-      setFilteredInitiatives(newFilteredInitiatives);
-    });
+    if (filterType !== "All") {
+      newFilteredInitiatives = newFilteredInitiatives.filter(
+        (initiative) => initiative.status === filterType
+      );
+    }
+    setFilteredInitiatives(newFilteredInitiatives);
   };
 
   return (
-    <Suspense fallback={<LottieAnimation />}>
-      <DiscoverFilterWrapper>
-        <FilterControl
-          handleFilter={handleFilter}
-          filterType={filterType}
-          filterOptions={filterOptions}
-          withToggle={false}
-        />
-
-        {isPending ? (
-          <div>Filtering...</div> // showing during filtering transitions
-        ) : (
-          <Initiatives cards={filteredInitiatives} />
-        )}
-      </DiscoverFilterWrapper>
-    </Suspense>
+    <DiscoverFilterWrapper>
+      <FilterControl
+        handleFilter={handleFilter}
+        filterType={filterType}
+        filterOptions={filterOptions}
+        withToggle={false}
+      />
+      <Initiatives cards={filteredInitiatives} />
+    </DiscoverFilterWrapper>
   );
 }
 
