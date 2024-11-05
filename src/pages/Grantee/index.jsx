@@ -1,19 +1,17 @@
-
-import styled from "styled-components";
-import Header from "../../shared-components/Header";
-import ButtonWrapper from "../../shared-components/ButtonWrapper";
-import BackButton from "../../shared-components/BackButton";
-import Footer from "../../shared-components/Footer";
-import HeadTitle from "../../shared-components/HeadTitle";
-import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
-import Card from "../../shared-components/Card";
-import { Suspense } from "react";
-import LottieAnimation from "../../shared-components/LottieAnimation";
-import useSWR from "swr";
+import { Suspense } from 'react';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
+import styled from 'styled-components';
+import useSWR from 'swr';
+import BackButton from '../../shared-components/BackButton';
+import ButtonWrapper from '../../shared-components/ButtonWrapper';
+import Card from '../../shared-components/Card';
+import Footer from '../../shared-components/Footer';
+import HeadTitle from '../../shared-components/HeadTitle';
+import Header from '../../shared-components/Header';
+import LottieAnimation from '../../shared-components/LottieAnimation';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
-import { useGranteeDetails } from "../../services/Service";
-
+import { useGranteeDetails } from '../../services/Service';
 
 const Container = styled.div`
   margin: 0 auto;
@@ -108,10 +106,10 @@ function Grantee() {
   } = useSWR(
     grantIds && Array.isArray(grantIds) && grantIds.length > 0
       ? `https://nextjs-test-beryl-gamma.vercel.app/api/grants?ids=${grantIds.join(
-          ","
+          ',',
         )}`
       : null,
-    fetcher
+    fetcher,
   );
   const granteesIds = grantsDetails
     ? grantsDetails.grants.flatMap((grant) => grant.grantees_ids)
@@ -124,12 +122,11 @@ function Grantee() {
   } = useSWR(
     granteesIds && Array.isArray(granteesIds) && granteesIds.length > 0
       ? `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?ids=${granteesIds.join(
-          ","
+          ',',
         )}`
       : null,
-    fetcher
+    fetcher,
   );
-
 
   if (granteeDataError || grantsDetailsError || granteesDetailsError)
     return <div>Error loading data</div>;
@@ -139,7 +136,6 @@ function Grantee() {
     isgranteesDetailsLoading
   )
     return <div>Loading...</div>;
-
 
   return (
     <div className="page-wrapper">
@@ -160,27 +156,7 @@ function Grantee() {
             <h3 className="sub-title">About</h3>
             <p className="grant-text">{granteeData?.about}</p>
             <h3 className="sub-title">Links</h3>
-            <div className="link-wrapper">
-              <ButtonWrapper
-
-                );
-                return grantee ? grantee.image_url : null;
-              });
-
-              return (
-                <StyledLink key={card.id} to={`/card/${card.id}`}>
-                  <Card
-                    key={card?.id}
-                    category={card?.category}
-                    cardTitle={card?.title}
-                    fundingAmountFrom={card?.amountFrom}
-                    fundingAmountTo={card?.amountTo}
-                    description={card?.description}
-                    grantees={granteeImageUrls}
-                  />
-                </StyledLink>
-              );
-            })}
+            <div className="link-wrapper"></div>
           </div>
         </Suspense>
       </Container>
