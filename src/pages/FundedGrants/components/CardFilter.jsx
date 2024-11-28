@@ -1,8 +1,7 @@
 import CardHolder from "./CardHolder";
 import FilterControl from "../../../shared-components/FilterControl";
 import { useEffect, useState } from "react";
-// import { useAllGrants, fetchGranteeById } from "../../../services/Service"; remove fetch here, see below
-import { useAllGrants } from "../../../services/Service";
+import { useAllGrants, fetchGranteeById } from "../../../services/Service";
 
 import styled from "styled-components";
 
@@ -25,29 +24,28 @@ function CardFilter() {
   const [filteredData, setFilteredData] = useState([]); //fetch all grants data
   const [filterType, setFilterType] = useState("All");
   const [filterCompleted, setFilteredCompleted] = useState(true);
-  // const [granteesData, setGranteesData] = useState([]);
+  const [granteesData, setGranteesData] = useState([]);
 
   useEffect(() => {
     if (grants.length > 0) {
       setFilteredData(grants);
 
-      // Fetch grantee details individually for each grantee ID
-      //     const fetchGrantees = async () => {
-      //       const allGranteeData = await Promise.all(
-      //         grants.flatMap((grant) =>
-      //           (grant.grantees_ids || []).map(async (id) => {
-      //             const grantee = await fetchGranteeById(id);
+      //   Fetch grantee details individually for each grantee ID
+      const fetchGrantees = async () => {
+        const allGranteeData = await Promise.all(
+          grants.flatMap((grant) =>
+            (grant.grantees_ids || []).map(async (id) => {
+              const grantee = await fetchGranteeById(id);
+              return grantee;
+            })
+          )
+        );
 
-      //             return grantee;
-      //           })
-      //         )
-      //       );
-
-      //       // Filter out any `null` results (in case of fetch errors) and update state
-      //       setGranteesData(allGranteeData.filter(Boolean));
-      //       console.log({ allGranteeData });
-      //     };
-      //     fetchGrantees();
+        // Filter out any `null` results (in case of fetch errors) and update state
+        setGranteesData(allGranteeData.filter(Boolean));
+        console.log({ allGranteeData });
+      };
+      fetchGrantees();
     }
   }, [grants]);
 
@@ -87,7 +85,6 @@ function CardFilter() {
     text: category,
     value: category,
   }));
-  // console.log("granteesData", granteesData);
   return (
     <CardFilterWrapper>
       <FilterControl
@@ -97,8 +94,7 @@ function CardFilter() {
         withToggle={true}
         handleToggle={() => handleToggle(!filterCompleted)}
       />
-      {/* <CardHolder cards={filteredData} granteeData={granteesData} /> */}
-      <CardHolder cards={filteredData} />
+      <CardHolder cards={filteredData} granteeData={granteesData} />
     </CardFilterWrapper>
   );
 }

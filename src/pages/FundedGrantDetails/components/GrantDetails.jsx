@@ -8,7 +8,7 @@ import useSWR from "swr";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
-import { useGrantDetails } from "../../../services/Service";
+import { useGrantDetails, useGranteeDetailss } from "../../../services/Service";
 
 const GrantDetailsWrapper = styled.div`
   width: 100%;
@@ -159,8 +159,9 @@ const GrantDetailsWrapper = styled.div`
   }
 `;
 
-// fetch grant details
 function GrantDetails({ id }) {
+  // fetch grant details
+
   const {
     data: grantData,
     isLoading: grantDataIsLoading,
@@ -170,22 +171,22 @@ function GrantDetails({ id }) {
 
   const teamMembersIds = grantData ? grantData.grantees_ids : null;
   console.log({ teamMembersIds });
+  let teamIdArray =
+    teamMembersIds && Array.isArray(teamMembersIds) && teamMembersIds.length > 0
+      ? teamMembersIds.join(",")
+      : null;
 
-  // // fetch grantee details based on teamIds
-  // const {
-  //   data: granteesDetails,
-  //   isLoading: isGranteesDetailsLoading,
-  //   error: granteesDetailsError,
-  // } = useSWR(
-  //   teamMembersIds && Array.isArray(teamMembersIds) && teamMembersIds.length > 0
-  //     ? `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?ids=${teamMembersIds.join(
-  //         ","
-  //       )}`
-  //     : null,
-  //   fetcher
-  // );
+  console.log({ teamIdArray });
+  // fetch grantee details based on teamIds
 
-  // console.log("granteesDetails:", granteesDetails);
+  const {
+    data: granteesDetails,
+    isLoading: isGranteesDetailsLoading,
+    error: granteesDetailsError,
+  } = useGranteeDetailss(teamIdArray);
+  console.log({ granteesDetails });
+
+  console.log("granteesDetails:", granteesDetails);
 
   /***********SIMILAR PROJECTS***********/
 

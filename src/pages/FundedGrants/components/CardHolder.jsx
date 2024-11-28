@@ -35,20 +35,21 @@ const CardWrapper = styled.div`
   }
 `;
 
-// function CardHolder({ cards, granteeData }) {
-function CardHolder({ cards }) {
+function CardHolder({ cards, granteeData }) {
+  console.log("granteeDataWorks", granteeData);
   const location = useLocation();
 
   return (
     <CardWrapper>
       {cards.map((card) => {
-        // const GranteesId = card.grantees_ids;
-        // // Get Images of the grantees for this card
-        // const granteeImages = GranteesId.map((id) => {
-        //   //find the IDs in granteesData that match each granteesIds in my array and return it's image.
-        //   const grantee = granteeData.find((g) => g.id === id);
-        //   return grantee ? grantee.image_url : null;
-        // });
+        const GranteesId = card.grantees_ids;
+        // Get Images of the grantees for this card
+        const granteeImages = GranteesId.map((id) => {
+          //find the IDs in granteesData that match each granteesIds in my array and return it's image.
+          const grantee = granteeData.find((g) => g.id === id);
+          return grantee ? grantee.image_url : null;
+        });
+        console.log("granteeImages", granteeImages);
 
         return (
           <StyledLink
@@ -62,7 +63,7 @@ function CardHolder({ cards }) {
               fundingAmountFrom={card.amountFrom}
               fundingAmountTo={card.amountTo}
               description={card.description}
-              // grantees={granteeImages}
+              grantees={granteeImages}
             />
           </StyledLink>
         );

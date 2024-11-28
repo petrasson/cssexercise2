@@ -44,12 +44,14 @@ export const useGrantDetails = (id) => {
 };
 
 // fetch one detailed grantee based on id
-export const useGranteeDetails = (id) => {
+export const useGranteeDetails = (ids) => {
+  console.log({ ids });
   const { data, error } = useSWR(
-    `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?id=${id}`,
+    `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?id=${ids}`,
     fetcher,
     { suspense: true }
   );
+  console.log({ data });
   return {
     data,
     error,
@@ -59,18 +61,20 @@ export const useGranteeDetails = (id) => {
 
 //test
 
-// export const useGranteeDetailss = () => {
-//   const { data, error } = useSWR(
-//     `https://nextjs-test-beryl-gamma.vercel.app/api/grants?ids=1,2,3`,
-//     fetcher,
-//     { suspense: true }
-//   );
-//   return {
-//     data,
-//     error,
-//     isLoading: !error && !data,
-//   };
-// };
+export const useGranteeDetailss = () => {
+  const { data, error } = useSWR(
+    `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?ids=76d65c26-f784-44a2-ac19-586678f7c2f2, 3958dc9e-742f-4377-85e9-fec4b6a6442a`,
+    fetcher,
+    { suspense: true }
+  );
+  console.log({ data });
+
+  return {
+    data,
+    error,
+    isLoading: !error && !data,
+  };
+};
 
 // fetch some grants
 

@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const CardWrapper = styled.div`
@@ -90,7 +89,7 @@ function Card({
   fundingAmountFrom,
   fundingAmountTo,
   description,
-  // grantees,
+  grantees,
 }) {
   return (
     <CardWrapper>
@@ -101,17 +100,17 @@ function Card({
       </p>
       <p className='card-text'>{description}</p>
       <div className='avatar-container'>
-        {/* {grantees.slice(0, 3).map((attendee, index) => (
-          <p className="image-avatar-wrapper" key={index}>
-            <img src={`${attendee}`} alt={attendee} className="avatar-image" />
+        {grantees.slice(0, 3).map((attendee, index) => (
+          <p className='image-avatar-wrapper' key={index}>
+            <img src={`${attendee}`} alt={attendee} className='avatar-image' />
           </p>
         ))}
 
         {grantees.length > 3 && (
-          <div className="purple-circle">
-            <p className="attendee-number">+{grantees.length - 3}</p>
+          <div className='purple-circle'>
+            <p className='attendee-number'>+{grantees.length - 3}</p>
           </div>
-        )} */}
+        )}
       </div>
     </CardWrapper>
   );
