@@ -1,10 +1,8 @@
-
 import styled from "styled-components";
 import FilterControl from "../../../shared-components/FilterControl";
 import Initiatives from "./Initiatives";
 import { useState, useEffect } from "react";
 import { useAllInitiatives } from "../../../services/Service";
-
 
 const DiscoverFilterWrapper = styled.div`
   display: flex;
@@ -12,7 +10,6 @@ const DiscoverFilterWrapper = styled.div`
   align-items: center;
 `;
 function DiscoverFilter() {
-
   const { data, isLoading, error } = useAllInitiatives();
   const initiatives = data?.initiatives || [];
   const [filterType, setFilterType] = useState("All");
@@ -26,7 +23,6 @@ function DiscoverFilter() {
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error loading data.</div>;
-
 
   //fetch data initially
   /*** HANDLE AND UPDATE FILTERED DATA BASED ON STATUS ***/
@@ -48,18 +44,15 @@ function DiscoverFilter() {
 
     let newFilteredInitiatives = initiatives;
 
-
     if (filterType !== "All") {
       newFilteredInitiatives = newFilteredInitiatives.filter(
         (initiative) => initiative.status === filterType
-
       );
     }
     setFilteredInitiatives(newFilteredInitiatives);
   };
 
   return (
-
     <DiscoverFilterWrapper>
       <FilterControl
         handleFilter={handleFilter}
@@ -69,7 +62,6 @@ function DiscoverFilter() {
       />
       <Initiatives cards={filteredInitiatives} />
     </DiscoverFilterWrapper>
-
   );
 }
 

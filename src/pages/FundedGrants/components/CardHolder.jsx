@@ -1,6 +1,6 @@
-import Card from '../../../shared-components/Card';
-import styled from 'styled-components';
-import { Link, useLocation } from 'react-router-dom';
+import Card from "../../../shared-components/Card";
+import styled from "styled-components";
+import { Link, useLocation } from "react-router-dom";
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -35,19 +35,20 @@ const CardWrapper = styled.div`
   }
 `;
 
-function CardHolder({ cards, granteeData }) {
+// function CardHolder({ cards, granteeData }) {
+function CardHolder({ cards }) {
   const location = useLocation();
 
   return (
     <CardWrapper>
       {cards.map((card) => {
-        const GranteesId = card.grantees_ids;
-        // Get Images of the grantees for this card
-        const granteeImages = GranteesId.map((id) => {
-          //find the IDs in granteesData that match each granteesIds in my array and return it's image.
-          const grantee = granteeData.find((g) => g.id === id);
-          return grantee ? grantee.image_url : null;
-        });
+        // const GranteesId = card.grantees_ids;
+        // // Get Images of the grantees for this card
+        // const granteeImages = GranteesId.map((id) => {
+        //   //find the IDs in granteesData that match each granteesIds in my array and return it's image.
+        //   const grantee = granteeData.find((g) => g.id === id);
+        //   return grantee ? grantee.image_url : null;
+        // });
 
         return (
           <StyledLink
@@ -61,7 +62,7 @@ function CardHolder({ cards, granteeData }) {
               fundingAmountFrom={card.amountFrom}
               fundingAmountTo={card.amountTo}
               description={card.description}
-              grantees={granteeImages}
+              // grantees={granteeImages}
             />
           </StyledLink>
         );

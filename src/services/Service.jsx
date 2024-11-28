@@ -1,12 +1,12 @@
-import useSWR from 'swr';
+import useSWR from "swr";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export const useAllInitiatives = () => {
   const { data, error } = useSWR(
-    'https://nextjs-test-beryl-gamma.vercel.app/api/initiatives',
+    "https://nextjs-test-beryl-gamma.vercel.app/api/initiatives",
     fetcher,
-    { suspense: true },
+    { suspense: true }
   );
   return {
     data,
@@ -20,7 +20,7 @@ export const useAllGrants = () => {
   const { data, error } = useSWR(
     `https://nextjs-test-beryl-gamma.vercel.app/api/grants`,
     fetcher,
-    { suspense: true },
+    { suspense: true }
   );
   return {
     data,
@@ -34,7 +34,7 @@ export const useGrantDetails = (id) => {
   const { data, error } = useSWR(
     `https://nextjs-test-beryl-gamma.vercel.app/api/grants?id=${id}`,
     fetcher,
-    { suspense: true },
+    { suspense: true }
   );
   return {
     data,
@@ -44,12 +44,11 @@ export const useGrantDetails = (id) => {
 };
 
 // fetch one detailed grantee based on id
-
 export const useGranteeDetails = (id) => {
   const { data, error } = useSWR(
     `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?id=${id}`,
     fetcher,
-    { suspense: true },
+    { suspense: true }
   );
   return {
     data,
@@ -84,14 +83,14 @@ export const useGrantsDetails = (grantsIds) => {
           Promise.all(
             grantsIds.map((id) =>
               fetcher(
-                `https://nextjs-test-beryl-gamma.vercel.app/api/grants?id=${id}`,
-              ),
-            ),
+                `https://nextjs-test-beryl-gamma.vercel.app/api/grants?id=${id}`
+              )
+            )
           )
       : null,
-    { suspense: true },
+    { suspense: true }
   );
-  console.log({ data });
+  console.log(data, "users");
   return {
     data,
     error,
@@ -104,7 +103,7 @@ export const fetchGrants = async (grantsIds) => {
   if (!grantsIds || grantsIds.length === 0) return [];
   const promises = grantsIds.map(async (id) => {
     const res = await fetch(
-      `https://nextjs-test-beryl-gamma.vercel.app/api/grants?id=${id}`,
+      `https://nextjs-test-beryl-gamma.vercel.app/api/grants?id=${id}`
     );
     if (!res.ok) throw new Error(`Failed to fetch cards with id ${id}`);
     return res.json();
@@ -146,12 +145,12 @@ export const fetchGrants = async (grantsIds) => {
 export const fetchTransactionById = async (id) => {
   try {
     const response = await fetch(
-      `https://nextjs-test-beryl-gamma.vercel.app/api/transactions?id=${id}`,
+      `https://nextjs-test-beryl-gamma.vercel.app/api/transactions?id=${id}`
     );
 
     if (!response.ok) {
       console.error(
-        `Failed to fetch transaction with ID ${id}: ${response.statusText}`,
+        `Failed to fetch transaction with ID ${id}: ${response.statusText}`
       );
       return null;
     }
@@ -169,7 +168,7 @@ export const fetchGrantees = async (userIds) => {
   if (!userIds || userIds.length === 0) return [];
   const promises = userIds.map(async (id) => {
     const res = await fetch(
-      `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?id=${id}`,
+      `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?id=${id}`
     );
     if (!res.ok) throw new Error(`Failed to fetch userinfo with id ${id}`);
     const userData = await res.json();
@@ -217,13 +216,13 @@ export const fetchGrantees = async (userIds) => {
 export const fetchGranteeById = async (id) => {
   try {
     const response = await fetch(
-      `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?id=${id}`,
+      `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?id=${id}`
     );
 
     // Check if the response is OK (status 200-299)
     if (!response.ok) {
       console.error(
-        `Error fetching grantee with ID ${id}: ${response.status} ${response.statusText}`,
+        `Error fetching grantee with ID ${id}: ${response.status} ${response.statusText}`
       );
       return null;
     }
@@ -241,12 +240,12 @@ export const fetchGranteeById = async (id) => {
 export const fetchGrantById = async (id) => {
   try {
     const response = await fetch(
-      `https://nextjs-test-beryl-gamma.vercel.app/api/grants?id=${id}`,
+      `https://nextjs-test-beryl-gamma.vercel.app/api/grants?id=${id}`
     );
 
     if (!response.ok) {
       console.error(
-        `Error fetching grant with ID ${id}: ${response.status} ${response.statusText}`,
+        `Error fetching grant with ID ${id}: ${response.status} ${response.statusText}`
       );
       return null;
     }
@@ -264,15 +263,15 @@ export const fetchGrantById = async (id) => {
 export const fetchGrantee = async (id) => {
   try {
     const res = await fetch(
-      `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?id=${id}`,
+      `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?id=${id}`
     );
 
-    if (!res.ok) throw new Error('Failed to fetch user data');
+    if (!res.ok) throw new Error("Failed to fetch user data");
 
     const data = await res.json();
     return data;
   } catch (error) {
-    console.error('Error in fetchGrant:', error);
+    console.error("Error in fetchGrant:", error);
     throw error;
   }
 };

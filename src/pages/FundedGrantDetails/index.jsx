@@ -1,4 +1,3 @@
-
 import styled from "styled-components";
 import Header from "../../shared-components/Header";
 import BackButton from "../../shared-components/BackButton";
@@ -8,7 +7,6 @@ import Footer from "../../shared-components/Footer";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, Suspense } from "react";
 import LottieAnimation from "../../shared-components/LottieAnimation";
-
 
 const Container = styled.div`
   margin: 0 auto;
@@ -40,7 +38,7 @@ function FundedGrantDetails() {
   }, [id]);
 
   return (
-    <div className="page-wrapper">
+    <div className='page-wrapper'>
       <Header />
       <Container>
         {canGoBack && (

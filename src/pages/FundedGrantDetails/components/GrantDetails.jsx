@@ -1,4 +1,3 @@
-
 import styled from "styled-components";
 import HeadTitle from "../../../shared-components/HeadTitle";
 import Button from "../../../shared-components/Button";
@@ -162,123 +161,122 @@ const GrantDetailsWrapper = styled.div`
 
 // fetch grant details
 function GrantDetails({ id }) {
-
   const {
     data: grantData,
     isLoading: grantDataIsLoading,
     error: grantDataError,
   } = useGrantDetails(id);
+  console.log({ grantData });
 
   const teamMembersIds = grantData ? grantData.grantees_ids : null;
   console.log({ teamMembersIds });
 
-  // fetch grantee details based on teamIds
-  const {
-    data: granteesDetails,
-    isLoading: isGranteesDetailsLoading,
-    error: granteesDetailsError,
-  } = useSWR(
-    teamMembersIds && Array.isArray(teamMembersIds) && teamMembersIds.length > 0
-      ? `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?ids=${teamMembersIds.join(
-          ","
-        )}`
-      : null,
-    fetcher
-  );
+  // // fetch grantee details based on teamIds
+  // const {
+  //   data: granteesDetails,
+  //   isLoading: isGranteesDetailsLoading,
+  //   error: granteesDetailsError,
+  // } = useSWR(
+  //   teamMembersIds && Array.isArray(teamMembersIds) && teamMembersIds.length > 0
+  //     ? `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?ids=${teamMembersIds.join(
+  //         ","
+  //       )}`
+  //     : null,
+  //   fetcher
+  // );
 
-
-  console.log("granteesDetails:", granteesDetails);
+  // console.log("granteesDetails:", granteesDetails);
 
   /***********SIMILAR PROJECTS***********/
 
-  const similarProjectsIds = grantData ? grantData.similiar : null;
-  console.log("similarProjectsIds:", similarProjectsIds);
+  // const similarProjectsIds = grantData ? grantData.similiar : null;
+  // console.log("similarProjectsIds:", similarProjectsIds);
 
-  //fetch similar project data
-  const {
-    data: similarGrantsDetails,
-    isLoading: isSimilarGrantsDetailsLoading,
-    error: similarGrantsDetailsError,
-  } = useSWR(
-    similarProjectsIds &&
-      Array.isArray(similarProjectsIds) &&
-      similarProjectsIds.length > 0
-      ? `https://nextjs-test-beryl-gamma.vercel.app/api/grants?ids=${similarProjectsIds.join(
-          ","
-        )}`
-      : null,
-    fetcher
-  );
-  console.log("similarGrantsDetails:", similarGrantsDetails);
+  // //fetch similar project data
+  // const {
+  //   data: similarGrantsDetails,
+  //   isLoading: isSimilarGrantsDetailsLoading,
+  //   error: similarGrantsDetailsError,
+  // } = useSWR(
+  //   similarProjectsIds &&
+  //     Array.isArray(similarProjectsIds) &&
+  //     similarProjectsIds.length > 0
+  //     ? `https://nextjs-test-beryl-gamma.vercel.app/api/grants?ids=${similarProjectsIds.join(
+  //         ","
+  //       )}`
+  //     : null,
+  //   fetcher
+  // );
+  // console.log("similarGrantsDetails:", similarGrantsDetails);
 
-  const similarGranteesIds = similarGrantsDetails
-    ? similarGrantsDetails.grants.flatMap((grant) => grant.grantees_ids)
-    : null;
+  // const similarGranteesIds = similarGrantsDetails
+  //   ? similarGrantsDetails.grants.flatMap((grant) => grant.grantees_ids)
+  //   : null;
 
   //fetch grantee data based on similar project data
 
-  const {
-    data: similarGrantsGranteesDetails,
-    isLoading: isSimilarGrantsGranteesDetailsLoading,
-    error: similarGrantsGranteesDetailsError,
-  } = useSWR(
-    similarGranteesIds &&
-      Array.isArray(similarGranteesIds) &&
-      similarGranteesIds.length > 0
-      ? `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?ids=${similarGranteesIds.join(
-          ","
-        )}`
-      : null,
-    fetcher
-  );
-  console.log("similarGrantsGranteesDetails:", similarGrantsGranteesDetails);
+  // const {
+  //   data: similarGrantsGranteesDetails,
+  //   isLoading: isSimilarGrantsGranteesDetailsLoading,
+  //   error: similarGrantsGranteesDetailsError,
+  // } = useSWR(
+  //   similarGranteesIds &&
+  //     Array.isArray(similarGranteesIds) &&
+  //     similarGranteesIds.length > 0
+  //     ? `https://nextjs-test-beryl-gamma.vercel.app/api/grantees?ids=${similarGranteesIds.join(
+  //         ","
+  //       )}`
+  //     : null,
+  //   fetcher
+  // );
+  // console.log("similarGrantsGranteesDetails:", similarGrantsGranteesDetails);
 
   /***********TRANSACTIONS***********/
 
-  const transactoinsIds = grantData ? grantData.transactions : null;
+  // const transactoinsIds = grantData ? grantData.transactions : null;
 
-  console.log({ transactoinsIds });
+  // console.log({ transactoinsIds });
 
   //fetch transactions data based on the transactionsId in grantData
 
-  const {
-    data: transactionsDetails,
-    isLoading: isTransactionsDetailsLoading,
-    error: transactionsDetailsError,
-  } = useSWR(
-    transactoinsIds &&
-      Array.isArray(transactoinsIds) &&
-      transactoinsIds.length > 0
-      ? `https://nextjs-test-beryl-gamma.vercel.app/api/transactions?ids=${transactoinsIds.join(
-          ","
-        )}`
-      : null,
-    fetcher
-  );
-  console.log("transactionsDetails:", transactionsDetails);
+  // const {
+  //   data: transactionsDetails,
+  //   isLoading: isTransactionsDetailsLoading,
+  //   error: transactionsDetailsError,
+  // } = useSWR(
+  //   transactoinsIds &&
+  //     Array.isArray(transactoinsIds) &&
+  //     transactoinsIds.length > 0
+  //     ? `https://nextjs-test-beryl-gamma.vercel.app/api/transactions?ids=${transactoinsIds.join(
+  //         ","
+  //       )}`
+  //     : null,
+  //   fetcher
+  // );
+  // console.log("transactionsDetails:", transactionsDetails);
 
-  const transactionsData = transactionsDetails.transactions;
-  console.log("transactionsData:", transactionsData);
+  // const transactionsData = transactionsDetails.transactions;
+  // console.log("transactionsData:", transactionsData);
 
-  /************ ERRORS AND LOADING HANDELING *************/
+  // /************ ERRORS AND LOADING HANDELING *************/
 
-  if (grantDataError) return <div>Error loading grant details</div>;
-  if (granteesDetailsError) return <div>Error loading grantees details</div>;
-  if (similarGrantsDetailsError)
-    return <div>Error loading similar grants details</div>;
-  if (similarGrantsGranteesDetailsError)
-    return <div>Error loading grantees details for each grant card</div>;
-  if (transactionsDetailsError)
-    return <div>Error loading transactions details </div>;
+  // if (grantDataError) return <div>Error loading grant details</div>;
+  // if (granteesDetailsError) return <div>Error loading grantees details</div>;
+  // if (similarGrantsDetailsError)
+  //   return <div>Error loading similar grants details</div>;
+  // if (similarGrantsGranteesDetailsError)
+  //   return <div>Error loading grantees details for each grant card</div>;
+  // if (transactionsDetailsError)
+  //   return <div>Error loading transactions details </div>;
 
-  if (
-    grantDataIsLoading ||
-    isGranteesDetailsLoading ||
-    isSimilarGrantsDetailsLoading ||
-    isSimilarGrantsGranteesDetailsLoading ||
-    isTransactionsDetailsLoading
-  )
-    return <div>Loading...</div>;
+  // if (
+  //   grantDataIsLoading ||
+  //   isGranteesDetailsLoading ||
+  //   isSimilarGrantsDetailsLoading ||
+  //   isSimilarGrantsGranteesDetailsLoading ||
+  //   isTransactionsDetailsLoading
+  // )
+  //   return <div>Loading...</div>;
 
   const {
     //grantees_ids,
@@ -293,7 +291,6 @@ function GrantDetails({ id }) {
   } = grantData;
 
   return (
-
     <GrantDetailsWrapper>
       <>
         <p className='card-category'>{category}</p>
@@ -325,7 +322,7 @@ function GrantDetails({ id }) {
           />
         </div>
         <h3 className='sub-title'>Team</h3>
-        <ButtonWrapper data={granteesDetails} position='link-to-profile' />
+        {/* <ButtonWrapper data={granteesDetails} position='link-to-profile' /> */}
         <hr></hr>
         <div className='text-wrapper'>
           <h3 className='sub-title'>Description</h3>
@@ -352,7 +349,6 @@ function GrantDetails({ id }) {
                 src='/images/external-link-purple.svg'
                 aria-hidden='true'
                 className='external-link-purple'
-
               />
             </div>
             <div className='link-row-wrapper'>
@@ -367,7 +363,7 @@ function GrantDetails({ id }) {
         </div>
         <h3 className='sub-title funding'>Funding Transactions</h3>
 
-        {transactionsData?.map((card) => {
+        {/* {transactionsData?.map((card) => {
           return (
             <CardTransactions
               key={card?.id}
@@ -382,7 +378,7 @@ function GrantDetails({ id }) {
         <SimilarGrants
           similarGrants={similarGrantsDetails}
           granteesData={similarGrantsGranteesDetails}
-        />
+        /> */}
       </>
     </GrantDetailsWrapper>
   );
